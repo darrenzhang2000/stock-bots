@@ -15,10 +15,14 @@ app.use(bodyParser.json())
 var cors = require('cors')
 app.use(cors())
 
+//routes
+const users = require('./routes/users')
+
 //connect to mongoose
 const mongoose = require("mongoose")
 mongoose.connect(
-    process.env.CONNECTION_STRING,
+    "mongodb+srv://testuser:testuser123@cluster0.9fxli.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    // process.env.CONNECTION_STRING,
     { useNewUrlParser: true }
 )
 
@@ -31,5 +35,7 @@ db.once("open", () => {
 app.get("/", (req, res) => {
     res.send("hello")
 })
+
+app.use('/users', users)
 
 app.listen(port, () => console.log("listening at port", port))
