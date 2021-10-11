@@ -34,7 +34,7 @@ export default function Header() {
       <AppBar position="static" style={{ background:  '#FF6B00' }}>
         <Toolbar className={classes.header}>
 
-            <Link to='/home'>
+            <Link to='/'>
                 <IconButton>
                   <MenuIcon style={{ color: 'white' }}/>                    
                 </IconButton>
@@ -45,6 +45,19 @@ export default function Header() {
                     <NotificationsNoneIcon style={{ color: 'white'}}/>
                 </Button>
             </Link>
+
+            <Link to='/signup'>
+                <Button >
+                    Sign Up
+                </Button>
+            </Link>            
+
+            <Link to='/signin'>
+                <Button >
+                    Sign In
+                </Button>
+            </Link>            
+
 
             <Link to='/settings'>
                 <Button>
