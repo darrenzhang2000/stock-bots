@@ -1,25 +1,77 @@
 import requests
 import collections
+from statistics import mean
+from functools import lru_cache
+from dotenv import load_dotenv
+import os
 
-#tickers = ['GOOGL', 'AAPL', 'AMZN', 'NFLX', 'FB']
-tickers = ['GOOGL']
+load_dotenv()
+
+tickers = ['GOOGL', 'AAPL', 'AMZN', 'NFLX', 'FB']
+
+
+# Caching api calls to reduce api calls. Will remove when deployed.
+@lru_cache(None)
+def cachedAPICall():
+    headers = {
+        'accept': 'application/json',
+        'X-API-KEY': os.environ['YAHOO_FINANCE_API_KEY'],
+    }
+
+    comparisons = ",".join(tickers)
+
+    params = (
+        ('comparisons', comparisons),
+        ('range', '1wk'),
+        ('region', 'US'),
+        ('interval', '1d'),
+        ('lang', 'en'),
+        ('events', 'div,split'),
+    )
+
+    response = requests.get('https://yfapi.net/v8/finance/chart/AAPL', headers=headers, params=params)
+    return response
+
+
+class StockAction:
+    def __init__(self, ticker, fiveDayAverage, lastBusinessDayClosePrice, action):
+        self.ticker = ticker
+        self.fiveDayAverage = fiveDayAverage
+        self.lastBusinessDayClosePrice = lastBusinessDayClosePrice
+        self.action = action
+
+    def __str__(self):
+        formatString = "Ticker: {}, fiveDayAverage: {}, lastBusinessDayClosePrice: {}, action: {}"
+        return formatString.format(self.ticker, self.fiveDayAverage, self.lastBusinessDayClosePrice, self.action)
+
+
+def makeStockDecision(avgPrice, prevPrice):
+    if prevPrice >= 1.05 * avgPrice:
+        return "sell"
+    elif prevPrice <= .95 * avgPrice:
+        return "buy"
+    else:
+        return "hold"
+
 
 def stockActions(tickers):
-    # get average closing price for the past 5 business days. 
-    # returns "buy" if current price (or price on market close) is 5% 
-    # return "buy", "sell" or "hold"
+    stockActionHt = {}  # {'GOOGL': 'buy', 'APPL': 'hold'}
 
-    # https://polygon.io/docs/get_v1_open-close__stocksTicker___date__anchor
-    res = []
-    StockPrices = collections.namedtuple('StockPrices', ('ticker', 'closing_price'))
-    for ticker in tickers:
-        print(ticker)
-        response = requests.get('https://api.polygon.io/v1/open-close/{}/2020-10-14?adjusted=true&apiKey=APIKEY'.format(ticker))
-        if response.status_code == 200:
-            closing_price = response.json()['close']
-            res.append(StockPrices(ticker, closing_price))
-        print(response.status_code, response.json())
-    return res
+    response = cachedAPICall()
+    if response.status_code == 200:
+        result = response.json()['chart']['result'][0]
+        timestamps = result['timestamp']
+        comparisons = result['comparisons']
+
+        for stockInfo in comparisons:
+            ticker = stockInfo['symbol']
+            fiveDayClosePrices = list(filter(lambda p: p, stockInfo['close']))
+            fiveDayAverage = round(mean(fiveDayClosePrices), 2)
+            lastBusinessDayClosePrice = round(fiveDayClosePrices[-1], 2)
+            action = makeStockDecision(fiveDayAverage, lastBusinessDayClosePrice)
+            stockActionHt[ticker] = StockAction(ticker, fiveDayAverage, lastBusinessDayClosePrice, action)
+
+    return { ticker: stockAction.action for ticker, stockAction in stockActionHt.items() }
 
 
-stockActions(tickers)
+print(stockActions(tickers))
