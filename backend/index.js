@@ -36,6 +36,13 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 
+app.get('/loginuser', (req, res) => {
+    // magic happens and user logins
+    res.send({
+        'success': "True"
+    })
+})
+
 app.use('/users', users)
 
 app.listen(port, () => console.log("listening at port", port))
