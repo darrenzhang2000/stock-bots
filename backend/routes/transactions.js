@@ -3,6 +3,24 @@ const router = express.Router()
 const Transaction = require("../models/Transaction")
 const User = require("../models/User")
 
+router.get("/", (req, res) => {
+    var { email } = req.body
+
+    Transaction.find({ email: email}, async (err, transactions) => {
+        if(transactions.length == 0){
+            res.send({
+                success: false,
+                message: "User has no transactions"
+            })
+        } else{
+            res.send({
+                success: true,
+                transactions: transactions
+            })
+        }
+    })
+})
+
 router.post("/", (req, res) => {
     var { ticker, quantity, action, price, totalPrice, email } = req.body
 
