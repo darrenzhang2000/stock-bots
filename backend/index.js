@@ -17,6 +17,7 @@ app.use(cors())
 
 //routes
 const users = require('./routes/users')
+const transactions = require('./routes/transactions')
 
 //connect to mongoose
 const mongoose = require("mongoose")
@@ -36,13 +37,8 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 
-app.get('/loginuser', (req, res) => {
-    // magic happens and user logins
-    res.send({
-        'success': "True"
-    })
-})
-
 app.use('/users', users)
+app.use('/transactions', transactions)
 
 app.listen(port, () => console.log("listening at port", port))
+
