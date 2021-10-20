@@ -18,6 +18,8 @@ app.use(cors())
 //routes
 const users = require('./routes/users')
 const transactions = require('./routes/transactions')
+const portfolios = require('./routes/portfolios')
+
 
 //connect to mongoose
 const mongoose = require("mongoose")
@@ -39,6 +41,8 @@ app.get("/", (req, res) => {
 
 app.use('/users', users)
 app.use('/transactions', transactions)
+app.use('/portfolios', portfolios)
+
 
 app.listen(port, () => console.log("listening at port", port))
 
