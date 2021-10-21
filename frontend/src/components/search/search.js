@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const Search = props => {
     // const { searchInput, close, high, low, open, volume } = props
-    const { setSearchInput, setDisplayRes, setClose, setHigh, setLow, setOpen, setVolume } = props
+    const { setSearchInput, setDisplayRes, setTicker, setClose, setHigh, setLow, setOpen, setVolume } = props
 
     const handleOnSubmit = e => {
         e.preventDefault()
@@ -29,6 +29,7 @@ const Search = props => {
             setOpen(open[0])
             setVolume(volume[0])
             setDisplayRes(true)
+            setTicker(e.target.value)
             console.log(close[0], high[0], low[0], open[0], volume[0])
         })
     }
