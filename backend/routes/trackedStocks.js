@@ -33,20 +33,20 @@ router.post("/", (req, res) => {
     User.find({ email: email }, (err, emails) => {
         if (!emails.length) {
             res.send({
-                sucess: false,
+                success: false,
                 message: "User does not exist"
             })
         } else {
             trackedStock.save((err) => {
                 if (err) {
                     res.send({
-                        sucess: false,
+                        success: false,
                         message: err
                     })
                     console.log(err)
                 } else {
                     res.send({
-                        sucess: true,
+                        success: true,
                         message: "TrackedStock successfully added"
                     })
                 }
@@ -55,5 +55,22 @@ router.post("/", (req, res) => {
     })
 })
 
+router.delete("/", (req, res) => {
+    var { email, ticker } = req.body
+
+    TrackedStock.deleteOne({ email, ticker}, (err, _) => {
+        if(err){
+            res.send({
+                success: false,
+                message: err
+            }) 
+        }else{
+            res.send({
+                success: true,
+                message: "TrackedStock successfully added"
+            }) 
+        }
+    })
+})
 
 module.exports = router
