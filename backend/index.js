@@ -20,6 +20,7 @@ const users = require('./routes/users')
 const transactions = require('./routes/transactions')
 const portfolios = require('./routes/portfolios')
 const trackedStocks = require('./routes/trackedStocks')
+const ownedStocks = require('./routes/ownedStock')
 
 //connect to mongoose
 const mongoose = require("mongoose")
@@ -43,6 +44,7 @@ app.use('/users', users)
 app.use('/transactions', transactions)
 app.use('/portfolios', portfolios)
 app.use('/trackedStocks', trackedStocks)
+app.use('/ownedStocks', ownedStocks)
 
 app.listen(port, () => console.log("listening at port", port))
 

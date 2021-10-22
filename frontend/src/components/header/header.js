@@ -52,6 +52,12 @@ export default function Header() {
                 </Button>
             </Link>   
 
+            <Link to='/transactionsPage'>
+                <Button>
+                    Transactions Page
+                </Button>
+            </Link>
+                
             <Link to='/signup'>
                 <Button >
                     Sign Up
