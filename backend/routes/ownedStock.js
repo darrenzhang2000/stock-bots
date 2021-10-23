@@ -5,8 +5,7 @@ const User = require("../models/User")
 
 
 router.get("/", (req, res) => {
-    var { email } = req.body
-
+    var { email } = req.query
     OwnedStock.find({ email: email}, async (err, ownedStocks) => {
         if(ownedStocks.length == 0){
             res.send({
@@ -20,6 +19,7 @@ router.get("/", (req, res) => {
             })
         }
     })
+
 })
 
 router.put("/", (req, res) => {
