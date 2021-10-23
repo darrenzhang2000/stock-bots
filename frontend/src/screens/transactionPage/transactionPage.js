@@ -34,14 +34,22 @@ const TransactionPage = (props) => {
 
     return (
         <div>
+            <table>
+                <tr>
+                    <th>action</th>
+                    <th>price</th>
+                    <th>quantity</th>
+                    <th>ticker</th>
+                </tr>
             {
-                transactions.map(transaction => <div> 
-                    action: {transaction.action} 
-                    price: {transaction.price.$numberDecimal} 
-                    quantity: {transaction.quantity} 
-                    ticker: {transaction.ticker} 
-                </div>)
+                transactions.map(transaction => <tr> 
+                    <td>{transaction.action}</td>
+                    <td>{transaction.price.$numberDecimal}</td>
+                    <td>{transaction.quantity}</td>
+                    <td>{transaction.ticker}</td>
+                </tr>)
             }
+            </table>
         </div>
     )
 }
