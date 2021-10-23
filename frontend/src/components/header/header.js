@@ -57,6 +57,12 @@ export default function Header() {
                     Transactions Page
                 </Button>
             </Link>
+
+            <Link to='/portfolioPage'>
+                <Button>
+                    Portfolio Page
+                </Button>
+            </Link>
                 
             <Link to='/signup'>
                 <Button >
