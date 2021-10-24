@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { Search, SearchIconWrapper, StyledInputBase } from './styledSearchComponents';
 
 const StockSearch = props => {
-    console.log('rerender')
     const { setDisplayRes, setTicker, setClose, setHigh, setLow, setOpen, setVolume } = props
     const [searchInput, setSearchInput] = useState("")
     const [displayAlert, setDisplayAlert] = useState(false)
