@@ -1,134 +1,154 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { TextField, Button } from '@material-ui/core';
-import axios from 'axios';
-import Modal from 'react-modal';
+import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import qs from 'qs';
+import axios from 'axios'
 
-const InputField = withStyles({
-    root: {
-        '& label.Mui-focused': {
-            color: 'tomato'
-        },
-        '& label': {
-            color: '#FF6B00'
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: '#FF6B00'
-            },
-            '&:hover fieldset': {
-                borderColor: '#FF6B00'
-            },
-            '& .Mui-focused fieldset': {
-                borderColor: '#FF6B00'
-            }
-        },
-        width: 310
-    }
-})(TextField);
-
-const useStyles = makeStyles((theme) => ({
-    form: {
-        display: 'column'
-    },
-    button: {
-        marginTop: '10px',
-        width: '211px',
-        height: '45px',
-
-        background: '#FF6B00',
-        borderRadius: '25px',
-        marginLeft: '54px'
-    },
-    newaccount: {
-        marginTop: '10px'
-    },
-    form: {
-        display: 'flex',
-        flexDirection: 'column'
-    }
-}));
-
-
-const Signup = props => {
-    const classes = useStyles();
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("")
-    const [confirmPassword, setConfirmPassword] = React.useState("")
-
-    const onSubmit = () => {
-        console.log('onsub clicked');
-        // const body = {
-        //     email: email,
-        //     password: password,
-        // }
-        // axios.post('http://localhost:5000/user/register', body).then(
-        //     res => {
-        //         // if user's profile is set up
-        //         if (res.data.success) {
-        //             setIsOpenTrue(true);
-        //             setIsOpenFalse(false);
-        //         } else { // user's profile isn't set up
-        //             console.log('user profile is not set up')
-        //             setIsOpenFalse(true);
-        //             setIsOpenTrue(false);
-        //         }
-        //         console.log(res)
-        //     }
-        // )
-    }
-
-    return <div>
-        <form className={classes.form}>
-            <InputField
-                className={classes.input}
-                label='Email'
-                name='email'
-                required
-                autoComplete='email'
-                variant='outlined'
-                margin='dense'
-                size='medium'
-                inputProps={{ style: { color: 'black' } }}
-                onChange={e => setEmail(e.target.value)}
-                value={email}
-            />
-            <InputField
-                className={classes.input}
-                label='Password'
-                name='password'
-                required
-                autoComplete='password'
-                variant='outlined'
-                margin='dense'
-                size='medium'
-                inputProps={{ style: { color: 'black' } }}
-                onChange={e => setPassword(e.target.value)}
-                value={password}
-            />
-            <InputField
-                className={classes.input}
-                label='Confirm Password'
-                name='confirmPassword'
-                required
-                autoComplete='Confirm Password'
-                variant='outlined'
-                margin='dense'
-                size='medium'
-                inputProps={{ style: { color: 'black' } }}
-                onChange={e => setConfirmPassword(e.target.value)}
-                value={confirmPassword}
-            />
-            <div >
-                <div >
-                    <button className={classes.button} onClick={onSubmit}>
-                        Submit
-                </button>
-                </div>
-            </div>
-        </form>
-    </div>
+function Copyright(props) {
+    return (
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+            {'Copyright © '}
+            <Link color="inherit" href="https://mui.com/">
+                Your Website
+      </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
 }
 
-export default Signup
+const theme = createTheme();
+
+export default function SignUp() {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+
+        var headers = {
+            'accept': 'application/json',
+        };
+
+        var data = {
+            email: formData.get('email'),
+            password: formData.get('password'),
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName')
+        }
+
+        var options = {
+            method: 'POST',
+            url: 'http://localhost:5000/users/register',
+            headers: headers,
+            data: qs.stringify(data)
+        };
+
+        axios(options).then(res => {
+            console.log('added')
+            console.log(res)
+            // need to save user info somewhere
+        })
+
+    };
+
+    return (
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign up
+          </Typography>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    autoComplete="given-name"
+                                    name="firstName"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="lastName"
+                                    label="Last Name"
+                                    name="lastName"
+                                    autoComplete="family-name"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="new-password"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <FormControlLabel
+                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                    label="I want to receive inspiration, marketing promotions and updates via email."
+                                />
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            Sign Up
+            </Button>
+                        <Grid container justifyContent="flex-end">
+                            <Grid item>
+                                <Link href="#" variant="body2">
+                                    Already have an account? Sign in
+                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+                <Copyright sx={{ mt: 5 }} />
+            </Container>
+        </ThemeProvider>
+    );
+}

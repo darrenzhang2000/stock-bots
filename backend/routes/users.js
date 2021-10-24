@@ -48,20 +48,18 @@ router.post("/login", (req, res) => {
 
 router.post("/register", (req, res) => {
     console.log('in post')
-    var { name, surname, email, password, address, zipCode, dateOfBirth } = req.body
+    var { firstName, lastName, email, password } = req.body
     //hash password
     bcrypt.hash(password, saltRounds, function (err, hash) {
       let hashedPassword = hash
   
       //create a user using the payload and hashed password
       const user = new User({
-        name: name,
-        surname, surname,
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         password: hashedPassword,
-        address: address,
-        zipCode: zipCode,
-        dateOfBirth: dateOfBirth
+
       })
   
       User.find({ email: user.email }, (err, emails) => {

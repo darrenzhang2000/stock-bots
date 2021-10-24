@@ -1,50 +1,48 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
+// import { styled } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import { Toolbar, Avatar, Button, IconButton } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import NotificationsNoneIcon from '@mui/icons-material/Menu'
+import SettingsIcon from '@mui/icons-material/Menu'
 import {Link} from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-import SettingsIcon from '@material-ui/icons/Settings';
 import "./header.css"
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  header: {
-    display: 'flex',
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
-  large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   header: {
+//     display: 'flex',
+//     flexDirection: "row",
+//     justifyContent: "space-between"
+//   },
+//   large: {
+//     width: theme.spacing(7),
+//     height: theme.spacing(7),
+//   },
+// }));
 
 export default function Header() {
-  const classes = useStyles();
+  const classes = {
+  }
+  // const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{ background:  '#FF6B00' }}>
         <Toolbar className={classes.header}>
-
             <Link to='/'>
                 <IconButton>
                   <MenuIcon style={{ color: 'white' }}/>                    
                 </IconButton>
             </Link>
             <div style={{display: 'flex', justifyContent: 'right'}}>
-            <Link to='/notifications'>
+            {/* <Link to='/notifications'>
                 <Button >
                     <NotificationsNoneIcon style={{ color: 'white'}}/>
                 </Button>
-            </Link>
+            </Link> */}
 
             <Link to='/stockPage'>
                 <Button >

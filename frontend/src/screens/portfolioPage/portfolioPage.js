@@ -1,5 +1,13 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography'
 
 const PortfolioPage = () => {
     const [ownedStocks, setOwnedStocks] = React.useState([])
@@ -35,13 +43,31 @@ const PortfolioPage = () => {
 
     return (
         <div>
-            portfolio page
-            {
-                ownedStocks.map(stock => <div>
-                    ticker: {stock.ticker}                    
-                    quantity: {stock.quantity.$numberDecimal}
-                </div>)
-            }
+            <Typography variant="h4"> portfolio page</Typography>
+
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Ticker</TableCell>
+                            <TableCell align="right">Quantity</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {ownedStocks.map((stock) => (
+                            <TableRow
+                                key={stock.ticker}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {stock.ticker}
+                                </TableCell>
+                                <TableCell align="right">{stock.quantity.$numberDecimal}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     )
 }
