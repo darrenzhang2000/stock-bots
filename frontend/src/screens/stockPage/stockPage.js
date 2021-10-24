@@ -1,12 +1,9 @@
 import React from 'react'
-import Search from '../../components/search/search'
+import StockSearch from '../../components/search/stockSearch'
 import StockInfo from '../../components/stockInfo/stockInfo'
 import TrackedStockButton from '../../components/trackedStockButton/trackedStockButton'
 
 const StockPage = props => {
-    console.log('stock page')
-
-    const [searchInput, setSearchInput] = React.useState("")
     const [displaySearchRes, setDisplayRes] = React.useState("")
     const [close, setClose] = React.useState("")
     const [open, setOpen] = React.useState("")
@@ -17,8 +14,7 @@ const StockPage = props => {
 
     return <div>
         stock info page
-        <Search
-            setSearchInput={setSearchInput}
+        <StockSearch
             setDisplayRes={setDisplayRes}
             setClose={setClose}
             setOpen={setOpen}
@@ -26,10 +22,10 @@ const StockPage = props => {
             setHigh={setHigh}
             setVolume={setVolume}
             setTicker={setTicker}
+            key="StockSearch"
         />
         {displaySearchRes ? <div>
             <StockInfo
-                searchInput={searchInput}
                 displaySearchRes={displaySearchRes}
                 close={close}
                 open={open}
