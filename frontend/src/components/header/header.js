@@ -75,11 +75,11 @@ export default function Header() {
             </Link>            
 
 
-            <Link to='/settings'>
+            {/* <Link to='/settings'>
                 <Button>
                     <SettingsIcon style={{ color: 'white' }}/>
                 </Button>
-            </Link>
+            </Link> */}
             </div>
         </Toolbar>
       </AppBar>
