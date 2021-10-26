@@ -43,7 +43,7 @@ const TransactionPage = (props) => {
 
     return (
         <div>
-            <Typography variant="h4"> portfolio page</Typography>
+            <Typography variant="h4"  className="font-link" sx={{marginBottom: '32px'}}> Transactions Page</Typography>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
