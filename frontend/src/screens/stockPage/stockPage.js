@@ -13,7 +13,6 @@ const StockPage = props => {
     const [ticker, setTicker] = React.useState("")
 
     return <div>
-        stock info page
         <StockSearch
             setDisplayRes={setDisplayRes}
             setClose={setClose}

@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import qs from 'qs'
+import { Button, Typography, Alert, Grid } from '@mui/material';
 
 const TrackedStockButton = (props) => {
     const { ticker } = props
@@ -33,10 +34,7 @@ const TrackedStockButton = (props) => {
     }
 
     return (
-        <div>
-            Add Stock To Be Tracked By the Trading Algorithm
-            <button onClick={handleAddTrackedStock}>Add</button>
-        </div>
+        <Button variant="contained" color="primary" onClick={handleAddTrackedStock}>Add Stock To Be Tracked By the Trading Algorithm</Button>
     )
 }
 

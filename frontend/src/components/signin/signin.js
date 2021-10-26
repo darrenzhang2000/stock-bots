@@ -77,7 +77,7 @@ export default function SignIn() {
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign in
-          </Typography>
+                    </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -110,12 +110,12 @@ export default function SignIn() {
                             sx={{ mt: 3, mb: 2 }}
                         >
                             Sign In
-            </Button>
+                        </Button>
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
                                     Forgot password?
-                </Link>
+                                </Link>
                             </Grid>
                             <Grid item>
                                 <Link href="#" variant="body2">

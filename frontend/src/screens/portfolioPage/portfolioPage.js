@@ -43,9 +43,9 @@ const PortfolioPage = () => {
 
     return (
         <div>
-            <Typography variant="h4"> portfolio page</Typography>
+            <Typography variant="h4" className="font-link"> Portfolio Page</Typography>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{marginTop: '32px', marginBottom: '32px'}}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>

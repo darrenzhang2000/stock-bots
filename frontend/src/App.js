@@ -28,7 +28,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="font-link">
       {/* <Header /> */}
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
@@ -36,6 +36,7 @@ function App() {
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
+              
             }}
           >
             <IconButton
@@ -50,7 +51,7 @@ function App() {
             >
               <MenuIcon />
             </IconButton>
-          
+
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
@@ -77,14 +78,27 @@ function App() {
           <Divider />
           <List>{secondaryListItems}</List>
         </Drawer>
-
-        <Route exact path='/' component={Home} />
-        <Route exact path='/signup' component={Signup} />
-        <Route exact path='/signin' component={Signin} />
-        <Route exact path='/stockPage' component={StockPage} />
-        <Route exact path='/transactionsPage' component={TransactionPage} />
-        <Route exact path='/portfolioPage' component={PortfolioPage} />
-
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+            marginTop: '64px',
+            padding: '32px'
+          }}
+        >
+          <Route exact path='/' component={Home} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/signin' component={Signin} />
+          <Route exact path='/stockPage' component={StockPage} />
+          <Route exact path='/transactionsPage' component={TransactionPage} />
+          <Route exact path='/portfolioPage' component={PortfolioPage} />
+        </Box>
         {/* <Footer /> */}
       </Box>
     </div >

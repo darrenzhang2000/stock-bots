@@ -64,7 +64,7 @@ const StockSearch = props => {
                 : null
         }
 
-        <Typography variant="h4"> Search stocks by ticker </Typography>
+        <Typography variant="h4" className="font-link"> Search stocks by ticker </Typography>
 
         <Search>
             <SearchIconWrapper>

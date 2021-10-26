@@ -21,7 +21,7 @@ function Copyright(props) {
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
                 Your Website
-      </Link>{' '}
+            </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
@@ -78,7 +78,7 @@ export default function SignUp() {
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
-          </Typography>
+                    </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
@@ -137,12 +137,12 @@ export default function SignUp() {
                             sx={{ mt: 3, mb: 2 }}
                         >
                             Sign Up
-            </Button>
+                        </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="#" variant="body2" >
                                     Already have an account? Sign in
-                </Link>
+                                </Link>
                             </Grid>
                         </Grid>
                     </Box>
