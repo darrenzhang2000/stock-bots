@@ -10,13 +10,19 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import HomeIcon from '@mui/icons-material/Home';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import PersonIcon from '@mui/icons-material/Person';
 
 export const mainListItems = (
     <div>
         <Link to='/'>
             <ListItem button>
                 <ListItemIcon>
-                    <DashboardIcon />
+                    <HomeIcon />
                 </ListItemIcon>
                 <ListItemText primary="Home Page" />
             </ListItem>
@@ -25,7 +31,7 @@ export const mainListItems = (
         <Link to='/transactionsPage'>
             <ListItem button>
                 <ListItemIcon>
-                    <DashboardIcon />
+                    <CompareArrowsIcon />
                 </ListItemIcon>
                 <ListItemText primary="Transactions Page" />
             </ListItem>
@@ -34,7 +40,7 @@ export const mainListItems = (
         <Link to='/stockPage'>
             <ListItem button>
                 <ListItemIcon>
-                    <ShoppingCartIcon />
+                    <ShowChartIcon />
                 </ListItemIcon>
                 <ListItemText primary="Stock Page" />
             </ListItem>
@@ -43,7 +49,7 @@ export const mainListItems = (
         <Link to='/portfolioPage'>
             <ListItem button>
                 <ListItemIcon>
-                    <PeopleIcon />
+                    <AccountBalanceIcon />
                 </ListItemIcon>
                 <ListItemText primary="Portfolio Page" />
             </ListItem>
@@ -52,7 +58,7 @@ export const mainListItems = (
         <Link to='/signup'>
             <ListItem button>
                 <ListItemIcon>
-                    <BarChartIcon />
+                    <PersonAddAlt1Icon />
                 </ListItemIcon>
                 <ListItemText primary="Sign Up" />
             </ListItem>
@@ -61,7 +67,7 @@ export const mainListItems = (
         <Link to='/signin'>
             <ListItem button>
                 <ListItemIcon>
-                    <LayersIcon />
+                    <PersonIcon />
                 </ListItemIcon>
                 <ListItemText primary="Sign In" />
             </ListItem>
