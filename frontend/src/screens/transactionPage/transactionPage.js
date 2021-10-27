@@ -33,6 +33,7 @@ const TransactionPage = (props) => {
 
         axios(options).then(res => {
             setTransactions(res.data.transactions)
+            console.log(transactions)
         })
     }
 
@@ -48,6 +49,7 @@ const TransactionPage = (props) => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
+                                <TableCell>date</TableCell>
                                 <TableCell>action</TableCell>
                                 <TableCell>price</TableCell>
                                 <TableCell>quantity</TableCell>
@@ -57,6 +59,7 @@ const TransactionPage = (props) => {
                          <TableBody>
                     {
                         transactions.map(transaction => <TableRow> 
+                            <TableCell>{new Date(transaction.dateTime).toLocaleString()}</TableCell>
                             <TableCell>{transaction.action}</TableCell>
                             <TableCell>{transaction.price.$numberDecimal}</TableCell>
                             <TableCell>{transaction.quantity}</TableCell>
