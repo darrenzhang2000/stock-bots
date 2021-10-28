@@ -7,7 +7,7 @@ const User = require("../models/User")
 router.get("/hi", (req, res) => {res.send("hi") })
 
 router.get("/", (req, res) => {
-    var { email } = req.body
+    var { email } = req.query
 
     Portfolio.find({ email: email}, async (err, portfolios) => {
         if(portfolios.length == 0){
