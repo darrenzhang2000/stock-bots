@@ -1,11 +1,11 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, Typography, Alert } from '@mui/material';
+import { Buttœon, Typography, Alert, Button } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Search, SearchIconWrapper, StyledInputBase } from './styledSearchComponents';
 
 const StockSearch = props => {
-    const { setDisplayRes, setTicker, setClose, setHigh, setLow, setOpen, setVolume } = props
+    const { setDisplayRes, setTicker, setMarketPrice, setMarketChange, setMarketDayHigh, setMarketDayLow, setMarketVolume, setMarketPreviousClose, setMarketOpen, setLongName, setMarketCap, setCurrency } = props
     const [searchInput, setSearchInput] = useState("")
     const [displayAlert, setDisplayAlert] = useState(false)
 
@@ -29,30 +29,25 @@ const StockSearch = props => {
         };
 
         var options = {
-            url: `https://yfapi.net/v8/finance/chart/${searchInput}?range=1d&region=US&interval=1d&lang=en&events=div%2Csplit`,
+            url: `https://yfapi.net/v11/finance/quoteSummary/${searchInput}?lang=en&region=US&modules=price`,
             headers: headers
         };
 
         axios(options).then(res => {
-            console.log(res)
-            var quotes = res.data.chart.result[0].indicators.quote[0]
-            console.log(quotes)
-            const { close, high, low, open, volume } = quotes
-            if (close == null) { // invalid ticker
-                console.log("invalid ticker")
-                setDisplayRes(false)
-                setSearchInput("")
-                setDisplayAlert(true)
-                return
-            }
-            setClose(close[0])
-            setHigh(high[0])
-            setLow(low[0])
-            setOpen(open[0])
-            setVolume(volume[0])
+            console.log(res.data.quoteSummary.result[0].price)
+            const price = res.data.quoteSummary.result[0].price
+            setMarketPrice(price.regularMarketPrice.fmt)
+            setMarketChange(price.regularMarketChange.fmt)
+            setMarketDayHigh(price.regularMarketDayHigh.fmt)
+            setMarketDayLow(price.regularMarketDayLow.fmt)
+            setMarketVolume(price.regularMarketVolume.fmt)
+            setMarketPreviousClose(price.regularMarketPreviousClose.fmt)
+            setMarketOpen(price.regularMarketOpen.fmt)
+            setLongName(price.longName)
+            setMarketCap(price.marketCap.fmt)
+            setCurrency(price.currency)
             setDisplayRes(true)
             setTicker(e.target.value)
-            console.log(close[0], high[0], low[0], open[0], volume[0])
         })
     }
 
