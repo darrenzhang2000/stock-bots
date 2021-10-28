@@ -23,10 +23,10 @@ router.get("/", (req, res) => {
 })
 
 router.put("/", (req, res) => {
-    var { email, ticker, quantity } = req.body
+    var { email, ticker, quantity, averagePurchasePrice } = req.body
 
     const ownedStock = new OwnedStock({
-        email, ticker, quantity
+        email, ticker, quantity, averagePurchasePrice
     })
 
     User.find({ email: email }, (err, emails) => {
@@ -55,10 +55,10 @@ router.put("/", (req, res) => {
 })
 
 router.post("/", (req, res) => {
-    var { email, ticker, quantity } = req.body
+    var { email, ticker, quantity, averagePurchasePrice } = req.body
 
     const ownedStock = new OwnedStock({
-        email, ticker, quantity
+        email, ticker, quantity, averagePurchasePrice
     })
 
     User.find({ email: email }, (err, emails) => {

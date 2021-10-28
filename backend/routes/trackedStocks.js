@@ -5,15 +5,14 @@ const User = require("../models/User")
 
 
 router.get("/", (req, res) => {
-    var { email } = req.body
-
-    TrackedStock.find({ email: email}, async (err, trackedStocks) => {
-        if(trackedStocks.length == 0){
+    var { email } = req.query
+    TrackedStock.find({ email: email }, async (err, trackedStocks) => {
+        if (trackedStocks.length == 0) {
             res.send({
                 success: false,
                 message: "User has no portfolio"
             })
-        } else{
+        } else {
             res.send({
                 success: true,
                 trackedStocks: trackedStocks
@@ -28,7 +27,7 @@ router.post("/", (req, res) => {
 
     const trackedStock = new TrackedStock({
         email, ticker
-        })
+    })
 
     User.find({ email: email }, (err, emails) => {
         if (!emails.length) {
@@ -58,17 +57,17 @@ router.post("/", (req, res) => {
 router.delete("/", (req, res) => {
     var { email, ticker } = req.body
 
-    TrackedStock.deleteOne({ email, ticker}, (err, _) => {
-        if(err){
+    TrackedStock.deleteOne({ email, ticker }, (err, _) => {
+        if (err) {
             res.send({
                 success: false,
                 message: err
-            }) 
-        }else{
+            })
+        } else {
             res.send({
                 success: true,
                 message: "TrackedStock successfully added"
-            }) 
+            })
         }
     })
 })

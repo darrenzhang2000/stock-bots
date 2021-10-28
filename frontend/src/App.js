@@ -4,12 +4,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MuiAppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import Toolbar from '@mui/material/Toolbar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import Drawer from './components/drawer/drawer';
@@ -21,6 +22,9 @@ import PortfolioPage from './screens/portfolioPage/portfolioPage';
 import StockPage from './screens/stockPage/stockPage';
 import TransactionPage from './screens/transactionPage/transactionPage';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import StonksLogo from './stonksLogo.jpg'
+import ReactLogo from './logo.svg'
+import { runTradingAlgorithm } from './runTradingAlgo.js'
 
 const drawerWidth = 240;
 
@@ -48,6 +52,13 @@ function App() {
     setOpen(!open);
   };
 
+
+
+  useEffect(() => {
+    runTradingAlgorithm()
+
+  }, [])
+
   return (
     <div className="font-link">
       {/* <Header /> */}
@@ -57,7 +68,7 @@ function App() {
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
-              
+
             }}
           >
             <IconButton
@@ -72,12 +83,16 @@ function App() {
             >
               <MenuIcon />
             </IconButton>
-
+            <Typography>
+              {/* <StonksLogo/> */}
+              <img src={StonksLogo} width="40px" height="40px" />
+            </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+
           </Toolbar>
         </AppBar>
 
