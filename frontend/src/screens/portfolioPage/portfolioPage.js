@@ -8,12 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography'
+import Account from '../../components/account/account'
 
 const PortfolioPage = () => {
     const [ownedStocks, setOwnedStocks] = React.useState([])
-    const [amount, setAmount] = React.useState(0)
-    const [spendingPower, setSpendingPower] = React.useState(0)
-
+    
     const getOwnedStocks = () => {
         var headers = {
             'accept': 'application/json',
@@ -37,33 +36,22 @@ const PortfolioPage = () => {
             setOwnedStocks(res.data.ownedStocks)
         })
     }
-    const getspendingPower = () => {
-        var headers = {
-            'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
-        };
+    
 
-        var data = {
-            email: 'testuser@gmail.com',
-        }
-
-        var options = {
-            method: 'GET',
-            url: 'http://localhost:5000/portfolios/',
-            headers: headers,
-            params: data
-        };
-
-        axios(options).then(res => {
+        /*axios.put('http://localhost:5000/portfolios/', data, headers).then(response => {
+            console.log(response)
+            setSpendingPower(response.data.spendingPower)
+        })*/ 
+        /*axios(options).then(res => {
             console.log(res)
-            //setSpendingPower(res.data.portfolios[0].spendingPower)
-        })
-    }
+            setSpendingPower(res.data.spendingPower)
+        })*/
+    
 
+    
     useEffect(() => {
         console.log('transactions page')
-        getOwnedStocks()
-        getspendingPower()
+        // getOwnedStocks()
     }, [])
 
     return (
@@ -93,11 +81,8 @@ const PortfolioPage = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <p>
-                spendingPower: {spendingPower}
-            </p>
+            <Account/>
         </div>
     )
 }
-
 export default PortfolioPage
