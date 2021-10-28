@@ -8,10 +8,9 @@ const PortfolioPage = () => {
         <div>
             <Typography variant="h4" className="font-link"> Portfolio Page</Typography>
             <OwnedStock/>
-            {/* <Account/> */}
+            <Account/>
         </div>
 
     )
 }
-
 export default PortfolioPage

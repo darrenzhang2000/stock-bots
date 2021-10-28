@@ -6,7 +6,6 @@ const User = require("../models/User")
 router.get("/", (req, res) => {
     var { email } = req.query
     Transaction.find({ email: email}, async (err, transactions) => {
-        console.log('transsss', email, transactions)
         if(transactions.length == 0){
             res.send({
                 success: false,

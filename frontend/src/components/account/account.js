@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import Typography from '@mui/material/Typography'
@@ -14,6 +15,16 @@ const Account = () => {
     const [amount, setAmount] = React.useState(0)
 
     const getSpendingPower = () => {
+=======
+import React, { useEffect } from 'react'
+import axios from 'axios'
+
+const Account = () => {
+    const [amount, setAmount] = React.useState(0)
+    const [spendingPower, setSpendingPower] = React.useState(0)
+
+    const getspendingPower = () => {
+>>>>>>> cf2fe4196f24adb0a69cc6fa9e4e2e9292cf8799
         var headers = {
             'accept': 'application/json',
             'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
@@ -31,6 +42,7 @@ const Account = () => {
         };
 
         axios(options).then(res => {
+<<<<<<< HEAD
             setSpendingPower(res.data.portfolios[0].spendingPower)
         })
     }
@@ -39,6 +51,16 @@ const Account = () => {
         var headers = {
             'Accept': '*/*',
             'Content-Type': '*/*',
+=======
+            console.log(res)
+            //setSpendingPower(res.data.portfolios[0].spendingPower)
+        })
+    }
+
+    /*const updateSpendingPower = (amt) => {
+        var headers = {
+            'accept': 'application/json',
+>>>>>>> cf2fe4196f24adb0a69cc6fa9e4e2e9292cf8799
             'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
         };
 
@@ -47,6 +69,7 @@ const Account = () => {
             amount: amt
         }
 
+<<<<<<< HEAD
         axios.put('http://localhost:5000/portfolios/', data, headers).then(
             res => {
                 setSpendingPower(res.data.spendingPower)
@@ -88,3 +111,38 @@ const Account = () => {
 }
 
 export default Account
+=======
+        var options = {
+            method: 'PUT',
+            url: 'http://localhost:5000/portfolios/',
+            headers: headers,
+            params: data
+        };
+    }*/
+    const handleUpdateSpendingPower = e => {
+        /*if(e.target.id == "WITHDRAW"){
+            updateSpendingPower(-amount)
+        }
+        else{
+            updateSpendingPower(amount)
+        }*/
+    }
+
+
+        return <div>
+            <p>
+                spendingPower: {spendingPower}
+            </p>
+            <input type="number" min="0" />
+            <button onClick={handleUpdateSpendingPower} id="WITHDRAW">
+                Withdraw
+            </button>
+            <button onClick={handleUpdateSpendingPower} id="DEPOSIT">
+                Deposit
+            </button>
+        </div>
+
+    }
+
+export default Account
+>>>>>>> cf2fe4196f24adb0a69cc6fa9e4e2e9292cf8799

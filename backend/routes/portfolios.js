@@ -1,3 +1,4 @@
+const { response } = require("express")
 const express = require("express")
 const router = express.Router()
 const Portfolio = require("../models/Portfolio")
@@ -28,7 +29,7 @@ router.post("/", (req, res) => {
 
     const portfolio = new Portfolio({
         email, total, spendingPower
-    })
+        })
 
     User.find({ email: email }, (err, emails) => {
         if (!emails.length) {
@@ -82,5 +83,29 @@ router.put("/", (req, res) => {
     )
 })
 
+
+router.put("/", (req, res) => {
+    var { email, amount } = req.body
+    Portfolio.findOneAndUpdate({email: email}, 
+        {$inc:{spendingPower: amount}}, (error, response) => {
+            if(error){
+                response.send(
+                    {
+                        success: false, 
+                        message: error
+                    }
+                )
+            }
+            else{
+                response.send(
+                    {
+                        success: true,
+                        message: "Succesfully updated DataBase",
+                        spendingPower: response.spendingPower
+                    }
+                )
+            }
+        })
+})
 
 module.exports = router
