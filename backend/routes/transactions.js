@@ -5,7 +5,6 @@ const User = require("../models/User")
 
 router.get("/", (req, res) => {
     var { email } = req.query
-    console.log('p', req.params, req.query, req.body)
     Transaction.find({ email: email}, async (err, transactions) => {
         console.log('transsss', email, transactions)
         if(transactions.length == 0){
@@ -25,10 +24,9 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     var { ticker, quantity, action, price, totalPrice, email } = req.body
 
-    var date = Date.now()
-
+    var dateTime = Date.now()
     const transaction = new Transaction({
-        ticker, quantity, action, price, totalPrice, date, email
+        ticker, quantity, action, price, totalPrice, dateTime, email
     })
 
     User.find({ email: email }, (err, emails) => {

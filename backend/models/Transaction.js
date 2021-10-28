@@ -6,7 +6,7 @@ const transactionSchema = new mongoose.Schema({
     action: String,
     price: mongoose.Decimal128,
     totalPrice: mongoose.Decimal128,
-    dataTime: Date,
+    dateTime: Date,
     email: String
 })
 

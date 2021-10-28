@@ -10,6 +10,7 @@ const Home = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
+                    marginBottom: '64px'
                 }}
             >
                 <Typography variant="h4" className="font-link">Welcome to the Stock Bot Home Page</Typography>
