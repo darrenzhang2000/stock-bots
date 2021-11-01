@@ -8,14 +8,14 @@ import os
 load_dotenv()
 
 # Caching api calls to reduce api calls. Will remove when deployed.
-@lru_cache(None)
+# @lru_cache(None)
 def cachedAPICall(tickers):
     headers = {
         'accept': 'application/json',
         'X-API-KEY': os.environ['YAHOO_FINANCE_API_KEY'],
     }
 
-    comparisons = ",".join(list(tickers))
+    comparisons = ",".join(tickers)
 
     params = (
         ('comparisons', comparisons),
@@ -54,7 +54,7 @@ def makeStockDecision(avgPrice, prevPrice):
 def stockActions(tickers):
     stockActionHt = {}  # {'GOOGL': 'buy', 'APPL': 'hold'}
 
-    response = cachedAPICall(tuple(tickers))
+    response = cachedAPICall(tickers)
     if response.status_code == 200:
         result = response.json()['chart']['result'][0]
         timestamps = result['timestamp']
@@ -68,6 +68,7 @@ def stockActions(tickers):
             action = makeStockDecision(fiveDayAverage, lastBusinessDayClosePrice)
             stockActionHt[ticker] = StockAction(ticker, fiveDayAverage, lastBusinessDayClosePrice, action)
 
-    return { ticker: stockAction.action for ticker, stockAction in stockActionHt.items() }
+    actionHt = { ticker: stockAction.action for ticker, stockAction in stockActionHt.items() }
+    return actionHt
 
 
