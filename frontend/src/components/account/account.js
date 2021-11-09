@@ -3,13 +3,17 @@ import axios from 'axios'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { AmountInput, StyledInputBase } from './styledInputBase'
+import { Alert, AlertTitle } from '@mui/material';
 
 const WITHDRAW = "withdraw"
 const DEPOSIT = "deposit"
 
 const Account = () => {
-    const [amount, setAmount] = React.useState(0)
+    const [depositAmount, setDepositAmount] = React.useState(0)
+    const [withdrawAmount, setWithdrawAmount] = React.useState(0)
     const [spendingPower, setSpendingPower] = React.useState(0)
+    const [displayErrorMsg, setDisplayErrorMsg] = React.useState("")
+    const [errorMsg, setErrorMsg] = React.useState("")
 
     const getSpendingPower = () => {
 
@@ -56,9 +60,19 @@ const Account = () => {
     const handleUpdateSpendingPower = (e) => {
         e.preventDefault()
         if (e.target.id == WITHDRAW) {
-            updateSpendingPower(amount)
+            if (withdrawAmount > spendingPower) {
+                setErrorMsg("Your withdraw amount exceeds your spending power.")
+                setDisplayErrorMsg(true)
+            } else {
+                updateSpendingPower(-withdrawAmount)
+            }
         } else if (e.target.id == DEPOSIT) {
-            updateSpendingPower(amount)
+            if (depositAmount > 10000) {
+                setErrorMsg("Cannot deposit more than $10000 at once.")
+                setDisplayErrorMsg(true)
+            } else {
+                updateSpendingPower(depositAmount)
+            }
         }
     }
 
@@ -66,29 +80,57 @@ const Account = () => {
         getSpendingPower()
     }, [])
 
-    const handleOnChange = (e) => {
+    const handleOnChangeWithdraw = (e) => {
         const re = /^[0-9]+$/
         console.log(re.test(e.target.value))
         console.log(e.target.value)
         if (e.target.value === '' || re.test(e.target.value)) {
-            setAmount(e.target.value)
-         }
+            setWithdrawAmount(e.target.value)
+        }
+    }
+
+    const handleOnChangeDeposit = (e) => {
+        const re = /^[0-9]+$/
+        console.log(re.test(e.target.value))
+        console.log(e.target.value)
+        if (e.target.value === '' || re.test(e.target.value)) {
+            setDepositAmount(e.target.value)
+        }
     }
 
     return (
         <div>
+            {
+                displayErrorMsg ?
+                    <Alert severity="error" onClose={() => setDisplayErrorMsg(false)}>
+                        <AlertTitle>Error</AlertTitle>
+                        {errorMsg}
+                    </Alert>
+                    : null
+            }
+
             <Typography variant="h6" className="font-link">Spending Power: {spendingPower}</Typography>
             {/* <Typography variant="h6" className="font-link">Total Amount: {spendingPower}</Typography> */}
             <AmountInput>
                 <StyledInputBase
                     placeholder="1000"
-                    onChange={handleOnChange}
-                    value={amount}
+                    onChange={handleOnChangeDeposit}
+                    value={depositAmount}
                     type="number"
-                    inputProps={{ min: 0}}
+                    inputProps={{ min: 0, max: 10000 }}
                 />
             </AmountInput>
             <Button variant="contained" color="primary" id={DEPOSIT} onClick={handleUpdateSpendingPower}>Deposit Amount</Button>
+
+            <AmountInput>
+                <StyledInputBase
+                    placeholder="1000"
+                    onChange={handleOnChangeWithdraw}
+                    value={withdrawAmount}
+                    type="number"
+                    inputProps={{ min: 0, max: spendingPower }}
+                />
+            </AmountInput>
             <Button variant="contained" color="primary" id={WITHDRAW} onClick={handleUpdateSpendingPower}>Withdraw Amount</Button>
         </div>
     )
