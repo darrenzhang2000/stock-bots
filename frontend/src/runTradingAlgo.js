@@ -57,7 +57,7 @@ export const runTradingAlgorithm = async () => {
                 console.log('waiting 50 secs')
                 //getStockActions(tickers, 'testuser@gmail.com')
                 runTradingAlgorithm()
-            }, 5000)
+            }, 500000)
         }
     )
 }
