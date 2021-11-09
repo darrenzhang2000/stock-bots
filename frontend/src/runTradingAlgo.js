@@ -25,19 +25,39 @@ const getTrackedStocks = async (email) => {
 
 }
 
-const getStockActions = (tickers) => {
+// given 
+const getStockActions = async (tickers, email) => {
     console.log('getting stock actions', tickers)
-    
+    var headers = {
+        'accept': 'application/json',
+        'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
+    };
+
+    var data = {
+        email: email,
+    }
+
+    var options = {
+        method: 'POST',
+        url: 'http://localhost:8000/stockActions/',
+        headers: headers,
+        params: data
+    };
+
+    let actionHt = {}
+    await axios(options).then(res => {
+        console.log(res.data)
+    })
 }
 
 export const runTradingAlgorithm = async () => {
     getTrackedStocks('testuser@gmail.com').then(
         tickers => {
             setTimeout(() => {
-                console.log('waiting 5 secs')
-                getStockActions(tickers)
+                console.log('waiting 50 secs')
+                //getStockActions(tickers, 'testuser@gmail.com')
                 runTradingAlgorithm()
-            }, 50000)
+            }, 5000)
         }
     )
 }
