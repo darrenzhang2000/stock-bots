@@ -12,7 +12,6 @@ export const Search = styled('div')(({ theme }) => ({
     '&:hover': {
         backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    outline: '#1976d2 solid 3px',
     marginLeft: 3,
     marginRight: 3,
     width: '100%',
@@ -46,7 +45,7 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
                 width: '20ch',
             },
         },
-        // outline: '#4CAF50 solid 10px',
+        outline: '#1976d2 solid 3px',
 
     },
 }));

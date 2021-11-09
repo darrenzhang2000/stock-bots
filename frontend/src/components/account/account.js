@@ -102,7 +102,7 @@ const Account = () => {
         <div>
             {
                 displayErrorMsg ?
-                    <Alert severity="error" onClose={() => setDisplayErrorMsg(false)}>
+                    <Alert severity="error" onClose={() => setDisplayErrorMsg(false)} sx={{marginBottom: '32px', marginTop: '16px'}}>
                         <AlertTitle>Error</AlertTitle>
                         {errorMsg}
                     </Alert>
