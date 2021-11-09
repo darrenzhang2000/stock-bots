@@ -66,6 +66,15 @@ const Account = () => {
         getSpendingPower()
     }, [])
 
+    const handleOnChange = (e) => {
+        const re = /^[0-9]+$/
+        console.log(re.test(e.target.value))
+        console.log(e.target.value)
+        if (e.target.value === '' || re.test(e.target.value)) {
+            setAmount(e.target.value)
+         }
+    }
+
     return (
         <div>
             <Typography variant="h6" className="font-link">Spending Power: {spendingPower}</Typography>
@@ -73,9 +82,10 @@ const Account = () => {
             <AmountInput>
                 <StyledInputBase
                     placeholder="1000"
-                    onChange={e => setAmount(e.target.value)}
+                    onChange={handleOnChange}
                     value={amount}
                     type="number"
+                    inputProps={{ min: 0}}
                 />
             </AmountInput>
             <Button variant="contained" color="primary" id={DEPOSIT} onClick={handleUpdateSpendingPower}>Deposit Amount</Button>
