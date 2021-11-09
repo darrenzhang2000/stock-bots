@@ -30,6 +30,16 @@ const Home = () => {
                     trading platform in the world and help you achieve financial
                     freedom.
             </Typography>
+                <Typography variant="h6" className="font-link" sx={{marginTop: '32px'}}>
+                    Our Service:
+                    The centerpiece of our service is our trading algorithm. All you have to do is tell our site what stock
+                    we can buy or sell with, say Google for example, and some money that it can use, and our stock bot will do all of your trading
+                    for you! No more tireless researching or trying to compete with the stock gurus on TV. Our algorithm does everything
+                    so you can live your life.
+                    Our Algorithm:
+                    Team Stock Bots works to adjust our algorithm, improving and testing it to ensure it can make the most accurate
+                    predictions possible, and more importantly, make its users as much money as possible.
+            </Typography>
             </Paper>
         </div>
     )
