@@ -1,1 +1,15 @@
 # stock-bots
+
+## frontend
+Naviate to the frontend directory: ```cd frontend```
+Install Dependencies: ```npm i```
+Run frontend: ```npm start```
+
+## backend
+Open a new terminal and navigate to the backend directory: ```cd backend```
+Install Dependencies: ```npm i```
+Run backend: ```node index.js```
+
+## trading-microservice
+Open a new terminal and navigate to the trading-microservice directory: ```cd trading-microservice```
+Run trading-microservice: ```python3 app.py```
