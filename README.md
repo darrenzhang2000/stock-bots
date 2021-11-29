@@ -1,7 +1,7 @@
 # stock-bots
 
 ## Instructions for using deployed app
-Navigate to https://arcane-bayou-24810.herokuapp.com/
+Go to https://arcane-bayou-24810.herokuapp.com/
 
 ## Instructions for running locally
 
