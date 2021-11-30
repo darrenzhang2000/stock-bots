@@ -7,6 +7,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import React from 'react';
 
+// This is used to display the information we retrieved about 
+// the stock in table format. Originally starting out as simple
+// html tags, we decided to use two MUI table components to display
+// the information we want. The info retrieved from the previous stockSearch 
+// component is passed up to the stockPage component, which is then 
+// passed down to the StockInfo component.
 const StockInfo = props => {
     const { marketPrice, marketChange, marketDayHigh, marketDayLow, marketVolume, marketPreviousClose, marketOpen, longName, marketCap, currency } = props
     //const { close, high, low, open, volume } = props

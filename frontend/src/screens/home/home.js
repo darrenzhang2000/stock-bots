@@ -2,6 +2,10 @@ import { Divider, Typography } from '@mui/material'
 import React from 'react'
 import Paper from '@mui/material/Paper';
 
+/*
+This is the home/about page that describes what our app does
+*/
+
 const Home = () => {
     return (
         <div>

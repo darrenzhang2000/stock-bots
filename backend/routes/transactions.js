@@ -3,6 +3,7 @@ const router = express.Router()
 const Transaction = require("../models/Transaction")
 const User = require("../models/User")
 
+// grabs all of the user's transactions
 router.get("/", (req, res) => {
     var { email } = req.query
     Transaction.find({ email: email}, async (err, transactions) => {
@@ -20,6 +21,7 @@ router.get("/", (req, res) => {
     })
 })
 
+// adds new user transaction to the database
 router.post("/", (req, res) => {
     var { ticker, quantity, action, price, totalPrice, email } = req.body
 

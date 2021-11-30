@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography'
 
-
+// This page maps through and display all of the user’s transactions. It makes a get request to the backend transactions route that gets the user’s transactions.
 const TransactionPage = (props) => {
     const [transactions, setTransactions] = React.useState([])
 

@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 
 const drawerWidth = 240;
 
+// listitems is the MUI drawer that contains routes to all of the pages in our app.
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
         '& .MuiDrawer-paper': {

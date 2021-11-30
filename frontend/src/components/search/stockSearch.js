@@ -1,9 +1,17 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Buttœon, Typography, Alert,  Button, AlertTitle } from '@mui/material';
+import { Buttœon, Typography, Alert, Button, AlertTitle } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Search, SearchIconWrapper, StyledInputBase } from './styledSearchComponents';
 
+// Let's you search for a specific stock by its ticker. Upon submit, 
+// we make an axios get request to yahoo finance that gets the
+// information we want which includes the following react props: 
+// setDisplayRes, setTicker, setMarketPrice, setMarketChange, 
+// setMarketDayHigh, setMarketDayLow, setMarketVolume, setMarketPreviousClose,
+// setMarketOpen, setLongName, setMarketCap, setCurrency.
+// A displayedRes and setTicker alert is also passed for conditional rendering. 
+// These setState props update the parent component stockPage
 const StockSearch = props => {
     const { setDisplayRes, setTicker, setMarketPrice, setMarketChange, setMarketDayHigh, setMarketDayLow, setMarketVolume, setMarketPreviousClose, setMarketOpen, setLongName, setMarketCap, setCurrency } = props
     const [searchInput, setSearchInput] = useState("")
@@ -63,7 +71,7 @@ const StockSearch = props => {
 
         {
             displayAlert ?
-                <Alert severity="error" onClose={()=>setDisplayAlert(false)}>
+                <Alert severity="error" onClose={() => setDisplayAlert(false)}>
                     <AlertTitle>Error</AlertTitle>
                     {errorMsg}
                 </Alert>
@@ -72,6 +80,11 @@ const StockSearch = props => {
 
         <Typography variant="h4" className="font-link"> Search stocks by ticker </Typography>
 
+        {/* In order to make our app more stylistically appealing,
+         we created the styledSearchComponent that is similar to the 
+         one used in the Account. We used StyledSearchComponent
+          component in stockSearch passing in the children props 
+          of onChange and value. */}
         <Search>
             <SearchIconWrapper>
                 <SearchIcon />

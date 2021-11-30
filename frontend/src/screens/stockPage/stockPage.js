@@ -3,6 +3,12 @@ import StockSearch from '../../components/search/stockSearch'
 import StockInfo from '../../components/stockInfo/stockInfo'
 import TrackedStockButton from '../../components/trackedStockButton/trackedStockButton'
 
+// This page has 3 child components, the StockSearch component, 
+// the StockInfo component, and the TrackedStockButton component. 
+// Essentially searching a stock by its ticker (like GOOGL) sends an 
+// api request to yahoo finance that gets some relevant information
+// about the current stock. This info is passed into the StockInfo 
+// component, which renders this information.
 const StockPage = props => {
     const [displaySearchRes, setDisplayRes] = React.useState("")
     const [ticker, setTicker] = React.useState("")

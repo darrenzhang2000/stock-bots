@@ -8,6 +8,7 @@ import { Alert, AlertTitle } from '@mui/material';
 const WITHDRAW = "withdraw"
 const DEPOSIT = "deposit"
 
+// Displays total balance and have buttons to simulate cash withdraw and deposit
 const Account = () => {
     const [depositAmount, setDepositAmount] = React.useState(0)
     const [withdrawAmount, setWithdrawAmount] = React.useState(0)
@@ -15,6 +16,7 @@ const Account = () => {
     const [displayErrorMsg, setDisplayErrorMsg] = React.useState("")
     const [errorMsg, setErrorMsg] = React.useState("")
 
+    // The getSpendingPower function makes an axios get request that receives the user’s spending power.
     const getSpendingPower = () => {
 
         var headers = {
@@ -102,13 +104,18 @@ const Account = () => {
         <div>
             {
                 displayErrorMsg ?
-                    <Alert severity="error" onClose={() => setDisplayErrorMsg(false)} sx={{marginBottom: '32px', marginTop: '16px'}}>
+                    <Alert severity="error" onClose={() => setDisplayErrorMsg(false)} sx={{ marginBottom: '32px', marginTop: '16px' }}>
                         <AlertTitle>Error</AlertTitle>
                         {errorMsg}
                     </Alert>
                     : null
             }
 
+            {/* Whenever we enter an amount and click on the withdraw 
+            deposit buttons, we use useState to update the React component with
+             the updated spendingPower and which calls updateSpendingPower 
+             function that makes an axios put request that updates the user 
+             portfolio in the database with the specified amount.  */}
             <Typography variant="h6" className="font-link">Spending Power: {spendingPower}</Typography>
             {/* <Typography variant="h6" className="font-link">Total Amount: {spendingPower}</Typography> */}
             <AmountInput>
