@@ -3,6 +3,11 @@ import axios from 'axios'
 import qs from 'qs'
 import { Button, Typography, Alert, Grid } from '@mui/material';
 
+// This button adds the stock in the stock info page to be tracked by
+// our trading algorithm. We felt that this button was complex enough that
+// we decided to refactor it into its own component. The button sends
+// an axios post request to our backend that adds the stock ticker to the 
+// list of tickers currently tracked by the trading algorithm.
 const TrackedStockButton = (props) => {
     const { ticker } = props
 

@@ -4,6 +4,7 @@ const TrackedStock = require("../models/TrackedStock")
 const User = require("../models/User")
 
 
+// The get request queries for the user with the current email and retrieves all of the tickers that are tracked by the trading algorithm.
 router.get("/", (req, res) => {
     var { email } = req.query
     TrackedStock.find({ email: email }, async (err, trackedStocks) => {
@@ -21,6 +22,7 @@ router.get("/", (req, res) => {
     })
 })
 
+// The post request adds the stock list to the list of stocks for the user and the delete request deletes the stock for the list of stocks.
 router.post("/", (req, res) => {
     var { email, ticker } = req.body
 

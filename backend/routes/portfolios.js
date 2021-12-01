@@ -4,8 +4,8 @@ const router = express.Router()
 const Portfolio = require("../models/Portfolio")
 const User = require("../models/User")
 
-router.get("/hi", (req, res) => { res.send("hi") })
-
+// The get request finds the portfolio that corresponds to the specified email. If the user does not have a portfolio,
+// then an error message is displayed. Otherwise, the portfolio response is sent.
 router.get("/", (req, res) => {
     var { email } = req.query
 
@@ -24,6 +24,7 @@ router.get("/", (req, res) => {
     })
 })
 
+// The post request allows us to create a new user portfolio. 
 router.post("/", (req, res) => {
     var { email, total, spendingPower } = req.body
 
@@ -56,13 +57,14 @@ router.post("/", (req, res) => {
     })
 })
 
+// The post request allows us to update a new user portfolio. 
 router.put("/", (req, res) => {
     var { email, amount } = req.body
     console.log(amount, typeof(amount))
     console.log(req)
 
     Portfolio.findOneAndUpdate({ email: email },
-        {
+        { //  the $inc operator that takes in the spendingPower and increases the existing spendingPower by the current amount, which could be either positive or negative.
             $inc: {
                 spendingPower: amount
             }

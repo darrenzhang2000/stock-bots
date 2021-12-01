@@ -14,6 +14,7 @@ async function passMatch(user, password) {
   return match
 }
 
+// logins the user in if email and password matches
 router.post("/login", (req, res) => {
     var { email, password } = req.body
     //find user with given email in the database
@@ -46,6 +47,7 @@ router.post("/login", (req, res) => {
     })
   })
 
+// registers the user if the email isn't already taken
 router.post("/register", (req, res) => {
     console.log('in post')
     var { firstName, lastName, email, password } = req.body

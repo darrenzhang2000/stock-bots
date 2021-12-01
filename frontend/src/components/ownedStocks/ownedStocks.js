@@ -12,6 +12,9 @@ import React, { useEffect } from 'react';
 const OwnedStocks = () => {
     const [ownedStocks, setOwnedStocks] = React.useState([])
 
+    // The get request queries the OwnedStock in the database to 
+    // get all of the stocks owned by the user with the specified 
+    // email
     const getOwnedStocks = async () => {
         var headers = {
             'accept': 'application/json',

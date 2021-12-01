@@ -17,6 +17,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import PersonIcon from '@mui/icons-material/Person';
 
+// This is the MUI drawer that contains routes to all of the pages in our app.
 export const mainListItems = (
     <div>
         <Link to='/'>
