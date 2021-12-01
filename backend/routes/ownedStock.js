@@ -56,8 +56,6 @@ router.get("/", (req, res) => {
 
 })
 
-// The put request is the same as the post request, except it modifies the existing quantity and
-// averagePurchasePrice because the user already owns the stock.
 router.put("/", (req, res) => {
     var { email, ticker, quantity, averagePurchasePrice } = req.body
 
