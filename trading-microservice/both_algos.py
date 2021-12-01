@@ -11,6 +11,8 @@ import math
 from scipy.stats import percentileofscore as score
 import xlsxwriter
 from statistics import mean
+import requests
+
 
 #load_dotenv()
 
@@ -65,18 +67,23 @@ def stockActions(tickers):
     'Ticker',
     'Price',
     'Number of Shares to Buy',
-    'One-Day Price Return',
-    'One-Day Return Percentile',
-    'Two-Day Price Return',
-    'Two-Day Return Percentile',
-    'Three-Day Price Return',
-    'Three-Day Return Percentile',
-    'Four-Day Price Return',
-    'Four-Day Return Percentile',
-    'HQM Score'
+    'One-Year Price Return',
+    'One-Year Return Percentile',
+    'Six-Month Price Return',
+    'Six-Month Return Percentile',
+    'Three-Month Price Return',
+    'Three-Month Return Percentile',
+    'One-Month Price Return',
+    'One-Month Return Percentile',
+    'HQM Score',
+    'Price-to-Earnings Ratio'
     ]
 
-    hqm_dataframe = pd.DataFrame(columns = hqm_columns)
+    grow_dataframe = pd.DataFrame(columns = hqm_columns)
+    fall_dataframe = pd.DataFrame(columns = hqm_columns)
+    stable_dataframe = pd.DataFrame(columns = hqm_columns)
+
+
     #okay, now we add columns to the dataframe, doing our own calculations based on
     #the previous prices        
 
@@ -89,58 +96,180 @@ def stockActions(tickers):
 
         for stockInfo in comparisons: #now for each stock, grab the relevant info
             ticker = stockInfo['symbol']
-            price = stockInfo['close'][4] #we grab the change percent for the past 4 days
-            day1ChangePercent = (stockInfo['close'][4] - stockInfo['close'][3]) / stockInfo['close'][4]
-            day2ChangePercent = (stockInfo['close'][4] - stockInfo['close'][2]) / stockInfo['close'][4]
-            day3ChangePercent = (stockInfo['close'][4] - stockInfo['close'][1]) / stockInfo['close'][4]           
-            day4ChangePercent = (stockInfo['close'][4] - stockInfo['close'][0]) / stockInfo['close'][4]                       
+            #Yahoo price = stockInfo['close'][4] #we will measure the consistency
+            api_call_change = f'https://cloud.iexapis.com/stable/stock/{ticker}/stats/?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+            api_call_price =f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+            api_pte = f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+            
+            pte = requests.get(api_pte).json()
+            changes = requests.get(api_call_change).json()
+            price = requests.get(api_call_price).json()
 
-            hqm_dataframe = hqm_dataframe.append( #we then stick price, name, and change percentages into the dataframe
-                pd.Series(
-                [
-                    ticker, #'Ticker'
-                    price, #'today's Price'
-                    'N/A',
-                    day1ChangePercent,
-                    'N/A',
-                    day2ChangePercent,
-                    'N/A',
-                    day3ChangePercent,
-                    'N/A',
-                    day4ChangePercent,
-                    'N/A',
-                    'N/A'
-                ],
-                    index = hqm_columns),
-                    ignore_index = True
-            )
+            #print(stockInfo) #this is for testing
+    
+
+            if(stockInfo['close'][3] - stockInfo['close'][2] < 0
+               and stockInfo['close'][2] - stockInfo['close'][1] < 0
+               and stockInfo['close'][1] - stockInfo['close'][0] < 0):
+
+
+                fall_dataframe = fall_dataframe.append( #we then stick price, name, and change percentages into the dataframe
+                    pd.Series(
+                    [
+                        ticker, #'Ticker'
+                        price['iexRealtimePrice'], #'today's Price'
+                        'N/A',
+                        changes['year1ChangePercent'],
+                        'N/A',
+                        changes['month6ChangePercent'],
+                        'N/A',
+                        changes['month3ChangePercent'],
+                        'N/A',
+                        changes['month1ChangePercent'],
+                        'N/A',
+                        'N/A',
+                        pte['peRatio']
+                    ],
+                        index = hqm_columns),
+                        ignore_index = True
+                )
+
+            elif(stockInfo['close'][3] - stockInfo['close'][2] > 0
+               and stockInfo['close'][2] - stockInfo['close'][1] > 0
+               and stockInfo['close'][1] - stockInfo['close'][0] > 0):
+
+                grow_dataframe = grow_dataframe.append( #we then stick price, name, and change percentages into the dataframe
+                    pd.Series(
+                    [
+                        ticker, #'Ticker'
+                        price['iexRealtimePrice'], #'today's Price'
+                        'N/A',
+                        changes['year1ChangePercent'],
+                        'N/A',
+                        changes['month6ChangePercent'],
+                        'N/A',
+                        changes['month3ChangePercent'],
+                        'N/A',
+                        changes['month1ChangePercent'],
+                        'N/A',
+                        'N/A',
+                        pte['peRatio']
+                    ],
+                        index = hqm_columns),
+                        ignore_index = True
+                )
+            else:
+                stable_dataframe = stable_dataframe.append( #we then stick price, name, and change percentages into the dataframe
+                    pd.Series(
+                    [
+                        ticker, #'Ticker'
+                        price['iexRealtimePrice'], #'today's Price'
+                        'N/A',
+                        changes['year1ChangePercent'],
+                        'N/A',
+                        changes['month6ChangePercent'],
+                        'N/A',
+                        changes['month3ChangePercent'],
+                        'N/A',
+                        changes['month1ChangePercent'],
+                        'N/A',
+                        'N/A',
+                        pte['peRatio']
+                    ],
+                        index = hqm_columns),
+                        ignore_index = True
+                )
+
+
 
         time_periods = [ #this time periods is just to make it so we can loop at line 125
-            'One-Day',
-            'Two-Day',
-            'Three-Day',
-            'Four-Day'    
+            'One-Year',
+            'Six-Month',
+            'Three-Month',
+            'One-Month'   
         ]
 
-        for row in hqm_dataframe.index:
+        for row in fall_dataframe.index:
             for time_period in time_periods:                #calculate return percentile for each price return
+                fall_dataframe.fillna(0,inplace=True) #in case it's empty
                 change_col = f'{time_period} Price Return'  
                 percentile_col = f'{time_period} Return Percentile'
-                hqm_dataframe.loc[row, percentile_col] = score( hqm_dataframe[change_col] , hqm_dataframe.loc[row, change_col] )/100
-                
+                fall_dataframe.loc[row, percentile_col] = score( fall_dataframe[change_col] , fall_dataframe.loc[row, change_col] )/100
+
+        for row in grow_dataframe.index:
+            for time_period in time_periods:                #calculate return percentile for each price return
+                grow_dataframe.fillna(0,inplace=True)
+                change_col = f'{time_period} Price Return'  
+                percentile_col = f'{time_period} Return Percentile'
+                grow_dataframe.loc[row, percentile_col] = score( grow_dataframe[change_col] , grow_dataframe.loc[row, change_col] )/100
+        
+        for row in stable_dataframe.index:
+            for time_period in time_periods:                #calculate return percentile for each price return
+                stable_dataframe.fillna(0,inplace=True)
+                change_col = f'{time_period} Price Return'  
+                percentile_col = f'{time_period} Return Percentile'
+                stable_dataframe.loc[row, percentile_col] = score( stable_dataframe[change_col] , stable_dataframe.loc[row, change_col] )/100
+        
+
+
         #now we average out all the return percentiles and rank them
-        for row in hqm_dataframe.index:
+        for row in fall_dataframe.index:
             momentum_percentiles = [] #save all percentile scores in this list and grab the mean of all of it
             for time_period in time_periods:
-                momentum_percentiles.append(hqm_dataframe.loc[row, f'{time_period} Return Percentile'])
-            hqm_dataframe.loc[row, 'HQM Score'] = mean(momentum_percentiles)
+                momentum_percentiles.append(fall_dataframe.loc[row, f'{time_period} Return Percentile'])
+            fall_dataframe.loc[row, 'HQM Score'] = mean(momentum_percentiles)
 
-        hqm_dataframe.sort_values('HQM Score', ascending = False, inplace = True)
-        #note: here we split the stocks based on performance
+        for row in grow_dataframe.index:
+            momentum_percentiles = [] #save all percentile scores in this list and grab the mean of all of it
+            for time_period in time_periods:
+                momentum_percentiles.append(grow_dataframe.loc[row, f'{time_period} Return Percentile'])
+            grow_dataframe.loc[row, 'HQM Score'] = mean(momentum_percentiles)
 
-        half_length = math.floor(len(hqm_dataframe['Ticker'])/2)
-        #we want half the length
+        for row in stable_dataframe.index:
+            momentum_percentiles = [] #save all percentile scores in this list and grab the mean of all of it
+            for time_period in time_periods:
+                momentum_percentiles.append(stable_dataframe.loc[row, f'{time_period} Return Percentile'])
+            stable_dataframe.loc[row, 'HQM Score'] = mean(momentum_percentiles)
 
+
+        #so now their hqm scores and their price to earnings ratio
+        #are both, known. Now we go into the second step of our
+        #filtering process
+        #so now we lok at their price return over time, starting with fall
+        #note: compare hqm to s&p 500 sotcks
+
+        fall_dataframe.sort_values('HQM Score', ascending = False, inplace = True)
+
+        hqm_half = math.floor(len(fall_dataframe['Ticker'])/2)   
+        
+        #get request and put in hash table
+
+        
+        #for row in fall_dataframe.index:
+            #if row < hqm_half:
+                #sell stock
+                #see if quantity is 0, if so, post, if not then put
+
+        
+    #okay, talk with Darren, figure out 
+    #how to delete, add to stock database
+    #adn how to update money
+
+
+        grow_dataframe.sort_values('HQM Score', ascending = False, inplace = True)
+
+        stable_dataframe.sort_values('HQM Score', ascending = False, inplace = True)
+       
+
+        #so for those that are falling, we see if they are below price to market
+        #if that's the case, sell all, if not, hold
+
+        #if rising, check if price to market is positive, if so, buy 1, if not, just hold
+
+        #if stable, buy the top and sell the bottom
+
+        #okay, do comparisons, then split it all into growing, stagnating
+        #and shrinking
 
         
         #okay so here we know the higher growers, now we 
@@ -159,7 +288,14 @@ def stockActions(tickers):
         #     ticker = stockInfo['symbol']
         #     fiveDayClosePrices = list(filter(lambda p: p, stockInfo['close']))
 
-        print(hqm_dataframe) #note: have to find a proper way to print it all
+        # print(fall_dataframe)
+        # print(grow_dataframe)
+        # print(stable_dataframe)
+
+        # writer = pd.ExcelWriter('momentum_strategy.xlsx', engine='xlsxwriter')
+        # stable_dataframe.to_excel(writer, sheet_name = "Momentum Strategy", index = False)
+        # writer.save()
+        #note: have to find a proper way to print it all
         # writer = pd.ExcelWriter('momentum_strategy.xlsx', engine='xlsxwriter')
         # hqm_dataframe.to_excel(writer, sheet_name = "Momentum Strategy", index = False)
 
