@@ -22,6 +22,32 @@ router.get("/", (req, res) => {
 
 })
 
+router.put('/purchase', (req, res) => {
+    var { email, ticker, purchaseAmt } = req.body
+ 
+    const filter = {
+        ticker: ticker,
+        email: email
+    }
+    const update = {
+        $inc: { quantity: purchaseAmt}
+    }
+    OwnedStock.findOneAndUpdate(filter, update, (err, stock) => {
+        if(err){
+            res.send({
+                success: false,
+                message: err
+            })
+        }else{
+            res.send({
+                success: true,
+                message: "successfully updated",
+                data: stock
+            })
+        }
+    })
+})
+
 router.put("/", (req, res) => {
     var { email, ticker, quantity, averagePurchasePrice } = req.body
 
