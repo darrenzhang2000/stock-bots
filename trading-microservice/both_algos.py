@@ -63,6 +63,20 @@ def makeStockDecision(avgPrice, prevPrice):
 def stockActions(tickers):
     stockActionHt = {}  # {'GOOGL': 'buy', 'APPL': 'hold'}
 
+    headers = { #this is to summon the data from the database, response will have a .json() that I can summon to get data
+            'accept': 'application/json',
+            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
+    }
+
+    params = {
+        'email': 'testuser@gmail.com'
+    }
+
+    database = requests.get('http://localhost:8000/ownedStocks/',
+                            headers=headers, params=params)
+    #print(response)
+    #print(response.json())
+
     hqm_columns = [ #this is for measuring return consistency
     'Ticker',
     'Price',
@@ -240,16 +254,116 @@ def stockActions(tickers):
 
         fall_dataframe.sort_values('HQM Score', ascending = False, inplace = True)
 
-        hqm_half = math.floor(len(fall_dataframe['Ticker'])/2)   
+        #hqm_half = math.floor(len(fall_dataframe['Ticker'])/2)   
         
         #get request and put in hash table
-
+        #okay i get it. highly favor present data
+        #so if growing, i need both bad past and future to make 
+        #me not buy
+        #if stagnant, I need at least one strong and one stagnant
+        #to make me hold, never buy
+        #if falling, i need at least strong both to just 
         
-        #for row in fall_dataframe.index:
-            #if row < hqm_half:
+        #okay, no need to use percntiles, just check price return
+        for row in fall_dataframe.index:
+            decision = 0 #decision will help decide the fate of the stock
+            avg_past = (fall_dataframe.loc[row, 'One-Year Price Return'] + 
+                       fall_dataframe.loc[row, 'Six-Month Price Return']  +
+                       fall_dataframe.loc[row, 'Three-Month Price Return']  +
+                       fall_dataframe.loc[row, 'One-Month Price Return']  )
+            #print(avg_past)
+            if(avg_past < 0):
+                decision = decision - 1
+            elif(avg_past > 0):
+                decision = decision + 1
+            else: #just in case it adds up to 0
+                decision = decision + 0
+            #if it ends up as 0, sell half immediately
+
+            if(fall_dataframe.loc[row, 'Price-to-Earnings Ratio'] > 0):
+                decision = decision + 1
+            else:
+                decision = decision - 1
+
+            # if(decision == 2):
+            #     #sell half
+            # else:
+                #sell all
+            #one more test, if it fails, sell all
                 #sell stock
                 #see if quantity is 0, if so, post, if not then put
+        for row in stable_dataframe.index:
+            decision = 0 #decision will help decide the fate of the stock
+            avg_past = (stable_dataframe.loc[row, 'One-Year Price Return'] + 
+                       stable_dataframe.loc[row, 'Six-Month Price Return']  +
+                       stable_dataframe.loc[row, 'Three-Month Price Return']  +
+                       stable_dataframe.loc[row, 'One-Month Price Return']  )
+            #print(avg_past)
+            if(avg_past < 0):
+                decision = decision - 1
+            elif(avg_past > 0):
+                decision = decision + 1
+            else: #just in case it adds up to 0
+                decision = decision + 0
+            #if it ends up as 0, sell half immediately
 
+            if(stable_dataframe.loc[row, 'Price-to-Earnings Ratio'] > 0):
+                decision = decision + 1
+            else:
+                decision = decision - 1
+
+
+        for row in grow_dataframe.index:
+            decision = 0 #decision will help decide the fate of the stock
+            avg_past = (grow_dataframe.loc[row, 'One-Year Price Return'] + 
+                       grow_dataframe.loc[row, 'Six-Month Price Return']  +
+                       grow_dataframe.loc[row, 'Three-Month Price Return']  +
+                       grow_dataframe.loc[row, 'One-Month Price Return']  )
+            #print(avg_past)
+            if(avg_past < 0):
+                decision = decision - 1
+            elif(avg_past > 0):
+                decision = decision + 1
+            else: #just in case it adds up to 0
+                decision = decision + 0
+            #if it ends up as 0, sell half immediately
+
+            if(grow_dataframe.loc[row, 'Price-to-Earnings Ratio'] > 0):
+                decision = decision + 1
+            else:
+                decision = decision - 1
+
+
+        #okay, to not make a crazy inneficient algo, make a table of the stock, and decision, then loop again
+        #in order to find the location inside database
+        
+        print(database.json()['ownedStocks'][0]['ticker'])
+
+        # url = "http://localhost:5000/ownedStocks/"
+
+        # payload='email=testuser%40gmail.com&ticker=MSFT&averagePurchasePrice=300&quantity=250'
+        # headers = {
+        # 'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva',
+        # 'Content-Type': 'application/x-www-form-urlencoded'
+        # }
+
+        # response = requests.request("POST", url, headers=headers, data=payload)
+
+        # print(response.text + "hello")
+
+        
+
+        # url = "http://localhost:8000/ownedStocks/purchase"
+
+        # payload='email=testuser%40gmail.com&ticker=TSLA&purchaseAmt=100'
+        # headers = {
+        # 'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva',
+        # 'Content-Type': 'application/x-www-form-urlencoded'
+        # }
+
+        # response = requests.request("PUT", url, headers=headers, data=payload)
+
+        # print(response)
         
     #okay, talk with Darren, figure out 
     #how to delete, add to stock database
@@ -288,16 +402,14 @@ def stockActions(tickers):
         #     ticker = stockInfo['symbol']
         #     fiveDayClosePrices = list(filter(lambda p: p, stockInfo['close']))
 
-        # print(fall_dataframe)
-        # print(grow_dataframe)
-        # print(stable_dataframe)
+        print(fall_dataframe)
+        print(grow_dataframe)
+        print(stable_dataframe)
 
         # writer = pd.ExcelWriter('momentum_strategy.xlsx', engine='xlsxwriter')
         # stable_dataframe.to_excel(writer, sheet_name = "Momentum Strategy", index = False)
         # writer.save()
         #note: have to find a proper way to print it all
-        # writer = pd.ExcelWriter('momentum_strategy.xlsx', engine='xlsxwriter')
-        # hqm_dataframe.to_excel(writer, sheet_name = "Momentum Strategy", index = False)
-
+        
 
 stockActions(['GOOGL', 'NIO', 'ZM', 'ASAN']) #okay, Apple's strange but it works
