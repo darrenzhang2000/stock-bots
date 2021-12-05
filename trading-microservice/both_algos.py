@@ -77,6 +77,14 @@ def stockActions(tickers):
     #print(response)
     #print(response.json())
 
+    stockChanges = {}
+    for i in range( len(database.json()['ownedStocks']) ):
+        #print(database.json()['ownedStocks'][i]['ticker'])
+        stockChanges[ database.json()['ownedStocks'][i]['ticker'] ] = database.json()['ownedStocks'][i]['quantity']['$numberDecimal']
+
+
+    #print(stockChanges)
+
     hqm_columns = [ #this is for measuring return consistency
     'Ticker',
     'Price',
@@ -90,7 +98,8 @@ def stockActions(tickers):
     'One-Month Price Return',
     'One-Month Return Percentile',
     'HQM Score',
-    'Price-to-Earnings Ratio'
+    'Price-to-Earnings Ratio',
+    'Decision'
     ]
 
     grow_dataframe = pd.DataFrame(columns = hqm_columns)
@@ -142,7 +151,8 @@ def stockActions(tickers):
                         changes['month1ChangePercent'],
                         'N/A',
                         'N/A',
-                        pte['peRatio']
+                        pte['peRatio'],
+                        'N/A'
                     ],
                         index = hqm_columns),
                         ignore_index = True
@@ -167,7 +177,8 @@ def stockActions(tickers):
                         changes['month1ChangePercent'],
                         'N/A',
                         'N/A',
-                        pte['peRatio']
+                        pte['peRatio'],
+                        'N/A'
                     ],
                         index = hqm_columns),
                         ignore_index = True
@@ -188,7 +199,8 @@ def stockActions(tickers):
                         changes['month1ChangePercent'],
                         'N/A',
                         'N/A',
-                        pte['peRatio']
+                        pte['peRatio'],
+                        'N/A'
                     ],
                         index = hqm_columns),
                         ignore_index = True
@@ -284,6 +296,8 @@ def stockActions(tickers):
                 decision = decision + 1
             else:
                 decision = decision - 1
+            
+            fall_dataframe.loc[row, 'Decision'] = decision
 
             # if(decision == 2):
             #     #sell half
@@ -312,6 +326,8 @@ def stockActions(tickers):
             else:
                 decision = decision - 1
 
+            stable_dataframe.loc[row, 'Decision'] = decision
+
 
         for row in grow_dataframe.index:
             decision = 0 #decision will help decide the fate of the stock
@@ -333,11 +349,17 @@ def stockActions(tickers):
             else:
                 decision = decision - 1
 
+            grow_dataframe.loc[row, 'Decision'] = decision
+
 
         #okay, to not make a crazy inneficient algo, make a table of the stock, and decision, then loop again
         #in order to find the location inside database
-        
-        print(database.json()['ownedStocks'][0]['ticker'])
+
+        #print(database.json()['ownedStocks'][0]['quantity']['$numberDecimal'])
+        #and also i can access each, then i'll update number of shares to buy, it can be negative
+        #then with a new ticker and number of shares to buy, i call and update using an f'string'
+
+
 
         # url = "http://localhost:5000/ownedStocks/"
 
