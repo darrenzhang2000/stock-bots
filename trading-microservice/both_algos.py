@@ -67,23 +67,24 @@ def stockActions(tickers):
             'accept': 'application/json',
             'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
     }
-
     params = {
         'email': 'testuser@gmail.com'
     }
-
     database = requests.get('http://localhost:8000/ownedStocks/',
                             headers=headers, params=params)
     #print(response)
     #print(response.json())
 
-    stockChanges = {}
+    stockChanges = {} #this will save the name and number of the user's stocks in a hash table
     for i in range( len(database.json()['ownedStocks']) ):
         #print(database.json()['ownedStocks'][i]['ticker'])
         stockChanges[ database.json()['ownedStocks'][i]['ticker'] ] = database.json()['ownedStocks'][i]['quantity']['$numberDecimal']
 
 
-    #print(stockChanges)
+
+    # print(stockChanges)
+    # stockChanges['MSFT'] = int(stockChanges['MSFT'])/2
+    # print(stockChanges)
 
     hqm_columns = [ #this is for measuring return consistency
     'Ticker',
@@ -275,6 +276,16 @@ def stockActions(tickers):
         #if stagnant, I need at least one strong and one stagnant
         #to make me hold, never buy
         #if falling, i need at least strong both to just 
+
+        #note these next few lines grab the saved money values
+        url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
+        payload={}
+        headers = {
+        'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
+        }
+
+        bank = requests.request("GET", url, headers=headers, data=payload)
+        #print(bank.json())
         
         #okay, no need to use percntiles, just check price return
         for row in fall_dataframe.index:
@@ -298,6 +309,46 @@ def stockActions(tickers):
                 decision = decision - 1
             
             fall_dataframe.loc[row, 'Decision'] = decision
+
+        #the input for this function will be identical to the databse values
+        #so now that I have the decision for each stock, I must access
+        #the stockprice, so I may add it to the bank variable i have saved
+        #so i may buy later on
+        # i grab sotck changes, update the amount of stocks, then update
+        #bank to subtract from total and add to liquid based on price
+        
+        #print(bank.json()['portfolios'][0]['total']['$numberDecimal']) # -= liquid_currency
+        total_to_return = float( bank.json()['portfolios'][0]['total']['$numberDecimal'] )
+        spending_power_to_return = float( bank.json()['portfolios'][0]['spendingPower']['$numberDecimal'] )
+
+        for row in fall_dataframe.index: #update the chnage to amount of stocks in stock actions
+            if fall_dataframe.loc[row, 'Decision'] == 2:
+                orig_stock = int( stockChanges[fall_dataframe.loc[row, 'Ticker']] )
+                stock_in_half = math.floor( orig_stock / 2  )
+                stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = stock_in_half
+                liquid_currency =  ( float( orig_stock - stock_in_half) ) * fall_dataframe.loc[row, 'Price']
+                #okay, we now updated the amount of stocks we have left and got the money from that
+                #now we update the bank to show that that money is now liquid
+                total_to_return -= liquid_currency
+                spending_power_to_return += liquid_currency
+                # print(total_to_return)
+                # print(spending_power_to_return)
+                #we still need to buy, so we'll push the updated numbers at the end
+
+
+            else:
+                orig_stock = int( stockChanges[fall_dataframe.loc[row, 'Ticker']] )
+                stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = 0
+                liquid_currency =  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
+                total_to_return -= liquid_currency
+                spending_power_to_return += liquid_currency
+
+
+
+        # okay now return ---- --- 
+
+        #print(bank.text)
+        #print(stockChanges)
 
             # if(decision == 2):
             #     #sell half
@@ -328,6 +379,19 @@ def stockActions(tickers):
 
             stable_dataframe.loc[row, 'Decision'] = decision
 
+        for row in stable_dataframe.index: #update the chnage to amount of stocks in stock actions
+            if stable_dataframe.loc[row, 'Decision'] <= 0:
+                orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
+                stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = 0
+                liquid_currency =  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
+                total_to_return -= liquid_currency
+                spending_power_to_return += liquid_currency
+
+            elif stable_dataframe.loc[row, 'Decision'] > 0:
+                stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = 0
+
+        #okay, now return to database
+
 
         for row in grow_dataframe.index:
             decision = 0 #decision will help decide the fate of the stock
@@ -350,6 +414,14 @@ def stockActions(tickers):
                 decision = decision - 1
 
             grow_dataframe.loc[row, 'Decision'] = decision
+
+
+        #okay, now i need to access money --
+        # for row in grow_dataframe.index: #update the chnage to amount of stocks in stock actions
+        #     if grow_dataframe.loc[row, 'Decision'] == 0:
+        #         stockChanges[ grow_dataframe.loc[row, 'Ticker'] ] = math.floor( int( stockChanges[grow_dataframe.loc[row, 'Ticker']] ) / 2  )
+        #     else:
+        #         stockChanges[ grow_dataframe.loc[row, 'Ticker'] ] = 0
 
 
         #okay, to not make a crazy inneficient algo, make a table of the stock, and decision, then loop again
@@ -434,4 +506,4 @@ def stockActions(tickers):
         #note: have to find a proper way to print it all
         
 
-stockActions(['GOOGL', 'NIO', 'ZM', 'ASAN']) #okay, Apple's strange but it works
+stockActions(['GOOGL', 'TSLA', 'FB', 'AAPL', 'MSFT']) #okay, Apple's strange but it works
