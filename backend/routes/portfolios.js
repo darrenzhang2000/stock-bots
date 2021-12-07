@@ -77,7 +77,8 @@ router.put("/withdrawSavings", (req, res) => {
             } else {
                 res.send({
                     success: true,
-                    spendingPower: response.spendingPower
+                    spendingPower: response.spendingPower,
+                    savingsTotal: response.savingsTotal
                 })
             }
         }

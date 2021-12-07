@@ -56,6 +56,15 @@ export const mainListItems = (
             </ListItem>
         </Link>
 
+        <Link to='/savingsPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <AccountBalanceIcon />
+                </ListItemIcon>
+                <ListItemText primary="Savings Page" />
+            </ListItem>
+        </Link>
+
         <Link to='/signup'>
             <ListItem button>
                 <ListItemIcon>

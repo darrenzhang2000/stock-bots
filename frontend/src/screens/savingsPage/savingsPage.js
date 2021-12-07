@@ -8,34 +8,32 @@ const WITHDRAW = "withdraw"
 const DEPOSIT = "deposit"
 
 const SavingsPage = () => {
-    const [depositAmount, setDepositAmount] = React.useState(0)
-    const [withdrawAmount, setWithdrawAmount] = React.useState(0)
+    const [depositAmountIntoSavingsAccount, setDepositAmountIntoSavingsAccount] = React.useState(0)
+    const [withdrawAmountFromSavingsAccount, setWithdrawAmountFromSavingsAccount] = React.useState(0)
     const [spendingPower, setSpendingPower] = React.useState(0)
+    const [savingsTotal, setSavingsTotal] = React.useState(0)
     const [displayErrorMsg, setDisplayErrorMsg] = React.useState("")
     const [errorMsg, setErrorMsg] = React.useState("")
 
 
     const handleOnChangeWithdraw = (e) => {
         const re = /^[0-9]+$/
-        console.log(re.test(e.target.value))
-        console.log(e.target.value)
         if (e.target.value === '' || re.test(e.target.value)) {
-            setWithdrawAmount(e.target.value)
+            setWithdrawAmountFromSavingsAccount(e.target.value)
+            console.log(withdrawAmountFromSavingsAccount)
         }
     }
 
     const handleOnChangeDeposit = (e) => {
         const re = /^[0-9]+$/
-        console.log(re.test(e.target.value))
-        console.log(e.target.value)
         if (e.target.value === '' || re.test(e.target.value)) {
-            setDepositAmount(e.target.value)
+            setDepositAmountIntoSavingsAccount(e.target.value)
+            console.log(depositAmountIntoSavingsAccount)
         }
     }
 
     // The getSpendingPower function makes an axios get request that receives the user’s spending power.
-    const getSpendingPower = () => {
-
+    const getSpendingPowerSavingsAmount = () => {
         var headers = {
             'accept': 'application/json',
             'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
@@ -54,34 +52,89 @@ const SavingsPage = () => {
 
         axios(options).then(res => {
             setSpendingPower(res.data.portfolios[0].spendingPower.$numberDecimal)
+            setSavingsTotal(res.data.portfolios[0].savingsTotal.$numberDecimal)
         })
     }
 
-    const handleUpdateSpendingPower = () => {
-        return 
+    // positive amt for withdrawal, negative amt for deposit
+    const updateSavingsTotal = (amt) => {
+        var myHeaders = new Headers();
+        myHeaders.append("X-API-KEY", "Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva");
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("email", "testuser@gmail.com");
+        urlencoded.append("amount", amt);
+        var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:5000/portfolios/withdrawSavings", requestOptions)
+            .then(res => res.json())    
+            .then(res => {
+                console.log(res)
+                setSpendingPower(res.spendingPower.$numberDecimal)
+                setSavingsTotal(res.savingsTotal.$numberDecimal) 
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    const handleUpdateSavingsTotal = (e) => {
+        e.preventDefault()
+        if (e.target.id == WITHDRAW) {
+            if (savingsTotal - withdrawAmountFromSavingsAccount < 0) {
+                setErrorMsg("Your withdraw amount exceeds your savings total.")
+                setDisplayErrorMsg(true)
+            } else {
+                updateSavingsTotal(withdrawAmountFromSavingsAccount)
+            }
+        } else if (e.target.id == DEPOSIT) {
+            if (depositAmountIntoSavingsAccount > spendingPower) {
+                setErrorMsg("Cannot deposit more money into your savings account than your spending power.")
+                setDisplayErrorMsg(true)
+            } else {
+                updateSavingsTotal(-depositAmountIntoSavingsAccount)
+            }
+        }
     }
 
     useEffect(() => {
-        getSpendingPower()
+        getSpendingPowerSavingsAmount()
     }, [])
 
     return (
         <div>
             <Typography variant="h4" className="font-link"> Savings Page</Typography>
-            
+
             <Typography variant="h6" className="font-link">Spending Power: {spendingPower}</Typography>
+
+            <Typography variant="h6" className="font-link">Total Savings: {savingsTotal}</Typography>
 
             <AmountInput>
                 <StyledInputBase
                     placeholder="1000"
                     onChange={handleOnChangeWithdraw}
-                    value={withdrawAmount}
+                    value={withdrawAmountFromSavingsAccount}
+                    type="number"
+                    inputProps={{ min: 0, max: savingsTotal }}
+                />
+            </AmountInput>
+            <Button variant="contained" color="primary" id={WITHDRAW} onClick={handleUpdateSavingsTotal}>Withdraw Amount From Savings Account</Button>
+
+            <AmountInput>
+                <StyledInputBase
+                    placeholder="1000"
+                    onChange={handleOnChangeDeposit}
+                    value={depositAmountIntoSavingsAccount}
                     type="number"
                     inputProps={{ min: 0, max: spendingPower }}
                 />
             </AmountInput>
-            <Button variant="contained" color="primary" id={WITHDRAW} onClick={handleUpdateSpendingPower}>Withdraw Amount</Button>
-        
+            <Button variant="contained" color="primary" id={DEPOSIT} onClick={handleUpdateSavingsTotal}>Deposit Amount into Savings Account</Button>
+
         </div>
     )
 }
