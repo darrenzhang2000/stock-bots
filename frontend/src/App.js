@@ -25,6 +25,7 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import StonksLogo from './stonksLogo.jpg'
 import ReactLogo from './logo.svg'
 import { runTradingAlgorithm } from './runTradingAlgo.js'
+import SavingsPage from './screens/savingsPage/savingsPage';
 
 const drawerWidth = 240;
 
@@ -134,6 +135,7 @@ function App() {
           <Route exact path='/stockPage' component={StockPage} />
           <Route exact path='/transactionsPage' component={TransactionPage} />
           <Route exact path='/portfolioPage' component={PortfolioPage} />
+          <Route exact path='/savingsPage' component={SavingsPage} />
         </Box>
         {/* <Footer /> */}
       </Box>

@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import { AmountInput, StyledInputBase } from './styledInputBase'
 import Button from '@mui/material/Button'
 import axios from 'axios'
+import { Alert, AlertTitle } from '@mui/material';
 
 const WITHDRAW = "withdraw"
 const DEPOSIT = "deposit"
@@ -107,11 +108,20 @@ const SavingsPage = () => {
 
     return (
         <div>
+            {
+                displayErrorMsg ?
+                    <Alert severity="error" onClose={() => setDisplayErrorMsg(false)} sx={{ marginBottom: '32px', marginTop: '16px' }}>
+                        <AlertTitle>Error</AlertTitle>
+                        {errorMsg}
+                    </Alert>
+                    : null
+            }
+
             <Typography variant="h4" className="font-link"> Savings Page</Typography>
 
-            <Typography variant="h6" className="font-link">Spending Power: {spendingPower}</Typography>
+            <Typography variant="h6" className="font-link">Spending Power: {Math.round(spendingPower * 100) / 100}</Typography>
 
-            <Typography variant="h6" className="font-link">Total Savings: {savingsTotal}</Typography>
+            <Typography variant="h6" className="font-link">Total Savings: {Math.round(savingsTotal * 100) / 100}</Typography>
 
             <AmountInput>
                 <StyledInputBase

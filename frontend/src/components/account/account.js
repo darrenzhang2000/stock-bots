@@ -116,7 +116,7 @@ const Account = () => {
              the updated spendingPower and which calls updateSpendingPower 
              function that makes an axios put request that updates the user 
              portfolio in the database with the specified amount.  */}
-            <Typography variant="h6" className="font-link">Spending Power: {spendingPower}</Typography>
+            <Typography variant="h6" className="font-link">Spending Power: {Math.round(spendingPower * 100) / 100}</Typography>
             {/* <Typography variant="h6" className="font-link">Total Amount: {spendingPower}</Typography> */}
             <AmountInput>
                 <StyledInputBase
