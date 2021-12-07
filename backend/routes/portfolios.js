@@ -26,10 +26,10 @@ router.get("/", (req, res) => {
 
 // The post request allows us to create a new user portfolio. 
 router.post("/", (req, res) => {
-    var { email, total, spendingPower } = req.body
+    var { email, total, spendingPower, savingsTotal } = req.body
 
     const portfolio = new Portfolio({
-        email, total, spendingPower
+        email, total, spendingPower, savingsTotal
         })
 
     User.find({ email: email }, (err, emails) => {
@@ -57,16 +57,15 @@ router.post("/", (req, res) => {
     })
 })
 
-// The post request allows us to update a new user portfolio. 
-router.put("/", (req, res) => {
+// deposit to or withdraw from savings account
+router.put("/withdrawSavings", (req, res) => {
     var { email, amount } = req.body
-    console.log(amount, typeof(amount))
-    console.log(req)
 
     Portfolio.findOneAndUpdate({ email: email },
         { //  the $inc operator that takes in the spendingPower and increases the existing spendingPower by the current amount, which could be either positive or negative.
             $inc: {
-                spendingPower: amount
+                spendingPower: amount,
+                savingsTotal: -amount
             }
         },
         (err, response) => {
@@ -86,6 +85,7 @@ router.put("/", (req, res) => {
 })
 
 
+// The post request allows us to update a new user portfolio. 
 router.put("/", (req, res) => {
     var { email, amount } = req.body
     Portfolio.findOneAndUpdate({email: email}, 
