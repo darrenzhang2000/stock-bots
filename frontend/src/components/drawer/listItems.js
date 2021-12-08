@@ -65,6 +65,58 @@ export const mainListItems = (
             </ListItem>
         </Link>
 
+    </div>
+);
+
+
+// This is the MUI drawer that contains routes to all of the pages in our app.
+export const mainListItemsLoggedOut = (
+    <div>
+        <Link to='/'>
+            <ListItem button>
+                <ListItemIcon>
+                    <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/transactionsPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <CompareArrowsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Transactions Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/stockPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <ShowChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Stock Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/portfolioPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <AccountBalanceIcon />
+                </ListItemIcon>
+                <ListItemText primary="Portfolio Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/savingsPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <AccountBalanceIcon />
+                </ListItemIcon>
+                <ListItemText primary="Savings Page" />
+            </ListItem>
+        </Link>
+
         <Link to='/signup'>
             <ListItem button>
                 <ListItemIcon>
@@ -85,6 +137,64 @@ export const mainListItems = (
 
     </div>
 );
+
+export const mainListItemsLoggedIn = (
+    <div>
+        <Link to='/'>
+            <ListItem button>
+                <ListItemIcon>
+                    <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/transactionsPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <CompareArrowsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Transactions Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/stockPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <ShowChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Stock Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/portfolioPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <AccountBalanceIcon />
+                </ListItemIcon>
+                <ListItemText primary="Portfolio Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/savingsPage'>
+            <ListItem button>
+                <ListItemIcon>
+                    <AccountBalanceIcon />
+                </ListItemIcon>
+                <ListItemText primary="Savings Page" />
+            </ListItem>
+        </Link>
+
+        <Link to='/'>
+            <ListItem button onClick={()=>console.log('logging out')}>
+                <ListItemIcon>
+                    <PersonAddAlt1Icon />
+                </ListItemIcon>
+                <ListItemText primary="Log out" />
+            </ListItem>
+        </Link>
+    </div>
+); 
 
 export const secondaryListItems = (
     <div>

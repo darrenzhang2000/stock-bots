@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import qs from 'qs'
 import axios from 'axios'
+import { login, logout } from '../../reducers/loginReducer'
+import { useSelector, useDispatch } from 'react-redux'
 
 function Copyright(props) {
     return (
@@ -31,6 +33,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+    const isLoggedIn = useSelector(state => state.login.isLoggedIn)
+    const dispatch = useDispatch()
+
     // post request that checks if the user and password is in the database.
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -57,8 +62,10 @@ export default function SignIn() {
             console.log(res.data.success)
             console.log(res.data.message)
             // need to save user info somewhere
+            if(res.data.success){
+                dispatch(login())
+            }
         })
-
     };
 
     return (

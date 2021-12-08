@@ -12,9 +12,10 @@ import List from '@mui/material/List';
 import Toolbar from '@mui/material/Toolbar';
 import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
 import './App.css';
 import Drawer from './components/drawer/drawer';
-import { mainListItems, secondaryListItems } from './components/drawer/listItems';
+import { mainListItems, mainListItemsLoggedIn, mainListItemsLoggedOut, secondaryListItems } from './components/drawer/listItems';
 import Signin from './components/signin/signin';
 import Signup from './components/signup/signup';
 import Home from './screens/home/home';
@@ -26,6 +27,14 @@ import StonksLogo from './stonksLogo.jpg'
 import ReactLogo from './logo.svg'
 import { runTradingAlgorithm } from './runTradingAlgo.js'
 import SavingsPage from './screens/savingsPage/savingsPage';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ListSubheader from '@mui/material/ListSubheader';
+import { Link } from 'react-router-dom';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import PersonIcon from '@mui/icons-material/Person';
+import { logout } from './reducers/loginReducer'
 
 const drawerWidth = 240;
 
@@ -48,12 +57,13 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 function App() {
+  var isLoggedIn = useSelector(state => state.login.login)
+  const dispatch = useDispatch()
+  console.log('isloggedIn', isLoggedIn)
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
-
 
   useEffect(() => {
     runTradingAlgorithm()
@@ -111,7 +121,40 @@ function App() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List>{mainListItems}</List>
+          <List>{!isLoggedIn ? <div>
+            {mainListItems}
+            <Link to='/signup'>
+              <ListItem button>
+                <ListItemIcon>
+                  <PersonAddAlt1Icon />
+                </ListItemIcon>
+                <ListItemText primary="Sign Up" />
+              </ListItem>
+            </Link>
+
+            <Link to='/signin'>
+              <ListItem button>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary="Sign In" />
+              </ListItem>
+            </Link>
+          </div> : <div>
+              {mainListItems}
+              <Link to='/'>
+                <ListItem button onClick={() => {
+                  console.log('logging out')
+                  dispatch(logout())
+                  isLoggedIn = false
+                }}>
+                  <ListItemIcon>
+                    <PersonAddAlt1Icon />
+                  </ListItemIcon>
+                  <ListItemText primary="Log out" />
+                </ListItem>
+              </Link>
+            </div>}</List>
           <Divider />
           <List>{secondaryListItems}</List>
         </Drawer>
