@@ -14,6 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import qs from 'qs';
 import axios from 'axios'
+import { login, logout } from '../../reducers/loginReducer'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -31,6 +34,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+    const dispatch = useDispatch()
+    let history = useHistory();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
@@ -57,9 +63,41 @@ export default function SignUp() {
             console.log('added')
             console.log(res)
             // need to save user info somewhere
+            history.push('/')
         })
 
     };
+
+    const handleLogInAsGuest = (event) => {
+        event.preventDefault();
+        console.log('guest login')
+
+        var headers = {
+            'accept': 'application/json',
+        };
+
+        var data = {
+            email: 'testuser@gmail.com',
+            password: 'test123',
+        }
+
+        var options = {
+            method: 'POST',
+            url: 'http://localhost:5000/users/login',
+            headers: headers,
+            data: qs.stringify(data)
+        };
+
+        axios(options).then(res => {
+            console.log(res)
+            // need to save user info somewhere
+            if (res.data.success) {
+                dispatch(login())
+                console.log(res.data.sucess)
+                history.push('/')
+            }
+        })
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -138,6 +176,7 @@ export default function SignUp() {
                         >
                             Sign Up
                         </Button>
+
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href="#" variant="body2" >
@@ -145,6 +184,16 @@ export default function SignUp() {
                                 </Link>
                             </Grid>
                         </Grid>
+
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            onClick={handleLogInAsGuest}
+                        >
+                            Continue as guest user
+                        </Button>
                     </Box>
                 </Box>
                 <Copyright sx={{ mt: 5 }} />

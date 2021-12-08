@@ -16,6 +16,7 @@ import qs from 'qs'
 import axios from 'axios'
 import { login, logout } from '../../reducers/loginReducer'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -35,6 +36,7 @@ const theme = createTheme();
 export default function SignIn() {
     const isLoggedIn = useSelector(state => state.login.isLoggedIn)
     const dispatch = useDispatch()
+    let history = useHistory();
 
     // post request that checks if the user and password is in the database.
     const handleSubmit = (event) => {
@@ -62,11 +64,43 @@ export default function SignIn() {
             console.log(res.data.success)
             console.log(res.data.message)
             // need to save user info somewhere
-            if(res.data.success){
+            if (res.data.success) {
                 dispatch(login())
+                history.push('/')
             }
         })
     };
+
+    const handleLogInAsGuest = (event) => {
+        event.preventDefault();
+        console.log('guest login')
+
+        var headers = {
+            'accept': 'application/json',
+        };
+
+        var data = {
+            email: 'testuser@gmail.com',
+            password: 'test123',
+        }
+
+        var options = {
+            method: 'POST',
+            url: 'http://localhost:5000/users/login',
+            headers: headers,
+            data: qs.stringify(data)
+        };
+
+        axios(options).then(res => {
+            console.log(res)
+            // need to save user info somewhere
+            if (res.data.success) {
+                dispatch(login())
+                console.log(res.data.sucess)
+                history.push('/')
+            }
+        })
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -131,6 +165,16 @@ export default function SignIn() {
                                 </Link>
                             </Grid>
                         </Grid>
+
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            onClick={handleLogInAsGuest}
+                        >
+                            Continue as guest user
+                        </Button>
                     </Box>
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />
