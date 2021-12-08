@@ -122,6 +122,8 @@ const SavingsPage = () => {
             <Typography variant="h6" className="font-link">Spending Power: {Math.round(spendingPower * 100) / 100}</Typography>
 
             <Typography variant="h6" className="font-link">Total Savings: {Math.round(savingsTotal * 100) / 100}</Typography>
+            
+            <Typography variant="h6" className="font-link"> Annual interest rate of 1% is compounded monthly. </Typography>
 
             <AmountInput>
                 <StyledInputBase
