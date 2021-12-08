@@ -31,10 +31,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
-import { Link } from 'react-router-dom';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import HomeIcon from '@mui/icons-material/Home';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import {
+  Link, Redirect,
+  useHistory,
+  useLocation
+} from 'react-router-dom';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import PersonIcon from '@mui/icons-material/Person';
 import { logout } from './reducers/loginReducer'
+
+
 
 const drawerWidth = 240;
 
@@ -55,6 +65,30 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
+
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+function PrivateRoute({ children, ...rest }) {
+  var isLoggedIn = useSelector(state => state.login.login)
+  console.log('is logged in private', isLoggedIn)
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isLoggedIn ? (
+          children
+        ) : (
+            <Redirect
+              to={{
+                pathname: "/signin",
+                state: { from: location }
+              }}
+            />
+          )
+      }
+    />
+  );
+}
 
 function App() {
   var isLoggedIn = useSelector(state => state.login.login)
@@ -122,7 +156,51 @@ function App() {
           </Toolbar>
           <Divider />
           <List>{!isLoggedIn ? <div>
-            {mainListItems}
+            {/* {mainListItems} */}
+            <Link to='/'>
+              <ListItem button>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home Page" />
+              </ListItem>
+            </Link>
+
+            <Link to='/stockPage'>
+              <ListItem button>
+                <ListItemIcon>
+                  <ShowChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Stock Page" />
+              </ListItem>
+            </Link>
+
+            <Link to='/transactionsPage'>
+              <ListItem button>
+                <ListItemIcon>
+                  <CompareArrowsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Transactions Page" />
+              </ListItem>
+            </Link>
+
+            <Link to='/portfolioPage'>
+              <ListItem button>
+                <ListItemIcon>
+                  <AccountBalanceIcon />
+                </ListItemIcon>
+                <ListItemText primary="Portfolio Page" />
+              </ListItem>
+            </Link>
+
+            {/* <Link to='/savingsPage'>
+              <ListItem button>
+                <ListItemIcon>
+                  <AccountBalanceIcon />
+                </ListItemIcon>
+                <ListItemText primary="Savings Page" />
+              </ListItem>
+            </Link> */}
             <Link to='/signup'>
               <ListItem button>
                 <ListItemIcon>
@@ -141,7 +219,52 @@ function App() {
               </ListItem>
             </Link>
           </div> : <div>
-              {mainListItems}
+              {/* {mainListItems} */}
+              <Link to='/'>
+                <ListItem button>
+                  <ListItemIcon>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Home Page" />
+                </ListItem>
+              </Link>
+
+              <Link to='/stockPage'>
+                <ListItem button>
+                  <ListItemIcon>
+                    <ShowChartIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Stock Page" />
+                </ListItem>
+              </Link>
+
+              <Link to='/transactionsPage'>
+                <ListItem button>
+                  <ListItemIcon>
+                    <CompareArrowsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Transactions Page" />
+                </ListItem>
+              </Link>
+
+
+              <Link to='/portfolioPage'>
+                <ListItem button>
+                  <ListItemIcon>
+                    <AccountBalanceIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Portfolio Page" />
+                </ListItem>
+              </Link>
+
+              {/* <Link to='/savingsPage'>
+                <ListItem button>
+                  <ListItemIcon>
+                    <AccountBalanceIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Savings Page" />
+                </ListItem>
+              </Link> */}
               <Link to='/'>
                 <ListItem button onClick={() => {
                   console.log('logging out')
@@ -176,9 +299,13 @@ function App() {
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/signin' component={Signin} />
           <Route exact path='/stockPage' component={StockPage} />
-          <Route exact path='/transactionsPage' component={TransactionPage} />
-          <Route exact path='/portfolioPage' component={PortfolioPage} />
-          <Route exact path='/savingsPage' component={SavingsPage} />
+          <PrivateRoute path='/transactionsPage'>
+            <TransactionPage />
+          </PrivateRoute>
+          <PrivateRoute path='/portfolioPage'>
+            <Route exact path='/portfolioPage' component={PortfolioPage} />
+          </PrivateRoute>
+          {/* <Route exact path='/savingsPage' component={SavingsPage} /> */}
         </Box>
         {/* <Footer /> */}
       </Box>
