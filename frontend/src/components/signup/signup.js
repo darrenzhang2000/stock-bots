@@ -1,22 +1,23 @@
-import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
+import { Alert, AlertTitle } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
-import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import axios from 'axios';
 import qs from 'qs';
-import axios from 'axios'
-import { login, logout } from '../../reducers/loginReducer'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { login } from '../../reducers/loginReducer';
 
 function Copyright(props) {
     return (
@@ -36,6 +37,14 @@ const theme = createTheme();
 export default function SignUp() {
     const dispatch = useDispatch()
     let history = useHistory();
+    const [displayAlert, setDisplayAlert] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
+
+    const handleClear = e => {
+        e.preventDefault()
+        // setSearchInput("")
+        // setDisplayRes(false)
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -61,45 +70,47 @@ export default function SignUp() {
 
         axios(options).then(res => {
             console.log(res)
-            if(res.data.error){
+            if (res.data.error) {
                 console.log('error logging in', res.data.error)
-            }else{
-                if(res.data.success){
+            } else {
+                if (res.data.success) {
                     console.log('added', res.data)
                     var email = formData.get('email')
                     dispatch(login(email))
-                    
+
                     var data2 = qs.stringify({
                         'email': email,
                         'total': '0',
                         'spendingPower': '0',
-                        'savingsTotal': '0' 
-                      });
-                      var config = {
+                        'savingsTotal': '0'
+                    });
+                    var config = {
                         method: 'post',
                         url: 'http://localhost:5000/portfolios/',
-                        headers: { 
-                          'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva', 
-                          'Content-Type': 'application/x-www-form-urlencoded'
+                        headers: {
+                            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva',
+                            'Content-Type': 'application/x-www-form-urlencoded'
                         },
-                        data : data2
-                      };
-                      
-                      axios(config)
-                      .then(function (response) {
-                        console.log(JSON.stringify(response.data));
-                      })
-                      .catch(function (error) {
-                        console.log(error);
-                      });                      
+                        data: data2
+                    };
+
+                    axios(config)
+                        .then(function (response) {
+                            console.log(JSON.stringify(response.data));
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
 
                     // need to save user info somewhere
                     history.push('/')
-                }else{
+                } else {
                     console.log('failed')
                     console.log(res.data)
+                    setErrorMsg(res.data.message)
+                    setDisplayAlert(true)
                 }
-                
+
             }
 
         })
@@ -134,7 +145,7 @@ export default function SignUp() {
                 console.log('hi')
                 dispatch(login())
                 history.push('/')
-            }else{
+            } else {
                 console.log(res.data.message)
             }
         })
@@ -144,6 +155,14 @@ export default function SignUp() {
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
+                {
+                    displayAlert ?
+                        <Alert severity="error" onClose={() => setDisplayAlert(false)}>
+                            <AlertTitle>Error</AlertTitle>
+                            {errorMsg}
+                        </Alert>
+                        : null
+                }
                 <Box
                     sx={{
                         marginTop: 8,

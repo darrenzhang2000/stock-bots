@@ -1,22 +1,23 @@
-import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
+import { Alert, AlertTitle } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import qs from 'qs'
-import axios from 'axios'
-import { login, logout } from '../../reducers/loginReducer'
-import { useSelector, useDispatch } from 'react-redux'
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import axios from 'axios';
+import qs from 'qs';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { login } from '../../reducers/loginReducer';
 
 function Copyright(props) {
     return (
@@ -37,6 +38,8 @@ export default function SignIn() {
     const isLoggedIn = useSelector(state => state.login.isLoggedIn)
     const dispatch = useDispatch()
     let history = useHistory();
+    const [displayAlert, setDisplayAlert] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
 
     // post request that checks if the user and password is in the database.
     const handleSubmit = (event) => {
@@ -67,6 +70,11 @@ export default function SignIn() {
             if (res.data.success) {
                 dispatch(login())
                 history.push('/')
+            }else{
+                console.log('failed')
+                console.log(res.data)
+                setErrorMsg(res.data.message)
+                setDisplayAlert(true)
             }
         })
     };
@@ -106,6 +114,14 @@ export default function SignIn() {
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
+                {
+                    displayAlert ?
+                        <Alert severity="error" onClose={() => setDisplayAlert(false)}>
+                            <AlertTitle>Error</AlertTitle>
+                            {errorMsg}
+                        </Alert>
+                        : null
+                }
                 <Box
                     sx={{
                         marginTop: 8,
