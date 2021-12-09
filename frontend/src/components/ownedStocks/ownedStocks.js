@@ -35,15 +35,18 @@ const OwnedStocks = () => {
         };
 
         axios(options).then(async res => {
-            let tempOwnedStocks = res.data.ownedStocks 
-            if(tempOwnedStocks){
-                let tickers = tempOwnedStocks.map(s => s.ticker)
-                let stockPricesHt = await getStockPrices(tickers)
-                for (let i = 0; i < tickers.length; i++) {
-                    tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
-                }
-                setOwnedStocks(tempOwnedStocks)
-            } 
+            let tempOwnedStocks = res.data.ownedStocks
+            console.log('owned stocks', tempOwnedStocks) 
+            if(tempOwnedStocks == undefined){
+                return
+            }
+            let tickers = tempOwnedStocks.map(s => s.ticker)
+            let stockPricesHt = await getStockPrices(tickers)
+            for (let i = 0; i < tickers.length; i++) {
+                tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
+            }
+            setOwnedStocks(tempOwnedStocks)
+            
         })
     }
 
@@ -78,7 +81,7 @@ const OwnedStocks = () => {
 
     return (
         <div>
-            {ownedStocks == [] ? <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
+            {ownedStocks && ownedStocks.length > 0 ? <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>

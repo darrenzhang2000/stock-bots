@@ -50,7 +50,7 @@ const Account = () => {
         };
 
         var data = {
-            email: 'testuser@gmail.com',
+            email: email,
             amount: amt
         }
 
