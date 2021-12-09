@@ -143,7 +143,7 @@ export default function SignUp() {
             // need to save user info somewhere
             if (res.data.success) {
                 console.log('hi')
-                dispatch(login())
+                dispatch(login("testuser@gmail.com"))
                 history.push('/')
             } else {
                 console.log(res.data.message)

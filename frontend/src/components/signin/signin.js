@@ -62,13 +62,14 @@ export default function SignIn() {
             data: qs.stringify(data)
         };
 
+        var email = formData.get('email')
         axios(options).then(res => {
             console.log('login results')
             console.log(res.data.success)
             console.log(res.data.message)
             // need to save user info somewhere
             if (res.data.success) {
-                dispatch(login())
+                dispatch(login(email))
                 history.push('/')
             }else{
                 console.log('failed')
@@ -103,7 +104,7 @@ export default function SignIn() {
             console.log(res)
             // need to save user info somewhere
             if (res.data.success) {
-                dispatch(login())
+                dispatch(login("testuser@gmail.com"))
                 console.log(res.data.sucess)
                 history.push('/')
             }
