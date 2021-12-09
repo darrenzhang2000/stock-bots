@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { AmountInput, StyledInputBase } from './styledInputBase'
 import { Alert, AlertTitle } from '@mui/material';
+import { useSelector } from "react-redux";
 
 const WITHDRAW = "withdraw"
 const DEPOSIT = "deposit"
@@ -15,6 +16,7 @@ const Account = () => {
     const [spendingPower, setSpendingPower] = React.useState(0)
     const [displayErrorMsg, setDisplayErrorMsg] = React.useState("")
     const [errorMsg, setErrorMsg] = React.useState("")
+    var email = useSelector(state => state.login.user)
 
     // The getSpendingPower function makes an axios get request that receives the user’s spending power.
     const getSpendingPower = () => {
@@ -25,7 +27,7 @@ const Account = () => {
         };
 
         var data = {
-            email: 'testuser@gmail.com',
+            email: email,
         }
 
         var options = {

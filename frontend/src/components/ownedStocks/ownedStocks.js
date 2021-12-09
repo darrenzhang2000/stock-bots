@@ -8,9 +8,11 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
 const OwnedStocks = () => {
     const [ownedStocks, setOwnedStocks] = React.useState([])
+    var email = useSelector(state => state.login.user)
 
     // The get request queries the OwnedStock in the database to 
     // get all of the stocks owned by the user with the specified 
@@ -22,7 +24,7 @@ const OwnedStocks = () => {
         };
 
         var data = {
-            email: 'testuser@gmail.com',
+            email: email,
         }
 
         var options = {
@@ -33,13 +35,15 @@ const OwnedStocks = () => {
         };
 
         axios(options).then(async res => {
-            let tempOwnedStocks = res.data.ownedStocks
-            let tickers = tempOwnedStocks.map(s => s.ticker)
-            let stockPricesHt = await getStockPrices(tickers)
-            for(let i=0; i<tickers.length; i++){
-                tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
-            }
-            setOwnedStocks(tempOwnedStocks)
+            let tempOwnedStocks = res.data.ownedStocks 
+            if(tempOwnedStocks){
+                let tickers = tempOwnedStocks.map(s => s.ticker)
+                let stockPricesHt = await getStockPrices(tickers)
+                for (let i = 0; i < tickers.length; i++) {
+                    tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
+                }
+                setOwnedStocks(tempOwnedStocks)
+            } 
         })
     }
 
@@ -74,7 +78,7 @@ const OwnedStocks = () => {
 
     return (
         <div>
-            <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
+            {ownedStocks == [] ? <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -101,6 +105,8 @@ const OwnedStocks = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+                : <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px' }}> You do not own any stocks.</Typography>
+            }
         </div>
     )
 }
