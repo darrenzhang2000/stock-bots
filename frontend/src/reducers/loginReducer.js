@@ -13,7 +13,7 @@ export const loginSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.login = true
-      state.user = action.user
+      state.user = action.payload
     },
     logout: (state) => {
       state.login = false

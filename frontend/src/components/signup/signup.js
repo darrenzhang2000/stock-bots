@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
 import qs from 'qs';
 import axios from 'axios'
 import { login, logout } from '../../reducers/loginReducer'
@@ -60,10 +60,48 @@ export default function SignUp() {
         };
 
         axios(options).then(res => {
-            console.log('added')
             console.log(res)
-            // need to save user info somewhere
-            history.push('/')
+            if(res.data.error){
+                console.log('error logging in', res.data.error)
+            }else{
+                if(res.data.success){
+                    console.log('added', res.data)
+                    var email = formData.get('email')
+                    dispatch(login(email))
+                    
+                    var data2 = qs.stringify({
+                        'email': email,
+                        'total': '0',
+                        'spendingPower': '0',
+                        'savingsTotal': '0' 
+                      });
+                      var config = {
+                        method: 'post',
+                        url: 'http://localhost:5000/portfolios/',
+                        headers: { 
+                          'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva', 
+                          'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        data : data2
+                      };
+                      
+                      axios(config)
+                      .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                      })
+                      .catch(function (error) {
+                        console.log(error);
+                      });                      
+
+                    // need to save user info somewhere
+                    history.push('/')
+                }else{
+                    console.log('failed')
+                    console.log(res.data)
+                }
+                
+            }
+
         })
 
     };
@@ -90,11 +128,14 @@ export default function SignUp() {
 
         axios(options).then(res => {
             console.log(res)
+            console.log('confuzzle', res.data.success)
             // need to save user info somewhere
             if (res.data.success) {
+                console.log('hi')
                 dispatch(login())
-                console.log(res.data.sucess)
                 history.push('/')
+            }else{
+                console.log(res.data.message)
             }
         })
     }
