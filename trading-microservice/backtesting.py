@@ -19,24 +19,12 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 
-#okay, 12-01-2016 is first date, so i need to start at 12-01-2017
-#i'll just use close for price
 
 
 #okay, commands like this will give me my rows as long
 #as i give a good date
 # https://stackoverflow.com/questions/17071871/how-do-i-select-rows-from-a-dataframe-based-on-column-values
 
-# date_string = '2016-12-01'
-# date_time_obj = datetime.strptime(date_string, '%Y-%m-%d').date()
-# a_year_ago = date_time_obj - relativedelta(years=1)
-# six_months_ago = date_time_obj - relativedelta(months=6)
-# one_day_ago = date_time_obj - relativedelta(days=1)
-# print(date_time_obj)
-# print(a_year_ago)
-# print(six_months_ago)
-# print(one_day_ago)
-#print(A_stock.loc[A_stock['Date'] == '2016-12-01'])
 
 #start_date = (date =2017-12-01)
 
@@ -51,9 +39,9 @@ A_stock_xl = pd.read_csv('A.csv')
 liquid_cash = 10000
 total_money = 10000
 
-A_stock_amount = math.floor( liquid_cash / A_stock_xl.loc[700, 'Close'] )
-cash_in_stock = (A_stock_amount * A_stock_xl.loc[700, 'Close'])
-liquid_cash = liquid_cash - (A_stock_amount * A_stock_xl.loc[700, 'Close'])
+A_stock_amount = math.floor( liquid_cash / A_stock_xl.loc[1000, 'Close'] )
+cash_in_stock = (A_stock_amount * A_stock_xl.loc[1000, 'Close'])
+liquid_cash = liquid_cash - (A_stock_amount * A_stock_xl.loc[1000, 'Close'])
 total_money = liquid_cash + cash_in_stock
 # print(total_money)
 # print(A_stock_amount)
@@ -68,8 +56,12 @@ total_money = liquid_cash + cash_in_stock
 # for day in range(1, len(A_stock_xl)):
 #     print(str(A_stock_xl.loc[day - 1, 'Date']) + " " + str(A_stock_xl.loc[day, 'Close']))
 
+daily_report_columns = ['Date', 'Report']
 
-for day in range(700, len(A_stock_xl)):
+report_dataframe = pd.DataFrame(columns = daily_report_columns)
+
+
+for day in range(1000, len(A_stock_xl)):
     #print(A_stock.loc[i, 'Date'])
     #simulate what this algo does with one stock
     hqm_columns = [ #this is for measuring return consistency
@@ -195,8 +187,18 @@ for day in range(700, len(A_stock_xl)):
         cash_in_stock = 0
         liquid_cash +=  float(orig_stock) * fall_dataframe.loc[row, 'Price']
         total_money = liquid_cash
-        fall_dataframe.loc[row, 'Reason'] = f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
-        print(fall_dataframe.loc[row, 'Reason'])
+
+        report_dataframe = report_dataframe.append(
+            pd.Series(
+            [
+                A_stock_xl.loc[day, 'Date'],
+                f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+            ],
+                index = daily_report_columns),
+                ignore_index = True
+        )
+        #fall_dataframe.loc[row, 'Reason'] = f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+        #print(fall_dataframe.loc[row, 'Reason'])
 
 
     #now we decide the fate of the stable stocks
@@ -229,8 +231,18 @@ for day in range(700, len(A_stock_xl)):
             #liquid cash is made larger by what we sold
             liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
             total_money = cash_in_stock + liquid_cash
-            stable_dataframe.loc[row, 'Reason'] = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
-            print(stable_dataframe.loc[row, 'Reason'])
+
+            report_dataframe = report_dataframe.append(
+            pd.Series(
+            [
+                A_stock_xl.loc[day, 'Date'],
+                f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"         
+            ],
+                index = daily_report_columns),
+                ignore_index = True
+            )
+            #stable_dataframe.loc[row, 'Reason'] = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
+            #print(stable_dataframe.loc[row, 'Reason'])
            
             #we still need to buy, so we'll push the updated numbers at the end
         else:
@@ -239,8 +251,19 @@ for day in range(700, len(A_stock_xl)):
             cash_in_stock = 0
             liquid_cash +=  float( orig_stock) * stable_dataframe.loc[row, 'Price']
             total_money = liquid_cash
-            stable_dataframe.loc[row, 'Reason'] = f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
-            print(stable_dataframe.loc[row, 'Reason'])
+            
+            report_dataframe = report_dataframe.append(
+            pd.Series(
+            [
+                A_stock_xl.loc[day, 'Date'],
+                f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"       
+            ],
+                index = daily_report_columns),
+                ignore_index = True
+            )
+
+            #stable_dataframe.loc[row, 'Reason'] = f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+            #print(stable_dataframe.loc[row, 'Reason'])
 
     
     #if it's growing for the past 3 days, we want to buy as much as possible
@@ -253,10 +276,24 @@ for day in range(700, len(A_stock_xl)):
             A_stock_amount = A_stock_amount + new_amount_to_buy
             cash_in_stock = A_stock_amount * grow_dataframe.loc[row, 'Price']
             total_money = liquid_cash + cash_in_stock
-            grow_dataframe.loc[row, 'Reason'] = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
-            print(grow_dataframe.loc[row, 'Reason'])
+
+            report_dataframe = report_dataframe.append(
+            pd.Series(
+            [
+                A_stock_xl.loc[day, 'Date'],
+                f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"           
+            ],
+                index = daily_report_columns),
+                ignore_index = True
+            )
+            # grow_dataframe.loc[row, 'Reason'] = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+            # print(grow_dataframe.loc[row, 'Reason'])
+
+
 
 print(total_money)
-
+print(report_dataframe)
         
-
+writer = pd.ExcelWriter('test_report.xlsx', engine='xlsxwriter')
+report_dataframe.to_excel(writer, sheet_name = "daily_report", index = False)
+writer.save()
