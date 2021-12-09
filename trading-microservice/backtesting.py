@@ -23,7 +23,6 @@ from dateutil.relativedelta import relativedelta
 #i'll just use close for price
 
 
-A_stock_xl = pd.read_csv('A.csv')
 #okay, commands like this will give me my rows as long
 #as i give a good date
 # https://stackoverflow.com/questions/17071871/how-do-i-select-rows-from-a-dataframe-based-on-column-values
@@ -46,18 +45,31 @@ A_stock_xl = pd.read_csv('A.csv')
 #at the end, sell all
 
 #so I need starting cash
+A_stock_xl = pd.read_csv('A.csv')
+
 
 liquid_cash = 10000
 total_money = 10000
 
-A_stock_amount = math.floor( liquid_cash / A_stock_xl.loc[400, 'Close'] )
-cash_in_stock = (A_stock_amount * A_stock_xl.loc[400, 'Close'])
-liquid_cash = liquid_cash - (A_stock_amount * A_stock_xl.loc[400, 'Close'])
+A_stock_amount = math.floor( liquid_cash / A_stock_xl.loc[1100, 'Close'] )
+cash_in_stock = (A_stock_amount * A_stock_xl.loc[1100, 'Close'])
+liquid_cash = liquid_cash - (A_stock_amount * A_stock_xl.loc[1100, 'Close'])
+total_money = liquid_cash + cash_in_stock
+# print(total_money)
+# print(A_stock_amount)
+# print(cash_in_stock)
+# print(liquid_cash)
 # print(A_stock.loc[400, 'Close'])
 # print(A_stock_amount)
 # print(liquid_cash)
 
-for day in range(400, len(A_stock_xl)):
+#print(len(A_stock_xl))
+
+# for day in range(1, len(A_stock_xl)):
+#     print(str(A_stock_xl.loc[day - 1, 'Date']) + " " + str(A_stock_xl.loc[day, 'Close']))
+
+
+for day in range(1100, len(A_stock_xl)):
     #print(A_stock.loc[i, 'Date'])
     #simulate what this algo does with one stock
     hqm_columns = [ #this is for measuring return consistency
@@ -73,7 +85,7 @@ for day in range(400, len(A_stock_xl)):
     'One-Month Price Return',
     'One-Month Return Percentile',
     'HQM Score',
-    'Price-to-Earnings Ratio',
+    'Reason',
     'Decision'
     ]
 
@@ -89,10 +101,11 @@ for day in range(400, len(A_stock_xl)):
     three_months_ago = day - (13 * 5)
     one_month_ago = day - (4 * 5)
 
-    yr1change = ( (A_stock_xl.loc[day, 'Close'] - A_stock_xl.loc[a_year_ago, 'Close']) / a_year_ago ) * 100
-    mo6change = ( (A_stock_xl.loc[day, 'Close'] - A_stock_xl.loc[six_months_ago, 'Close']) / six_months_ago ) * 100
-    mo3change = ( (A_stock_xl.loc[day, 'Close'] - A_stock_xl.loc[three_months_ago, 'Close']) / three_months_ago ) * 100
-    mo1change = ( (A_stock_xl.loc[day, 'Close'] - A_stock_xl.loc[one_month_ago, 'Close']) / one_month_ago ) * 100
+    #it's new value - orig value / orig value * 100
+    yr1change = ( (A_stock_xl.loc[day, 'Close'] - A_stock_xl.loc[a_year_ago, 'Close']) / A_stock_xl.loc[a_year_ago, 'Close'] ) * 100
+    mo6change = ( (A_stock_xl.loc[day, 'Close'] - A_stock_xl.loc[six_months_ago, 'Close']) / A_stock_xl.loc[six_months_ago, 'Close'] ) * 100
+    mo3change = ( (A_stock_xl.loc[day, 'Close'] - A_stock_xl.loc[three_months_ago, 'Close']) / A_stock_xl.loc[three_months_ago, 'Close'] ) * 100
+    mo1change = ( (A_stock_xl.loc[day, 'Close'] - A_stock_xl.loc[one_month_ago, 'Close']) / A_stock_xl.loc[one_month_ago, 'Close'] ) * 100
 
 
     if((A_stock_xl.loc[day - 4, 'Close'] - A_stock_xl.loc[day - 3, 'Close'] ) > 0
@@ -172,45 +185,18 @@ for day in range(400, len(A_stock_xl)):
         )
 
     #now we measure how decent their past has been
-    for row in fall_dataframe.index:
-        decision = 0 #decision will help decide the fate of the stock
-        avg_past = (fall_dataframe.loc[row, 'One-Year Price Return'] + 
-                    fall_dataframe.loc[row, 'Six-Month Price Return']  +
-                    fall_dataframe.loc[row, 'Three-Month Price Return']  +
-                    fall_dataframe.loc[row, 'One-Month Price Return']  )
-        #print(avg_past)
-        if(avg_past < 0):
-            decision = decision - 1
-        elif(avg_past > 0):
-            decision = decision + 1
-        else: #just in case it adds up to 0
-            decision = decision + 0
-        
-        fall_dataframe.loc[row, 'Decision'] = decision
+    
 
-    #okay, now we have the decision, so now we sell depending on how
-    #good its past has been
+    #if it's falling, we just want to sell
 
     for row in fall_dataframe.index:
-        if fall_dataframe.loc[row, 'Decision'] == 1:
-            #it has a decent past, so i'll only sell half
-            orig_stock = A_stock_amount
-            stock_in_half = math.floor( orig_stock / 2  )
-            #subtract A_stock_amount by the half we sold
-            A_stock_amount -= stock_in_half
-            #the current cash in the stock is now what we have left in the stocks
-            cash_in_stock = A_stock_amount * fall_dataframe.loc[row, 'Price']
-            #liquid cash is made larger by what we sold
-            liquid_cash +=  ( float( orig_stock - stock_in_half) ) * fall_dataframe.loc[row, 'Price']
-            total_money = cash_in_stock + liquid_cash
-           
-            #we still need to buy, so we'll push the updated numbers at the end
-        else:
-            orig_stock = A_stock_amount
-            A_stock_amount = 0
-            cash_in_stock = 0
-            liquid_cash =  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
-            total_money = liquid_cash
+        orig_stock = A_stock_amount
+        A_stock_amount = 0
+        cash_in_stock = 0
+        liquid_cash +=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
+        total_money = liquid_cash
+        print("sold" + str(orig_stock) + "at" + str(fall_dataframe.loc[row, 'Price']) + " new total is " + str(total_money)) 
+
 
 
     #now we decide the fate of the stable stocks
@@ -243,6 +229,8 @@ for day in range(400, len(A_stock_xl)):
             #liquid cash is made larger by what we sold
             liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
             total_money = cash_in_stock + liquid_cash
+            print("sold" + str(stock_in_half) + "at" + str(stable_dataframe.loc[row, 'Price']) + " new total is " + str(total_money)) 
+
            
             #we still need to buy, so we'll push the updated numbers at the end
         else:
@@ -251,26 +239,23 @@ for day in range(400, len(A_stock_xl)):
             cash_in_stock = 0
             liquid_cash =  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
             total_money = liquid_cash
-
-
-    for row in grow_dataframe.index:
-        decision = 0 #decision will help decide the fate of the stock
-        avg_past = (grow_dataframe.loc[row, 'One-Year Price Return'] + 
-                    grow_dataframe.loc[row, 'Six-Month Price Return']  +
-                    grow_dataframe.loc[row, 'Three-Month Price Return']  +
-                    grow_dataframe.loc[row, 'One-Month Price Return']  )
-        #print(avg_past)
-        if(avg_past < 0):
-            decision = decision - 1
-        elif(avg_past > 0):
-            decision = decision + 1
-        else: #just in case it adds up to 0
-            decision = decision + 0
-        
-        grow_dataframe.loc[row, 'Decision'] = decision
+            print("sold" + str(orig_stock) + "at" + str(fall_dataframe.loc[row, 'Price']) + " new total is " + str(total_money)) 
 
     
 
+    if(len(grow_dataframe.index) != 0 and liquid_cash != 0):
+        divvied_up_cash = liquid_cash / len(grow_dataframe.index)
+        for row in grow_dataframe.index:
+            orig_stock = A_stock_amount
+            new_amount_to_buy = math.floor(divvied_up_cash/grow_dataframe.loc[row, 'Price'])
+            liquid_cash -= ( new_amount_to_buy * grow_dataframe.loc[row, 'Price'])
+            A_stock_amount = A_stock_amount + new_amount_to_buy
+            cash_in_stock = A_stock_amount * grow_dataframe.loc[row, 'Price']
+            total_money = liquid_cash + cash_in_stock
+            print("bought" + str(new_amount_to_buy) + "for" + str(grow_dataframe.loc[row, 'Price']) + "new total is" + str(total_money))
+
+
+print(total_money)
 
         
 
