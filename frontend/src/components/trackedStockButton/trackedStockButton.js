@@ -27,7 +27,7 @@ const TrackedStockButton = (props) => {
 
         var options = {
             method: 'POST',
-            url: 'http://localhost:5000/trackedStocks',
+            url: `${process.env.REACT_APP_BACKEND_API}/trackedStocks`,
             headers: headers,
             data: qs.stringify(data)
         };

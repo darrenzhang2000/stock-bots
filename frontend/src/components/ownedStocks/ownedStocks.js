@@ -28,7 +28,7 @@ const OwnedStocks = () => {
 
         var options = {
             method: 'GET',
-            url: 'http://localhost:5000/ownedStocks/',
+            url: `${process.env.REACT_APP_BACKEND_API}/ownedStocks/`,
             headers: headers,
             params: data
         };

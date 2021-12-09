@@ -26,7 +26,7 @@ const TransactionPage = (props) => {
 
         var options = {
             method: 'GET',
-            url: 'http://localhost:5000/transactions/',
+            url: `${process.env.REACT_APP_BACKEND_API}/transactions/`,
             headers: headers,
             params: data
         };

@@ -36,8 +36,6 @@ import StockPage from './screens/stockPage/stockPage';
 import TransactionPage from './screens/transactionPage/transactionPage';
 import StonksLogo from './stonksLogo.jpg';
 
-
-
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {

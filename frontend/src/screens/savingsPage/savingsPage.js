@@ -43,7 +43,7 @@ const SavingsPage = () => {
 
         var options = {
             method: 'GET',
-            url: 'http://localhost:5000/portfolios/',
+            url: `${process.env.REACT_APP_BACKEND_API}/portfolios/`,
             headers: headers,
             params: data
         };
@@ -69,7 +69,7 @@ const SavingsPage = () => {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:5000/portfolios/withdrawSavings", requestOptions)
+        fetch(`${process.env.REACT_APP_BACKEND_API}/portfolios/withdrawSavings`, requestOptions)
             .then(res => res.json())    
             .then(res => {
                 console.log(res)

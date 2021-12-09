@@ -11,7 +11,7 @@ const getTrackedStocks = async (email) => {
 
     var options = {
         method: 'GET',
-        url: 'http://localhost:5000/ownedStocks/',
+        url: process.env.REACT_APP_BACKEND_API,
         headers: headers,
         params: data
     };
@@ -49,13 +49,13 @@ const getStockActions = async (tickers, email) => {
 }
 
 export const runTradingAlgorithm = async () => {
-    getTrackedStocks('testuser@gmail.com').then(
-        tickers => {
-            setTimeout(() => {
-                console.log('waiting 50 secs')
-                //getStockActions(tickers, 'testuser@gmail.com')
-                runTradingAlgorithm()
-            }, 500000)
-        }
-    )
+    // getTrackedStocks('testuser@gmail.com').then(
+    //     tickers => {
+    //         setTimeout(() => {
+    //             console.log('waiting 50 secs')
+    //             //getStockActions(tickers, 'testuser@gmail.com')
+    //             runTradingAlgorithm()
+    //         }, 500000)
+    //     }
+    // )
 }

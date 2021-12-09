@@ -63,7 +63,7 @@ export default function SignUp() {
 
         var options = {
             method: 'POST',
-            url: 'http://localhost:5000/users/register',
+            url: `${process.env.REACT_APP_BACKEND_API}/users/register`,
             headers: headers,
             data: qs.stringify(data)
         };
@@ -86,7 +86,7 @@ export default function SignUp() {
                     });
                     var config = {
                         method: 'post',
-                        url: 'http://localhost:5000/portfolios/',
+                        url: `${process.env.REACT_APP_BACKEND_API}/portfolios/`,
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
@@ -131,7 +131,7 @@ export default function SignUp() {
 
         var options = {
             method: 'POST',
-            url: 'http://localhost:5000/users/login',
+            url: `${process.env.REACT_APP_BACKEND_API}/users/login`,
             headers: headers,
             data: qs.stringify(data)
         };
