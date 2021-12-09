@@ -195,8 +195,8 @@ for day in range(1100, len(A_stock_xl)):
         cash_in_stock = 0
         liquid_cash +=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
         total_money = liquid_cash
-        print("sold" + str(orig_stock) + "at" + str(fall_dataframe.loc[row, 'Price']) + " new total is " + str(total_money)) 
-
+        fall_dataframe.loc[row, 'Reason'] = f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+        print(fall_dataframe.loc[row, 'Reason'])
 
 
     #now we decide the fate of the stable stocks
@@ -216,7 +216,7 @@ for day in range(1100, len(A_stock_xl)):
 
             stable_dataframe.loc[row, 'Decision'] = decision
 
-
+    #okay we took an estimate of its past, so now we decide how much we sell
     for row in stable_dataframe.index:
         if stable_dataframe.loc[row, 'Decision'] == 1:
             #it has a decent past, so i'll only sell half
@@ -229,8 +229,8 @@ for day in range(1100, len(A_stock_xl)):
             #liquid cash is made larger by what we sold
             liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
             total_money = cash_in_stock + liquid_cash
-            print("sold" + str(stock_in_half) + "at" + str(stable_dataframe.loc[row, 'Price']) + " new total is " + str(total_money)) 
-
+            stable_dataframe.loc[row, 'Reason'] = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
+            print(stable_dataframe.loc[row, 'Reason'])
            
             #we still need to buy, so we'll push the updated numbers at the end
         else:
@@ -239,10 +239,11 @@ for day in range(1100, len(A_stock_xl)):
             cash_in_stock = 0
             liquid_cash =  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
             total_money = liquid_cash
-            print("sold" + str(orig_stock) + "at" + str(fall_dataframe.loc[row, 'Price']) + " new total is " + str(total_money)) 
+            stable_dataframe.loc[row, 'Reason'] = f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+            print(stable_dataframe.loc[row, 'Reason'])
 
     
-
+    #if it's growing for the past 3 days, we want to buy as much as possible
     if(len(grow_dataframe.index) != 0 and liquid_cash != 0):
         divvied_up_cash = liquid_cash / len(grow_dataframe.index)
         for row in grow_dataframe.index:
@@ -252,8 +253,8 @@ for day in range(1100, len(A_stock_xl)):
             A_stock_amount = A_stock_amount + new_amount_to_buy
             cash_in_stock = A_stock_amount * grow_dataframe.loc[row, 'Price']
             total_money = liquid_cash + cash_in_stock
-            print("bought" + str(new_amount_to_buy) + "for" + str(grow_dataframe.loc[row, 'Price']) + "new total is" + str(total_money))
-
+            grow_dataframe.loc[row, 'Reason'] = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+            print(grow_dataframe.loc[row, 'Reason'])
 
 print(total_money)
 
