@@ -51,9 +51,9 @@ A_stock_xl = pd.read_csv('A.csv')
 liquid_cash = 10000
 total_money = 10000
 
-A_stock_amount = math.floor( liquid_cash / A_stock_xl.loc[1100, 'Close'] )
-cash_in_stock = (A_stock_amount * A_stock_xl.loc[1100, 'Close'])
-liquid_cash = liquid_cash - (A_stock_amount * A_stock_xl.loc[1100, 'Close'])
+A_stock_amount = math.floor( liquid_cash / A_stock_xl.loc[700, 'Close'] )
+cash_in_stock = (A_stock_amount * A_stock_xl.loc[700, 'Close'])
+liquid_cash = liquid_cash - (A_stock_amount * A_stock_xl.loc[700, 'Close'])
 total_money = liquid_cash + cash_in_stock
 # print(total_money)
 # print(A_stock_amount)
@@ -69,7 +69,7 @@ total_money = liquid_cash + cash_in_stock
 #     print(str(A_stock_xl.loc[day - 1, 'Date']) + " " + str(A_stock_xl.loc[day, 'Close']))
 
 
-for day in range(1100, len(A_stock_xl)):
+for day in range(700, len(A_stock_xl)):
     #print(A_stock.loc[i, 'Date'])
     #simulate what this algo does with one stock
     hqm_columns = [ #this is for measuring return consistency
@@ -193,7 +193,7 @@ for day in range(1100, len(A_stock_xl)):
         orig_stock = A_stock_amount
         A_stock_amount = 0
         cash_in_stock = 0
-        liquid_cash +=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
+        liquid_cash +=  float(orig_stock) * fall_dataframe.loc[row, 'Price']
         total_money = liquid_cash
         fall_dataframe.loc[row, 'Reason'] = f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
         print(fall_dataframe.loc[row, 'Reason'])
@@ -237,7 +237,7 @@ for day in range(1100, len(A_stock_xl)):
             orig_stock = A_stock_amount
             A_stock_amount = 0
             cash_in_stock = 0
-            liquid_cash =  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
+            liquid_cash +=  float( orig_stock) * stable_dataframe.loc[row, 'Price']
             total_money = liquid_cash
             stable_dataframe.loc[row, 'Reason'] = f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
             print(stable_dataframe.loc[row, 'Reason'])
