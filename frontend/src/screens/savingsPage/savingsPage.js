@@ -21,7 +21,6 @@ const SavingsPage = () => {
         const re = /^[0-9]+$/
         if (e.target.value === '' || re.test(e.target.value)) {
             setWithdrawAmountFromSavingsAccount(e.target.value)
-            console.log(withdrawAmountFromSavingsAccount)
         }
     }
 
@@ -29,7 +28,6 @@ const SavingsPage = () => {
         const re = /^[0-9]+$/
         if (e.target.value === '' || re.test(e.target.value)) {
             setDepositAmountIntoSavingsAccount(e.target.value)
-            console.log(depositAmountIntoSavingsAccount)
         }
     }
 
@@ -37,7 +35,6 @@ const SavingsPage = () => {
     const getSpendingPowerSavingsAmount = () => {
         var headers = {
             'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
         };
 
         var data = {
@@ -60,7 +57,6 @@ const SavingsPage = () => {
     // positive amt for withdrawal, negative amt for deposit
     const updateSavingsTotal = (amt) => {
         var myHeaders = new Headers();
-        myHeaders.append("X-API-KEY", "Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva");
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
         var urlencoded = new URLSearchParams();

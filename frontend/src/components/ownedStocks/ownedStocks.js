@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const OwnedStocks = () => {
     const [ownedStocks, setOwnedStocks] = React.useState([])
@@ -20,7 +20,6 @@ const OwnedStocks = () => {
     const getOwnedStocks = async () => {
         var headers = {
             'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
         };
 
         var data = {
@@ -36,8 +35,8 @@ const OwnedStocks = () => {
 
         axios(options).then(async res => {
             let tempOwnedStocks = res.data.ownedStocks
-            console.log('owned stocks', tempOwnedStocks) 
-            if(tempOwnedStocks == undefined){
+            console.log('owned stocks', tempOwnedStocks)
+            if (tempOwnedStocks == undefined) {
                 return
             }
             let tickers = tempOwnedStocks.map(s => s.ticker)
@@ -46,14 +45,14 @@ const OwnedStocks = () => {
                 tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
             }
             setOwnedStocks(tempOwnedStocks)
-            
+
         })
     }
 
     const getStockPrices = async (tickerList) => {
         var headers = {
             'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
+            'X-API-KEY': process.env.REACT_APP_YAHOOFINANCE_API_KEY 
         };
 
         let tickerQueryParams = tickerList.join("%2C")
@@ -75,7 +74,6 @@ const OwnedStocks = () => {
     }
 
     useEffect(() => {
-        console.log('transactions page')
         getOwnedStocks()
     }, [])
 

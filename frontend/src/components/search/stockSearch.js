@@ -34,7 +34,7 @@ const StockSearch = props => {
 
         var headers = {
             'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
+            'X-API-KEY': process.env.REACT_APP_YAHOOFINANCE_API_KEY
         };
 
         var options = {

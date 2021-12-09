@@ -23,7 +23,6 @@ const Account = () => {
 
         var headers = {
             'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
         };
 
         var data = {
@@ -46,7 +45,6 @@ const Account = () => {
         var headers = {
             'Accept': '*/*',
             'Content-Type': '*/*',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
         };
 
         var data = {

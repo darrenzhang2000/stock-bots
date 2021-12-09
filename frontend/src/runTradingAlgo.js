@@ -3,7 +3,6 @@ import axios from 'axios'
 const getTrackedStocks = async (email) => {
     var headers = {
         'accept': 'application/json',
-        'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
     };
 
     var data = {
@@ -30,7 +29,6 @@ const getStockActions = async (tickers, email) => {
     console.log('getting stock actions', tickers)
     var headers = {
         'accept': 'application/json',
-        'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
     };
 
     var data = {

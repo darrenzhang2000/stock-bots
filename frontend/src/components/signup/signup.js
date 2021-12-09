@@ -88,7 +88,6 @@ export default function SignUp() {
                         method: 'post',
                         url: 'http://localhost:5000/portfolios/',
                         headers: {
-                            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva',
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
                         data: data2

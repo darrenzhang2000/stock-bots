@@ -14,12 +14,10 @@ import { useSelector } from "react-redux";
 const TransactionPage = (props) => {
     const [transactions, setTransactions] = React.useState([])
     var email = useSelector(state => state.login.user)
-    console.log('trans', transactions)
 
     const getTransactions = () => {
         var headers = {
             'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
         };
 
         var data = {
@@ -35,12 +33,10 @@ const TransactionPage = (props) => {
 
         axios(options).then(res => {
             setTransactions(res.data.transactions)
-            console.log(transactions)
         })
     }
 
     useEffect(() => {
-        console.log('transactions page')
         getTransactions()
     }, [])
 

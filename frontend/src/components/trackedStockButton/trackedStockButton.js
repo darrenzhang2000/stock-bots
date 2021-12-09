@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import qs from 'qs'
 import { Button, Typography, Alert, Grid } from '@mui/material';
+import { useSelector } from "react-redux";
 
 // This button adds the stock in the stock info page to be tracked by
 // our trading algorithm. We felt that this button was complex enough that
@@ -9,19 +10,18 @@ import { Button, Typography, Alert, Grid } from '@mui/material';
 // an axios post request to our backend that adds the stock ticker to the 
 // list of tickers currently tracked by the trading algorithm.
 const TrackedStockButton = (props) => {
+    var email = useSelector(state => state.login.user)
     const { ticker } = props
 
     const handleAddTrackedStock = (e) => {
         e.preventDefault()
-        console.log("clicked")
 
         var headers = {
             'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
         };
 
         var data = {
-            email: 'testuser@gmail.com',
+            email: email,
             ticker
         }
 
@@ -33,7 +33,6 @@ const TrackedStockButton = (props) => {
         };
 
         axios(options).then(res => {
-            console.log('added')
             console.log(res)
         })
     }

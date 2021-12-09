@@ -1,48 +1,40 @@
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import PersonIcon from '@mui/icons-material/Person';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 import MuiAppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect, Route } from 'react-router-dom';
 import './App.css';
 import Drawer from './components/drawer/drawer';
-import { mainListItems, mainListItemsLoggedIn, mainListItemsLoggedOut, secondaryListItems } from './components/drawer/listItems';
+import { secondaryListItems } from './components/drawer/listItems';
 import Signin from './components/signin/signin';
 import Signup from './components/signup/signup';
+import { logout } from './reducers/loginReducer';
+import { runTradingAlgorithm } from './runTradingAlgo.js';
 import Home from './screens/home/home';
 import PortfolioPage from './screens/portfolioPage/portfolioPage';
 import StockPage from './screens/stockPage/stockPage';
 import TransactionPage from './screens/transactionPage/transactionPage';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import StonksLogo from './stonksLogo.jpg'
-import ReactLogo from './logo.svg'
-import { runTradingAlgorithm } from './runTradingAlgo.js'
-import SavingsPage from './screens/savingsPage/savingsPage';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
-import HomeIcon from '@mui/icons-material/Home';
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import {
-  Link, Redirect,
-  useHistory,
-  useLocation
-} from 'react-router-dom';
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
-import PersonIcon from '@mui/icons-material/Person';
-import { logout } from './reducers/loginReducer'
+import StonksLogo from './stonksLogo.jpg';
 
 
 
@@ -70,7 +62,6 @@ const AppBar = styled(MuiAppBar, {
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, ...rest }) {
   var isLoggedIn = useSelector(state => state.login.login)
-  console.log('is logged in private', isLoggedIn)
   return (
     <Route
       {...rest}
@@ -93,7 +84,6 @@ function PrivateRoute({ children, ...rest }) {
 function App() {
   var isLoggedIn = useSelector(state => state.login.login)
   const dispatch = useDispatch()
-  console.log('isloggedIn', isLoggedIn)
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -267,7 +257,6 @@ function App() {
               </Link> */}
               <Link to='/'>
                 <ListItem button onClick={() => {
-                  console.log('logging out')
                   dispatch(logout())
                   isLoggedIn = false
                 }}>
