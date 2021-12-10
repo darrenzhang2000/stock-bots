@@ -40,26 +40,20 @@ for current_xl in csv_files:
     A_stock_amount = 0
     cash_in_stock = 0
 
-    daily_report_columns = ['Date', 'Report']
+    daily_report_columns = ['Date', 'Spending Power', 'Price', 'Quantity', 'Total', 'Report']
 
     report_dataframe = pd.DataFrame(columns = daily_report_columns)
 
-    for day in range(1000, len(A_stock_xl)):
+    for day in range(500, len(A_stock_xl)):
         #print(A_stock.loc[i, 'Date'])
         #simulate what this algo does with one stock
         hqm_columns = [ #this is for measuring return consistency
         'Ticker',
         'Price',
-        'Number of Shares to Buy',
         'One-Year Price Return',
-        'One-Year Return Percentile',
         'Six-Month Price Return',
-        'Six-Month Return Percentile',
         'Three-Month Price Return',
-        'Three-Month Return Percentile',
         'One-Month Price Return',
-        'One-Month Return Percentile',
-        'HQM Score',
         'Reason',
         'Decision'
         ]
@@ -96,16 +90,10 @@ for current_xl in csv_files:
                 [
                     ticker, #'Ticker'
                     A_stock_xl.loc[day, 'Close'], #'today's Price'
-                    'N/A',
                     yr1change,
-                    'N/A',
                     mo6change,
-                    'N/A',
                     mo3change,
-                    'N/A',
                     mo1change,
-                    'N/A',
-                    'N/A',
                     'N/A', #pte['peRatio'], note, can't get pte ratio
                     'N/A'
                 ],
@@ -121,16 +109,10 @@ for current_xl in csv_files:
                 [
                     ticker, #'Ticker'
                     A_stock_xl.loc[day, 'Close'], #'today's Price'
-                    'N/A',
                     yr1change,
-                    'N/A',
                     mo6change,
-                    'N/A',
                     mo3change,
-                    'N/A',
                     mo1change,
-                    'N/A',
-                    'N/A',
                     'N/A', #pte['peRatio'], note, can't get pte ratio
                     'N/A'
                 ],
@@ -143,16 +125,10 @@ for current_xl in csv_files:
                 [
                     ticker, #'Ticker'
                     A_stock_xl.loc[day, 'Close'], #'today's Price'
-                    'N/A',
                     yr1change,
-                    'N/A',
                     mo6change,
-                    'N/A',
                     mo3change,
-                    'N/A',
                     mo1change,
-                    'N/A',
-                    'N/A',
                     'N/A', #pte['peRatio'], note, can't get pte ratio
                     'N/A'
                 ],
@@ -176,6 +152,10 @@ for current_xl in csv_files:
                 pd.Series(
                 [
                     A_stock_xl.loc[day, 'Date'],
+                    liquid_cash,
+                    fall_dataframe.loc[row, 'Price'],
+                    A_stock_amount,
+                    total_money,
                     f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
                 ],
                     index = daily_report_columns),
@@ -211,7 +191,7 @@ for current_xl in csv_files:
                 #subtract A_stock_amount by the half we sold
                 A_stock_amount -= stock_in_half
                 #the current cash in the stock is now what we have left in the stocks
-                cash_in_stock = A_stock_amount * stable_dataframe.loc[row, 'Price']
+                cash_in_stock = stock_in_half * stable_dataframe.loc[row, 'Price']
                 #liquid cash is made larger by what we sold
                 liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
                 total_money = cash_in_stock + liquid_cash
@@ -220,7 +200,11 @@ for current_xl in csv_files:
                 pd.Series(
                 [
                     A_stock_xl.loc[day, 'Date'],
-                    f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"         
+                    liquid_cash,
+                    stable_dataframe.loc[row, 'Price'],
+                    A_stock_amount,
+                    total_money,
+                    f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
                 ],
                     index = daily_report_columns),
                     ignore_index = True
@@ -240,7 +224,11 @@ for current_xl in csv_files:
                 pd.Series(
                 [
                     A_stock_xl.loc[day, 'Date'],
-                    f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"       
+                    liquid_cash,
+                    stable_dataframe.loc[row, 'Price'],
+                    A_stock_amount,
+                    total_money,                    
+                    f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
                 ],
                     index = daily_report_columns),
                     ignore_index = True
@@ -265,7 +253,11 @@ for current_xl in csv_files:
                 pd.Series(
                 [
                     A_stock_xl.loc[day, 'Date'],
-                    f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"           
+                    liquid_cash,
+                    grow_dataframe.loc[row, 'Price'],
+                    A_stock_amount,
+                    total_money,
+                    f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
                 ],
                     index = daily_report_columns),
                     ignore_index = True
