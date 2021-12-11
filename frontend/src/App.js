@@ -30,6 +30,7 @@ import Signin from './components/signin/signin';
 import Signup from './components/signup/signup';
 import { logout } from './reducers/loginReducer';
 import { runTradingAlgorithm } from './runTradingAlgo.js';
+import HistoricalReports from './screens/backtestingReports/historicalReports';
 import Home from './screens/home/home';
 import PortfolioPage from './screens/portfolioPage/portfolioPage';
 import StockPage from './screens/stockPage/stockPage';
@@ -292,6 +293,7 @@ function App() {
           <PrivateRoute path='/portfolioPage'>
             <Route exact path='/portfolioPage' component={PortfolioPage} />
           </PrivateRoute>
+          <Route exact path='/historicalReports' component={HistoricalReports} /> 
           {/* <Route exact path='/savingsPage' component={SavingsPage} /> */}
         </Box>
         {/* <Footer /> */}
