@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import requests
 import math
+from requests import api
 from scipy.stats import percentileofscore as score
 import xlsxwriter
 
@@ -76,10 +77,21 @@ def stockActions(tickers):
         #print(database.json()['ownedStocks'][i]['ticker'])
         stockChanges[ database.json()['ownedStocks'][i]['ticker'] ] = database.json()['ownedStocks'][i]['quantity']['$numberDecimal']
 
-
-
     #print(stockChanges)
     # stockChanges['MSFT'] = int(stockChanges['MSFT'])/2
+
+
+    #note these next few lines grab the saved money values
+    url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
+    payload={}
+    headers = {
+    'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
+    }
+
+    bank = requests.request("GET", url, headers=headers, data=payload)
+    #print(bank.json())
+       
+
 
     hqm_columns = [ #this is for measuring return consistency
     'Ticker',
@@ -96,6 +108,20 @@ def stockActions(tickers):
     fall_dataframe = pd.DataFrame(columns = hqm_columns)
     stable_dataframe = pd.DataFrame(columns = hqm_columns)
 
+    cash_in_stock = 0
+    total_money = 0
+    liquid_cash =float( bank.json()['portfolios'][0]['spendingPower']['$numberDecimal'] )
+    #for each stock, multiply its quantity by its current price, then add to cash_in_stock
+    for key in stockChanges:
+        api_call_price =f'https://cloud.iexapis.com/stable/stock/{key}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+        price = requests.get(api_call_price).json()
+        cash_in_stock += float(price['latestPrice']) * float(stockChanges[key])
+
+    total_money = cash_in_stock + liquid_cash
+    print("total money at beginning of algo:")
+    print(total_money)
+
+    
 
     #okay, now we add columns to the dataframe, doing our own calculations based on
     #the previous prices        
@@ -107,6 +133,8 @@ def stockActions(tickers):
         timestamps = result['timestamp']
         comparisons = result['comparisons']
 
+        #okay so this is where it would go, b/c i have api_call price and i have comparisons, which is the list
+
         for stockInfo in comparisons: #now for each stock, grab the relevant info
             ticker = stockInfo['symbol']
             #print(ticker)
@@ -117,9 +145,7 @@ def stockActions(tickers):
             api_call_price =f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
             
             #print(api_call_change)
-
             #print( requests.get(api_call_change) )
-            #print("hi")
 
             changes = requests.get(api_call_change).json()
             price = requests.get(api_call_price).json()
@@ -137,7 +163,7 @@ def stockActions(tickers):
                     pd.Series(
                     [
                         ticker, #'Ticker'
-                        price['iexRealtimePrice'], #'today's Price'
+                        price['latestPrice'], #'today's Price'
                         changes['year1ChangePercent'],
                         changes['month6ChangePercent'],
                         changes['month3ChangePercent'],
@@ -157,7 +183,7 @@ def stockActions(tickers):
                     pd.Series(
                     [
                         ticker, #'Ticker'
-                        price['iexRealtimePrice'], #'today's Price'
+                        price['latestPrice'], #'today's Price'
                         changes['year1ChangePercent'],
                         changes['month6ChangePercent'],
                         changes['month3ChangePercent'],
@@ -173,7 +199,7 @@ def stockActions(tickers):
                     pd.Series(
                     [
                         ticker, #'Ticker'
-                        price['iexRealtimePrice'], #'today's Price'
+                        price['latestPrice'], #'today's Price'
                         changes['year1ChangePercent'],
                         changes['month6ChangePercent'],
                         changes['month3ChangePercent'],
@@ -188,26 +214,17 @@ def stockActions(tickers):
 
     
 
-        #note these next few lines grab the saved money values
-        url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
-        payload={}
-        headers = {
-        'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
-        }
-
-        bank = requests.request("GET", url, headers=headers, data=payload)
-        #print(bank.json())
-        
+         
 
         #print(bank.json()['portfolios'][0]['total']['$numberDecimal']) # -= liquid_currency
         #note total from this call is bad, make your own
         #total_to_return = float( bank.json()['portfolios'][0]['total']['$numberDecimal'] )
-        spending_power_to_return = float( bank.json()['portfolios'][0]['spendingPower']['$numberDecimal'] )
+        #spending_power_to_return = float( bank.json()['portfolios'][0]['spendingPower']['$numberDecimal'] )
 
         for row in fall_dataframe.index: #update the chnage to amount of stocks in stock actions
             orig_stock = int( stockChanges[fall_dataframe.loc[row, 'Ticker']] ) #this searches stockChanges for the amount
             stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = 0
-            spending_power_to_return +=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
+            liquid_cash +=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
             #note create liquid currency before this
             #create total since last run
             #total_to_return -= liquid_currency
@@ -236,14 +253,14 @@ def stockActions(tickers):
                 orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
                 stock_in_half = math.floor( orig_stock / 2  )
                 stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] =  int(stockChanges[ stable_dataframe.loc[row, 'Ticker'] ]) - stock_in_half
-                spending_power_to_return +=  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
+                liquid_cash +=  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
                 #add cash in stock
                 #total_to_return -= liquid_currency
 
             else:
                 orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
                 stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = 0
-                spending_power_to_return +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+                liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
                 #okay, we now updated the amount of stocks we have left and got the money from that
                 #now we update the bank to show that that money is now liquid
                 #total_to_return -= liquid_currency
@@ -273,12 +290,12 @@ def stockActions(tickers):
         #collect only the least reliable stocks and drop them
 
         #make divvied up cash to see how much we can sell for each
-        if(len(grow_dataframe.index) != 0 and spending_power_to_return != 0):
-            divvied_up_cash = spending_power_to_return / len(grow_dataframe.index)
+        if(len(grow_dataframe.index) != 0 and liquid_cash != 0):
+            divvied_up_cash = liquid_cash / len(grow_dataframe.index)
             for row in grow_dataframe.index:
                 orig_stock = int( stockChanges[grow_dataframe.loc[row, 'Ticker']] )
                 new_amount_to_buy = math.floor(divvied_up_cash/grow_dataframe.loc[i, 'Price'])
-                spending_power_to_return -=  (new_amount_to_buy * grow_dataframe.loc[i, 'Price'])
+                liquid_cash -=  (new_amount_to_buy * grow_dataframe.loc[i, 'Price'])
                 stockChanges[grow_dataframe.loc[row, 'Ticker']] = int(stockChanges[grow_dataframe.loc[row, 'Ticker']] + new_amount_to_buy)
             # great, now from line 81, we can manipulate all the stocks
         #okay, we have the # of shares we can buy for each, now we do that                
@@ -301,7 +318,7 @@ def stockActions(tickers):
 
         url = "http://localhost:8000/portfolios/"
 
-        payload=f'email=testuser%40gmail.com&amount={spending_power_to_return}'
+        payload=f'email=testuser%40gmail.com&amount={liquid_cash}'
         headers = {
         'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva',
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -333,6 +350,14 @@ def stockActions(tickers):
         # stable_dataframe.to_excel(writer, sheet_name = "Momentum Strategy", index = False)
         # writer.save()
         #note: have to find a proper way to print it all
-        
+
+    for key in stockChanges:
+        api_call_price =f'https://cloud.iexapis.com/stable/stock/{key}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+        price = requests.get(api_call_price).json()
+        cash_in_stock += float(price['latestPrice']) * float(stockChanges[key])
+
+    total_money = cash_in_stock + liquid_cash
+    print("total money at end of algo:")
+    print(total_money)
 
 stockActions(['GOOGL', 'TSLA', 'FB', 'AAPL', 'MSFT']) #okay, Apple's strange but it works
