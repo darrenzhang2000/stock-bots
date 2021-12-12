@@ -56,7 +56,7 @@ const TransactionPage = (props) => {
                     </TableHead>
                     <TableBody>
                         {
-                            transactions.map(transaction => <TableRow>
+                            transactions.map((transaction, idx) => <TableRow id={idx}>
                                 <TableCell>{new Date(transaction.dateTime).toLocaleString()}</TableCell>
                                 <TableCell>{transaction.action}</TableCell>
                                 <TableCell>{transaction.price.$numberDecimal}</TableCell>

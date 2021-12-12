@@ -11,7 +11,8 @@ const PortfolioPage = () => {
             <Typography variant="h4" className="font-link"> Portfolio Page</Typography>
             <OwnedStock /> {/* Displays a table of all the stocks owned by the user */}
             <Grid container>
-                <Account /> {/* Displays the user's account, which includes the balance and withdraw/deposit methods*/}
+                <Account />
+                 {/* Displays the user's account, which includes the balance and withdraw/deposit methods*/}
                 <TrackedStocks />
             </Grid>
         </div>

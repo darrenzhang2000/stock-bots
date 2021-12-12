@@ -31,7 +31,7 @@ const Account = () => {
 
         var options = {
             method: 'GET',
-            url: '/portfolios/',
+            url: `${process.env.REACT_APP_BACKEND_API}/portfolios/`,
             headers: headers,
             params: data
         };
