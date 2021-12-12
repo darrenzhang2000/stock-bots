@@ -11,51 +11,29 @@ const getTrackedStocks = async (email) => {
 
     var options = {
         method: 'GET',
-        url: process.env.REACT_APP_BACKEND_API,
+        url: `${process.env.REACT_APP_BACKEND_API}/trackedStocks/?email=${email}`,
         headers: headers,
         params: data
     };
 
     let tickers = []
     await axios(options).then(res => {
-        tickers = res.data.ownedStocks.map(ownedStock => ownedStock.ticker)
+        console.log(res, res.data)
+        tickers = res.data.trackedStocks.map(stock => stock.ticker)
     })
     return tickers
 
 }
 
-// given 
-const getStockActions = async (tickers, email) => {
-    console.log('getting stock actions', tickers)
-    var headers = {
-        'accept': 'application/json',
-    };
-
-    var data = {
-        email: email,
-    }
-
-    var options = {
-        method: 'POST',
-        url: 'http://localhost:8000/stockActions/',
-        headers: headers,
-        params: data
-    };
-
-    let actionHt = {}
-    await axios(options).then(res => {
-        console.log(res.data)
-    })
-}
-
 export const runTradingAlgorithm = async () => {
-    // getTrackedStocks('testuser@gmail.com').then(
-    //     tickers => {
-    //         setTimeout(() => {
-    //             console.log('waiting 50 secs')
-    //             //getStockActions(tickers, 'testuser@gmail.com')
-    //             runTradingAlgorithm()
-    //         }, 500000)
-    //     }
-    // )
+    getTrackedStocks('testuser@gmail.com').then(
+        tickers => {
+            console.log('tracked tickers', tickers)
+            setTimeout(() => {
+                console.log('waiting 50 secs')
+
+                runTradingAlgorithm()
+            }, 500000)
+        }
+    )
 }

@@ -4,6 +4,25 @@ const router = express.Router()
 const Portfolio = require("../models/Portfolio")
 const User = require("../models/User")
 
+// Get all user portfolios 
+router.get("/all", (req, res) => {
+    Portfolio.find({}, async (err, portfolios) => {
+        if (err) {
+            res.send({
+                success: false,
+                message: "User has no portfolio"
+            })
+        } else {
+            res.send({
+                success: true,
+                portfolios: portfolios
+            })
+        }
+    })
+})
+
+
+
 // The get request finds the portfolio that corresponds to the specified email. If the user does not have a portfolio,
 // then an error message is displayed. Otherwise, the portfolio response is sent.
 router.get("/", (req, res) => {
@@ -92,7 +111,7 @@ router.put("/", (req, res) => {
     Portfolio.findOneAndUpdate({email: email}, 
         {$inc:{spendingPower: amount}}, (error, response) => {
             if(error){
-                response.send(
+                res.send(
                     {
                         success: false, 
                         message: error
@@ -100,7 +119,7 @@ router.put("/", (req, res) => {
                 )
             }
             else{
-                response.send(
+                res.send(
                     {
                         success: true,
                         message: "Succesfully updated DataBase",

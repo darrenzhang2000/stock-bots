@@ -10,6 +10,12 @@ import math
 from requests import api
 from scipy.stats import percentileofscore as score
 from datetime import date
+from dotenv import load_dotenv
+
+load_dotenv()
+
+IEX_API_KEY = os.environ['IEX_API_KEY']
+BACKEND_API = os.environ['BACKEND_API']
 
 #import xlsxwriter
 
@@ -60,6 +66,8 @@ def makeStockDecision(avgPrice, prevPrice):
 
 
 def stockActions(tickers, email):
+    if not tickers:
+        return
     
     forty_email = email.replace('@', '%40')
     print("forty emil", forty_email)
@@ -70,7 +78,7 @@ def stockActions(tickers, email):
     params = {
         'email': email
     }
-    database = requests.get('http://localhost:8000/ownedStocks/',
+    database = requests.get(f"{BACKEND_API}/ownedStocks/",
                             headers=headers, params=params)
     #print(database)
     print("this is database value")
@@ -89,7 +97,7 @@ def stockActions(tickers, email):
     #/--summon stocks from database and put in dictionary--
 
     #--grab the spending money and set up money variables--
-    url = f"http://localhost:8000/portfolios?email={email}"
+    url = f"{BACKEND_API}/portfolios?email={email}"
     payload={}
     headers = {
     }
@@ -109,7 +117,7 @@ def stockActions(tickers, email):
 
     #--grab the prices and multiply them by the stocks to get cash_in_stock and total_money--
     for key in stockChanges:
-        api_find_total =f'https://cloud.iexapis.com/stable/stock/{key}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+        api_find_total =f'https://cloud.iexapis.com/stable/stock/{key}/quote?token={IEX_API_KEY}'
         stock_price = requests.get(api_find_total).json()
         cash_in_stock += float(stock_price['latestPrice']) * int(stockChanges[key])
         # print(cash_in_stock)
@@ -142,7 +150,7 @@ def stockActions(tickers, email):
 
 
     #--transactions get--
-    url = f"http://localhost:8000/transactions/?email={email}"
+    url = f"{BACKEND_API}/transactions/?email={email}"
 
     payload=f"email={forty_email}&ticker=GOOGL&quantity=10&action=buy&reason=because%20.."
     headers = {
@@ -168,8 +176,8 @@ def stockActions(tickers, email):
         for stockInfo in comparisons:
             
             ticker = stockInfo['symbol'] 
-            api_call_change = f'https://cloud.iexapis.com/stable/stock/{ticker}/stats/?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
-            api_call_price =f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+            api_call_change = f'https://cloud.iexapis.com/stable/stock/{ticker}/stats/?token={IEX_API_KEY}'
+            api_call_price =f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token={IEX_API_KEY}'
             
             #print(api_call_change)
             #print( requests.get(api_call_change) )
@@ -254,7 +262,7 @@ def stockActions(tickers, email):
                 action = "HOLD"
                 given_reason = f"Didn't do anything for {fall_dataframe.loc[row, 'Ticker']} since it's falling and we own none of its stocks"
             
-            url = "http://localhost:8000/transactions/"
+            url = f"{BACKEND_API}/transactions/"
             #for every trade, update the transaction table
             payload=f"email={forty_email}&ticker={fall_dataframe.loc[row,'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={fall_dataframe.loc[row, 'Price']}"
             headers = {
@@ -305,7 +313,7 @@ def stockActions(tickers, email):
                     action = "HOLD"
                     given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a decent history and we have own none of its stocks"
 
-                url = "http://localhost:8000/transactions/"
+                url = f"{BACKEND_API}/transactions/"
                 #put in transactions
                 payload=f"email={forty_email}&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={stock_in_half}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
                 headers = {
@@ -331,7 +339,7 @@ def stockActions(tickers, email):
                     action = "HOLD"
                     given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a bad history and we have own none of its stocks"
 
-                url = "http://localhost:8000/transactions/"
+                url = f"{BACKEND_API}/transactions/"
                 payload=f"email={forty_email}&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
                 headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -363,7 +371,7 @@ def stockActions(tickers, email):
                     given_reason = f"Didn't do buy any of {grow_dataframe.loc[row, 'Ticker']} even though it's growing because we don't currently have the money"
                     action = "HOLD"
 
-                url = "http://localhost:8000/transactions/"
+                url = f"{BACKEND_API}/transactions/"
                 payload=f"email={forty_email}&ticker={grow_dataframe.loc[row, 'Ticker']}&quantity={new_amount_to_buy}&action={action}&dateTime={date.today()}&reason={given_reason}&price={grow_dataframe.loc[row, 'Price']}"
                 headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -377,7 +385,7 @@ def stockActions(tickers, email):
 
             
         #--update stocks and the amount they changed by back in database--
-        url = "http://localhost:8000/ownedStocks/purchase"
+        url = f"{BACKEND_API}/ownedStocks/purchase"
 
         for key in stockChanges:
             # Note this is adding or subtracting from the total, not replacing it
@@ -396,7 +404,7 @@ def stockActions(tickers, email):
         #--we take the cash difference from the original to see how much it has changed and we update it--
         cash_difference = liquid_cash - original_liquid_cash
 
-        url = "http://localhost:8000/portfolios/"
+        url = f"{BACKEND_API}/portfolios/"
 
         payload=f'email={forty_email}&amount={cash_difference}'
         headers = {
@@ -428,7 +436,7 @@ def stockActions(tickers, email):
     # params = {
     #     'email': 'testuser@gmail.com'
     # }
-    # database = requests.get('http://localhost:8000/ownedStocks/',
+    # database = requests.get('http://BACKEND_API/ownedStocks/',
     #                         headers=headers, params=params)
     # #print(database)
     # print("this is database value")
@@ -446,7 +454,7 @@ def stockActions(tickers, email):
 
 
     # #note these next few lines grab the saved money values
-    # url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
+    # url = "http://BACKEND_API/portfolios?email=testuser@gmail.com"
     # payload={}
     # headers = {
     # }
@@ -463,7 +471,7 @@ def stockActions(tickers, email):
     # print(stockChanges)
     # print(cash_in_stock)
 
-    # url = "http://localhost:8000/transactions/?email=testuser@gmail.com"
+    # url = "http://BACKEND_API/transactions/?email=testuser@gmail.com"
 
     # payload='email=testuser%40gmail.com&ticker=GOOGL&quantity=10&action=buy&reason=because%20..'
     # headers = {
@@ -475,4 +483,3 @@ def stockActions(tickers, email):
     # print(response.json())
         
 
-stockActions(['GOOGL', 'TSLA', 'FB', 'MSFT']) #okay, Apple's strange but it works
