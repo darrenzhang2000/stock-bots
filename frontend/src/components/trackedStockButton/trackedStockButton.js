@@ -19,7 +19,7 @@ const TrackedStockButton = (props) => {
     const checkIfStockTracked = (e) => {
         var config = {
             method: 'get',
-            url: `http://localhost:5000/trackedStocks/ticker/?email=${email}&ticker=${ticker}`,
+            url: `${process.env.REACT_APP_BACKEND_API}/trackedStocks/ticker/?email=${email}&ticker=${ticker}`,
         };
 
         axios(config)
@@ -40,7 +40,7 @@ const TrackedStockButton = (props) => {
         });
         var config = {
             method: 'delete',
-            url: 'http://localhost:5000/trackedStocks/',
+            url: `${process.env.REACT_APP_BACKEND_API}/trackedStocks/`,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -53,6 +53,7 @@ const TrackedStockButton = (props) => {
                 console.log(JSON.stringify(response.data));
                 setErrorMsg(`${ticker} is removed from being tracked by the trading algoirthm.`)
                 setDisplayAlert(true)
+                setTimeout(() => setDisplayAlert(false), 10000)
             })
             .catch(function (error) {
                 console.log(error);
@@ -82,6 +83,7 @@ const TrackedStockButton = (props) => {
             setStockTradedByAlgo(true)
             setErrorMsg(`${ticker} is successfully being tracked by the trading algoirthm.`)
             setDisplayAlert(true)
+            setTimeout(() => setDisplayAlert(false), 10000)
             console.log(res)
         })
     }
@@ -92,13 +94,13 @@ const TrackedStockButton = (props) => {
 
     return (
         <div>
-            {!stockTrackedByAlgo ? <Button sx={{marginBottom: '32px'}} variant="contained" color="primary" onClick={handleAddTrackedStock}>Add Stock To Be Tracked By the Trading Algorithm</Button>
-                : <Button sx={{marginBottom: '32px'}} variant="contained" color="primary" onClick={handleRemoveTrackedStock}>Remove Stock From Being Tracked By the Trading Algorithm</Button>
+            {!stockTrackedByAlgo ? <Button sx={{ marginBottom: '32px' }} variant="contained" color="primary" onClick={handleAddTrackedStock}>Add Stock {ticker} To Be Tracked By the Trading Algorithm</Button>
+                : <Button sx={{ marginBottom: '32px' }} variant="contained" color="primary" onClick={handleRemoveTrackedStock}>Remove Stock {ticker} From Being Tracked By the Trading Algorithm</Button>
             }
             {
                 displayAlert ?
                     <Alert severity="success" onClose={() => setDisplayAlert(false)}>
-                        <AlertTitle>Error</AlertTitle>
+                        <AlertTitle>Success</AlertTitle>
                         {errorMsg}
                     </Alert>
                     : null

@@ -31,6 +31,7 @@ const StockSearch = props => {
 
     const handleOnSubmit = e => {
         e.preventDefault()
+        setDisplayRes(false)
 
         var headers = {
             'accept': 'application/json',
