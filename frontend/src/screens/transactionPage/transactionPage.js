@@ -42,16 +42,26 @@ const TransactionPage = (props) => {
 
     return (
         <div>
-            <Typography variant="h4" className="font-link" sx={{ marginBottom: '32px' }}> Transactions Page</Typography>
-            { transactions ? <TableContainer component={Paper}>
+            <Paper
+                sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginBottom: '32px',
+                    paddingLeft: '64px'
+                }}
+            >
+                <Typography variant="h4" className="font-link" > Transactions Page</Typography>
+            </Paper>
+            { transactions && transactions.length != 0 ? <TableContainer sx={{ paddingLeft: '64px', paddingRight: '64px'}} component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>date</TableCell>
-                            <TableCell>action</TableCell>
-                            <TableCell>price</TableCell>
-                            <TableCell>quantity</TableCell>
-                            <TableCell>ticker</TableCell>
+                            <TableCell><strong>Date</strong></TableCell>
+                            <TableCell><strong>Action</strong></TableCell>
+                            <TableCell><strong>Price</strong></TableCell>
+                            <TableCell><strong>Quantity</strong></TableCell>
+                            <TableCell><strong>Ticker</strong></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

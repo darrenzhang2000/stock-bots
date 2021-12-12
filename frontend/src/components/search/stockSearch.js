@@ -3,6 +3,7 @@ import { Buttœon, Typography, Alert, Button, AlertTitle } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Search, SearchIconWrapper, StyledInputBase } from './styledSearchComponents';
+import Paper from '@mui/material/Paper';
 
 // Let's you search for a specific stock by its ticker. Upon submit, 
 // we make an axios get request to yahoo finance that gets the
@@ -68,7 +69,15 @@ const StockSearch = props => {
         })
     }
 
-    return <div>
+    return <Paper
+        sx={{
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            marginBottom: '32px',
+            paddingLeft: '64px'
+        }}
+    >
 
         {
             displayAlert ?
@@ -97,10 +106,10 @@ const StockSearch = props => {
             />
         </Search>
 
-        <Button variant="contained" color="primary" onClick={handleOnSubmit}>Search</Button>
-        <Button variant="contained" color="primary" onClick={handleClear}>Clear</Button>
+        <Button sx={{ width: '170px', marginBottom: '32px' }} variant="contained" color="primary" onClick={handleOnSubmit}>Search</Button>
+        <Button sx={{ width: '170px' }} variant="contained" color="primary" onClick={handleClear}>Clear</Button>
 
-    </div>
+    </Paper>
 }
 
 export default StockSearch

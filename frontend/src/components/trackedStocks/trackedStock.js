@@ -41,11 +41,11 @@ const TrackedStocks = () => {
 
     return (
         <div>
-            {trackedStocks && trackedStocks.length > 0 ? <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
-                <Table sx={{ width: 300 }} aria-label="simple table">
+            {trackedStocks && trackedStocks.length > 0 ? <TableContainer component={Paper} sx={{ marginLeft: '32px', marginBottom: '32px', marginRight: '32px', width: 'auto', paddingLeft: '64px', paddingRight: '64px' }}>
+                <Table sx={{ width: 280, paddingLeft: '64px', paddingRight: '64px' }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Stocks tracked by trading algorithm</TableCell>
+                            <TableCell><strong>Stocks tracked by trading algorithm</strong></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

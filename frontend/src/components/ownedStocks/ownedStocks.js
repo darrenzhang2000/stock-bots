@@ -38,11 +38,11 @@ const OwnedStocks = () => {
             if (tempOwnedStocks == undefined) {
                 return
             }
-            let tickers = tempOwnedStocks.map(s => s.ticker)
-            let stockPricesHt = await getStockPrices(tickers)
-            for (let i = 0; i < tickers.length; i++) {
-                tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
-            }
+            // let tickers = tempOwnedStocks.map(s => s.ticker)
+            // let stockPricesHt = await getStockPrices(tickers)
+            // for (let i = 0; i < tickers.length; i++) {
+            //     tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
+            // }
             setOwnedStocks(tempOwnedStocks)
 
         })
@@ -51,7 +51,7 @@ const OwnedStocks = () => {
     const getStockPrices = async (tickerList) => {
         var headers = {
             'accept': 'application/json',
-            'X-API-KEY': process.env.REACT_APP_YAHOOFINANCE_API_KEY 
+            'X-API-KEY': process.env.REACT_APP_YAHOOFINANCE_API_KEY
         };
 
         let tickerQueryParams = tickerList.join("%2C")
@@ -78,14 +78,14 @@ const OwnedStocks = () => {
 
     return (
         <div>
-            {ownedStocks && ownedStocks.length > 0 ? <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            {ownedStocks && ownedStocks.length > 0 ? <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px', paddingLeft: '64px', paddingRight: '64px' }}>
+                <Table sx={{ minWidth: 650, paddingLeft: '64px', paddingRight: '64px' }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Ticker</TableCell>
-                            <TableCell align="right">Quantity</TableCell>
-                            <TableCell align="right">Average Purchase Price</TableCell>
-                            <TableCell align="right">Current Price</TableCell>
+                            <TableCell><strong>Ticker</strong></TableCell>
+                            <TableCell align="right"><strong>Quantity</strong></TableCell>
+                            <TableCell align="right"><strong>Average Purchase Price</strong></TableCell>
+                            <TableCell align="right"><strong>Current Price</strong></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

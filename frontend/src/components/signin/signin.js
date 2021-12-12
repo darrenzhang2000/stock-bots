@@ -105,6 +105,7 @@ export default function SignIn() {
             // need to save user info somewhere
             if (res.data.success) {
                 dispatch(login("testuser@gmail.com"))
+                
                 console.log(res.data.sucess)
                 history.push('/')
             }

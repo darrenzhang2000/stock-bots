@@ -73,51 +73,60 @@ const HistoricalReports = () => {
 
     return (
         <div>
-            <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px' }}> Backtesting Reports</Typography>
-            <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px' }}> Displaying backtesting report for: <Typography variant="h6" sx={{ fontWeight: 'bold', display: 'inline' }}> {currentReport}</Typography> </Typography>
-            <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px' }}>
-                Summary: Over a three year period, this trading algorithm made a net gain of ${parseFloat(data[data.length - 1].Total - 10000).toFixed(2)}.
-                This is a {parseFloat(100 * (data[data.length - 1].Total - 10000) / 10000).toFixed(2)}% increase. Initially starting out with $10000 on 2018-12-06, running this algorithm once every business
-                day for the last 3 years ended with ${parseFloat(data[data.length - 1].Total).toFixed(2)} on 2021-12-08. </Typography>
-            <Button
-                id="basic-button"
-                aria-controls="basic-menu"
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-            >
-                Choose a different test report
-            </Button>
-
-            <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button',
+            <Paper
+                sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginBottom: '32px',
+                    paddingLeft: '64px'
                 }}
             >
-                {
-                    stocks.map((stock, idx) => <MenuItem
-                        id={stock}
-                        onClick={handleOpenReport}
-                    > {stock} </MenuItem>)
-                }
-            </Menu>
+                <Typography variant="h4" className="font-link" sx={{  marginTop: '32px' }}> Backtesting Reports</Typography>
+                <Typography variant="h6" className="font-link" sx={{  marginTop: '32px' }}> Displaying backtesting report for: <Typography variant="h6" sx={{ fontWeight: 'bold', display: 'inline' }}> {currentReport}</Typography> </Typography>
+                <Typography variant="h6" className="font-link" sx={{  marginTop: '32px' }}>
+                    <strong>Summary</strong>: Over a three year period, this trading algorithm made a net gain of ${parseFloat(data[data.length - 1].Total - 10000).toFixed(2)}.
+                This is a {parseFloat(100 * (data[data.length - 1].Total - 10000) / 10000).toFixed(2)}% increase. Initially starting out with $10000 on 2018-12-06, running this algorithm once every business
+                day for the last 3 years ended with ${parseFloat(data[data.length - 1].Total).toFixed(2)} on 2021-12-08. </Typography>
+                <Button
+                    id="basic-button"
+                    aria-controls="basic-menu"
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                >
+                    Choose a different test report
+            </Button>
 
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                    }}
+                >
+                    {
+                        stocks.map((stock, idx) => <MenuItem
+                            id={stock}
+                            onClick={handleOpenReport}
+                        > {stock} </MenuItem>)
+                    }
+                </Menu>
+            </Paper>
             {data && data.length > 0 ?
 
-                <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
+                <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px', paddingLeft: '64px', paddingRight: '64px' }}>
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Date</TableCell>
-                                <TableCell align="right">Price</TableCell>
-                                <TableCell align="right">Quantity</TableCell>
-                                <TableCell align="right">Spending Power</TableCell>
-                                <TableCell align="right">Total</TableCell>
-                                <TableCell align="right">Report</TableCell>
+                                <TableCell><strong>Date</strong></TableCell>
+                                <TableCell align="right"><strong>Price</strong></TableCell>
+                                <TableCell align="right"><strong>Quantity</strong></TableCell>
+                                <TableCell align="right"><strong>Spending Power</strong></TableCell>
+                                <TableCell align="right"><strong>Total</strong></TableCell>
+                                <TableCell align="right"><strong>Report</strong></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

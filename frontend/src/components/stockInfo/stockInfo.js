@@ -17,15 +17,15 @@ const StockInfo = props => {
     const { marketPrice, marketChange, marketDayHigh, marketDayLow, marketVolume, marketPreviousClose, marketOpen, longName, marketCap, currency } = props
     //const { close, high, low, open, volume } = props
     return <div>
-        <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
+        <TableContainer component={Paper} sx={{ paddingLeft: '64px', paddingRight: '64px', marginTop: '32px', marginBottom: '32px' }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Long Name</TableCell>
-                        <TableCell>Market Price</TableCell>
-                        <TableCell>Market Change</TableCell>
-                        <TableCell>Market Day High</TableCell>
-                        <TableCell>Market Day Low</TableCell>
+                        <TableCell><strong>Long Name</strong></TableCell>
+                        <TableCell><strong>Market Price</strong></TableCell>
+                        <TableCell><strong>Market Change</strong></TableCell>
+                        <TableCell><strong>Market Day High</strong></TableCell>
+                        <TableCell><strong>Market Day Low</strong></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -40,15 +40,15 @@ const StockInfo = props => {
             </Table>
         </TableContainer>
 
-        <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
+        <TableContainer component={Paper} sx={{ paddingLeft: '64px', paddingRight: '64px', marginTop: '32px', marginBottom: '32px' }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Market Volume</TableCell>
-                        <TableCell>Market Previous Close</TableCell>
-                        <TableCell>Market Open</TableCell>
-                        <TableCell>Market Cap</TableCell>
-                        <TableCell>Currency</TableCell>
+                        <TableCell><strong>Market Volume</strong></TableCell>
+                        <TableCell><strong>Market Previous Close</strong></TableCell>
+                        <TableCell><strong>Market Open</strong></TableCell>
+                        <TableCell><strong>Market Cap</strong></TableCell>
+                        <TableCell><strong>Currency</strong></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

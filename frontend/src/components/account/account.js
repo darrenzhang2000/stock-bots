@@ -5,6 +5,7 @@ import Button from '@mui/material/Button'
 import { AmountInput, StyledInputBase } from './styledInputBase'
 import { Alert, AlertTitle } from '@mui/material';
 import { useSelector } from "react-redux";
+import Paper from '@mui/material/Paper';
 
 const WITHDRAW = "withdraw"
 const DEPOSIT = "deposit"
@@ -101,7 +102,16 @@ const Account = () => {
     }
 
     return (
-        <div>
+        <Paper
+            sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                marginBottom: '32px',
+                paddingLeft: '64px',
+                paddingRight: '64px'
+            }}
+        >
             {
                 displayErrorMsg ?
                     <Alert severity="error" onClose={() => setDisplayErrorMsg(false)} sx={{ marginBottom: '32px', marginTop: '16px' }}>
@@ -116,7 +126,7 @@ const Account = () => {
              the updated spendingPower and which calls updateSpendingPower 
              function that makes an axios put request that updates the user 
              portfolio in the database with the specified amount.  */}
-            <Typography variant="h6" className="font-link">Spending Power: {Math.round(spendingPower * 100) / 100}</Typography>
+            <Typography variant="h6" className="font-link"><strong>Spending Power:</strong> {Math.round(spendingPower * 100) / 100}</Typography>
             {/* <Typography variant="h6" className="font-link">Total Amount: {spendingPower}</Typography> */}
             <AmountInput>
                 <StyledInputBase
@@ -139,7 +149,7 @@ const Account = () => {
                 />
             </AmountInput>
             <Button variant="contained" color="primary" id={WITHDRAW} onClick={handleUpdateSpendingPower}>Withdraw Amount</Button>
-        </div>
+        </Paper>
     )
 }
 

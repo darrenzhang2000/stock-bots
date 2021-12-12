@@ -94,8 +94,8 @@ const TrackedStockButton = (props) => {
 
     return (
         <div>
-            {!stockTrackedByAlgo ? <Button sx={{ marginBottom: '32px' }} variant="contained" color="primary" onClick={handleAddTrackedStock}>Add Stock {ticker} To Be Tracked By the Trading Algorithm</Button>
-                : <Button sx={{ marginBottom: '32px' }} variant="contained" color="primary" onClick={handleRemoveTrackedStock}>Remove Stock {ticker} From Being Tracked By the Trading Algorithm</Button>
+            {!stockTrackedByAlgo ? <Button sx={{ marginBottom: '32px', paddingLeft: '64px', paddingRight: '64px' }} variant="contained" color="primary" onClick={handleAddTrackedStock}>Add Stock {ticker} To Be Tracked By the Trading Algorithm</Button>
+                : <Button sx={{ paddingLeft: '64px', paddingRight: '64px', marginBottom: '32px' }} variant="contained" color="primary" onClick={handleRemoveTrackedStock}>Remove Stock {ticker} From Being Tracked By the Trading Algorithm</Button>
             }
             {
                 displayAlert ?
