@@ -22,6 +22,27 @@ router.get("/", (req, res) => {
     })
 })
 
+router.get("/ticker", (req, res) => {
+    var { email, ticker } = req.query
+    TrackedStock.find({ email: email, ticker: ticker }, async (err, trackedStocks) => {
+        let hasTrackedStock = trackedStocks.length > 0
+        if(hasTrackedStock){
+            res.send({
+                trackedStocks: trackedStocks,
+                hasTrackedStock: hasTrackedStock,
+                message: `${ticker} is tracked by trading algo`
+            })
+        }else{
+            res.send({
+                trackedStocks: trackedStocks,
+                hasTrackedStock: hasTrackedStock,
+                message: `${ticker} is not tracked by trading algo`
+            })
+        }
+        
+    })
+})
+
 // The post request adds the stock list to the list of stocks for the user and the delete request deletes the stock for the list of stocks.
 router.post("/", (req, res) => {
     var { email, ticker } = req.body
@@ -59,7 +80,7 @@ router.post("/", (req, res) => {
 router.delete("/", (req, res) => {
     var { email, ticker } = req.body
 
-    TrackedStock.deleteOne({ email, ticker }, (err, _) => {
+    TrackedStock.deleteMany({ email, ticker }, (err, _) => {
         if (err) {
             res.send({
                 success: false,
