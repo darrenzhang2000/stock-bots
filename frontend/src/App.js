@@ -286,14 +286,16 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/signin' component={Signin} />
-          <Route exact path='/stockPage' component={StockPage} />
+          <PrivateRoute path='/stockPage'>
+            <Route exact path='/stockPage' component={StockPage} />
+          </PrivateRoute>
           <PrivateRoute path='/transactionsPage'>
             <TransactionPage />
           </PrivateRoute>
           <PrivateRoute path='/portfolioPage'>
             <Route exact path='/portfolioPage' component={PortfolioPage} />
           </PrivateRoute>
-          <Route exact path='/historicalReports' component={HistoricalReports} /> 
+          <Route exact path='/historicalReports' component={HistoricalReports} />
           {/* <Route exact path='/savingsPage' component={SavingsPage} /> */}
         </Box>
         {/* <Footer /> */}

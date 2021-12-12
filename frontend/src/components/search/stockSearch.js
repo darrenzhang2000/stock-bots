@@ -62,7 +62,7 @@ const StockSearch = props => {
                 setMarketCap(price.marketCap.fmt)
                 setCurrency(price.currency)
                 setDisplayRes(true)
-                setTicker(e.target.value)
+                setTicker(searchInput)
             }
         })
     }
