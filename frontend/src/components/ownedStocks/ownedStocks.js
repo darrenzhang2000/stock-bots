@@ -35,7 +35,6 @@ const OwnedStocks = () => {
 
         axios(options).then(async res => {
             let tempOwnedStocks = res.data.ownedStocks
-            console.log('owned stocks', tempOwnedStocks)
             if (tempOwnedStocks == undefined) {
                 return
             }

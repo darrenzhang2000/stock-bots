@@ -17,7 +17,21 @@ const TrackedStocks = () => {
     // The get request queries the OwnedStock in the database to 
     // get all of the stocks owned by the user with the specified 
     // email
-    const getTrackedStocks = async () =>{ 
+    const getTrackedStocks = async () => {
+
+        var config = {
+            method: 'get',
+            url: `${process.env.REACT_APP_BACKEND_API}/trackedStocks/?email=${email}`,
+        };
+
+        axios(config)
+            .then(function (response) {
+                setTrackedStocks(response.data.trackedStocks)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
 
 
@@ -28,27 +42,21 @@ const TrackedStocks = () => {
     return (
         <div>
             {trackedStocks && trackedStocks.length > 0 ? <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px' }}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <Table sx={{ width: 300 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Ticker</TableCell>
-                            <TableCell align="right">Quantity</TableCell>
-                            <TableCell align="right">Average Purchase Price</TableCell>
-                            <TableCell align="right">Current Price</TableCell>
+                            <TableCell>Stocks tracked by trading algorithm</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {trackedStocks.map((stock) => (
                             <TableRow
-                                key={stock.ticker}
+                                key={stock._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
                                     {stock.ticker}
                                 </TableCell>
-                                <TableCell align="right">{stock.quantity.$numberDecimal}</TableCell>
-                                <TableCell align="right">{stock.averagePurchasePrice.$numberDecimal}</TableCell>
-                                <TableCell align="right">{stock.currentPrice}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
