@@ -20,7 +20,7 @@ from datetime import date
 def cachedAPICall(tickers):
     headers = {
         'accept': 'application/json',
-        'X-API-KEY': "Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva",
+        'X-API-KEY': "YvMydmuOKM2ObYZhAU5wtHQnmO3Bqan6DhnjsJn5", #"Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva",
     }
 
     comparisons = ",".join(tickers)
@@ -60,11 +60,9 @@ def makeStockDecision(avgPrice, prevPrice):
 
 
 def stockActions(tickers):
-    stockActionHt = {}  # {'GOOGL': 'buy', 'APPL': 'hold'}
-
+    #--summon stocks from database and put in dictionary--
     headers = { #this is to summon the data from the database, response will have a .json() that I can summon to get data
             'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
     }
     params = {
         'email': 'testuser@gmail.com'
@@ -85,23 +83,44 @@ def stockActions(tickers):
     #print(stockChanges)
     # stockChanges['MSFT'] = int(stockChanges['MSFT'])/2
 
+    #/--summon stocks from database and put in dictionary--
 
-    #note these next few lines grab the saved money values
+    #--grab the spending money and set up money variables--
     url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
     payload={}
     headers = {
-    'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
     }
 
     bank = requests.request("GET", url, headers=headers, data=payload)
     print("bank value")
     print(bank.json())
-       
-    daily_report_columns = ['Date', 'Stock', 'Spending Power', 'Price', 'Quantity', 'Total', 'Report']
+    
+    cash_in_stock = 0
+    total_money = 0
+    original_liquid_cash =float( bank.json()['portfolios'][0]['spendingPower']['$numberDecimal'] )
+    liquid_cash = original_liquid_cash
+    print("liquid cash from bank")
+    print(liquid_cash)
+    #/--grab the spending money and set up money variables--
 
-    report_dataframe = pd.DataFrame(columns = daily_report_columns)
 
+    #--grab the prices and multiply them by the stocks to get cash_in_stock and total_money--
+    for key in stockChanges:
+        api_find_total =f'https://cloud.iexapis.com/stable/stock/{key}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+        stock_price = requests.get(api_find_total).json()
+        cash_in_stock += float(stock_price['latestPrice']) * int(stockChanges[key])
+        # print(cash_in_stock)
+        # print(liquid_cash)
+    print("after i calculate cash_in_stock: liquid cash then stockchamges")
+    print(liquid_cash)
+    print(stockChanges)
 
+    total_money = cash_in_stock + liquid_cash
+    print("total money at beginning of algo:")
+    print(total_money)
+    #/--grab the prices and multiply them by the stocks to get cash_in_stock and total_money--
+
+    #--make fall, grow and stable databases--
     hqm_columns = [ #this is for measuring return consistency
     'Ticker',
     'Price',
@@ -116,50 +135,36 @@ def stockActions(tickers):
     grow_dataframe = pd.DataFrame(columns = hqm_columns)
     fall_dataframe = pd.DataFrame(columns = hqm_columns)
     stable_dataframe = pd.DataFrame(columns = hqm_columns)
+    #/--make fall, grow and stable databases--
 
-    cash_in_stock = 0
-    total_money = 0
-    original_liquid_cash =float( bank.json()['portfolios'][0]['spendingPower']['$numberDecimal'] )
-    liquid_cash = original_liquid_cash
-    print("liquid cash from bank")
-    print(liquid_cash)
-    #for each stock, multiply its quantity by its current price, then add to cash_in_stock
-    for key in stockChanges:
-        api_find_total =f'https://cloud.iexapis.com/stable/stock/{key}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
-        stock_price = requests.get(api_find_total).json()
-        cash_in_stock += float(stock_price['latestPrice']) * int(stockChanges[key])
-        # print(cash_in_stock)
-        # print(liquid_cash)
-    print("after i calculate cash_in_stock: liquid cash then stockchamges")
-    print(liquid_cash)
-    print(stockChanges)
 
-    total_money = cash_in_stock + liquid_cash
-    print("total money at beginning of algo:")
-    print(total_money)
+    #--transactions get--
+    url = "http://localhost:8000/transactions/?email=testuser@gmail.com"
 
-    
+    payload='email=testuser%40gmail.com&ticker=GOOGL&quantity=10&action=buy&reason=because%20..'
+    headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+    }
 
-    #okay, now we add columns to the dataframe, doing our own calculations based on
-    #the previous prices        
+    response = requests.request("GET", url, headers=headers, data=payload)
+    print("this is transaxtions get")
+    print(response.text)
+    #/--transactions get--
 
+    #setup over
 
     response = cachedAPICall(tickers)
+    print("response")
+    print(response.status_code)
     if response.status_code == 200:
         result = response.json()['chart']['result'][0]
         timestamps = result['timestamp']
         comparisons = result['comparisons']
 
-        #okay so this is where it would go, b/c i have api_call price and i have comparisons, which is the list
-
-        for stockInfo in comparisons: #now for each stock, grab the relevant info
-            # print("all comparions")
-            # print(comparisons)
-            ticker = stockInfo['symbol']
-            #print(ticker)
-            #Yahoo price = stockInfo['close'][4] #we will measure the consistency
-            #print(f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2')
+        #--grab stock info, find it's current price, change percent, and recent price shifts, and fill grow, fall, and stable--
+        for stockInfo in comparisons:
             
+            ticker = stockInfo['symbol'] 
             api_call_change = f'https://cloud.iexapis.com/stable/stock/{ticker}/stats/?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
             api_call_price =f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
             
@@ -168,15 +173,11 @@ def stockActions(tickers):
 
             changes = requests.get(api_call_change).json()
             price = requests.get(api_call_price).json()
-
-
-            #print(stockInfo) #this is for testing
     
-            
+            #if it's growing in price
             if(stockInfo['close'][3] - stockInfo['close'][2] > 0
                and stockInfo['close'][2] - stockInfo['close'][1] > 0
                and stockInfo['close'][1] - stockInfo['close'][0] > 0):
-
 
                 fall_dataframe = fall_dataframe.append( #we then stick price, name, and change percentages into the dataframe
                     pd.Series(
@@ -193,6 +194,7 @@ def stockActions(tickers):
                         index = hqm_columns),
                         ignore_index = True
                 )
+            #if it's falling in price
             elif(stockInfo['close'][3] - stockInfo['close'][2] < 0
                and stockInfo['close'][2] - stockInfo['close'][1] < 0
                and stockInfo['close'][1] - stockInfo['close'][0] < 0):
@@ -212,7 +214,9 @@ def stockActions(tickers):
                         index = hqm_columns),
                         ignore_index = True
                 )
+            #if it's up and down
             else:
+
                 stable_dataframe = stable_dataframe.append( #we then stick price, name, and change percentages into the dataframe
                     pd.Series(
                     [
@@ -229,34 +233,35 @@ def stockActions(tickers):
                         ignore_index = True
                 )
 
-         
-        for row in fall_dataframe.index: #update the chnage to amount of stocks in stock actions
+        #/--grab stock info, find it's current price, change percent, and recent price shifts, and fill grow, fall, and stable--
+ 
+        #--since it's falling, sell all--
+        print("checking fall df")
+        print(fall_dataframe.index)
+        for row in fall_dataframe.index:
             orig_stock = int( stockChanges[fall_dataframe.loc[row, 'Ticker']] ) #this searches stockChanges for the amount
-            stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = orig_stock * -1
+            stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = orig_stock * -1 #replace the total amount with the amount bought or sold (psoitive for bought, negative for sold)
             liquid_cash +=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
             cash_in_stock -=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
             total_money = liquid_cash
 
-            report_dataframe = report_dataframe.append(
-            pd.Series(
-            [
-                date.today(),
-                fall_dataframe.loc[row, 'Ticker'],
-                liquid_cash,
-                fall_dataframe.loc[row, 'Price'],
-                stockChanges[fall_dataframe.loc[row, 'Ticker']],
-                total_money,
-                f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
-            ],
-                index = daily_report_columns),
-                ignore_index = True
-        )
-            #note create liquid currency before this
-            #create total since last run
-            #total_to_return -= liquid_currency
+            given_reason =  f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+            action = "SELL"
+            if orig_stock == 0:
+                action = "HOLD"
+                given_reason = f"Didn't do anything for {fall_dataframe.loc[row, 'Ticker']} since it's falling and we own none of its stocks"
+            
+            #for every trade, update the transaction table
+            payload=f"email=testuser%40gmail.com&ticker={fall_dataframe.loc[row,'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={fall_dataframe.loc[row, 'Price']}"
+            headers = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            response = requests.request("POST", url, headers=headers, data=payload)
+            print("print to transactiopns")
+            print(response.text)
+        #/--since it's falling, sell all--
 
-
-
+        #--since it's stable, sell all if the total price returns are negative, only sell half if it's positve. Since it's had a good history, it may not drop--
         for row in stable_dataframe.index:
             decision = 0 #decision will help decide the fate of the stock
             avg_past = (stable_dataframe.loc[row, 'One-Year Price Return'] + 
@@ -273,117 +278,121 @@ def stockActions(tickers):
 
             stable_dataframe.loc[row, 'Decision'] = decision
 
-        for row in stable_dataframe.index: #update the chnage to amount of stocks in stock actions
+        #now we go the decision for each stable stock made, we go to either sell half or all
+        for row in stable_dataframe.index: 
             if stable_dataframe.loc[row, 'Decision'] == 1:
                 orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
                 stock_in_half = math.floor( orig_stock / 2  )
+                #there's a special case when if there's only one left
                 if orig_stock == 1:
-                    stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = 0
+                    stock_in_half = 1
+                    stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = -1 #in this case we sell the one
                     liquid_cash += stable_dataframe.loc[row, 'Price']
+                    cash_in_stock -= stable_dataframe.loc[row, 'Price']
                 else:
                     stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] =  (orig_stock - stock_in_half) * -1
                     liquid_cash +=  ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
                     cash_in_stock -= ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
-                    total_money = liquid_cash + cash_in_stock
+                total_money = liquid_cash + cash_in_stock
 
-                report_dataframe = report_dataframe.append(
-                pd.Series(
-                [
-                    date.today(),
-                    stable_dataframe.loc[row, 'Ticker'],
-                    liquid_cash,
-                    stable_dataframe.loc[row, 'Price'],
-                    stockChanges[stable_dataframe.loc[row, 'Ticker']],
-                    total_money,
-                    f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
-                ],
-                    index = daily_report_columns),
-                    ignore_index = True
-                )    
-                    
-                    #add cash in stock
-                    #total_to_return -= liquid_currency
+                given_reason = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
+                action = "SELL"
+                if orig_stock == 0:
+                    action = "HOLD"
+                    given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a decent history and we have own none of its stocks"
 
-            else:
+                #put in transactions
+                payload=f"email=testuser%40gmail.com&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={stock_in_half}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
+                headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+                response = requests.request("POST", url, headers=headers, data=payload)
+                print("print to transactiopns")
+                print(response.text)
+                        
+                   
+            else: #here we sell all b/c the history isn't too great and it's risky to keep
                 orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
                 stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = orig_stock * -1
                 liquid_cash +=  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
                 cash_in_stock -= ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
                 total_money = liquid_cash + cash_in_stock
-            
-                report_dataframe = report_dataframe.append(
-                pd.Series(
-                [
-                    date.today(),
-                    stable_dataframe.loc[row, 'Ticker'],
-                    liquid_cash,
-                    stable_dataframe.loc[row, 'Price'],
-                    stockChanges[stable_dataframe.loc[row, 'Ticker']],
-                    total_money,                    
-                    f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
-                ],
-                    index = daily_report_columns),
-                    ignore_index = True
-                )
-                #okay, we now updated the amount of stocks we have left and got the money from that
-                #now we update the bank to show that that money is now liquid
-                #total_to_return -= liquid_currency
-                
-        #okay, now return to database
 
-        #make divvied up cash to see how much we can sell for each
+                given_reason = f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+                action = "SELL"
+
+                if orig_stock == 0:
+                    action = "HOLD"
+                    given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a bad history and we have own none of its stocks"
+
+                payload=f"email=testuser%40gmail.com&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
+                headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+                response = requests.request("POST", url, headers=headers, data=payload)
+                print("print to transactiopns")
+                print(response.text)
+                        
+
+            
+
+        #make divvied up cash to see how much we can buy for each of the growers
         if(len(grow_dataframe.index) != 0 and liquid_cash != 0):
             divvied_up_cash = liquid_cash / len(grow_dataframe.index)
+
             for row in grow_dataframe.index:
                 orig_stock = int( stockChanges[grow_dataframe.loc[row, 'Ticker']] )
                 new_amount_to_buy = math.floor(divvied_up_cash/grow_dataframe.loc[i, 'Price'])
+                stockChanges[grow_dataframe.loc[row, 'Ticker']] = new_amount_to_buy
                 liquid_cash -=  (new_amount_to_buy * grow_dataframe.loc[i, 'Price'])
                 cash_in_stock += (new_amount_to_buy * grow_dataframe.loc[i, 'Price'])
                 total_money = liquid_cash + cash_in_stock
-                stockChanges[grow_dataframe.loc[row, 'Ticker']] = new_amount_to_buy
 
-                report_dataframe = report_dataframe.append(
-                pd.Series(
-                [
-                    date.today(),
-                    grow_dataframe.loc[row, 'Ticker'],
-                    liquid_cash,
-                    grow_dataframe.loc[row, 'Price'],
-                    stockChanges[grow_dataframe.loc[row, 'Ticker']],
-                    total_money,
-                    f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
-                ],
-                    index = daily_report_columns),
-                    ignore_index = True
-                )
+                given_reason = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+                action = "BUY"
 
-            # great, now from line 81, we can manipulate all the stocks
-        #okay, we have the # of shares we can buy for each, now we do that                
+                if new_amount_to_buy == 0:
+                    given_reason = f"Didn't do buy any of {grow_dataframe.loc[row, 'Ticker']} even though it's growing because we don't currently have the money"
+                    action = "HOLD"
 
+                payload=f"email=testuser%40gmail.com&ticker={grow_dataframe.loc[row, 'Ticker']}&quantity={new_amount_to_buy}&action={action}&dateTime={date.today()}&reason={given_reason}&price={grow_dataframe.loc[row, 'Price']}"
+                headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
 
+                response = requests.request("POST", url, headers=headers, data=payload)
+                print("print to transactiopns")
+                print(response.text)
+
+               
+
+            
+        #--update stocks and the amount they changed by back in database--
         url = "http://localhost:8000/ownedStocks/purchase"
 
         for key in stockChanges:
             # Note this is adding or subtracting from the total, not replacing it
             payload=f'email=testuser%40gmail.com&ticker={key}&purchaseAmt={stockChanges[key]}'
             headers = {
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva',
             'Content-Type': 'application/x-www-form-urlencoded'
             }
 
             response = requests.request("PUT", url, headers=headers, data=payload)
             print("put back owned Stocks")
             print(stockChanges)
-            print(response.text)
-        
+            print(response.text)        
+        #/--update stocks and the amount they changed by back in database--
+
+
+        #--we take the cash difference from the original to see how much it has changed and we update it--
         cash_difference = liquid_cash - original_liquid_cash
 
         url = "http://localhost:8000/portfolios/"
 
-        #so this also is the amount increased or decreased
         payload=f'email=testuser%40gmail.com&amount={cash_difference}'
         headers = {
-        'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva',
         'Content-Type': 'application/x-www-form-urlencoded'
         }
 
@@ -391,8 +400,9 @@ def stockActions(tickers):
         print("put back spending")
         print(liquid_cash)
         print(response.text)
+        #/--we take the cash difference from the original to see how much it has changed and we update it--
 
-       
+        print("these are the dataframes")
         print(fall_dataframe)
         print(grow_dataframe)
         print(stable_dataframe)
@@ -402,52 +412,60 @@ def stockActions(tickers):
         # writer.save()
         #note: have to find a proper way to print it all
 
-    cash_in_stock = 0
-    total_money = 0
+    # cash_in_stock = 0
+    # total_money = 0
 
-    headers = { #this is to summon the data from the database, response will have a .json() that I can summon to get data
-            'accept': 'application/json',
-            'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
-    }
-    params = {
-        'email': 'testuser@gmail.com'
-    }
-    database = requests.get('http://localhost:8000/ownedStocks/',
-                            headers=headers, params=params)
-    #print(database)
-    print("this is database value")
-    print(database.json())
+    # headers = { #this is to summon the data from the database, response will have a .json() that I can summon to get data
+    #         'accept': 'application/json',
+    # }
+    # params = {
+    #     'email': 'testuser@gmail.com'
+    # }
+    # database = requests.get('http://localhost:8000/ownedStocks/',
+    #                         headers=headers, params=params)
+    # #print(database)
+    # print("this is database value")
+    # print(database.json())
 
-    stockChanges = {} #this will save the name and number of the user's stocks in a hash table
-    for i in range( len(database.json()['ownedStocks']) ):
-        #print(database.json()['ownedStocks'][i]['ticker'])
-        stockChanges[ database.json()['ownedStocks'][i]['ticker'] ] = database.json()['ownedStocks'][i]['quantity']['$numberDecimal']
+    # stockChanges = {} #this will save the name and number of the user's stocks in a hash table
+    # for i in range( len(database.json()['ownedStocks']) ):
+    #     #print(database.json()['ownedStocks'][i]['ticker'])
+    #     stockChanges[ database.json()['ownedStocks'][i]['ticker'] ] = database.json()['ownedStocks'][i]['quantity']['$numberDecimal']
     
-    print("after i fill afterc algo")
-    print(stockChanges)
-    print(report_dataframe)
-    #print(stockChanges)
-    # stockChanges['MSFT'] = int(stockChanges['MSFT'])/2
+    # print("after i fill afterc algo")
+    # print(stockChanges)
+    # #print(stockChanges)
+    # # stockChanges['MSFT'] = int(stockChanges['MSFT'])/2
 
 
-    #note these next few lines grab the saved money values
-    url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
-    payload={}
-    headers = {
-    'X-API-KEY': 'Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva'
-    }
+    # #note these next few lines grab the saved money values
+    # url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
+    # payload={}
+    # headers = {
+    # }
 
-    bank = requests.request("GET", url, headers=headers, data=payload)
-    print("bank value")
-    print(bank.json())
+    # bank = requests.request("GET", url, headers=headers, data=payload)
+    # print("bank value")
+    # print(bank.json())
 
 
 
-    total_money = cash_in_stock + liquid_cash
-    print("total money at end of algo:")
-    print(liquid_cash)
-    print(stockChanges)
-    print(cash_in_stock)
-    
+    # total_money = cash_in_stock + liquid_cash
+    # print("total money at end of algo:")
+    # print(liquid_cash)
+    # print(stockChanges)
+    # print(cash_in_stock)
+
+    # url = "http://localhost:8000/transactions/?email=testuser@gmail.com"
+
+    # payload='email=testuser%40gmail.com&ticker=GOOGL&quantity=10&action=buy&reason=because%20..'
+    # headers = {
+    # 'Content-Type': 'application/x-www-form-urlencoded'
+    # }
+
+    # response = requests.request("GET", url, headers=headers, data=payload)
+    # print("this is transactions")
+    # print(response.json())
+        
 
 stockActions(['GOOGL', 'TSLA', 'FB', 'MSFT']) #okay, Apple's strange but it works
