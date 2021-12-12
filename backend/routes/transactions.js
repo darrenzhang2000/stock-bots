@@ -23,9 +23,9 @@ router.get("/", (req, res) => {
 
 // adds new user transaction to the database
 router.post("/", (req, res) => {
-    var { ticker, quantity, action, price, totalPrice, email } = req.body
+    var { ticker, quantity, action, price, totalPrice, dateTime, email } = req.body
 
-    var dateTime = Date.now()
+    // var dateTime = Date.now()
     const transaction = new Transaction({
         ticker, quantity, action, price, totalPrice, dateTime, email
     })

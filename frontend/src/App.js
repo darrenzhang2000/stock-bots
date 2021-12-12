@@ -36,6 +36,7 @@ import PortfolioPage from './screens/portfolioPage/portfolioPage';
 import StockPage from './screens/stockPage/stockPage';
 import TransactionPage from './screens/transactionPage/transactionPage';
 import StonksLogo from './stonksLogo.jpg';
+import axios from 'axios'
 
 const drawerWidth = 240;
 
@@ -89,6 +90,26 @@ function App() {
   };
 
   useEffect(() => {
+    
+
+    var headers = {
+      'accept': 'application/json',
+      'X-API-KEY': 'YvMydmuOKM2ObYZhAU5wtHQnmO3Bqan6DhnjsJn5'
+    };
+
+    // var options = {
+    //   url: 'https://yfapi.net/v6/finance/recommendationsbysymbol/AA',
+    //   headers: headers
+    // };
+
+    axios.get('https://yfapi.net/v6/finance/recommendationsbysymbol/AA', headers=headers).then(
+      res => {
+        console.log(res)
+      }
+    )
+
+
+
     runTradingAlgorithm()
 
   }, [])

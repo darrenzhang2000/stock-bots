@@ -22,6 +22,23 @@ const StockSearch = props => {
     const handleOnChange = e => {
         e.preventDefault()
         setSearchInput(e.target.value)
+
+        var headers = {
+            'accept': 'application/json',
+            'X-API-KEY': process.env.REACT_APP_YAHOOFINANCE_API_KEY
+        };;
+
+        var options = {
+          url: `https://yfapi.net/v6/finance/autocomplete?region=US&lang=en&query=${e.target.value}`,
+          headers: headers
+        };
+
+        axios(options).then(
+            res => {
+                console.log(res.data.ResultSet.Result)
+            }
+        )
+
     }
 
     const handleClear = e => {
