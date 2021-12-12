@@ -2,17 +2,16 @@ import requests
 import collections
 from statistics import mean
 from functools import lru_cache
-#from dotenv import load_dotenv
 import os
 import numpy as np
 import pandas as pd
 import requests
 import math
+from requests import api
 from scipy.stats import percentileofscore as score
-import xlsxwriter
-from statistics import mean
-import requests
+from datetime import date
 
+#import xlsxwriter
 
 #load_dotenv()
 
@@ -21,7 +20,7 @@ import requests
 def cachedAPICall(tickers):
     headers = {
         'accept': 'application/json',
-        'X-API-KEY': "Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva",
+        'X-API-KEY': "YvMydmuOKM2ObYZhAU5wtHQnmO3Bqan6DhnjsJn5", #"Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva",
     }
 
     comparisons = ",".join(tickers)
@@ -61,243 +60,416 @@ def makeStockDecision(avgPrice, prevPrice):
 
 
 def stockActions(tickers):
-    stockActionHt = {}  # {'GOOGL': 'buy', 'APPL': 'hold'}
+    #--summon stocks from database and put in dictionary--
+    headers = { #this is to summon the data from the database, response will have a .json() that I can summon to get data
+            'accept': 'application/json',
+    }
+    params = {
+        'email': 'testuser@gmail.com'
+    }
+    database = requests.get('http://localhost:8000/ownedStocks/',
+                            headers=headers, params=params)
+    #print(database)
+    print("this is database value")
+    print(database.json())
 
+    stockChanges = {} #this will save the name and number of the user's stocks in a hash table
+    for i in range( len(database.json()['ownedStocks']) ):
+        #print(database.json()['ownedStocks'][i]['ticker'])
+        stockChanges[ database.json()['ownedStocks'][i]['ticker'] ] = database.json()['ownedStocks'][i]['quantity']['$numberDecimal']
+    
+    print("after i fill")
+    print(stockChanges)
+    #print(stockChanges)
+    # stockChanges['MSFT'] = int(stockChanges['MSFT'])/2
+
+    #/--summon stocks from database and put in dictionary--
+
+    #--grab the spending money and set up money variables--
+    url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
+    payload={}
+    headers = {
+    }
+
+    bank = requests.request("GET", url, headers=headers, data=payload)
+    print("bank value")
+    print(bank.json())
+    
+    cash_in_stock = 0
+    total_money = 0
+    original_liquid_cash =float( bank.json()['portfolios'][0]['spendingPower']['$numberDecimal'] )
+    liquid_cash = original_liquid_cash
+    print("liquid cash from bank")
+    print(liquid_cash)
+    #/--grab the spending money and set up money variables--
+
+
+    #--grab the prices and multiply them by the stocks to get cash_in_stock and total_money--
+    for key in stockChanges:
+        api_find_total =f'https://cloud.iexapis.com/stable/stock/{key}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
+        stock_price = requests.get(api_find_total).json()
+        cash_in_stock += float(stock_price['latestPrice']) * int(stockChanges[key])
+        # print(cash_in_stock)
+        # print(liquid_cash)
+    print("after i calculate cash_in_stock: liquid cash then stockchamges")
+    print(liquid_cash)
+    print(stockChanges)
+
+    total_money = cash_in_stock + liquid_cash
+    print("total money at beginning of algo:")
+    print(total_money)
+    #/--grab the prices and multiply them by the stocks to get cash_in_stock and total_money--
+
+    #--make fall, grow and stable databases--
     hqm_columns = [ #this is for measuring return consistency
     'Ticker',
     'Price',
-    'Number of Shares to Buy',
     'One-Year Price Return',
-    'One-Year Return Percentile',
     'Six-Month Price Return',
-    'Six-Month Return Percentile',
     'Three-Month Price Return',
-    'Three-Month Return Percentile',
     'One-Month Price Return',
-    'One-Month Return Percentile',
-    'HQM Score',
-    'Price-to-Earnings Ratio'
+    'Reason',
+    'Decision',
     ]
 
     grow_dataframe = pd.DataFrame(columns = hqm_columns)
     fall_dataframe = pd.DataFrame(columns = hqm_columns)
     stable_dataframe = pd.DataFrame(columns = hqm_columns)
+    #/--make fall, grow and stable databases--
 
 
-    #okay, now we add columns to the dataframe, doing our own calculations based on
-    #the previous prices        
+    #--transactions get--
+    url = "http://localhost:8000/transactions/?email=testuser@gmail.com"
 
+    payload='email=testuser%40gmail.com&ticker=GOOGL&quantity=10&action=buy&reason=because%20..'
+    headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+    print("this is transaxtions get")
+    print(response.text)
+    #/--transactions get--
+
+    #setup over
 
     response = cachedAPICall(tickers)
+    print("response")
+    print(response.status_code)
     if response.status_code == 200:
         result = response.json()['chart']['result'][0]
         timestamps = result['timestamp']
         comparisons = result['comparisons']
 
-        for stockInfo in comparisons: #now for each stock, grab the relevant info
-            ticker = stockInfo['symbol']
-            #Yahoo price = stockInfo['close'][4] #we will measure the consistency
+        #--grab stock info, find it's current price, change percent, and recent price shifts, and fill grow, fall, and stable--
+        for stockInfo in comparisons:
+            
+            ticker = stockInfo['symbol'] 
             api_call_change = f'https://cloud.iexapis.com/stable/stock/{ticker}/stats/?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
             api_call_price =f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
-            api_pte = f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=pk_8ecf6ac347c440a98aaaf0884f9cb1d2'
             
-            pte = requests.get(api_pte).json()
+            #print(api_call_change)
+            #print( requests.get(api_call_change) )
+
             changes = requests.get(api_call_change).json()
             price = requests.get(api_call_price).json()
-
-            #print(stockInfo) #this is for testing
     
-
-            if(stockInfo['close'][3] - stockInfo['close'][2] < 0
-               and stockInfo['close'][2] - stockInfo['close'][1] < 0
-               and stockInfo['close'][1] - stockInfo['close'][0] < 0):
-
+            #if it's growing in price
+            if(stockInfo['close'][3] - stockInfo['close'][2] > 0
+               and stockInfo['close'][2] - stockInfo['close'][1] > 0
+               and stockInfo['close'][1] - stockInfo['close'][0] > 0):
 
                 fall_dataframe = fall_dataframe.append( #we then stick price, name, and change percentages into the dataframe
                     pd.Series(
                     [
                         ticker, #'Ticker'
-                        price['iexRealtimePrice'], #'today's Price'
-                        'N/A',
+                        price['latestPrice'], #'today's Price'
                         changes['year1ChangePercent'],
-                        'N/A',
                         changes['month6ChangePercent'],
-                        'N/A',
                         changes['month3ChangePercent'],
-                        'N/A',
                         changes['month1ChangePercent'],
                         'N/A',
-                        'N/A',
-                        pte['peRatio']
+                        'N/A'
                     ],
                         index = hqm_columns),
                         ignore_index = True
                 )
-
-            elif(stockInfo['close'][3] - stockInfo['close'][2] > 0
-               and stockInfo['close'][2] - stockInfo['close'][1] > 0
-               and stockInfo['close'][1] - stockInfo['close'][0] > 0):
+            #if it's falling in price
+            elif(stockInfo['close'][3] - stockInfo['close'][2] < 0
+               and stockInfo['close'][2] - stockInfo['close'][1] < 0
+               and stockInfo['close'][1] - stockInfo['close'][0] < 0):
 
                 grow_dataframe = grow_dataframe.append( #we then stick price, name, and change percentages into the dataframe
                     pd.Series(
                     [
                         ticker, #'Ticker'
-                        price['iexRealtimePrice'], #'today's Price'
-                        'N/A',
+                        price['latestPrice'], #'today's Price'
                         changes['year1ChangePercent'],
-                        'N/A',
                         changes['month6ChangePercent'],
-                        'N/A',
                         changes['month3ChangePercent'],
-                        'N/A',
                         changes['month1ChangePercent'],
                         'N/A',
-                        'N/A',
-                        pte['peRatio']
+                        'N/A'
                     ],
                         index = hqm_columns),
                         ignore_index = True
                 )
+            #if it's up and down
             else:
+
                 stable_dataframe = stable_dataframe.append( #we then stick price, name, and change percentages into the dataframe
                     pd.Series(
                     [
                         ticker, #'Ticker'
-                        price['iexRealtimePrice'], #'today's Price'
-                        'N/A',
+                        price['latestPrice'], #'today's Price'
                         changes['year1ChangePercent'],
-                        'N/A',
                         changes['month6ChangePercent'],
-                        'N/A',
                         changes['month3ChangePercent'],
-                        'N/A',
                         changes['month1ChangePercent'],
                         'N/A',
-                        'N/A',
-                        pte['peRatio']
+                        'N/A'
                     ],
                         index = hqm_columns),
                         ignore_index = True
                 )
 
-
-
-        time_periods = [ #this time periods is just to make it so we can loop at line 125
-            'One-Year',
-            'Six-Month',
-            'Three-Month',
-            'One-Month'   
-        ]
-
+        #/--grab stock info, find it's current price, change percent, and recent price shifts, and fill grow, fall, and stable--
+ 
+        #--since it's falling, sell all--
+        print("checking fall df")
+        print(fall_dataframe.index)
         for row in fall_dataframe.index:
-            for time_period in time_periods:                #calculate return percentile for each price return
-                fall_dataframe.fillna(0,inplace=True) #in case it's empty
-                change_col = f'{time_period} Price Return'  
-                percentile_col = f'{time_period} Return Percentile'
-                fall_dataframe.loc[row, percentile_col] = score( fall_dataframe[change_col] , fall_dataframe.loc[row, change_col] )/100
+            orig_stock = int( stockChanges[fall_dataframe.loc[row, 'Ticker']] ) #this searches stockChanges for the amount
+            stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = orig_stock * -1 #replace the total amount with the amount bought or sold (psoitive for bought, negative for sold)
+            liquid_cash +=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
+            cash_in_stock -=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
+            total_money = liquid_cash
 
-        for row in grow_dataframe.index:
-            for time_period in time_periods:                #calculate return percentile for each price return
-                grow_dataframe.fillna(0,inplace=True)
-                change_col = f'{time_period} Price Return'  
-                percentile_col = f'{time_period} Return Percentile'
-                grow_dataframe.loc[row, percentile_col] = score( grow_dataframe[change_col] , grow_dataframe.loc[row, change_col] )/100
-        
+            given_reason =  f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+            action = "SELL"
+            if orig_stock == 0:
+                action = "HOLD"
+                given_reason = f"Didn't do anything for {fall_dataframe.loc[row, 'Ticker']} since it's falling and we own none of its stocks"
+            
+            url = "http://localhost:8000/transactions/"
+            #for every trade, update the transaction table
+            payload=f"email=testuser%40gmail.com&ticker={fall_dataframe.loc[row,'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={fall_dataframe.loc[row, 'Price']}"
+            headers = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            response = requests.request("POST", url, headers=headers, data=payload)
+            print("print to transactiopns")
+            print(response.text)
+        #/--since it's falling, sell all--
+
+        #--since it's stable, sell all if the total price returns are negative, only sell half if it's positve. Since it's had a good history, it may not drop--
         for row in stable_dataframe.index:
-            for time_period in time_periods:                #calculate return percentile for each price return
-                stable_dataframe.fillna(0,inplace=True)
-                change_col = f'{time_period} Price Return'  
-                percentile_col = f'{time_period} Return Percentile'
-                stable_dataframe.loc[row, percentile_col] = score( stable_dataframe[change_col] , stable_dataframe.loc[row, change_col] )/100
-        
+            decision = 0 #decision will help decide the fate of the stock
+            avg_past = (stable_dataframe.loc[row, 'One-Year Price Return'] + 
+                       stable_dataframe.loc[row, 'Six-Month Price Return']  +
+                       stable_dataframe.loc[row, 'Three-Month Price Return']  +
+                       stable_dataframe.loc[row, 'One-Month Price Return']  )
+            #print(avg_past)
+            if(avg_past < 0):
+                decision = decision - 1
+            elif(avg_past > 0):
+                decision = decision + 1
+            else: #just in case it adds up to 0
+                decision = decision + 0
+
+            stable_dataframe.loc[row, 'Decision'] = decision
+
+        #now we go the decision for each stable stock made, we go to either sell half or all
+        for row in stable_dataframe.index: 
+            if stable_dataframe.loc[row, 'Decision'] == 1:
+                orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
+                stock_in_half = math.floor( orig_stock / 2  )
+                #there's a special case when if there's only one left
+                if orig_stock == 1:
+                    stock_in_half = 1
+                    stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = -1 #in this case we sell the one
+                    liquid_cash += stable_dataframe.loc[row, 'Price']
+                    cash_in_stock -= stable_dataframe.loc[row, 'Price']
+                else:
+                    stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] =  (orig_stock - stock_in_half) * -1
+                    liquid_cash +=  ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+                    cash_in_stock -= ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+                total_money = liquid_cash + cash_in_stock
+
+                given_reason = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
+                action = "SELL"
+                if orig_stock == 0:
+                    action = "HOLD"
+                    given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a decent history and we have own none of its stocks"
+
+                url = "http://localhost:8000/transactions/"
+                #put in transactions
+                payload=f"email=testuser%40gmail.com&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={stock_in_half}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
+                headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+                response = requests.request("POST", url, headers=headers, data=payload)
+                print("print to transactiopns")
+                print(response.text)
+                        
+                   
+            else: #here we sell all b/c the history isn't too great and it's risky to keep
+                orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
+                stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = orig_stock * -1
+                liquid_cash +=  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
+                cash_in_stock -= ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
+                total_money = liquid_cash + cash_in_stock
+
+                given_reason = f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+                action = "SELL"
+
+                if orig_stock == 0:
+                    action = "HOLD"
+                    given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a bad history and we have own none of its stocks"
+
+                url = "http://localhost:8000/transactions/"
+                payload=f"email=testuser%40gmail.com&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
+                headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+                response = requests.request("POST", url, headers=headers, data=payload)
+                print("print to transactiopns")
+                print(response.text)
+                        
+
+            
+
+        #make divvied up cash to see how much we can buy for each of the growers
+        if(len(grow_dataframe.index) != 0 and liquid_cash != 0):
+            divvied_up_cash = liquid_cash / len(grow_dataframe.index)
+
+            for row in grow_dataframe.index:
+                orig_stock = int( stockChanges[grow_dataframe.loc[row, 'Ticker']] )
+                new_amount_to_buy = math.floor(divvied_up_cash/grow_dataframe.loc[i, 'Price'])
+                stockChanges[grow_dataframe.loc[row, 'Ticker']] = new_amount_to_buy
+                liquid_cash -=  (new_amount_to_buy * grow_dataframe.loc[i, 'Price'])
+                cash_in_stock += (new_amount_to_buy * grow_dataframe.loc[i, 'Price'])
+                total_money = liquid_cash + cash_in_stock
+
+                given_reason = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+                action = "BUY"
+
+                if new_amount_to_buy == 0:
+                    given_reason = f"Didn't do buy any of {grow_dataframe.loc[row, 'Ticker']} even though it's growing because we don't currently have the money"
+                    action = "HOLD"
+
+                url = "http://localhost:8000/transactions/"
+                payload=f"email=testuser%40gmail.com&ticker={grow_dataframe.loc[row, 'Ticker']}&quantity={new_amount_to_buy}&action={action}&dateTime={date.today()}&reason={given_reason}&price={grow_dataframe.loc[row, 'Price']}"
+                headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+                response = requests.request("POST", url, headers=headers, data=payload)
+                print("print to transactiopns")
+                print(response.text)
+
+               
+
+            
+        #--update stocks and the amount they changed by back in database--
+        url = "http://localhost:8000/ownedStocks/purchase"
+
+        for key in stockChanges:
+            # Note this is adding or subtracting from the total, not replacing it
+            payload=f'email=testuser%40gmail.com&ticker={key}&purchaseAmt={stockChanges[key]}'
+            headers = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            }
+
+            response = requests.request("PUT", url, headers=headers, data=payload)
+            print("put back owned Stocks")
+            print(stockChanges)
+            print(response.text)        
+        #/--update stocks and the amount they changed by back in database--
 
 
-        #now we average out all the return percentiles and rank them
-        for row in fall_dataframe.index:
-            momentum_percentiles = [] #save all percentile scores in this list and grab the mean of all of it
-            for time_period in time_periods:
-                momentum_percentiles.append(fall_dataframe.loc[row, f'{time_period} Return Percentile'])
-            fall_dataframe.loc[row, 'HQM Score'] = mean(momentum_percentiles)
+        #--we take the cash difference from the original to see how much it has changed and we update it--
+        cash_difference = liquid_cash - original_liquid_cash
 
-        for row in grow_dataframe.index:
-            momentum_percentiles = [] #save all percentile scores in this list and grab the mean of all of it
-            for time_period in time_periods:
-                momentum_percentiles.append(grow_dataframe.loc[row, f'{time_period} Return Percentile'])
-            grow_dataframe.loc[row, 'HQM Score'] = mean(momentum_percentiles)
+        url = "http://localhost:8000/portfolios/"
 
-        for row in stable_dataframe.index:
-            momentum_percentiles = [] #save all percentile scores in this list and grab the mean of all of it
-            for time_period in time_periods:
-                momentum_percentiles.append(stable_dataframe.loc[row, f'{time_period} Return Percentile'])
-            stable_dataframe.loc[row, 'HQM Score'] = mean(momentum_percentiles)
+        payload=f'email=testuser%40gmail.com&amount={cash_difference}'
+        headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+        }
 
+        response = requests.request("PUT", url, headers=headers, data=payload)
+        print("put back spending")
+        print(liquid_cash)
+        print(response.text)
+        #/--we take the cash difference from the original to see how much it has changed and we update it--
 
-        #so now their hqm scores and their price to earnings ratio
-        #are both, known. Now we go into the second step of our
-        #filtering process
-        #so now we lok at their price return over time, starting with fall
-        #note: compare hqm to s&p 500 sotcks
-
-        fall_dataframe.sort_values('HQM Score', ascending = False, inplace = True)
-
-        hqm_half = math.floor(len(fall_dataframe['Ticker'])/2)   
-        
-        #get request and put in hash table
-
-        
-        #for row in fall_dataframe.index:
-            #if row < hqm_half:
-                #sell stock
-                #see if quantity is 0, if so, post, if not then put
-
-        
-    #okay, talk with Darren, figure out 
-    #how to delete, add to stock database
-    #adn how to update money
-
-
-        grow_dataframe.sort_values('HQM Score', ascending = False, inplace = True)
-
-        stable_dataframe.sort_values('HQM Score', ascending = False, inplace = True)
-       
-
-        #so for those that are falling, we see if they are below price to market
-        #if that's the case, sell all, if not, hold
-
-        #if rising, check if price to market is positive, if so, buy 1, if not, just hold
-
-        #if stable, buy the top and sell the bottom
-
-        #okay, do comparisons, then split it all into growing, stagnating
-        #and shrinking
-
-        
-        #okay so here we know the higher growers, now we 
-        #figure which ones we buy and sell
-        #so basic thing should be if top half of hqm score, buy 
-        #if in lower half of hqm score, hold
-        #if growth is close to zero or even negative, then sell
-        #the degree to which we buy or sell depends on price to earnings
-        # so if i have a stock with a negative growth, i'll grab it into a new list
-        #where i'll grab it's price to earnings, when i have that, i'll
-        #sell all of it if it's above, or sell half if it's below
-
-        #return comparisons
-        # for stockInfo in comparisons:
-        #     print(stockInfo)
-        #     ticker = stockInfo['symbol']
-        #     fiveDayClosePrices = list(filter(lambda p: p, stockInfo['close']))
-
-        # print(fall_dataframe)
-        # print(grow_dataframe)
-        # print(stable_dataframe)
+        print("these are the dataframes")
+        print(fall_dataframe)
+        print(grow_dataframe)
+        print(stable_dataframe)
 
         # writer = pd.ExcelWriter('momentum_strategy.xlsx', engine='xlsxwriter')
         # stable_dataframe.to_excel(writer, sheet_name = "Momentum Strategy", index = False)
         # writer.save()
         #note: have to find a proper way to print it all
-        # writer = pd.ExcelWriter('momentum_strategy.xlsx', engine='xlsxwriter')
-        # hqm_dataframe.to_excel(writer, sheet_name = "Momentum Strategy", index = False)
+
+    # cash_in_stock = 0
+    # total_money = 0
+
+    # headers = { #this is to summon the data from the database, response will have a .json() that I can summon to get data
+    #         'accept': 'application/json',
+    # }
+    # params = {
+    #     'email': 'testuser@gmail.com'
+    # }
+    # database = requests.get('http://localhost:8000/ownedStocks/',
+    #                         headers=headers, params=params)
+    # #print(database)
+    # print("this is database value")
+    # print(database.json())
+
+    # stockChanges = {} #this will save the name and number of the user's stocks in a hash table
+    # for i in range( len(database.json()['ownedStocks']) ):
+    #     #print(database.json()['ownedStocks'][i]['ticker'])
+    #     stockChanges[ database.json()['ownedStocks'][i]['ticker'] ] = database.json()['ownedStocks'][i]['quantity']['$numberDecimal']
+    
+    # print("after i fill afterc algo")
+    # print(stockChanges)
+    # #print(stockChanges)
+    # # stockChanges['MSFT'] = int(stockChanges['MSFT'])/2
 
 
-stockActions(['GOOGL', 'NIO', 'ZM', 'ASAN']) #okay, Apple's strange but it works
+    # #note these next few lines grab the saved money values
+    # url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
+    # payload={}
+    # headers = {
+    # }
+
+    # bank = requests.request("GET", url, headers=headers, data=payload)
+    # print("bank value")
+    # print(bank.json())
+
+
+
+    # total_money = cash_in_stock + liquid_cash
+    # print("total money at end of algo:")
+    # print(liquid_cash)
+    # print(stockChanges)
+    # print(cash_in_stock)
+
+    # url = "http://localhost:8000/transactions/?email=testuser@gmail.com"
+
+    # payload='email=testuser%40gmail.com&ticker=GOOGL&quantity=10&action=buy&reason=because%20..'
+    # headers = {
+    # 'Content-Type': 'application/x-www-form-urlencoded'
+    # }
+
+    # response = requests.request("GET", url, headers=headers, data=payload)
+    # print("this is transactions")
+    # print(response.json())
+        
+
+stockActions(['GOOGL', 'TSLA', 'FB', 'MSFT']) #okay, Apple's strange but it works
