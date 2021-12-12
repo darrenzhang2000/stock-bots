@@ -22,9 +22,7 @@ const StockPage = props => {
     const [ longName, setLongName] = React.useState(0)
     const [ marketCap, setMarketCap] = React.useState(0)
     const [ currency, setCurrency] = React.useState(0)
-    console.log('stock page tikr', ticker)
-
-
+    
     return <div>
         <StockSearch
             setDisplayRes={setDisplayRes}

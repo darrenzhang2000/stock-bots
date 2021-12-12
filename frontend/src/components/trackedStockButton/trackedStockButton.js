@@ -90,7 +90,7 @@ const TrackedStockButton = (props) => {
 
     useEffect(() => {
         checkIfStockTracked()
-    }, [])
+    }, [ticker, stockTrackedByAlgo])
 
     return (
         <div>
