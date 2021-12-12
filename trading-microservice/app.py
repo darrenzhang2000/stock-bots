@@ -1,20 +1,19 @@
-# import pymongo
-# from tradingAlgo import stockActions
 from flask import Flask, jsonify
-# import json
 from flask_cors import CORS
-# from both_algos import stockActions
-# from accessDb import getPortfolios
 import requests
 from both_algos import stockActions
 import time
 app = Flask(__name__)
-# CORS(app, resources={r"/*": {"origins": "*"}})
-# app.config['CORS_HEADERS'] = 'Content-Type'
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+IEX_API_KEY = os.environ['IEX_API_KEY']
+BACKEND_API = os.environ['BACKEND_API']
 
 def getPortfolios():
-    url = "http://localhost:5000/portfolios/all"
+    url = f"{BACKEND_API}/portfolios/all"
 
     payload={}
     headers = {}
