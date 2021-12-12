@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import qs from 'qs'
-import { Button, Typography, Alert, Grid } from '@mui/material';
+import { Button, Typography, Alert, Grid, AlertTitle } from '@mui/material';
 import { useSelector } from "react-redux";
-
 
 // This button adds the stock in the stock info page to be tracked by
 // our trading algorithm. We felt that this button was complex enough that
@@ -14,6 +13,8 @@ const TrackedStockButton = (props) => {
     var email = useSelector(state => state.login.user)
     var [stockTrackedByAlgo, setStockTradedByAlgo] = React.useState(false)
     const { ticker } = props
+    const [displayAlert, setDisplayAlert] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
 
     const checkIfStockTracked = (e) => {
         var config = {
@@ -50,6 +51,8 @@ const TrackedStockButton = (props) => {
             .then(function (response) {
                 setStockTradedByAlgo(false)
                 console.log(JSON.stringify(response.data));
+                setErrorMsg(`${ticker} is removed from being tracked by the trading algoirthm.`)
+                setDisplayAlert(true)
             })
             .catch(function (error) {
                 console.log(error);
@@ -77,6 +80,8 @@ const TrackedStockButton = (props) => {
 
         axios(options).then(res => {
             setStockTradedByAlgo(true)
+            setErrorMsg(`${ticker} is successfully being tracked by the trading algoirthm.`)
+            setDisplayAlert(true)
             console.log(res)
         })
     }
@@ -87,8 +92,16 @@ const TrackedStockButton = (props) => {
 
     return (
         <div>
-            {!stockTrackedByAlgo ? <Button variant="contained" color="primary" onClick={handleAddTrackedStock}>Add Stock To Be Tracked By the Trading Algorithm</Button>
-                : <Button variant="contained" color="primary" onClick={handleRemoveTrackedStock}>Remove Stock From Being Tracked By the Trading Algorithm</Button>
+            {!stockTrackedByAlgo ? <Button sx={{marginBottom: '32px'}} variant="contained" color="primary" onClick={handleAddTrackedStock}>Add Stock To Be Tracked By the Trading Algorithm</Button>
+                : <Button sx={{marginBottom: '32px'}} variant="contained" color="primary" onClick={handleRemoveTrackedStock}>Remove Stock From Being Tracked By the Trading Algorithm</Button>
+            }
+            {
+                displayAlert ?
+                    <Alert severity="success" onClose={() => setDisplayAlert(false)}>
+                        <AlertTitle>Error</AlertTitle>
+                        {errorMsg}
+                    </Alert>
+                    : null
             }
         </div>
     )
