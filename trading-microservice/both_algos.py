@@ -20,7 +20,7 @@ from datetime import date
 def cachedAPICall(tickers):
     headers = {
         'accept': 'application/json',
-        'X-API-KEY': "YvMydmuOKM2ObYZhAU5wtHQnmO3Bqan6DhnjsJn5", #"Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva",
+        'X-API-KEY': "Ehmj9CLOzr9TB4gkqCiHp2u8HoZ2JiKC9qVRNeva", #"YvMydmuOKM2ObYZhAU5wtHQnmO3Bqan6DhnjsJn5", 
     }
 
     comparisons = ",".join(tickers)
@@ -59,13 +59,16 @@ def makeStockDecision(avgPrice, prevPrice):
         return "hold"
 
 
-def stockActions(tickers):
+def stockActions(tickers, email):
+    
+    forty_email = email.replace('@', '%40')
+    print("forty emil", forty_email)
     #--summon stocks from database and put in dictionary--
     headers = { #this is to summon the data from the database, response will have a .json() that I can summon to get data
             'accept': 'application/json',
     }
     params = {
-        'email': 'testuser@gmail.com'
+        'email': email
     }
     database = requests.get('http://localhost:8000/ownedStocks/',
                             headers=headers, params=params)
@@ -86,7 +89,7 @@ def stockActions(tickers):
     #/--summon stocks from database and put in dictionary--
 
     #--grab the spending money and set up money variables--
-    url = "http://localhost:8000/portfolios?email=testuser@gmail.com"
+    url = f"http://localhost:8000/portfolios?email={email}"
     payload={}
     headers = {
     }
@@ -139,9 +142,9 @@ def stockActions(tickers):
 
 
     #--transactions get--
-    url = "http://localhost:8000/transactions/?email=testuser@gmail.com"
+    url = f"http://localhost:8000/transactions/?email={email}"
 
-    payload='email=testuser%40gmail.com&ticker=GOOGL&quantity=10&action=buy&reason=because%20..'
+    payload=f"email={forty_email}&ticker=GOOGL&quantity=10&action=buy&reason=because%20.."
     headers = {
     'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -253,7 +256,7 @@ def stockActions(tickers):
             
             url = "http://localhost:8000/transactions/"
             #for every trade, update the transaction table
-            payload=f"email=testuser%40gmail.com&ticker={fall_dataframe.loc[row,'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={fall_dataframe.loc[row, 'Price']}"
+            payload=f"email={forty_email}&ticker={fall_dataframe.loc[row,'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={fall_dataframe.loc[row, 'Price']}"
             headers = {
             'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -304,7 +307,7 @@ def stockActions(tickers):
 
                 url = "http://localhost:8000/transactions/"
                 #put in transactions
-                payload=f"email=testuser%40gmail.com&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={stock_in_half}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
+                payload=f"email={forty_email}&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={stock_in_half}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
                 headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -329,7 +332,7 @@ def stockActions(tickers):
                     given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a bad history and we have own none of its stocks"
 
                 url = "http://localhost:8000/transactions/"
-                payload=f"email=testuser%40gmail.com&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
+                payload=f"email={forty_email}&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
                 headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -361,7 +364,7 @@ def stockActions(tickers):
                     action = "HOLD"
 
                 url = "http://localhost:8000/transactions/"
-                payload=f"email=testuser%40gmail.com&ticker={grow_dataframe.loc[row, 'Ticker']}&quantity={new_amount_to_buy}&action={action}&dateTime={date.today()}&reason={given_reason}&price={grow_dataframe.loc[row, 'Price']}"
+                payload=f"email={forty_email}&ticker={grow_dataframe.loc[row, 'Ticker']}&quantity={new_amount_to_buy}&action={action}&dateTime={date.today()}&reason={given_reason}&price={grow_dataframe.loc[row, 'Price']}"
                 headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -378,7 +381,7 @@ def stockActions(tickers):
 
         for key in stockChanges:
             # Note this is adding or subtracting from the total, not replacing it
-            payload=f'email=testuser%40gmail.com&ticker={key}&purchaseAmt={stockChanges[key]}'
+            payload=f'email={forty_email}&ticker={key}&purchaseAmt={stockChanges[key]}'
             headers = {
             'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -395,7 +398,7 @@ def stockActions(tickers):
 
         url = "http://localhost:8000/portfolios/"
 
-        payload=f'email=testuser%40gmail.com&amount={cash_difference}'
+        payload=f'email={forty_email}&amount={cash_difference}'
         headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
         }
