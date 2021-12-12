@@ -18,6 +18,7 @@ const TransactionPage = (props) => {
     const getTransactions = () => {
         var headers = {
             'accept': 'application/json',
+            "Access-Control-Allow-Origin": "*",
         };
 
         var data = {
@@ -32,7 +33,8 @@ const TransactionPage = (props) => {
         };
 
         axios(options).then(res => {
-            setTransactions(res.data.transactions)
+            setTransactions(res.data.transactions.reverse())
+            console.log(transactions)
         })
     }
 
@@ -58,20 +60,20 @@ const TransactionPage = (props) => {
                     <TableHead>
                         <TableRow>
                             <TableCell><strong>Date</strong></TableCell>
+                            <TableCell><strong>Ticker</strong></TableCell>
                             <TableCell><strong>Action</strong></TableCell>
                             <TableCell><strong>Price</strong></TableCell>
                             <TableCell><strong>Quantity</strong></TableCell>
-                            <TableCell><strong>Ticker</strong></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {
                             transactions.map((transaction, idx) => <TableRow id={idx}>
                                 <TableCell>{new Date(transaction.dateTime).toLocaleString()}</TableCell>
-                                <TableCell>{transaction.action}</TableCell>
-                                <TableCell>{transaction.price.$numberDecimal}</TableCell>
-                                <TableCell>{transaction.quantity}</TableCell>
                                 <TableCell>{transaction.ticker}</TableCell>
+                                <TableCell>{transaction.action}</TableCell>
+                                <TableCell>{parseFloat(transaction.price.$numberDecimal).toFixed(2)}</TableCell>
+                                <TableCell>{transaction.quantity}</TableCell>
                             </TableRow>)
                         }
                     </TableBody>

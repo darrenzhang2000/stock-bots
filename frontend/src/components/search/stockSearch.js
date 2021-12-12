@@ -4,6 +4,9 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Search, SearchIconWrapper, StyledInputBase } from './styledSearchComponents';
 import Paper from '@mui/material/Paper';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
 
 // Let's you search for a specific stock by its ticker. Upon submit, 
 // we make an axios get request to yahoo finance that gets the
@@ -18,6 +21,7 @@ const StockSearch = props => {
     const [searchInput, setSearchInput] = useState("")
     const [displayAlert, setDisplayAlert] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
+    const [suggestions, setSuggestions] = useState([])
 
     const handleOnChange = e => {
         e.preventDefault()
@@ -25,17 +29,23 @@ const StockSearch = props => {
 
         var headers = {
             'accept': 'application/json',
+            "Access-Control-Allow-Origin": "*",
             'X-API-KEY': process.env.REACT_APP_YAHOOFINANCE_API_KEY
         };;
 
         var options = {
-          url: `https://yfapi.net/v6/finance/autocomplete?region=US&lang=en&query=${e.target.value}`,
-          headers: headers
+            url: `https://yfapi.net/v6/finance/autocomplete?region=US&lang=en&query=${e.target.value}`,
+            headers: headers
         };
 
         axios(options).then(
             res => {
-                console.log(res.data.ResultSet.Result)
+                if(res && res.data && !res.data.error){
+                    let suggestedTickers = res.data.ResultSet.Result.map(obj => obj.symbol) 
+                    setSuggestions(suggestedTickers)
+                    console.log('sugg', suggestedTickers, res.data)
+                }
+
             }
         )
 
@@ -85,6 +95,11 @@ const StockSearch = props => {
             }
         })
     }
+    const top100Films = [
+        { label: 'The Shawshank Redemption', year: 1994 },
+        { label: 'The Godfather', year: 1972 },
+        { label: 'The Godfather: Part II', year: 1974 },
+    ]
 
     return <Paper
         sx={{
@@ -107,6 +122,8 @@ const StockSearch = props => {
 
         <Typography variant="h4" className="font-link"> Search stocks by ticker </Typography>
 
+
+
         {/* In order to make our app more stylistically appealing,
          we created the styledSearchComponent that is similar to the 
          one used in the Account. We used StyledSearchComponent
@@ -122,6 +139,16 @@ const StockSearch = props => {
                 value={searchInput}
             />
         </Search>
+
+        {/* <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={suggestions}
+            sx={{ width: 300, marginBottom: '32px', marginTop: '32px' }}
+            onChange={handleOnChange}
+            value={searchInput}
+            renderInput={(params) => <TextField {...params} label="Stock tickers" />}
+        /> */}
 
         <Button sx={{ width: '170px', marginBottom: '32px' }} variant="contained" color="primary" onClick={handleOnSubmit}>Search</Button>
         <Button sx={{ width: '170px' }} variant="contained" color="primary" onClick={handleClear}>Clear</Button>
