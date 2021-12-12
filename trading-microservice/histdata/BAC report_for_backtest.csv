@@ -1,0 +1,759 @@
+,Date,Spending Power,Price,Quantity,Total,Report
+0,2018-12-06,10000.0,26.280001,0,10000.0,"Sold all 0, of stock BAC at 26.280001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+1,2018-12-07,10000.0,25.43,0,10000.0,"Sold all 0, of stock BAC at 25.43 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+2,2018-12-10,10000.0,24.76,0,10000.0,Sold all 0 of stock BAC at 24.76 because it's been falling for 3 consecutive days. New total is 10000.0
+3,2018-12-11,10000.0,24.58,0,10000.0,Sold all 0 of stock BAC at 24.58 because it's been falling for 3 consecutive days. New total is 10000.0
+4,2018-12-12,10000.0,24.52,0,10000.0,Sold all 0 of stock BAC at 24.52 because it's been falling for 3 consecutive days. New total is 10000.0
+5,2018-12-13,10000.0,24.4,0,10000.0,Sold all 0 of stock BAC at 24.4 because it's been falling for 3 consecutive days. New total is 10000.0
+6,2018-12-14,10000.0,24.48,0,10000.0,Sold all 0 of stock BAC at 24.48 because it's been falling for 3 consecutive days. New total is 10000.0
+7,2018-12-17,10000.0,24.469999,0,10000.0,"Sold all 0, of stock BAC at 24.469999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+8,2018-12-18,10000.0,24.469999,0,10000.0,"Sold all 0, of stock BAC at 24.469999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+9,2018-12-19,10000.0,24.18,0,10000.0,"Sold all 0, of stock BAC at 24.18 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+10,2018-12-20,10000.0,24.110001,0,10000.0,"Sold all 0, of stock BAC at 24.110001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+11,2018-12-21,10000.0,23.370001,0,10000.0,"Sold all 0, of stock BAC at 23.370001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+12,2018-12-24,10000.0,22.73,0,10000.0,Sold all 0 of stock BAC at 22.73 because it's been falling for 3 consecutive days. New total is 10000.0
+13,2018-12-26,10000.0,24.110001,0,10000.0,Sold all 0 of stock BAC at 24.110001 because it's been falling for 3 consecutive days. New total is 10000.0
+14,2018-12-27,10000.0,24.370001,0,10000.0,"Sold all 0, of stock BAC at 24.370001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+15,2018-12-28,10000.0,24.389999,0,10000.0,"Sold all 0, of stock BAC at 24.389999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10000.0"
+16,2018-12-31,20.800404999999955,24.639999,405,10000.0,Bought 405 of BAC for 24.639999 because it's been growing for the past 3 days. New total is 10000.0
+17,2019-01-02,20.800404999999955,24.959999,405,10129.6,Bought 0 of BAC for 24.959999 because it's been growing for the past 3 days. New total is 10129.6
+18,2019-01-03,20.800404999999955,24.559999,405,9967.6,Bought 0 of BAC for 24.559999 because it's been growing for the past 3 days. New total is 9967.6
+19,2019-01-04,10380.700405,25.58,0,10380.700405,"Sold all 0, of stock BAC at 25.58 because it's platued for the past 3 days, but it has a poor recent history. New total is 10380.700405"
+20,2019-01-07,10380.700405,25.559999,0,10380.700405,"Sold all 0, of stock BAC at 25.559999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10380.700405"
+21,2019-01-08,10380.700405,25.51,0,10380.700405,"Sold all 0, of stock BAC at 25.51 because it's platued for the past 3 days, but it has a poor recent history. New total is 10380.700405"
+22,2019-01-09,10380.700405,25.76,0,10380.700405,"Sold all 0, of stock BAC at 25.76 because it's platued for the past 3 days, but it has a poor recent history. New total is 10380.700405"
+23,2019-01-10,10380.700405,25.73,0,10380.700405,"Sold all 0, of stock BAC at 25.73 because it's platued for the past 3 days, but it has a poor recent history. New total is 10380.700405"
+24,2019-01-11,10380.700405,26.030001,0,10380.700405,"Sold all 0, of stock BAC at 26.030001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10380.700405"
+25,2019-01-14,10380.700405,26.370001,0,10380.700405,"Sold all 0, of stock BAC at 26.370001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10380.700405"
+26,2019-01-15,10380.700405,26.549999,0,10380.700405,"Sold all 0, of stock BAC at 26.549999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10380.700405"
+27,2019-01-16,24.900040999998964,28.450001,364,10380.700405,Bought 364 of BAC for 28.450001 because it's been growing for the past 3 days. New total is 10380.700405
+28,2019-01-17,24.900040999998964,28.99,364,10577.260040999998,Bought 0 of BAC for 28.99 because it's been growing for the past 3 days. New total is 10577.260040999998
+29,2019-01-18,24.900040999998964,29.299999,364,10690.099676999998,Bought 0 of BAC for 29.299999 because it's been growing for the past 3 days. New total is 10690.099676999998
+30,2019-01-22,24.900040999998964,29.09,364,10613.660041,Bought 0 of BAC for 29.09 because it's been growing for the past 3 days. New total is 10613.660041
+31,2019-01-23,5288.3400409999995,28.92,182,10551.780041,"Sold half, 182, of stock BAC at 28.92 because it's platued for the past 3 days and it has an okay recent history. New total is 10551.780041"
+32,2019-01-24,7934.620040999999,29.08,91,10580.900040999999,"Sold half, 91, of stock BAC at 29.08 because it's platued for the past 3 days and it has an okay recent history. New total is 10580.900040999999"
+33,2019-01-25,9295.300040999999,29.58,46,10626.400040999999,"Sold half, 45, of stock BAC at 29.58 because it's platued for the past 3 days and it has an okay recent history. New total is 10626.400040999999"
+34,2019-01-28,9976.790017999998,29.629999,23,10658.279994999997,"Sold half, 23, of stock BAC at 29.629999 because it's platued for the past 3 days and it has an okay recent history. New total is 10658.279994999997"
+35,2019-01-29,13.580356999998912,29.389999,362,10652.759994999999,Bought 339 of BAC for 29.389999 because it's been growing for the past 3 days. New total is 10652.759994999999
+36,2019-01-30,5275.250356999999,29.07,181,10536.920356999999,"Sold half, 181, of stock BAC at 29.07 because it's platued for the past 3 days and it has an okay recent history. New total is 10536.920356999999"
+37,2019-01-31,7866.0202659999995,28.469999,91,10428.320176,"Sold half, 90, of stock BAC at 28.469999 because it's platued for the past 3 days and it has an okay recent history. New total is 10428.320176"
+38,2019-02-01,10448.600175,28.379999,0,10448.600175,Sold all 91 of stock BAC at 28.379999 because it's been falling for 3 consecutive days. New total is 10448.600175
+39,2019-02-04,10448.600175,28.879999,0,10448.600175,Sold all 0 of stock BAC at 28.879999 because it's been falling for 3 consecutive days. New total is 10448.600175
+40,2019-02-05,10448.600175,28.780001,0,10448.600175,"Sold half, 0, of stock BAC at 28.780001 because it's platued for the past 3 days and it has an okay recent history. New total is 10448.600175"
+41,2019-02-06,10448.600175,28.73,0,10448.600175,"Sold all 0, of stock BAC at 28.73 because it's platued for the past 3 days, but it has a poor recent history. New total is 10448.600175"
+42,2019-02-07,10448.600175,28.24,0,10448.600175,"Sold all 0, of stock BAC at 28.24 because it's platued for the past 3 days, but it has a poor recent history. New total is 10448.600175"
+43,2019-02-08,10448.600175,28.290001,0,10448.600175,Sold all 0 of stock BAC at 28.290001 because it's been falling for 3 consecutive days. New total is 10448.600175
+44,2019-02-11,10448.600175,28.41,0,10448.600175,"Sold all 0, of stock BAC at 28.41 because it's platued for the past 3 days, but it has a poor recent history. New total is 10448.600175"
+45,2019-02-12,10448.600175,28.690001,0,10448.600175,"Sold all 0, of stock BAC at 28.690001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10448.600175"
+46,2019-02-13,1.7998109999989538,28.700001,364,10448.600175,Bought 364 of BAC for 28.700001 because it's been growing for the past 3 days. New total is 10448.600175
+47,2019-02-14,1.7998109999989538,28.389999,364,10335.759446999999,Bought 0 of BAC for 28.389999 because it's been growing for the past 3 days. New total is 10335.759446999999
+48,2019-02-15,10597.840175,29.110001,0,10597.840175,"Sold all 0, of stock BAC at 29.110001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10597.840175"
+49,2019-02-19,10597.840175,29.129999,0,10597.840175,"Sold all 0, of stock BAC at 29.129999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10597.840175"
+50,2019-02-20,10597.840175,29.41,0,10597.840175,"Sold all 0, of stock BAC at 29.41 because it's platued for the past 3 days, but it has a poor recent history. New total is 10597.840175"
+51,2019-02-21,24.149813999998514,29.290001,361,10597.840175,Bought 361 of BAC for 29.290001 because it's been growing for the past 3 days. New total is 10597.840175
+52,2019-02-22,10522.029813999998,29.08,0,10522.029813999998,"Sold all 0, of stock BAC at 29.08 because it's platued for the past 3 days, but it has a poor recent history. New total is 10522.029813999998"
+53,2019-02-25,10522.029813999998,29.27,0,10522.029813999998,"Sold all 0, of stock BAC at 29.27 because it's platued for the past 3 days, but it has a poor recent history. New total is 10522.029813999998"
+54,2019-02-26,10522.029813999998,29.290001,0,10522.029813999998,"Sold all 0, of stock BAC at 29.290001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10522.029813999998"
+55,2019-02-27,10522.029813999998,29.530001,0,10522.029813999998,"Sold all 0, of stock BAC at 29.530001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10522.029813999998"
+56,2019-02-28,24.149813999998514,29.08,361,10522.029813999998,Bought 361 of BAC for 29.08 because it's been growing for the past 3 days. New total is 10522.029813999998
+57,2019-03-01,10605.059453,29.309999,0,10605.059453,"Sold all 0, of stock BAC at 29.309999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+58,2019-03-04,10605.059453,29.030001,0,10605.059453,"Sold all 0, of stock BAC at 29.030001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+59,2019-03-05,10605.059453,29.08,0,10605.059453,"Sold all 0, of stock BAC at 29.08 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+60,2019-03-06,10605.059453,28.84,0,10605.059453,"Sold all 0, of stock BAC at 28.84 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+61,2019-03-07,10605.059453,28.549999,0,10605.059453,"Sold all 0, of stock BAC at 28.549999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+62,2019-03-08,10605.059453,28.65,0,10605.059453,"Sold all 0, of stock BAC at 28.65 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+63,2019-03-11,10605.059453,28.940001,0,10605.059453,"Sold all 0, of stock BAC at 28.940001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+64,2019-03-12,10605.059453,28.940001,0,10605.059453,"Sold all 0, of stock BAC at 28.940001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+65,2019-03-13,10605.059453,29.290001,0,10605.059453,"Sold all 0, of stock BAC at 29.290001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+66,2019-03-14,10605.059453,29.459999,0,10605.059453,"Sold half, 0, of stock BAC at 29.459999 because it's platued for the past 3 days and it has an okay recent history. New total is 10605.059453"
+67,2019-03-15,10605.059453,29.299999,0,10605.059453,"Sold half, 0, of stock BAC at 29.299999 because it's platued for the past 3 days and it has an okay recent history. New total is 10605.059453"
+68,2019-03-18,10605.059453,29.82,0,10605.059453,"Sold half, 0, of stock BAC at 29.82 because it's platued for the past 3 days and it has an okay recent history. New total is 10605.059453"
+69,2019-03-19,10605.059453,29.65,0,10605.059453,"Sold half, 0, of stock BAC at 29.65 because it's platued for the past 3 days and it has an okay recent history. New total is 10605.059453"
+70,2019-03-20,10605.059453,28.639999,0,10605.059453,"Sold all 0, of stock BAC at 28.639999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+71,2019-03-21,10605.059453,28.18,0,10605.059453,"Sold all 0, of stock BAC at 28.18 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+72,2019-03-22,10605.059453,27.01,0,10605.059453,Sold all 0 of stock BAC at 27.01 because it's been falling for 3 consecutive days. New total is 10605.059453
+73,2019-03-25,10605.059453,26.84,0,10605.059453,Sold all 0 of stock BAC at 26.84 because it's been falling for 3 consecutive days. New total is 10605.059453
+74,2019-03-26,10605.059453,27.209999,0,10605.059453,Sold all 0 of stock BAC at 27.209999 because it's been falling for 3 consecutive days. New total is 10605.059453
+75,2019-03-27,10605.059453,27.030001,0,10605.059453,"Sold all 0, of stock BAC at 27.030001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+76,2019-03-28,10605.059453,27.33,0,10605.059453,"Sold all 0, of stock BAC at 27.33 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+77,2019-03-29,10605.059453,27.59,0,10605.059453,"Sold all 0, of stock BAC at 27.59 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+78,2019-04-01,10605.059453,28.540001,0,10605.059453,"Sold all 0, of stock BAC at 28.540001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10605.059453"
+79,2019-04-02,9.769086000000243,28.870001,367,10605.059453,Bought 367 of BAC for 28.870001 because it's been growing for the past 3 days. New total is 10605.059453
+80,2019-04-03,9.769086000000243,28.84,367,10594.049086,Bought 0 of BAC for 28.84 because it's been growing for the past 3 days. New total is 10594.049086
+81,2019-04-04,5373.369086,29.15,184,10707.819086,"Sold half, 183, of stock BAC at 29.15 because it's platued for the past 3 days and it has an okay recent history. New total is 10707.819086"
+82,2019-04-05,8048.729085999999,29.08,92,10724.089086,"Sold half, 92, of stock BAC at 29.08 because it's platued for the past 3 days and it has an okay recent history. New total is 10724.089086"
+83,2019-04-08,9390.549085999999,29.17,46,10732.369085999999,"Sold half, 46, of stock BAC at 29.17 because it's platued for the past 3 days and it has an okay recent history. New total is 10732.369085999999"
+84,2019-04-09,10055.019063,28.889999,23,10719.48904,"Sold half, 23, of stock BAC at 28.889999 because it's platued for the past 3 days and it has an okay recent history. New total is 10719.48904"
+85,2019-04-10,10403.859063,29.07,12,10723.629063,"Sold half, 11, of stock BAC at 29.07 because it's platued for the past 3 days and it has an okay recent history. New total is 10723.629063"
+86,2019-04-11,10578.279063,29.07,6,10752.699063,"Sold half, 6, of stock BAC at 29.07 because it's platued for the past 3 days and it has an okay recent history. New total is 10752.699063"
+87,2019-04-12,10668.789063,30.17,3,10759.299063,"Sold half, 3, of stock BAC at 30.17 because it's platued for the past 3 days and it has an okay recent history. New total is 10759.299063"
+88,2019-04-15,10728.469063,29.84,2,10758.309063,"Sold half, 1, of stock BAC at 29.84 because it's platued for the past 3 days and it has an okay recent history. New total is 10758.309063"
+89,2019-04-16,10758.349062000001,29.879999,1,10788.229061000002,"Sold half, 1, of stock BAC at 29.879999 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.229061000002"
+90,2019-04-17,10788.379063,30.030001,0,10788.379063,"Sold half, 0, of stock BAC at 30.030001 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.379063"
+91,2019-04-18,10788.379063,30.030001,0,10788.379063,"Sold half, 0, of stock BAC at 30.030001 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.379063"
+92,2019-04-22,10788.379063,30.049999,0,10788.379063,"Sold half, 0, of stock BAC at 30.049999 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.379063"
+93,2019-04-23,10788.379063,30.07,0,10788.379063,"Sold half, 0, of stock BAC at 30.07 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.379063"
+94,2019-04-24,10788.379063,30.02,0,10788.379063,"Sold half, 0, of stock BAC at 30.02 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.379063"
+95,2019-04-25,10788.379063,30.08,0,10788.379063,"Sold half, 0, of stock BAC at 30.08 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.379063"
+96,2019-04-26,10788.379063,30.35,0,10788.379063,"Sold half, 0, of stock BAC at 30.35 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.379063"
+97,2019-04-29,10788.379063,30.77,0,10788.379063,"Sold half, 0, of stock BAC at 30.77 because it's platued for the past 3 days and it has an okay recent history. New total is 10788.379063"
+98,2019-04-30,24.21906300000046,30.58,352,10788.379063,Bought 352 of BAC for 30.58 because it's been growing for the past 3 days. New total is 10788.379063
+99,2019-05-01,5349.979063000001,30.26,176,10675.739063,"Sold half, 176, of stock BAC at 30.26 because it's platued for the past 3 days and it has an okay recent history. New total is 10675.739063"
+100,2019-05-02,8033.979063000001,30.5,88,10717.979063,"Sold half, 88, of stock BAC at 30.5 because it's platued for the past 3 days and it has an okay recent history. New total is 10717.979063"
+101,2019-05-03,9385.219019,30.709999,44,10736.458975,"Sold half, 44, of stock BAC at 30.709999 because it's platued for the past 3 days and it has an okay recent history. New total is 10736.458975"
+102,2019-05-06,10055.558997,30.469999,22,10725.898975,"Sold half, 22, of stock BAC at 30.469999 because it's platued for the past 3 days and it has an okay recent history. New total is 10725.898975"
+103,2019-05-07,10384.678997,29.92,11,10713.798997000002,"Sold half, 11, of stock BAC at 29.92 because it's platued for the past 3 days and it has an okay recent history. New total is 10713.798997000002"
+104,2019-05-08,10563.478991000002,29.799999,6,10712.478986000002,"Sold half, 5, of stock BAC at 29.799999 because it's platued for the past 3 days and it has an okay recent history. New total is 10712.478986000002"
+105,2019-05-09,10741.738985000002,29.709999,0,10741.738985000002,Sold all 6 of stock BAC at 29.709999 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+106,2019-05-10,10741.738985000002,29.58,0,10741.738985000002,Sold all 0 of stock BAC at 29.58 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+107,2019-05-13,10741.738985000002,28.25,0,10741.738985000002,Sold all 0 of stock BAC at 28.25 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+108,2019-05-14,10741.738985000002,28.620001,0,10741.738985000002,Sold all 0 of stock BAC at 28.620001 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+109,2019-05-15,10741.738985000002,28.290001,0,10741.738985000002,"Sold all 0, of stock BAC at 28.290001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+110,2019-05-16,10741.738985000002,28.59,0,10741.738985000002,"Sold all 0, of stock BAC at 28.59 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+111,2019-05-17,10741.738985000002,28.4,0,10741.738985000002,"Sold all 0, of stock BAC at 28.4 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+112,2019-05-20,10741.738985000002,28.4,0,10741.738985000002,"Sold all 0, of stock BAC at 28.4 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+113,2019-05-21,10741.738985000002,28.690001,0,10741.738985000002,"Sold all 0, of stock BAC at 28.690001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+114,2019-05-22,10741.738985000002,28.49,0,10741.738985000002,"Sold all 0, of stock BAC at 28.49 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+115,2019-05-23,10741.738985000002,27.76,0,10741.738985000002,"Sold all 0, of stock BAC at 27.76 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+116,2019-05-24,10741.738985000002,28.18,0,10741.738985000002,"Sold all 0, of stock BAC at 28.18 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+117,2019-05-28,10741.738985000002,27.9,0,10741.738985000002,"Sold all 0, of stock BAC at 27.9 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+118,2019-05-29,10741.738985000002,27.75,0,10741.738985000002,"Sold all 0, of stock BAC at 27.75 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+119,2019-05-30,10741.738985000002,27.16,0,10741.738985000002,"Sold all 0, of stock BAC at 27.16 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+120,2019-05-31,10741.738985000002,26.6,0,10741.738985000002,Sold all 0 of stock BAC at 26.6 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+121,2019-06-03,10741.738985000002,26.68,0,10741.738985000002,Sold all 0 of stock BAC at 26.68 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+122,2019-06-04,10741.738985000002,27.92,0,10741.738985000002,"Sold all 0, of stock BAC at 27.92 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+123,2019-06-05,10741.738985000002,27.91,0,10741.738985000002,"Sold all 0, of stock BAC at 27.91 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+124,2019-06-06,10741.738985000002,27.879999,0,10741.738985000002,"Sold all 0, of stock BAC at 27.879999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+125,2019-06-07,10741.738985000002,27.530001,0,10741.738985000002,"Sold all 0, of stock BAC at 27.530001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+126,2019-06-10,10741.738985000002,28.07,0,10741.738985000002,Sold all 0 of stock BAC at 28.07 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+127,2019-06-11,10741.738985000002,28.24,0,10741.738985000002,"Sold all 0, of stock BAC at 28.24 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+128,2019-06-12,10741.738985000002,27.950001,0,10741.738985000002,"Sold all 0, of stock BAC at 27.950001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+129,2019-06-13,10741.738985000002,27.940001,0,10741.738985000002,"Sold all 0, of stock BAC at 27.940001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+130,2019-06-14,10741.738985000002,28.040001,0,10741.738985000002,"Sold all 0, of stock BAC at 28.040001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+131,2019-06-17,10741.738985000002,27.93,0,10741.738985000002,"Sold all 0, of stock BAC at 27.93 because it's platued for the past 3 days, but it has a poor recent history. New total is 10741.738985000002"
+132,2019-06-18,10741.738985000002,28.620001,0,10741.738985000002,"Sold half, 0, of stock BAC at 28.620001 because it's platued for the past 3 days and it has an okay recent history. New total is 10741.738985000002"
+133,2019-06-19,10741.738985000002,28.32,0,10741.738985000002,"Sold half, 0, of stock BAC at 28.32 because it's platued for the past 3 days and it has an okay recent history. New total is 10741.738985000002"
+134,2019-06-20,10741.738985000002,28.27,0,10741.738985000002,"Sold half, 0, of stock BAC at 28.27 because it's platued for the past 3 days and it has an okay recent history. New total is 10741.738985000002"
+135,2019-06-21,10741.738985000002,28.120001,0,10741.738985000002,"Sold half, 0, of stock BAC at 28.120001 because it's platued for the past 3 days and it has an okay recent history. New total is 10741.738985000002"
+136,2019-06-24,10741.738985000002,27.98,0,10741.738985000002,Sold all 0 of stock BAC at 27.98 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+137,2019-06-25,10741.738985000002,27.76,0,10741.738985000002,Sold all 0 of stock BAC at 27.76 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+138,2019-06-26,10741.738985000002,27.91,0,10741.738985000002,Sold all 0 of stock BAC at 27.91 because it's been falling for 3 consecutive days. New total is 10741.738985000002
+139,2019-06-27,10741.738985000002,28.209999,0,10741.738985000002,"Sold half, 0, of stock BAC at 28.209999 because it's platued for the past 3 days and it has an okay recent history. New total is 10741.738985000002"
+140,2019-06-28,10741.738985000002,29.0,0,10741.738985000002,"Sold half, 0, of stock BAC at 29.0 because it's platued for the past 3 days and it has an okay recent history. New total is 10741.738985000002"
+141,2019-07-01,3.4389850000006845,29.42,365,10741.738985000002,Bought 365 of BAC for 29.42 because it's been growing for the past 3 days. New total is 10741.738985000002
+142,2019-07-02,3.4389850000006845,29.15,365,10643.188985,Bought 0 of BAC for 29.15 because it's been growing for the past 3 days. New total is 10643.188985
+143,2019-07-03,5319.588802,29.049999,183,10606.68862,"Sold half, 182, of stock BAC at 29.049999 because it's platued for the past 3 days and it has an okay recent history. New total is 10606.68862"
+144,2019-07-05,8011.508802,29.26,92,10674.168802,"Sold half, 91, of stock BAC at 29.26 because it's platued for the past 3 days and it has an okay recent history. New total is 10674.168802"
+145,2019-07-08,9354.708848,29.200001,46,10697.908894,"Sold half, 46, of stock BAC at 29.200001 because it's platued for the past 3 days and it has an okay recent history. New total is 10697.908894"
+146,2019-07-09,10029.758848,29.35,23,10704.808847999999,"Sold half, 23, of stock BAC at 29.35 because it's platued for the past 3 days and it has an okay recent history. New total is 10704.808847999999"
+147,2019-07-10,10377.998848,29.02,12,10697.218847999999,"Sold half, 11, of stock BAC at 29.02 because it's platued for the past 3 days and it has an okay recent history. New total is 10697.218847999999"
+148,2019-07-11,10554.158854,29.360001,6,10730.31886,"Sold half, 6, of stock BAC at 29.360001 because it's platued for the past 3 days and it has an okay recent history. New total is 10730.31886"
+149,2019-07-12,10642.508856999999,29.450001,3,10730.858859999998,"Sold half, 3, of stock BAC at 29.450001 because it's platued for the past 3 days and it has an okay recent history. New total is 10730.858859999998"
+150,2019-07-15,10700.948854999999,29.219999,2,10730.168854,"Sold half, 1, of stock BAC at 29.219999 because it's platued for the past 3 days and it has an okay recent history. New total is 10730.168854"
+151,2019-07-16,10729.938854999999,28.99,1,10758.928854999998,"Sold half, 1, of stock BAC at 28.99 because it's platued for the past 3 days and it has an okay recent history. New total is 10758.928854999998"
+152,2019-07-17,10759.128856,29.190001,0,10759.128856,"Sold half, 0, of stock BAC at 29.190001 because it's platued for the past 3 days and it has an okay recent history. New total is 10759.128856"
+153,2019-07-18,10759.128856,29.48,0,10759.128856,"Sold half, 0, of stock BAC at 29.48 because it's platued for the past 3 days and it has an okay recent history. New total is 10759.128856"
+154,2019-07-19,10759.128856,29.4,0,10759.128856,"Sold half, 0, of stock BAC at 29.4 because it's platued for the past 3 days and it has an okay recent history. New total is 10759.128856"
+155,2019-07-22,10759.128856,29.57,0,10759.128856,"Sold half, 0, of stock BAC at 29.57 because it's platued for the past 3 days and it has an okay recent history. New total is 10759.128856"
+156,2019-07-23,10759.128856,30.25,0,10759.128856,"Sold half, 0, of stock BAC at 30.25 because it's platued for the past 3 days and it has an okay recent history. New total is 10759.128856"
+157,2019-07-24,10759.128856,30.67,0,10759.128856,"Sold half, 0, of stock BAC at 30.67 because it's platued for the past 3 days and it has an okay recent history. New total is 10759.128856"
+158,2019-07-25,18.768855999998777,30.34,354,10759.128856,Bought 354 of BAC for 30.34 because it's been growing for the past 3 days. New total is 10759.128856
+159,2019-07-26,5465.058855999999,30.77,177,10911.348855999999,"Sold half, 177, of stock BAC at 30.77 because it's platued for the past 3 days and it has an okay recent history. New total is 10911.348855999999"
+160,2019-07-29,8181.3388559999985,30.52,89,10867.098855999999,"Sold half, 88, of stock BAC at 30.52 because it's platued for the past 3 days and it has an okay recent history. New total is 10867.098855999999"
+161,2019-07-30,9571.388810999999,30.889999,45,10930.548766999998,"Sold half, 44, of stock BAC at 30.889999 because it's platued for the past 3 days and it has an okay recent history. New total is 10930.548766999998"
+162,2019-07-31,10277.028810999998,30.68,23,10951.988811,"Sold half, 22, of stock BAC at 30.68 because it's platued for the past 3 days and it has an okay recent history. New total is 10951.988811"
+163,2019-08-01,10955.298810999999,29.49,0,10955.298810999999,"Sold all 0, of stock BAC at 29.49 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+164,2019-08-02,10955.298810999999,29.379999,0,10955.298810999999,"Sold all 0, of stock BAC at 29.379999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+165,2019-08-05,10955.298810999999,28.08,0,10955.298810999999,Sold all 0 of stock BAC at 28.08 because it's been falling for 3 consecutive days. New total is 10955.298810999999
+166,2019-08-06,10955.298810999999,28.42,0,10955.298810999999,Sold all 0 of stock BAC at 28.42 because it's been falling for 3 consecutive days. New total is 10955.298810999999
+167,2019-08-07,10955.298810999999,27.889999,0,10955.298810999999,"Sold all 0, of stock BAC at 27.889999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+168,2019-08-08,10955.298810999999,28.379999,0,10955.298810999999,"Sold all 0, of stock BAC at 28.379999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+169,2019-08-09,10955.298810999999,28.33,0,10955.298810999999,"Sold all 0, of stock BAC at 28.33 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+170,2019-08-12,10955.298810999999,27.639999,0,10955.298810999999,"Sold all 0, of stock BAC at 27.639999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+171,2019-08-13,10955.298810999999,27.719999,0,10955.298810999999,"Sold all 0, of stock BAC at 27.719999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+172,2019-08-14,10955.298810999999,26.42,0,10955.298810999999,"Sold all 0, of stock BAC at 26.42 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+173,2019-08-15,10955.298810999999,26.25,0,10955.298810999999,"Sold all 0, of stock BAC at 26.25 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+174,2019-08-16,10955.298810999999,27.030001,0,10955.298810999999,"Sold all 0, of stock BAC at 27.030001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+175,2019-08-19,10955.298810999999,27.27,0,10955.298810999999,"Sold all 0, of stock BAC at 27.27 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+176,2019-08-20,10955.298810999999,26.719999,0,10955.298810999999,"Sold all 0, of stock BAC at 26.719999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+177,2019-08-21,10955.298810999999,26.93,0,10955.298810999999,"Sold all 0, of stock BAC at 26.93 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+178,2019-08-22,10955.298810999999,27.190001,0,10955.298810999999,"Sold all 0, of stock BAC at 27.190001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+179,2019-08-23,10955.298810999999,26.469999,0,10955.298810999999,"Sold all 0, of stock BAC at 26.469999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+180,2019-08-26,10955.298810999999,26.780001,0,10955.298810999999,"Sold all 0, of stock BAC at 26.780001 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+181,2019-08-27,10955.298810999999,26.469999,0,10955.298810999999,"Sold all 0, of stock BAC at 26.469999 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+182,2019-08-28,10955.298810999999,26.85,0,10955.298810999999,"Sold all 0, of stock BAC at 26.85 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+183,2019-08-29,10955.298810999999,27.33,0,10955.298810999999,"Sold all 0, of stock BAC at 27.33 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+184,2019-08-30,10955.298810999999,27.51,0,10955.298810999999,"Sold all 0, of stock BAC at 27.51 because it's platued for the past 3 days, but it has a poor recent history. New total is 10955.298810999999"
+185,2019-09-03,0.049215999999432825,27.049999,405,10955.298810999999,Bought 405 of BAC for 27.049999 because it's been growing for the past 3 days. New total is 10955.298810999999
+186,2019-09-04,11133.499215999998,27.49,0,11133.499215999998,"Sold all 0, of stock BAC at 27.49 because it's platued for the past 3 days, but it has a poor recent history. New total is 11133.499215999998"
+187,2019-09-05,11133.499215999998,28.120001,0,11133.499215999998,"Sold all 0, of stock BAC at 28.120001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11133.499215999998"
+188,2019-09-06,11133.499215999998,27.73,0,11133.499215999998,"Sold all 0, of stock BAC at 27.73 because it's platued for the past 3 days, but it has a poor recent history. New total is 11133.499215999998"
+189,2019-09-09,11133.499215999998,28.629999,0,11133.499215999998,"Sold all 0, of stock BAC at 28.629999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11133.499215999998"
+190,2019-09-10,11133.499215999998,29.35,0,11133.499215999998,"Sold half, 0, of stock BAC at 29.35 because it's platued for the past 3 days and it has an okay recent history. New total is 11133.499215999998"
+191,2019-09-11,11133.499215999998,29.459999,0,11133.499215999998,"Sold half, 0, of stock BAC at 29.459999 because it's platued for the past 3 days and it has an okay recent history. New total is 11133.499215999998"
+192,2019-09-12,7.249215999998341,29.67,375,11133.499215999998,Bought 375 of BAC for 29.67 because it's been growing for the past 3 days. New total is 11133.499215999998
+193,2019-09-13,7.249215999998341,30.17,375,11320.999215999998,Bought 0 of BAC for 30.17 because it's been growing for the past 3 days. New total is 11320.999215999998
+194,2019-09-16,7.249215999998341,30.129999,375,11305.998840999999,Bought 0 of BAC for 30.129999 because it's been growing for the past 3 days. New total is 11305.998840999999
+195,2019-09-17,5635.969403999998,29.940001,188,11234.749590999996,"Sold half, 187, of stock BAC at 29.940001 because it's platued for the past 3 days and it has an okay recent history. New total is 11234.749590999996"
+196,2019-09-18,8455.969403999998,30.0,94,11275.969403999998,"Sold half, 94, of stock BAC at 30.0 because it's platued for the past 3 days and it has an okay recent history. New total is 11275.969403999998"
+197,2019-09-19,9857.509403999997,29.82,47,11259.049403999998,"Sold half, 47, of stock BAC at 29.82 because it's platued for the past 3 days and it has an okay recent history. New total is 11259.049403999998"
+198,2019-09-20,10567.669403999997,29.59,24,11248.239403999996,"Sold half, 23, of stock BAC at 29.59 because it's platued for the past 3 days and it has an okay recent history. New total is 11248.239403999996"
+199,2019-09-23,10921.909403999996,29.52,12,11276.149403999996,"Sold half, 12, of stock BAC at 29.52 because it's platued for the past 3 days and it has an okay recent history. New total is 11276.149403999996"
+200,2019-09-24,11269.189415999996,28.940001,0,11269.189415999996,Sold all 12 of stock BAC at 28.940001 because it's been falling for 3 consecutive days. New total is 11269.189415999996
+201,2019-09-25,11269.189415999996,29.25,0,11269.189415999996,Sold all 0 of stock BAC at 29.25 because it's been falling for 3 consecutive days. New total is 11269.189415999996
+202,2019-09-26,11269.189415999996,29.129999,0,11269.189415999996,"Sold half, 0, of stock BAC at 29.129999 because it's platued for the past 3 days and it has an okay recent history. New total is 11269.189415999996"
+203,2019-09-27,11269.189415999996,29.35,0,11269.189415999996,"Sold half, 0, of stock BAC at 29.35 because it's platued for the past 3 days and it has an okay recent history. New total is 11269.189415999996"
+204,2019-09-30,11269.189415999996,29.17,0,11269.189415999996,"Sold half, 0, of stock BAC at 29.17 because it's platued for the past 3 days and it has an okay recent history. New total is 11269.189415999996"
+205,2019-10-01,11269.189415999996,28.440001,0,11269.189415999996,"Sold half, 0, of stock BAC at 28.440001 because it's platued for the past 3 days and it has an okay recent history. New total is 11269.189415999996"
+206,2019-10-02,11269.189415999996,27.84,0,11269.189415999996,"Sold all 0, of stock BAC at 27.84 because it's platued for the past 3 days, but it has a poor recent history. New total is 11269.189415999996"
+207,2019-10-03,11269.189415999996,27.809999,0,11269.189415999996,Sold all 0 of stock BAC at 27.809999 because it's been falling for 3 consecutive days. New total is 11269.189415999996
+208,2019-10-04,11269.189415999996,28.370001,0,11269.189415999996,Sold all 0 of stock BAC at 28.370001 because it's been falling for 3 consecutive days. New total is 11269.189415999996
+209,2019-10-07,11269.189415999996,28.309999,0,11269.189415999996,"Sold all 0, of stock BAC at 28.309999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11269.189415999996"
+210,2019-10-08,11269.189415999996,27.629999,0,11269.189415999996,"Sold all 0, of stock BAC at 27.629999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11269.189415999996"
+211,2019-10-09,11269.189415999996,27.889999,0,11269.189415999996,"Sold all 0, of stock BAC at 27.889999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11269.189415999996"
+212,2019-10-10,11269.189415999996,28.450001,0,11269.189415999996,"Sold all 0, of stock BAC at 28.450001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11269.189415999996"
+213,2019-10-11,11269.189415999996,28.91,0,11269.189415999996,"Sold all 0, of stock BAC at 28.91 because it's platued for the past 3 days, but it has a poor recent history. New total is 11269.189415999996"
+214,2019-10-14,21.14980199999627,29.139999,386,11269.189415999996,Bought 386 of BAC for 29.139999 because it's been growing for the past 3 days. New total is 11269.189415999996
+215,2019-10-15,21.14980199999627,29.73,386,11496.929801999997,Bought 0 of BAC for 29.73 because it's been growing for the past 3 days. New total is 11496.929801999997
+216,2019-10-16,21.14980199999627,30.17,386,11666.769801999997,Bought 0 of BAC for 30.17 because it's been growing for the past 3 days. New total is 11666.769801999997
+217,2019-10-17,21.14980199999627,30.26,386,11701.509801999997,Bought 0 of BAC for 30.26 because it's been growing for the past 3 days. New total is 11701.509801999997
+218,2019-10-18,21.14980199999627,30.35,386,11736.249801999997,Bought 0 of BAC for 30.35 because it's been growing for the past 3 days. New total is 11736.249801999997
+219,2019-10-21,21.14980199999627,31.02,386,11994.869801999996,Bought 0 of BAC for 31.02 because it's been growing for the past 3 days. New total is 11994.869801999996
+220,2019-10-22,21.14980199999627,31.200001,386,12064.350187999997,Bought 0 of BAC for 31.200001 because it's been growing for the past 3 days. New total is 12064.350187999997
+221,2019-10-23,21.14980199999627,31.42,386,12149.269801999997,Bought 0 of BAC for 31.42 because it's been growing for the past 3 days. New total is 12149.269801999997
+222,2019-10-24,21.14980199999627,31.360001,386,12126.110187999997,Bought 0 of BAC for 31.360001 because it's been growing for the past 3 days. New total is 12126.110187999997
+223,2019-10-25,6143.109608999996,31.719999,193,12265.069415999997,"Sold half, 193, of stock BAC at 31.719999 because it's platued for the past 3 days and it has an okay recent history. New total is 12265.069415999997"
+224,2019-10-28,9231.589608999997,31.84,97,12288.229608999996,"Sold half, 96, of stock BAC at 31.84 because it's platued for the past 3 days and it has an okay recent history. New total is 12288.229608999996"
+225,2019-10-29,10803.019608999997,32.07,49,12342.379608999998,"Sold half, 48, of stock BAC at 32.07 because it's platued for the past 3 days and it has an okay recent history. New total is 12342.379608999998"
+226,2019-10-30,20.59926799999812,31.620001,390,12352.399657999997,Bought 341 of BAC for 31.620001 because it's been growing for the past 3 days. New total is 12352.399657999997
+227,2019-10-31,6118.249267999998,31.27,195,12215.899267999997,"Sold half, 195, of stock BAC at 31.27 because it's platued for the past 3 days and it has an okay recent history. New total is 12215.899267999997"
+228,2019-11-01,9234.649169999997,31.799999,98,12319.249072999997,"Sold half, 97, of stock BAC at 31.799999 because it's platued for the past 3 days and it has an okay recent history. New total is 12319.249072999997"
+229,2019-11-04,10822.249267999998,32.400002,49,12409.849365999999,"Sold half, 49, of stock BAC at 32.400002 because it's platued for the past 3 days and it has an okay recent history. New total is 12409.849365999999"
+230,2019-11-05,11642.749267999998,32.82,25,12430.429267999998,"Sold half, 24, of stock BAC at 32.82 because it's platued for the past 3 days and it has an okay recent history. New total is 12430.429267999998"
+231,2019-11-06,2.29891299999872,32.790001,380,12462.499292999997,Bought 355 of BAC for 32.790001 because it's been growing for the past 3 days. New total is 12462.499292999997
+232,2019-11-07,6315.9989129999985,33.23,190,12629.698912999998,"Sold half, 190, of stock BAC at 33.23 because it's platued for the past 3 days and it has an okay recent history. New total is 12629.698912999998"
+233,2019-11-08,9475.698722999998,33.259998,95,12635.398532999998,"Sold half, 95, of stock BAC at 33.259998 because it's platued for the past 3 days and it has an okay recent history. New total is 12635.398532999998"
+234,2019-11-11,11068.338722999997,33.18,48,12627.798722999996,"Sold half, 47, of stock BAC at 33.18 because it's platued for the past 3 days and it has an okay recent history. New total is 12627.798722999996"
+235,2019-11-12,11862.498722999997,33.09,24,12656.658722999997,"Sold half, 24, of stock BAC at 33.09 because it's platued for the past 3 days and it has an okay recent history. New total is 12656.658722999997"
+236,2019-11-13,12255.978734999997,32.790001,12,12649.458746999997,"Sold half, 12, of stock BAC at 32.790001 because it's platued for the past 3 days and it has an okay recent history. New total is 12649.458746999997"
+237,2019-11-14,12648.378746999997,32.700001,0,12648.378746999997,Sold all 12 of stock BAC at 32.700001 because it's been falling for 3 consecutive days. New total is 12648.378746999997
+238,2019-11-15,12648.378746999997,32.93,0,12648.378746999997,Sold all 0 of stock BAC at 32.93 because it's been falling for 3 consecutive days. New total is 12648.378746999997
+239,2019-11-18,12648.378746999997,32.959999,0,12648.378746999997,"Sold half, 0, of stock BAC at 32.959999 because it's platued for the past 3 days and it has an okay recent history. New total is 12648.378746999997"
+240,2019-11-19,12648.378746999997,32.939999,0,12648.378746999997,"Sold half, 0, of stock BAC at 32.939999 because it's platued for the past 3 days and it has an okay recent history. New total is 12648.378746999997"
+241,2019-11-20,12648.378746999997,32.689999,0,12648.378746999997,"Sold half, 0, of stock BAC at 32.689999 because it's platued for the past 3 days and it has an okay recent history. New total is 12648.378746999997"
+242,2019-11-21,12648.378746999997,32.84,0,12648.378746999997,"Sold half, 0, of stock BAC at 32.84 because it's platued for the past 3 days and it has an okay recent history. New total is 12648.378746999997"
+243,2019-11-22,12648.378746999997,33.18,0,12648.378746999997,"Sold half, 0, of stock BAC at 33.18 because it's platued for the past 3 days and it has an okay recent history. New total is 12648.378746999997"
+244,2019-11-25,12648.378746999997,33.470001,0,12648.378746999997,"Sold half, 0, of stock BAC at 33.470001 because it's platued for the past 3 days and it has an okay recent history. New total is 12648.378746999997"
+245,2019-11-26,8.729504999997516,33.349998,379,12648.378746999997,Bought 379 of BAC for 33.349998 because it's been growing for the past 3 days. New total is 12648.378746999997
+246,2019-11-27,6358.529124999997,33.419998,190,12674.908746999998,"Sold half, 189, of stock BAC at 33.419998 because it's platued for the past 3 days and it has an okay recent history. New total is 12674.908746999998"
+247,2019-11-29,9523.929124999997,33.32,95,12689.329124999997,"Sold half, 95, of stock BAC at 33.32 because it's platued for the past 3 days and it has an okay recent history. New total is 12689.329124999997"
+248,2019-12-02,11128.569124999996,33.43,48,12699.779124999997,"Sold half, 47, of stock BAC at 33.43 because it's platued for the past 3 days and it has an okay recent history. New total is 12699.779124999997"
+249,2019-12-03,11916.729124999996,32.84,24,12704.889124999996,"Sold half, 24, of stock BAC at 32.84 because it's platued for the past 3 days and it has an okay recent history. New total is 12704.889124999996"
+250,2019-12-04,12314.529148999996,33.150002,12,12712.329172999996,"Sold half, 12, of stock BAC at 33.150002 because it's platued for the past 3 days and it has an okay recent history. New total is 12712.329172999996"
+251,2019-12-05,12513.069148999997,33.09,6,12711.609148999998,"Sold half, 6, of stock BAC at 33.09 because it's platued for the past 3 days and it has an okay recent history. New total is 12711.609148999998"
+252,2019-12-06,12614.079142999997,33.669998,3,12715.089136999997,"Sold half, 3, of stock BAC at 33.669998 because it's platued for the past 3 days and it has an okay recent history. New total is 12715.089136999997"
+253,2019-12-09,12681.099138999998,33.509998,2,12714.609136999998,"Sold half, 1, of stock BAC at 33.509998 because it's platued for the past 3 days and it has an okay recent history. New total is 12714.609136999998"
+254,2019-12-10,12714.629137999998,33.529999,1,12748.159136999999,"Sold half, 1, of stock BAC at 33.529999 because it's platued for the past 3 days and it has an okay recent history. New total is 12748.159136999999"
+255,2019-12-11,12748.269137,33.639999,0,12748.269137,"Sold half, 0, of stock BAC at 33.639999 because it's platued for the past 3 days and it has an okay recent history. New total is 12748.269137"
+256,2019-12-12,12748.269137,34.68,0,12748.269137,"Sold half, 0, of stock BAC at 34.68 because it's platued for the past 3 days and it has an okay recent history. New total is 12748.269137"
+257,2019-12-13,5.469506999999794,34.439999,370,12748.269137,Bought 370 of BAC for 34.439999 because it's been growing for the past 3 days. New total is 12748.269137
+258,2019-12-16,6424.969692,34.700001,185,12844.469877,"Sold half, 185, of stock BAC at 34.700001 because it's platued for the past 3 days and it has an okay recent history. New total is 12844.469877"
+259,2019-12-17,9683.689784999999,35.040001,93,12907.369876999997,"Sold half, 92, of stock BAC at 35.040001 because it's platued for the past 3 days and it has an okay recent history. New total is 12907.369876999997"
+260,2019-12-18,11333.859831999998,35.110001,47,12948.919877999999,"Sold half, 46, of stock BAC at 35.110001 because it's platued for the past 3 days and it has an okay recent history. New total is 12948.919877999999"
+261,2019-12-19,10.05950799999846,34.950001,371,12976.509879,Bought 324 of BAC for 34.950001 because it's been growing for the past 3 days. New total is 12976.509879
+262,2019-12-20,6512.619321999999,34.959999,186,12980.219137,"Sold half, 185, of stock BAC at 34.959999 because it's platued for the past 3 days and it has an okay recent history. New total is 12980.219137"
+263,2019-12-23,9783.429135999999,35.169998,93,13054.238949999999,"Sold half, 93, of stock BAC at 35.169998 because it's platued for the past 3 days and it has an okay recent history. New total is 13054.238949999999"
+264,2019-12-24,11438.769182999999,35.220001,47,13058.889228999999,"Sold half, 46, of stock BAC at 35.220001 because it's platued for the past 3 days and it has an okay recent history. New total is 13058.889228999999"
+265,2019-12-26,1.329182999998011,35.52,369,13108.209182999999,Bought 322 of BAC for 35.52 because it's been growing for the past 3 days. New total is 13108.209182999999
+266,2019-12-27,1.329182999998011,35.349998,369,13045.478444999997,Bought 0 of BAC for 35.349998 because it's been growing for the past 3 days. New total is 13045.478444999997
+267,2019-12-30,6504.079552999998,35.150002,185,12971.679920999999,"Sold half, 184, of stock BAC at 35.150002 because it's platued for the past 3 days and it has an okay recent history. New total is 12971.679920999999"
+268,2019-12-31,9779.539645999997,35.220001,93,13019.779737999997,"Sold half, 92, of stock BAC at 35.220001 because it's platued for the past 3 days and it has an okay recent history. New total is 13019.779737999997"
+269,2020-01-02,11454.619598999998,35.639999,47,13094.059552999997,"Sold half, 46, of stock BAC at 35.639999 because it's platued for the past 3 days and it has an okay recent history. New total is 13094.059552999997"
+270,2020-01-03,12292.219646999998,34.900002,24,13094.919692999998,"Sold half, 23, of stock BAC at 34.900002 because it's platued for the past 3 days and it has an okay recent history. New total is 13094.919692999998"
+271,2020-01-06,12710.419622999998,34.849998,12,13128.619598999998,"Sold half, 12, of stock BAC at 34.849998 because it's platued for the past 3 days and it has an okay recent history. New total is 13128.619598999998"
+272,2020-01-07,12918.139616999997,34.619999,6,13125.859610999996,"Sold half, 6, of stock BAC at 34.619999 because it's platued for the past 3 days and it has an okay recent history. New total is 13125.859610999996"
+273,2020-01-08,13127.959622999997,34.970001,0,13127.959622999997,Sold all 6 of stock BAC at 34.970001 because it's been falling for 3 consecutive days. New total is 13127.959622999997
+274,2020-01-09,13127.959622999997,35.029999,0,13127.959622999997,"Sold half, 0, of stock BAC at 35.029999 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+275,2020-01-10,13127.959622999997,34.740002,0,13127.959622999997,"Sold half, 0, of stock BAC at 34.740002 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+276,2020-01-13,13127.959622999997,35.060001,0,13127.959622999997,"Sold half, 0, of stock BAC at 35.060001 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+277,2020-01-14,13127.959622999997,35.32,0,13127.959622999997,"Sold half, 0, of stock BAC at 35.32 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+278,2020-01-15,13127.959622999997,34.669998,0,13127.959622999997,"Sold half, 0, of stock BAC at 34.669998 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+279,2020-01-16,13127.959622999997,34.720001,0,13127.959622999997,"Sold half, 0, of stock BAC at 34.720001 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+280,2020-01-17,13127.959622999997,34.709999,0,13127.959622999997,"Sold half, 0, of stock BAC at 34.709999 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+281,2020-01-21,13127.959622999997,34.259998,0,13127.959622999997,"Sold half, 0, of stock BAC at 34.259998 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+282,2020-01-22,13127.959622999997,34.360001,0,13127.959622999997,"Sold half, 0, of stock BAC at 34.360001 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+283,2020-01-23,13127.959622999997,34.119999,0,13127.959622999997,"Sold half, 0, of stock BAC at 34.119999 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+284,2020-01-24,13127.959622999997,33.540001,0,13127.959622999997,"Sold half, 0, of stock BAC at 33.540001 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+285,2020-01-27,13127.959622999997,32.849998,0,13127.959622999997,"Sold half, 0, of stock BAC at 32.849998 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+286,2020-01-28,13127.959622999997,33.240002,0,13127.959622999997,Sold all 0 of stock BAC at 33.240002 because it's been falling for 3 consecutive days. New total is 13127.959622999997
+287,2020-01-29,13127.959622999997,33.009998,0,13127.959622999997,"Sold half, 0, of stock BAC at 33.009998 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+288,2020-01-30,13127.959622999997,33.48,0,13127.959622999997,"Sold half, 0, of stock BAC at 33.48 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+289,2020-01-31,13127.959622999997,32.830002,0,13127.959622999997,"Sold half, 0, of stock BAC at 32.830002 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+290,2020-02-03,13127.959622999997,32.970001,0,13127.959622999997,"Sold half, 0, of stock BAC at 32.970001 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+291,2020-02-04,13127.959622999997,33.619999,0,13127.959622999997,"Sold half, 0, of stock BAC at 33.619999 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+292,2020-02-05,13127.959622999997,34.709999,0,13127.959622999997,"Sold half, 0, of stock BAC at 34.709999 because it's platued for the past 3 days and it has an okay recent history. New total is 13127.959622999997"
+293,2020-02-06,22.700378999996246,34.669998,378,13127.959622999997,Bought 378 of BAC for 34.669998 because it's been growing for the past 3 days. New total is 13127.959622999997
+294,2020-02-07,6563.990567999996,34.610001,189,13105.280756999995,"Sold half, 189, of stock BAC at 34.610001 because it's platued for the past 3 days and it has an okay recent history. New total is 13105.280756999995"
+295,2020-02-10,9859.540472999995,34.689999,95,13120.400378999995,"Sold half, 94, of stock BAC at 34.689999 because it's platued for the past 3 days and it has an okay recent history. New total is 13120.400378999995"
+296,2020-02-11,11528.500472999996,34.77,48,13162.690472999997,"Sold half, 47, of stock BAC at 34.77 because it's platued for the past 3 days and it has an okay recent history. New total is 13162.690472999997"
+297,2020-02-12,12366.580424999996,34.919998,24,13204.660376999997,"Sold half, 24, of stock BAC at 34.919998 because it's platued for the past 3 days and it has an okay recent history. New total is 13204.660376999997"
+298,2020-02-13,8.440424999997049,34.91,378,13204.420424999997,Bought 354 of BAC for 34.91 because it's been growing for the past 3 days. New total is 13204.420424999997
+299,2020-02-14,6595.090046999997,34.849998,189,13181.739668999997,"Sold half, 189, of stock BAC at 34.849998 because it's platued for the past 3 days and it has an okay recent history. New total is 13181.739668999997"
+300,2020-02-18,9850.740046999998,34.27,95,13072.120046999997,"Sold half, 94, of stock BAC at 34.27 because it's platued for the past 3 days and it has an okay recent history. New total is 13072.120046999997"
+301,2020-02-19,13149.140141999998,34.720001,0,13149.140141999998,Sold all 95 of stock BAC at 34.720001 because it's been falling for 3 consecutive days. New total is 13149.140141999998
+302,2020-02-20,13149.140141999998,34.849998,0,13149.140141999998,"Sold half, 0, of stock BAC at 34.849998 because it's platued for the past 3 days and it has an okay recent history. New total is 13149.140141999998"
+303,2020-02-21,13149.140141999998,34.360001,0,13149.140141999998,"Sold half, 0, of stock BAC at 34.360001 because it's platued for the past 3 days and it has an okay recent history. New total is 13149.140141999998"
+304,2020-02-24,13149.140141999998,32.73,0,13149.140141999998,"Sold half, 0, of stock BAC at 32.73 because it's platued for the past 3 days and it has an okay recent history. New total is 13149.140141999998"
+305,2020-02-25,13149.140141999998,31.08,0,13149.140141999998,"Sold half, 0, of stock BAC at 31.08 because it's platued for the past 3 days and it has an okay recent history. New total is 13149.140141999998"
+306,2020-02-26,13149.140141999998,30.629999,0,13149.140141999998,Sold all 0 of stock BAC at 30.629999 because it's been falling for 3 consecutive days. New total is 13149.140141999998
+307,2020-02-27,13149.140141999998,29.129999,0,13149.140141999998,Sold all 0 of stock BAC at 29.129999 because it's been falling for 3 consecutive days. New total is 13149.140141999998
+308,2020-02-28,13149.140141999998,28.5,0,13149.140141999998,Sold all 0 of stock BAC at 28.5 because it's been falling for 3 consecutive days. New total is 13149.140141999998
+309,2020-03-02,13149.140141999998,29.370001,0,13149.140141999998,Sold all 0 of stock BAC at 29.370001 because it's been falling for 3 consecutive days. New total is 13149.140141999998
+310,2020-03-03,13149.140141999998,27.75,0,13149.140141999998,"Sold all 0, of stock BAC at 27.75 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+311,2020-03-04,13149.140141999998,28.389999,0,13149.140141999998,"Sold all 0, of stock BAC at 28.389999 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+312,2020-03-05,13149.140141999998,26.780001,0,13149.140141999998,"Sold all 0, of stock BAC at 26.780001 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+313,2020-03-06,13149.140141999998,25.709999,0,13149.140141999998,"Sold all 0, of stock BAC at 25.709999 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+314,2020-03-09,13149.140141999998,21.93,0,13149.140141999998,"Sold all 0, of stock BAC at 21.93 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+315,2020-03-10,13149.140141999998,23.610001,0,13149.140141999998,Sold all 0 of stock BAC at 23.610001 because it's been falling for 3 consecutive days. New total is 13149.140141999998
+316,2020-03-11,13149.140141999998,22.67,0,13149.140141999998,"Sold all 0, of stock BAC at 22.67 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+317,2020-03-12,13149.140141999998,20.51,0,13149.140141999998,"Sold all 0, of stock BAC at 20.51 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+318,2020-03-13,13149.140141999998,24.16,0,13149.140141999998,"Sold all 0, of stock BAC at 24.16 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+319,2020-03-16,13149.140141999998,20.440001,0,13149.140141999998,"Sold all 0, of stock BAC at 20.440001 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+320,2020-03-17,13149.140141999998,21.98,0,13149.140141999998,"Sold all 0, of stock BAC at 21.98 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+321,2020-03-18,13149.140141999998,20.790001,0,13149.140141999998,"Sold all 0, of stock BAC at 20.790001 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+322,2020-03-19,13149.140141999998,21.200001,0,13149.140141999998,"Sold all 0, of stock BAC at 21.200001 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+323,2020-03-20,13149.140141999998,19.67,0,13149.140141999998,"Sold all 0, of stock BAC at 19.67 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+324,2020-03-23,13149.140141999998,18.08,0,13149.140141999998,"Sold all 0, of stock BAC at 18.08 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+325,2020-03-24,13149.140141999998,21.030001,0,13149.140141999998,"Sold all 0, of stock BAC at 21.030001 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+326,2020-03-25,13149.140141999998,21.1,0,13149.140141999998,"Sold all 0, of stock BAC at 21.1 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+327,2020-03-26,13149.140141999998,22.719999,0,13149.140141999998,"Sold all 0, of stock BAC at 22.719999 because it's platued for the past 3 days, but it has a poor recent history. New total is 13149.140141999998"
+328,2020-03-27,16.340141999997286,21.6,608,13149.140141999998,Bought 608 of BAC for 21.6 because it's been growing for the past 3 days. New total is 13149.140141999998
+329,2020-03-30,13416.660749999997,22.040001,0,13416.660749999997,"Sold all 0, of stock BAC at 22.040001 because it's platued for the past 3 days, but it has a poor recent history. New total is 13416.660749999997"
+330,2020-03-31,13416.660749999997,21.23,0,13416.660749999997,"Sold all 0, of stock BAC at 21.23 because it's platued for the past 3 days, but it has a poor recent history. New total is 13416.660749999997"
+331,2020-04-01,13416.660749999997,19.77,0,13416.660749999997,"Sold all 0, of stock BAC at 19.77 because it's platued for the past 3 days, but it has a poor recent history. New total is 13416.660749999997"
+332,2020-04-02,13416.660749999997,20.57,0,13416.660749999997,"Sold all 0, of stock BAC at 20.57 because it's platued for the past 3 days, but it has a poor recent history. New total is 13416.660749999997"
+333,2020-04-03,13416.660749999997,20.030001,0,13416.660749999997,"Sold all 0, of stock BAC at 20.030001 because it's platued for the past 3 days, but it has a poor recent history. New total is 13416.660749999997"
+334,2020-04-06,13416.660749999997,21.389999,0,13416.660749999997,"Sold all 0, of stock BAC at 21.389999 because it's platued for the past 3 days, but it has a poor recent history. New total is 13416.660749999997"
+335,2020-04-07,13416.660749999997,22.139999,0,13416.660749999997,"Sold all 0, of stock BAC at 22.139999 because it's platued for the past 3 days, but it has a poor recent history. New total is 13416.660749999997"
+336,2020-04-08,13416.660749999997,23.450001,0,13416.660749999997,"Sold all 0, of stock BAC at 23.450001 because it's platued for the past 3 days, but it has a poor recent history. New total is 13416.660749999997"
+337,2020-04-09,17.120210999997653,24.860001,539,13416.660749999997,Bought 539 of BAC for 24.860001 because it's been growing for the past 3 days. New total is 13416.660749999997
+338,2020-04-13,17.120210999997653,23.92,539,12910.000210999999,Bought 0 of BAC for 23.92 because it's been growing for the past 3 days. New total is 12910.000210999999
+339,2020-04-14,12807.590210999997,23.73,0,12807.590210999997,"Sold all 0, of stock BAC at 23.73 because it's platued for the past 3 days, but it has a poor recent history. New total is 12807.590210999997"
+340,2020-04-15,12807.590210999997,22.190001,0,12807.590210999997,"Sold all 0, of stock BAC at 22.190001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12807.590210999997"
+341,2020-04-16,12807.590210999997,21.42,0,12807.590210999997,Sold all 0 of stock BAC at 21.42 because it's been falling for 3 consecutive days. New total is 12807.590210999997
+342,2020-04-17,12807.590210999997,23.280001,0,12807.590210999997,Sold all 0 of stock BAC at 23.280001 because it's been falling for 3 consecutive days. New total is 12807.590210999997
+343,2020-04-20,12807.590210999997,22.5,0,12807.590210999997,"Sold all 0, of stock BAC at 22.5 because it's platued for the past 3 days, but it has a poor recent history. New total is 12807.590210999997"
+344,2020-04-21,12807.590210999997,21.639999,0,12807.590210999997,"Sold all 0, of stock BAC at 21.639999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12807.590210999997"
+345,2020-04-22,12807.590210999997,21.799999,0,12807.590210999997,"Sold all 0, of stock BAC at 21.799999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12807.590210999997"
+346,2020-04-23,12807.590210999997,21.870001,0,12807.590210999997,"Sold all 0, of stock BAC at 21.870001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12807.590210999997"
+347,2020-04-24,12807.590210999997,22.18,0,12807.590210999997,"Sold all 0, of stock BAC at 22.18 because it's platued for the past 3 days, but it has a poor recent history. New total is 12807.590210999997"
+348,2020-04-27,16.440755999996327,23.469999,545,12807.590210999997,Bought 545 of BAC for 23.469999 because it's been growing for the past 3 days. New total is 12807.590210999997
+349,2020-04-28,16.440755999996327,23.889999,545,13036.490210999997,Bought 0 of BAC for 23.889999 because it's been growing for the past 3 days. New total is 13036.490210999997
+350,2020-04-29,16.440755999996327,24.780001,545,13521.541300999996,Bought 0 of BAC for 24.780001 because it's been growing for the past 3 days. New total is 13521.541300999996
+351,2020-04-30,16.440755999996327,24.049999,545,13123.690210999996,Bought 0 of BAC for 24.049999 because it's been growing for the past 3 days. New total is 13123.690210999996
+352,2020-05-01,12595.040755999995,23.08,0,12595.040755999995,"Sold all 0, of stock BAC at 23.08 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+353,2020-05-04,12595.040755999995,22.93,0,12595.040755999995,"Sold all 0, of stock BAC at 22.93 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+354,2020-05-05,12595.040755999995,22.66,0,12595.040755999995,Sold all 0 of stock BAC at 22.66 because it's been falling for 3 consecutive days. New total is 12595.040755999995
+355,2020-05-06,12595.040755999995,22.35,0,12595.040755999995,Sold all 0 of stock BAC at 22.35 because it's been falling for 3 consecutive days. New total is 12595.040755999995
+356,2020-05-07,12595.040755999995,22.84,0,12595.040755999995,Sold all 0 of stock BAC at 22.84 because it's been falling for 3 consecutive days. New total is 12595.040755999995
+357,2020-05-08,12595.040755999995,23.57,0,12595.040755999995,"Sold all 0, of stock BAC at 23.57 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+358,2020-05-11,12595.040755999995,22.58,0,12595.040755999995,"Sold all 0, of stock BAC at 22.58 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+359,2020-05-12,12595.040755999995,21.870001,0,12595.040755999995,"Sold all 0, of stock BAC at 21.870001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+360,2020-05-13,12595.040755999995,20.870001,0,12595.040755999995,"Sold all 0, of stock BAC at 20.870001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+361,2020-05-14,12595.040755999995,21.709999,0,12595.040755999995,Sold all 0 of stock BAC at 21.709999 because it's been falling for 3 consecutive days. New total is 12595.040755999995
+362,2020-05-15,12595.040755999995,21.440001,0,12595.040755999995,"Sold all 0, of stock BAC at 21.440001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+363,2020-05-18,12595.040755999995,22.93,0,12595.040755999995,"Sold all 0, of stock BAC at 22.93 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+364,2020-05-19,12595.040755999995,22.209999,0,12595.040755999995,"Sold all 0, of stock BAC at 22.209999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+365,2020-05-20,12595.040755999995,22.91,0,12595.040755999995,"Sold all 0, of stock BAC at 22.91 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+366,2020-05-21,12595.040755999995,22.9,0,12595.040755999995,"Sold all 0, of stock BAC at 22.9 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+367,2020-05-22,12595.040755999995,22.66,0,12595.040755999995,"Sold all 0, of stock BAC at 22.66 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+368,2020-05-26,12595.040755999995,24.280001,0,12595.040755999995,"Sold all 0, of stock BAC at 24.280001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+369,2020-05-27,12595.040755999995,25.98,0,12595.040755999995,"Sold all 0, of stock BAC at 25.98 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+370,2020-05-28,12595.040755999995,24.860001,0,12595.040755999995,"Sold all 0, of stock BAC at 24.860001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+371,2020-05-29,12595.040755999995,24.120001,0,12595.040755999995,"Sold all 0, of stock BAC at 24.120001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+372,2020-06-01,12595.040755999995,24.610001,0,12595.040755999995,"Sold all 0, of stock BAC at 24.610001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+373,2020-06-02,12595.040755999995,24.84,0,12595.040755999995,"Sold all 0, of stock BAC at 24.84 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+374,2020-06-03,12595.040755999995,25.99,0,12595.040755999995,"Sold all 0, of stock BAC at 25.99 because it's platued for the past 3 days, but it has a poor recent history. New total is 12595.040755999995"
+375,2020-06-04,8.440285999995467,26.780001,470,12595.040755999995,Bought 470 of BAC for 26.780001 because it's been growing for the past 3 days. New total is 12595.040755999995
+376,2020-06-05,8.440285999995467,28.110001,470,13220.140755999995,Bought 0 of BAC for 28.110001 because it's been growing for the past 3 days. New total is 13220.140755999995
+377,2020-06-08,8.440285999995467,28.540001,470,13422.240755999996,Bought 0 of BAC for 28.540001 because it's been growing for the past 3 days. New total is 13422.240755999996
+378,2020-06-09,8.440285999995467,28.219999,470,13271.839815999996,Bought 0 of BAC for 28.219999 because it's been growing for the past 3 days. New total is 13271.839815999996
+379,2020-06-10,6259.4402859999955,26.6,235,12510.440285999995,"Sold half, 235, of stock BAC at 26.6 because it's platued for the past 3 days and it has an okay recent history. New total is 12510.440285999995"
+380,2020-06-11,11882.990285999997,23.93,0,11882.990285999997,"Sold all 0, of stock BAC at 23.93 because it's platued for the past 3 days, but it has a poor recent history. New total is 11882.990285999997"
+381,2020-06-12,11882.990285999997,24.780001,0,11882.990285999997,Sold all 0 of stock BAC at 24.780001 because it's been falling for 3 consecutive days. New total is 11882.990285999997
+382,2020-06-15,11882.990285999997,25.15,0,11882.990285999997,"Sold half, 0, of stock BAC at 25.15 because it's platued for the past 3 days and it has an okay recent history. New total is 11882.990285999997"
+383,2020-06-16,11882.990285999997,25.799999,0,11882.990285999997,"Sold all 0, of stock BAC at 25.799999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11882.990285999997"
+384,2020-06-17,7.9902859999965585,25.0,475,11882.990285999997,Bought 475 of BAC for 25.0 because it's been growing for the past 3 days. New total is 11882.990285999997
+385,2020-06-18,11901.990760999997,25.040001,0,11901.990760999997,"Sold all 0, of stock BAC at 25.040001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+386,2020-06-19,11901.990760999997,25.25,0,11901.990760999997,"Sold all 0, of stock BAC at 25.25 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+387,2020-06-22,11901.990760999997,24.620001,0,11901.990760999997,"Sold all 0, of stock BAC at 24.620001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+388,2020-06-23,11901.990760999997,24.790001,0,11901.990760999997,"Sold all 0, of stock BAC at 24.790001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+389,2020-06-24,11901.990760999997,23.809999,0,11901.990760999997,"Sold all 0, of stock BAC at 23.809999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+390,2020-06-25,11901.990760999997,24.719999,0,11901.990760999997,"Sold all 0, of stock BAC at 24.719999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+391,2020-06-26,11901.990760999997,23.15,0,11901.990760999997,"Sold all 0, of stock BAC at 23.15 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+392,2020-06-29,11901.990760999997,23.389999,0,11901.990760999997,"Sold all 0, of stock BAC at 23.389999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+393,2020-06-30,11901.990760999997,23.75,0,11901.990760999997,"Sold all 0, of stock BAC at 23.75 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+394,2020-07-01,11901.990760999997,23.26,0,11901.990760999997,"Sold all 0, of stock BAC at 23.26 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+395,2020-07-02,11901.990760999997,23.290001,0,11901.990760999997,"Sold all 0, of stock BAC at 23.290001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+396,2020-07-06,11901.990760999997,23.66,0,11901.990760999997,"Sold all 0, of stock BAC at 23.66 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+397,2020-07-07,11901.990760999997,23.01,0,11901.990760999997,"Sold all 0, of stock BAC at 23.01 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+398,2020-07-08,11901.990760999997,23.1,0,11901.990760999997,"Sold all 0, of stock BAC at 23.1 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+399,2020-07-09,11901.990760999997,22.77,0,11901.990760999997,"Sold all 0, of stock BAC at 22.77 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+400,2020-07-10,11901.990760999997,24.02,0,11901.990760999997,"Sold all 0, of stock BAC at 24.02 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+401,2020-07-13,11901.990760999997,24.190001,0,11901.990760999997,"Sold all 0, of stock BAC at 24.190001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+402,2020-07-14,11901.990760999997,24.139999,0,11901.990760999997,"Sold all 0, of stock BAC at 24.139999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+403,2020-07-15,11901.990760999997,24.6,0,11901.990760999997,"Sold all 0, of stock BAC at 24.6 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+404,2020-07-16,11901.990760999997,23.93,0,11901.990760999997,"Sold all 0, of stock BAC at 23.93 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+405,2020-07-17,11901.990760999997,23.219999,0,11901.990760999997,"Sold all 0, of stock BAC at 23.219999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+406,2020-07-20,11901.990760999997,23.58,0,11901.990760999997,"Sold all 0, of stock BAC at 23.58 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+407,2020-07-21,11901.990760999997,24.42,0,11901.990760999997,"Sold all 0, of stock BAC at 24.42 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+408,2020-07-22,11901.990760999997,24.309999,0,11901.990760999997,"Sold all 0, of stock BAC at 24.309999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+409,2020-07-23,11901.990760999997,24.540001,0,11901.990760999997,"Sold all 0, of stock BAC at 24.540001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+410,2020-07-24,11901.990760999997,24.35,0,11901.990760999997,"Sold all 0, of stock BAC at 24.35 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+411,2020-07-27,11901.990760999997,24.139999,0,11901.990760999997,"Sold all 0, of stock BAC at 24.139999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+412,2020-07-28,11901.990760999997,24.360001,0,11901.990760999997,"Sold all 0, of stock BAC at 24.360001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+413,2020-07-29,11901.990760999997,25.27,0,11901.990760999997,"Sold all 0, of stock BAC at 25.27 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+414,2020-07-30,11901.990760999997,24.84,0,11901.990760999997,"Sold all 0, of stock BAC at 24.84 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+415,2020-07-31,11901.990760999997,24.879999,0,11901.990760999997,"Sold all 0, of stock BAC at 24.879999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+416,2020-08-03,11901.990760999997,24.99,0,11901.990760999997,"Sold all 0, of stock BAC at 24.99 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+417,2020-08-04,11901.990760999997,25.01,0,11901.990760999997,"Sold all 0, of stock BAC at 25.01 because it's platued for the past 3 days, but it has a poor recent history. New total is 11901.990760999997"
+418,2020-08-05,19.471228999997038,25.389999,468,11901.990760999997,Bought 468 of BAC for 25.389999 because it's been growing for the past 3 days. New total is 11901.990760999997
+419,2020-08-06,19.471228999997038,25.469999,468,11939.430760999998,Bought 0 of BAC for 25.469999 because it's been growing for the past 3 days. New total is 11939.430760999998
+420,2020-08-07,19.471228999997038,26.110001,468,12238.951696999997,Bought 0 of BAC for 26.110001 because it's been growing for the past 3 days. New total is 12238.951696999997
+421,2020-08-10,19.471228999997038,26.559999,468,12449.550760999997,Bought 0 of BAC for 26.559999 because it's been growing for the past 3 days. New total is 12449.550760999997
+422,2020-08-11,19.471228999997038,26.92,468,12618.031228999998,Bought 0 of BAC for 26.92 because it's been growing for the past 3 days. New total is 12618.031228999998
+423,2020-08-12,19.471228999997038,26.73,468,12529.111228999996,Bought 0 of BAC for 26.73 because it's been growing for the past 3 days. New total is 12529.111228999996
+424,2020-08-13,12351.271228999998,26.35,0,12351.271228999998,"Sold all 0, of stock BAC at 26.35 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+425,2020-08-14,12351.271228999998,26.469999,0,12351.271228999998,"Sold half, 0, of stock BAC at 26.469999 because it's platued for the past 3 days and it has an okay recent history. New total is 12351.271228999998"
+426,2020-08-17,12351.271228999998,25.9,0,12351.271228999998,"Sold all 0, of stock BAC at 25.9 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+427,2020-08-18,12351.271228999998,25.530001,0,12351.271228999998,"Sold all 0, of stock BAC at 25.530001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+428,2020-08-19,12351.271228999998,25.5,0,12351.271228999998,"Sold all 0, of stock BAC at 25.5 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+429,2020-08-20,12351.271228999998,25.1,0,12351.271228999998,Sold all 0 of stock BAC at 25.1 because it's been falling for 3 consecutive days. New total is 12351.271228999998
+430,2020-08-21,12351.271228999998,24.98,0,12351.271228999998,Sold all 0 of stock BAC at 24.98 because it's been falling for 3 consecutive days. New total is 12351.271228999998
+431,2020-08-24,12351.271228999998,25.690001,0,12351.271228999998,Sold all 0 of stock BAC at 25.690001 because it's been falling for 3 consecutive days. New total is 12351.271228999998
+432,2020-08-25,12351.271228999998,26.0,0,12351.271228999998,"Sold all 0, of stock BAC at 26.0 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+433,2020-08-26,12351.271228999998,25.559999,0,12351.271228999998,"Sold all 0, of stock BAC at 25.559999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+434,2020-08-27,12351.271228999998,26.049999,0,12351.271228999998,"Sold all 0, of stock BAC at 26.049999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+435,2020-08-28,12351.271228999998,26.299999,0,12351.271228999998,"Sold all 0, of stock BAC at 26.299999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+436,2020-08-31,12351.271228999998,25.74,0,12351.271228999998,"Sold all 0, of stock BAC at 25.74 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+437,2020-09-01,12351.271228999998,25.709999,0,12351.271228999998,"Sold all 0, of stock BAC at 25.709999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+438,2020-09-02,12351.271228999998,26.02,0,12351.271228999998,"Sold all 0, of stock BAC at 26.02 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+439,2020-09-03,12351.271228999998,25.66,0,12351.271228999998,"Sold all 0, of stock BAC at 25.66 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+440,2020-09-04,12351.271228999998,26.540001,0,12351.271228999998,"Sold all 0, of stock BAC at 26.540001 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+441,2020-09-08,12351.271228999998,25.48,0,12351.271228999998,"Sold all 0, of stock BAC at 25.48 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+442,2020-09-09,12351.271228999998,25.51,0,12351.271228999998,"Sold all 0, of stock BAC at 25.51 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+443,2020-09-10,12351.271228999998,25.139999,0,12351.271228999998,"Sold all 0, of stock BAC at 25.139999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+444,2020-09-11,12351.271228999998,25.5,0,12351.271228999998,"Sold half, 0, of stock BAC at 25.5 because it's platued for the past 3 days and it has an okay recent history. New total is 12351.271228999998"
+445,2020-09-14,12351.271228999998,25.75,0,12351.271228999998,"Sold half, 0, of stock BAC at 25.75 because it's platued for the past 3 days and it has an okay recent history. New total is 12351.271228999998"
+446,2020-09-15,12351.271228999998,25.280001,0,12351.271228999998,"Sold half, 0, of stock BAC at 25.280001 because it's platued for the past 3 days and it has an okay recent history. New total is 12351.271228999998"
+447,2020-09-16,12351.271228999998,25.6,0,12351.271228999998,"Sold half, 0, of stock BAC at 25.6 because it's platued for the past 3 days and it has an okay recent history. New total is 12351.271228999998"
+448,2020-09-17,12351.271228999998,25.35,0,12351.271228999998,"Sold all 0, of stock BAC at 25.35 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+449,2020-09-18,12351.271228999998,25.209999,0,12351.271228999998,"Sold half, 0, of stock BAC at 25.209999 because it's platued for the past 3 days and it has an okay recent history. New total is 12351.271228999998"
+450,2020-09-21,12351.271228999998,24.469999,0,12351.271228999998,"Sold all 0, of stock BAC at 24.469999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+451,2020-09-22,12351.271228999998,23.940001,0,12351.271228999998,Sold all 0 of stock BAC at 23.940001 because it's been falling for 3 consecutive days. New total is 12351.271228999998
+452,2020-09-23,12351.271228999998,23.26,0,12351.271228999998,Sold all 0 of stock BAC at 23.26 because it's been falling for 3 consecutive days. New total is 12351.271228999998
+453,2020-09-24,12351.271228999998,23.34,0,12351.271228999998,Sold all 0 of stock BAC at 23.34 because it's been falling for 3 consecutive days. New total is 12351.271228999998
+454,2020-09-25,12351.271228999998,23.49,0,12351.271228999998,"Sold all 0, of stock BAC at 23.49 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+455,2020-09-28,12351.271228999998,24.09,0,12351.271228999998,"Sold all 0, of stock BAC at 24.09 because it's platued for the past 3 days, but it has a poor recent history. New total is 12351.271228999998"
+456,2020-09-29,14.64122899999893,23.77,519,12351.271228999998,Bought 519 of BAC for 23.77 because it's been growing for the past 3 days. New total is 12351.271228999998
+457,2020-09-30,12517.351228999998,24.09,0,12517.351228999998,"Sold all 0, of stock BAC at 24.09 because it's platued for the past 3 days, but it has a poor recent history. New total is 12517.351228999998"
+458,2020-10-01,12517.351228999998,24.1,0,12517.351228999998,"Sold all 0, of stock BAC at 24.1 because it's platued for the past 3 days, but it has a poor recent history. New total is 12517.351228999998"
+459,2020-10-02,12517.351228999998,24.209999,0,12517.351228999998,"Sold all 0, of stock BAC at 24.209999 because it's platued for the past 3 days, but it has a poor recent history. New total is 12517.351228999998"
+460,2020-10-05,10.390720999997939,24.620001,508,12517.351228999998,Bought 508 of BAC for 24.620001 because it's been growing for the past 3 days. New total is 12517.351228999998
+461,2020-10-06,10.390720999997939,24.370001,508,12390.351228999998,Bought 0 of BAC for 24.370001 because it's been growing for the past 3 days. New total is 12390.351228999998
+462,2020-10-07,6329.910466999998,24.879999,254,12649.430212999998,"Sold half, 254, of stock BAC at 24.879999 because it's platued for the past 3 days and it has an okay recent history. New total is 12649.430212999998"
+463,2020-10-08,9535.390466999997,25.24,127,12740.870466999997,"Sold half, 127, of stock BAC at 25.24 because it's platued for the past 3 days and it has an okay recent history. New total is 12740.870466999997"
+464,2020-10-09,11158.430530999998,25.360001,64,12756.110593999998,"Sold half, 63, of stock BAC at 25.360001 because it's platued for the past 3 days and it has an okay recent history. New total is 12756.110593999998"
+465,2020-10-12,13.310530999999173,25.68,498,12801.950530999999,Bought 434 of BAC for 25.68 because it's been growing for the past 3 days. New total is 12801.950530999999
+466,2020-10-13,13.310530999999173,24.950001,498,12438.411028999999,Bought 0 of BAC for 24.950001 because it's been growing for the past 3 days. New total is 12438.411028999999
+467,2020-10-14,11776.071028999999,23.620001,0,11776.071028999999,"Sold all 0, of stock BAC at 23.620001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+468,2020-10-15,11776.071028999999,24.15,0,11776.071028999999,"Sold all 0, of stock BAC at 24.15 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+469,2020-10-16,11776.071028999999,24.24,0,11776.071028999999,"Sold all 0, of stock BAC at 24.24 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+470,2020-10-19,11776.071028999999,23.719999,0,11776.071028999999,"Sold all 0, of stock BAC at 23.719999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+471,2020-10-20,11776.071028999999,24.139999,0,11776.071028999999,"Sold half, 0, of stock BAC at 24.139999 because it's platued for the past 3 days and it has an okay recent history. New total is 11776.071028999999"
+472,2020-10-21,11776.071028999999,24.049999,0,11776.071028999999,"Sold all 0, of stock BAC at 24.049999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+473,2020-10-22,11776.071028999999,24.870001,0,11776.071028999999,"Sold half, 0, of stock BAC at 24.870001 because it's platued for the past 3 days and it has an okay recent history. New total is 11776.071028999999"
+474,2020-10-23,11776.071028999999,24.9,0,11776.071028999999,"Sold half, 0, of stock BAC at 24.9 because it's platued for the past 3 days and it has an okay recent history. New total is 11776.071028999999"
+475,2020-10-26,11776.071028999999,24.540001,0,11776.071028999999,"Sold all 0, of stock BAC at 24.540001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+476,2020-10-27,11776.071028999999,23.85,0,11776.071028999999,"Sold all 0, of stock BAC at 23.85 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+477,2020-10-28,11776.071028999999,23.469999,0,11776.071028999999,"Sold all 0, of stock BAC at 23.469999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+478,2020-10-29,11776.071028999999,23.540001,0,11776.071028999999,Sold all 0 of stock BAC at 23.540001 because it's been falling for 3 consecutive days. New total is 11776.071028999999
+479,2020-10-30,11776.071028999999,23.700001,0,11776.071028999999,"Sold all 0, of stock BAC at 23.700001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+480,2020-11-02,11776.071028999999,24.08,0,11776.071028999999,"Sold all 0, of stock BAC at 24.08 because it's platued for the past 3 days, but it has a poor recent history. New total is 11776.071028999999"
+481,2020-11-03,23.630552999999054,24.690001,476,11776.071028999999,Bought 476 of BAC for 24.690001 because it's been growing for the past 3 days. New total is 11776.071028999999
+482,2020-11-04,23.630552999999054,23.68,476,11295.310553,Bought 0 of BAC for 23.68 because it's been growing for the past 3 days. New total is 11295.310553
+483,2020-11-05,11737.991028999999,24.610001,0,11737.991028999999,"Sold all 0, of stock BAC at 24.610001 because it's platued for the past 3 days, but it has a poor recent history. New total is 11737.991028999999"
+484,2020-11-06,11737.991028999999,24.309999,0,11737.991028999999,"Sold all 0, of stock BAC at 24.309999 because it's platued for the past 3 days, but it has a poor recent history. New total is 11737.991028999999"
+485,2020-11-09,11737.991028999999,27.76,0,11737.991028999999,"Sold half, 0, of stock BAC at 27.76 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+486,2020-11-10,11737.991028999999,27.66,0,11737.991028999999,"Sold half, 0, of stock BAC at 27.66 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+487,2020-11-11,11737.991028999999,27.34,0,11737.991028999999,"Sold half, 0, of stock BAC at 27.34 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+488,2020-11-12,11737.991028999999,26.690001,0,11737.991028999999,"Sold half, 0, of stock BAC at 26.690001 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+489,2020-11-13,11737.991028999999,27.0,0,11737.991028999999,Sold all 0 of stock BAC at 27.0 because it's been falling for 3 consecutive days. New total is 11737.991028999999
+490,2020-11-16,11737.991028999999,27.58,0,11737.991028999999,"Sold half, 0, of stock BAC at 27.58 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+491,2020-11-17,11737.991028999999,27.549999,0,11737.991028999999,"Sold half, 0, of stock BAC at 27.549999 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+492,2020-11-18,11737.991028999999,26.98,0,11737.991028999999,"Sold half, 0, of stock BAC at 26.98 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+493,2020-11-19,11737.991028999999,26.98,0,11737.991028999999,"Sold half, 0, of stock BAC at 26.98 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+494,2020-11-20,11737.991028999999,26.809999,0,11737.991028999999,"Sold half, 0, of stock BAC at 26.809999 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+495,2020-11-23,11737.991028999999,27.389999,0,11737.991028999999,"Sold half, 0, of stock BAC at 27.389999 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+496,2020-11-24,11737.991028999999,28.98,0,11737.991028999999,"Sold half, 0, of stock BAC at 28.98 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+497,2020-11-25,11737.991028999999,29.030001,0,11737.991028999999,"Sold half, 0, of stock BAC at 29.030001 because it's platued for the past 3 days and it has an okay recent history. New total is 11737.991028999999"
+498,2020-11-27,26.031028999999762,28.99,404,11737.991028999999,Bought 404 of BAC for 28.99 because it's been growing for the past 3 days. New total is 11737.991028999999
+499,2020-11-30,5714.3510289999995,28.16,202,11402.671029,"Sold half, 202, of stock BAC at 28.16 because it's platued for the past 3 days and it has an okay recent history. New total is 11402.671029"
+500,2020-12-01,8612.04113,28.690001,101,11509.731231,"Sold half, 101, of stock BAC at 28.690001 because it's platued for the past 3 days and it has an okay recent history. New total is 11509.731231"
+501,2020-12-02,10094.101079,29.059999,51,11547.101029,"Sold half, 50, of stock BAC at 29.059999 because it's platued for the past 3 days and it has an okay recent history. New total is 11547.101029"
+502,2020-12-03,10845.761079,28.91,26,11568.511079,"Sold half, 25, of stock BAC at 28.91 because it's platued for the past 3 days and it has an okay recent history. New total is 11568.511079"
+503,2020-12-04,11226.531092,29.290001,13,11607.301104999999,"Sold half, 13, of stock BAC at 29.290001 because it's platued for the past 3 days and it has an okay recent history. New total is 11607.301104999999"
+504,2020-12-07,11430.161091999998,29.09,7,11604.701092,"Sold half, 6, of stock BAC at 29.09 because it's platued for the past 3 days and it has an okay recent history. New total is 11604.701092"
+505,2020-12-08,11545.881091999998,28.93,4,11632.671091999999,"Sold half, 3, of stock BAC at 28.93 because it's platued for the past 3 days and it has an okay recent history. New total is 11632.671091999999"
+506,2020-12-09,11603.481089999997,28.799999,2,11661.081087999997,"Sold half, 2, of stock BAC at 28.799999 because it's platued for the past 3 days and it has an okay recent history. New total is 11661.081087999997"
+507,2020-12-10,11661.701091999998,29.110001,0,11661.701091999998,Sold all 2 of stock BAC at 29.110001 because it's been falling for 3 consecutive days. New total is 11661.701091999998
+508,2020-12-11,11661.701091999998,28.57,0,11661.701091999998,"Sold half, 0, of stock BAC at 28.57 because it's platued for the past 3 days and it has an okay recent history. New total is 11661.701091999998"
+509,2020-12-14,11661.701091999998,28.219999,0,11661.701091999998,"Sold half, 0, of stock BAC at 28.219999 because it's platued for the past 3 days and it has an okay recent history. New total is 11661.701091999998"
+510,2020-12-15,11661.701091999998,28.639999,0,11661.701091999998,"Sold half, 0, of stock BAC at 28.639999 because it's platued for the past 3 days and it has an okay recent history. New total is 11661.701091999998"
+511,2020-12-16,11661.701091999998,28.719999,0,11661.701091999998,"Sold half, 0, of stock BAC at 28.719999 because it's platued for the past 3 days and it has an okay recent history. New total is 11661.701091999998"
+512,2020-12-17,11661.701091999998,28.83,0,11661.701091999998,"Sold half, 0, of stock BAC at 28.83 because it's platued for the past 3 days and it has an okay recent history. New total is 11661.701091999998"
+513,2020-12-18,21.68109199999708,28.67,406,11661.701091999998,Bought 406 of BAC for 28.67 because it's been growing for the past 3 days. New total is 11661.701091999998
+514,2020-12-21,6058.901091999996,29.74,203,12096.121091999996,"Sold half, 203, of stock BAC at 29.74 because it's platued for the past 3 days and it has an okay recent history. New total is 12096.121091999996"
+515,2020-12-22,9038.320989999997,29.209999,102,11988.530888999996,"Sold half, 101, of stock BAC at 29.209999 because it's platued for the past 3 days and it has an okay recent history. New total is 11988.530888999996"
+516,2020-12-23,10570.870938999997,30.049999,51,12103.420887999997,"Sold half, 51, of stock BAC at 30.049999 because it's platued for the past 3 days and it has an okay recent history. New total is 12103.420887999997"
+517,2020-12-24,11349.830912999996,29.959999,26,12098.830887999997,"Sold half, 25, of stock BAC at 29.959999 because it's platued for the past 3 days and it has an okay recent history. New total is 12098.830887999997"
+518,2020-12-28,11741.520899999996,30.129999,13,12133.210886999996,"Sold half, 13, of stock BAC at 30.129999 because it's platued for the past 3 days and it has an okay recent history. New total is 12133.210886999996"
+519,2020-12-29,11951.590899999996,30.01,7,12131.650899999995,"Sold half, 6, of stock BAC at 30.01 because it's platued for the past 3 days and it has an okay recent history. New total is 12131.650899999995"
+520,2020-12-30,12071.510899999996,29.98,4,12161.450899999996,"Sold half, 3, of stock BAC at 29.98 because it's platued for the past 3 days and it has an okay recent history. New total is 12161.450899999996"
+521,2020-12-31,12132.130897999996,30.309999,2,12192.750895999996,"Sold half, 2, of stock BAC at 30.309999 because it's platued for the past 3 days and it has an okay recent history. New total is 12192.750895999996"
+522,2021-01-04,12162.160898999995,30.030001,1,12192.190899999994,"Sold half, 1, of stock BAC at 30.030001 because it's platued for the past 3 days and it has an okay recent history. New total is 12192.190899999994"
+523,2021-01-05,12192.420898999995,30.26,0,12192.420898999995,"Sold half, 0, of stock BAC at 30.26 because it's platued for the past 3 days and it has an okay recent history. New total is 12192.420898999995"
+524,2021-01-06,12192.420898999995,32.150002,0,12192.420898999995,"Sold half, 0, of stock BAC at 32.150002 because it's platued for the past 3 days and it has an okay recent history. New total is 12192.420898999995"
+525,2021-01-07,12192.420898999995,32.860001,0,12192.420898999995,"Sold half, 0, of stock BAC at 32.860001 because it's platued for the past 3 days and it has an okay recent history. New total is 12192.420898999995"
+526,2021-01-08,26.201272999996945,32.529999,374,12192.420898999995,Bought 374 of BAC for 32.529999 because it's been growing for the past 3 days. New total is 12192.420898999995
+527,2021-01-11,6210.291272999997,33.07,187,12394.381272999997,"Sold half, 187, of stock BAC at 33.07 because it's platued for the past 3 days and it has an okay recent history. New total is 12394.381272999997"
+528,2021-01-12,9374.331272999996,33.66,94,12504.711272999995,"Sold half, 93, of stock BAC at 33.66 because it's platued for the past 3 days and it has an okay recent history. New total is 12504.711272999995"
+529,2021-01-13,10946.951225999996,33.459999,47,12519.571178999995,"Sold half, 47, of stock BAC at 33.459999 because it's platued for the past 3 days and it has an okay recent history. New total is 12519.571178999995"
+530,2021-01-14,11762.711273999996,33.990002,24,12544.481319999995,"Sold half, 23, of stock BAC at 33.990002 because it's platued for the past 3 days and it has an okay recent history. New total is 12544.481319999995"
+531,2021-01-15,12158.831249999996,33.009998,12,12554.951225999996,"Sold half, 12, of stock BAC at 33.009998 because it's platued for the past 3 days and it has an okay recent history. New total is 12554.951225999996"
+532,2021-01-19,12355.451249999996,32.77,6,12552.071249999997,"Sold half, 6, of stock BAC at 32.77 because it's platued for the past 3 days and it has an okay recent history. New total is 12552.071249999997"
+533,2021-01-20,12452.471249999997,32.34,3,12549.491249999997,"Sold half, 3, of stock BAC at 32.34 because it's platued for the past 3 days and it has an okay recent history. New total is 12549.491249999997"
+534,2021-01-21,12547.781249999996,31.77,0,12547.781249999996,Sold all 3 of stock BAC at 31.77 because it's been falling for 3 consecutive days. New total is 12547.781249999996
+535,2021-01-22,12547.781249999996,31.549999,0,12547.781249999996,Sold all 0 of stock BAC at 31.549999 because it's been falling for 3 consecutive days. New total is 12547.781249999996
+536,2021-01-25,12547.781249999996,31.16,0,12547.781249999996,Sold all 0 of stock BAC at 31.16 because it's been falling for 3 consecutive days. New total is 12547.781249999996
+537,2021-01-26,12547.781249999996,30.940001,0,12547.781249999996,Sold all 0 of stock BAC at 30.940001 because it's been falling for 3 consecutive days. New total is 12547.781249999996
+538,2021-01-27,12547.781249999996,29.83,0,12547.781249999996,Sold all 0 of stock BAC at 29.83 because it's been falling for 3 consecutive days. New total is 12547.781249999996
+539,2021-01-28,12547.781249999996,30.32,0,12547.781249999996,Sold all 0 of stock BAC at 30.32 because it's been falling for 3 consecutive days. New total is 12547.781249999996
+540,2021-01-29,12547.781249999996,29.65,0,12547.781249999996,"Sold half, 0, of stock BAC at 29.65 because it's platued for the past 3 days and it has an okay recent history. New total is 12547.781249999996"
+541,2021-02-01,12547.781249999996,29.959999,0,12547.781249999996,"Sold half, 0, of stock BAC at 29.959999 because it's platued for the past 3 days and it has an okay recent history. New total is 12547.781249999996"
+542,2021-02-02,12547.781249999996,31.030001,0,12547.781249999996,"Sold half, 0, of stock BAC at 31.030001 because it's platued for the past 3 days and it has an okay recent history. New total is 12547.781249999996"
+543,2021-02-03,12547.781249999996,31.58,0,12547.781249999996,"Sold half, 0, of stock BAC at 31.58 because it's platued for the past 3 days and it has an okay recent history. New total is 12547.781249999996"
+544,2021-02-04,2.781249999996362,32.5,386,12547.781249999996,Bought 386 of BAC for 32.5 because it's been growing for the past 3 days. New total is 12547.781249999996
+545,2021-02-05,2.781249999996362,32.369999,386,12497.600863999996,Bought 0 of BAC for 32.369999 because it's been growing for the past 3 days. New total is 12497.600863999996
+546,2021-02-08,6389.151249999997,33.09,193,12775.521249999998,"Sold half, 193, of stock BAC at 33.09 because it's platued for the past 3 days and it has an okay recent history. New total is 12775.521249999998"
+547,2021-02-09,9585.301346999997,32.950001,97,12748.501442999997,"Sold half, 96, of stock BAC at 32.950001 because it's platued for the past 3 days and it has an okay recent history. New total is 12748.501442999997"
+548,2021-02-10,11201.321346999997,32.98,49,12784.361346999998,"Sold half, 48, of stock BAC at 32.98 because it's platued for the past 3 days and it has an okay recent history. New total is 12784.361346999998"
+549,2021-02-11,12023.321371999997,32.880001,25,12812.441395999997,"Sold half, 24, of stock BAC at 32.880001 because it's platued for the past 3 days and it has an okay recent history. New total is 12812.441395999997"
+550,2021-02-12,12457.131358999997,33.369999,13,12857.571346999997,"Sold half, 12, of stock BAC at 33.369999 because it's platued for the past 3 days and it has an okay recent history. New total is 12857.571346999997"
+551,2021-02-16,12697.021358999997,34.27,7,12902.641358999997,"Sold half, 6, of stock BAC at 34.27 because it's platued for the past 3 days and it has an okay recent history. New total is 12902.641358999997"
+552,2021-02-17,12834.661358999996,34.41,4,12937.891358999996,"Sold half, 3, of stock BAC at 34.41 because it's platued for the past 3 days and it has an okay recent history. New total is 12937.891358999996"
+553,2021-02-18,13.411733999995704,34.189999,379,12971.421354999995,Bought 375 of BAC for 34.189999 because it's been growing for the past 3 days. New total is 12971.421354999995
+554,2021-02-19,6576.011923999995,34.540001,190,13104.072112999995,"Sold half, 189, of stock BAC at 34.540001 because it's platued for the past 3 days and it has an okay recent history. New total is 13104.072112999995"
+555,2021-02-22,9915.262113999996,35.150002,95,13254.512303999996,"Sold half, 95, of stock BAC at 35.150002 because it's platued for the past 3 days and it has an okay recent history. New total is 13254.512303999996"
+556,2021-02-23,11620.222113999997,35.52,48,13289.662113999997,"Sold half, 47, of stock BAC at 35.52 because it's platued for the past 3 days and it has an okay recent history. New total is 13289.662113999997"
+557,2021-02-24,15.001794999996491,36.380001,367,13366.462161999996,Bought 319 of BAC for 36.380001 because it's been growing for the past 3 days. New total is 13366.462161999996
+558,2021-02-25,15.001794999996491,35.93,367,13201.311794999996,Bought 0 of BAC for 35.93 because it's been growing for the past 3 days. New total is 13201.311794999996
+559,2021-02-26,6401.641610999997,34.709999,184,12753.571427999997,"Sold half, 183, of stock BAC at 34.709999 because it's platued for the past 3 days and it has an okay recent history. New total is 12753.571427999997"
+560,2021-03-01,9694.321702999998,35.790001,92,12987.001794999996,"Sold half, 92, of stock BAC at 35.790001 because it's platued for the past 3 days and it has an okay recent history. New total is 12987.001794999996"
+561,2021-03-02,11328.701656999998,35.529999,46,12963.081610999998,"Sold half, 46, of stock BAC at 35.529999 because it's platued for the past 3 days and it has an okay recent history. New total is 12963.081610999998"
+562,2021-03-03,12166.361610999998,36.419998,23,13004.021565,"Sold half, 23, of stock BAC at 36.419998 because it's platued for the past 3 days and it has an okay recent history. New total is 13004.021565"
+563,2021-03-04,12604.361610999998,36.5,12,13005.861610999998,"Sold half, 11, of stock BAC at 36.5 because it's platued for the past 3 days and it has an okay recent history. New total is 13005.861610999998"
+564,2021-03-05,12825.941610999998,36.93,6,13047.521610999998,"Sold half, 6, of stock BAC at 36.93 because it's platued for the past 3 days and it has an okay recent history. New total is 13047.521610999998"
+565,2021-03-08,16.09126599999763,37.130001,351,13048.721616999997,Bought 345 of BAC for 37.130001 because it's been growing for the past 3 days. New total is 13048.721616999997
+566,2021-03-09,16.09126599999763,36.32,351,12764.411265999997,Bought 0 of BAC for 36.32 because it's been growing for the past 3 days. New total is 12764.411265999997
+567,2021-03-10,6593.211089999998,37.369999,176,13132.960914999998,"Sold half, 175, of stock BAC at 37.369999 because it's platued for the past 3 days and it has an okay recent history. New total is 13132.960914999998"
+568,2021-03-11,9870.331265999997,37.240002,88,13147.451441999998,"Sold half, 88, of stock BAC at 37.240002 because it's platued for the past 3 days and it has an okay recent history. New total is 13147.451441999998"
+569,2021-03-12,11539.691221999998,37.939999,44,13209.051177999998,"Sold half, 44, of stock BAC at 37.939999 because it's platued for the past 3 days and it has an okay recent history. New total is 13209.051177999998"
+570,2021-03-15,12370.191221999998,37.75,22,13200.691221999998,"Sold half, 22, of stock BAC at 37.75 because it's platued for the past 3 days and it has an okay recent history. New total is 13200.691221999998"
+571,2021-03-16,12784.231210999998,37.639999,11,13198.2712,"Sold half, 11, of stock BAC at 37.639999 because it's platued for the past 3 days and it has an okay recent history. New total is 13198.2712"
+572,2021-03-17,13011.931216999998,37.950001,6,13201.681221999997,"Sold half, 5, of stock BAC at 37.950001 because it's platued for the past 3 days and it has an okay recent history. New total is 13201.681221999997"
+573,2021-03-18,13128.751213999998,38.939999,3,13245.571210999999,"Sold half, 3, of stock BAC at 38.939999 because it's platued for the past 3 days and it has an okay recent history. New total is 13245.571210999999"
+574,2021-03-19,13205.811211999999,38.529999,2,13244.341210999999,"Sold half, 1, of stock BAC at 38.529999 because it's platued for the past 3 days and it has an okay recent history. New total is 13244.341210999999"
+575,2021-03-22,13243.471211999999,37.66,1,13281.131211999998,"Sold half, 1, of stock BAC at 37.66 because it's platued for the past 3 days and it has an okay recent history. New total is 13281.131211999998"
+576,2021-03-23,13280.371213999999,36.900002,0,13280.371213999999,"Sold half, 0, of stock BAC at 36.900002 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+577,2021-03-24,13280.371213999999,36.900002,0,13280.371213999999,Sold all 0 of stock BAC at 36.900002 because it's been falling for 3 consecutive days. New total is 13280.371213999999
+578,2021-03-25,13280.371213999999,37.66,0,13280.371213999999,"Sold half, 0, of stock BAC at 37.66 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+579,2021-03-26,13280.371213999999,38.68,0,13280.371213999999,"Sold half, 0, of stock BAC at 38.68 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+580,2021-03-29,13280.371213999999,38.310001,0,13280.371213999999,"Sold half, 0, of stock BAC at 38.310001 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+581,2021-03-30,13280.371213999999,38.990002,0,13280.371213999999,"Sold half, 0, of stock BAC at 38.990002 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+582,2021-03-31,13280.371213999999,38.689999,0,13280.371213999999,"Sold half, 0, of stock BAC at 38.689999 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+583,2021-04-01,13280.371213999999,39.490002,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.490002 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+584,2021-04-05,13280.371213999999,39.799999,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.799999 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+585,2021-04-06,13280.371213999999,39.689999,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.689999 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+586,2021-04-07,13280.371213999999,40.049999,0,13280.371213999999,"Sold half, 0, of stock BAC at 40.049999 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+587,2021-04-08,13280.371213999999,39.700001,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.700001 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+588,2021-04-09,13280.371213999999,39.990002,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.990002 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+589,2021-04-12,13280.371213999999,40.060001,0,13280.371213999999,"Sold half, 0, of stock BAC at 40.060001 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+590,2021-04-13,13280.371213999999,39.32,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.32 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+591,2021-04-14,13280.371213999999,39.880001,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.880001 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+592,2021-04-15,13280.371213999999,38.740002,0,13280.371213999999,"Sold half, 0, of stock BAC at 38.740002 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+593,2021-04-16,13280.371213999999,39.150002,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.150002 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+594,2021-04-19,13280.371213999999,39.169998,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.169998 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+595,2021-04-20,13280.371213999999,38.080002,0,13280.371213999999,"Sold half, 0, of stock BAC at 38.080002 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+596,2021-04-21,13280.371213999999,38.720001,0,13280.371213999999,"Sold half, 0, of stock BAC at 38.720001 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+597,2021-04-22,13280.371213999999,38.360001,0,13280.371213999999,"Sold half, 0, of stock BAC at 38.360001 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+598,2021-04-23,13280.371213999999,39.18,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.18 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+599,2021-04-26,13280.371213999999,39.41,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.41 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+600,2021-04-27,13280.371213999999,39.880001,0,13280.371213999999,"Sold half, 0, of stock BAC at 39.880001 because it's platued for the past 3 days and it has an okay recent history. New total is 13280.371213999999"
+601,2021-04-28,30.441544999999678,40.029999,331,13280.371213999999,Bought 331 of BAC for 40.029999 because it's been growing for the past 3 days. New total is 13280.371213999999
+602,2021-04-29,30.441544999999678,41.110001,331,13637.851875999999,Bought 0 of BAC for 41.110001 because it's been growing for the past 3 days. New total is 13637.851875999999
+603,2021-04-30,30.441544999999678,40.529999,331,13445.871213999999,Bought 0 of BAC for 40.529999 because it's been growing for the past 3 days. New total is 13445.871213999999
+604,2021-05-03,6763.4017109999995,40.560001,166,13455.801876,"Sold half, 165, of stock BAC at 40.560001 because it's platued for the past 3 days and it has an okay recent history. New total is 13455.801876"
+605,2021-05-04,10166.401710999999,41.0,83,13569.401710999999,"Sold half, 83, of stock BAC at 41.0 because it's platued for the past 3 days and it has an okay recent history. New total is 13569.401710999999"
+606,2021-05-05,11904.781668999998,41.389999,42,13601.771627999999,"Sold half, 41, of stock BAC at 41.389999 because it's platued for the past 3 days and it has an okay recent history. New total is 13601.771627999999"
+607,2021-05-06,15.952234999997017,42.009998,325,13669.201584999999,Bought 283 of BAC for 42.009998 because it's been growing for the past 3 days. New total is 13669.201584999999
+608,2021-05-07,15.952234999997017,42.18,325,13724.452234999997,Bought 0 of BAC for 42.18 because it's been growing for the past 3 days. New total is 13724.452234999997
+609,2021-05-10,15.952234999997017,42.049999,325,13682.201909999996,Bought 0 of BAC for 42.049999 because it's been growing for the past 3 days. New total is 13682.201909999996
+610,2021-05-11,6791.862234999997,41.57,163,13526.202234999997,"Sold half, 162, of stock BAC at 41.57 because it's platued for the past 3 days and it has an okay recent history. New total is 13526.202234999997"
+611,2021-05-12,10168.622234999997,41.18,82,13504.202234999997,"Sold half, 81, of stock BAC at 41.18 because it's platued for the past 3 days and it has an okay recent history. New total is 13504.202234999997"
+612,2021-05-13,13599.502234999996,41.84,0,13599.502234999996,Sold all 82 of stock BAC at 41.84 because it's been falling for 3 consecutive days. New total is 13599.502234999996
+613,2021-05-14,13599.502234999996,42.360001,0,13599.502234999996,"Sold half, 0, of stock BAC at 42.360001 because it's platued for the past 3 days and it has an okay recent history. New total is 13599.502234999996"
+614,2021-05-17,13599.502234999996,42.740002,0,13599.502234999996,"Sold half, 0, of stock BAC at 42.740002 because it's platued for the past 3 days and it has an okay recent history. New total is 13599.502234999996"
+615,2021-05-18,23.982234999997672,42.16,322,13599.502234999996,Bought 322 of BAC for 42.16 because it's been growing for the past 3 days. New total is 13599.502234999996
+616,2021-05-19,6781.152395999999,41.970001,161,13538.322557,"Sold half, 161, of stock BAC at 41.970001 because it's platued for the past 3 days and it has an okay recent history. New total is 13538.322557"
+617,2021-05-20,10172.622314999999,41.869999,81,13522.222235,"Sold half, 80, of stock BAC at 41.869999 because it's platued for the past 3 days and it has an okay recent history. New total is 13522.222235"
+618,2021-05-21,13607.022476999999,42.400002,0,13607.022476999999,Sold all 81 of stock BAC at 42.400002 because it's been falling for 3 consecutive days. New total is 13607.022476999999
+619,2021-05-24,13607.022476999999,42.630001,0,13607.022476999999,"Sold half, 0, of stock BAC at 42.630001 because it's platued for the past 3 days and it has an okay recent history. New total is 13607.022476999999"
+620,2021-05-25,13607.022476999999,42.009998,0,13607.022476999999,"Sold half, 0, of stock BAC at 42.009998 because it's platued for the past 3 days and it has an okay recent history. New total is 13607.022476999999"
+621,2021-05-26,13607.022476999999,42.040001,0,13607.022476999999,"Sold half, 0, of stock BAC at 42.040001 because it's platued for the past 3 days and it has an okay recent history. New total is 13607.022476999999"
+622,2021-05-27,13607.022476999999,42.549999,0,13607.022476999999,"Sold half, 0, of stock BAC at 42.549999 because it's platued for the past 3 days and it has an okay recent history. New total is 13607.022476999999"
+623,2021-05-28,13607.022476999999,42.389999,0,13607.022476999999,"Sold half, 0, of stock BAC at 42.389999 because it's platued for the past 3 days and it has an okay recent history. New total is 13607.022476999999"
+624,2021-06-01,13607.022476999999,42.919998,0,13607.022476999999,"Sold half, 0, of stock BAC at 42.919998 because it's platued for the past 3 days and it has an okay recent history. New total is 13607.022476999999"
+625,2021-06-02,13607.022476999999,42.939999,0,13607.022476999999,"Sold half, 0, of stock BAC at 42.939999 because it's platued for the past 3 days and it has an okay recent history. New total is 13607.022476999999"
+626,2021-06-03,13607.022476999999,43.25,0,13607.022476999999,"Sold half, 0, of stock BAC at 43.25 because it's platued for the past 3 days and it has an okay recent history. New total is 13607.022476999999"
+627,2021-06-04,20.24247699999796,43.27,314,13607.022476999999,Bought 314 of BAC for 43.27 because it's been growing for the past 3 days. New total is 13607.022476999999
+628,2021-06-07,20.24247699999796,43.119999,314,13559.922162999997,Bought 0 of BAC for 43.119999 because it's been growing for the past 3 days. New total is 13559.922162999997
+629,2021-06-08,6752.402633999998,42.880001,157,13484.562790999998,"Sold half, 157, of stock BAC at 42.880001 because it's platued for the past 3 days and it has an okay recent history. New total is 13484.562790999998"
+630,2021-06-09,10095.682633999999,42.32,79,13396.642634,"Sold half, 78, of stock BAC at 42.32 because it's platued for the past 3 days and it has an okay recent history. New total is 13396.642634"
+631,2021-06-10,13389.192554999998,41.689999,0,13389.192554999998,Sold all 79 of stock BAC at 41.689999 because it's been falling for 3 consecutive days. New total is 13389.192554999998
+632,2021-06-11,13389.192554999998,41.860001,0,13389.192554999998,Sold all 0 of stock BAC at 41.860001 because it's been falling for 3 consecutive days. New total is 13389.192554999998
+633,2021-06-14,13389.192554999998,41.360001,0,13389.192554999998,"Sold half, 0, of stock BAC at 41.360001 because it's platued for the past 3 days and it has an okay recent history. New total is 13389.192554999998"
+634,2021-06-15,13389.192554999998,41.389999,0,13389.192554999998,"Sold half, 0, of stock BAC at 41.389999 because it's platued for the past 3 days and it has an okay recent history. New total is 13389.192554999998"
+635,2021-06-16,13389.192554999998,41.619999,0,13389.192554999998,"Sold half, 0, of stock BAC at 41.619999 because it's platued for the past 3 days and it has an okay recent history. New total is 13389.192554999998"
+636,2021-06-17,13389.192554999998,39.799999,0,13389.192554999998,"Sold half, 0, of stock BAC at 39.799999 because it's platued for the past 3 days and it has an okay recent history. New total is 13389.192554999998"
+637,2021-06-18,13389.192554999998,38.779999,0,13389.192554999998,"Sold half, 0, of stock BAC at 38.779999 because it's platued for the past 3 days and it has an okay recent history. New total is 13389.192554999998"
+638,2021-06-21,13389.192554999998,39.75,0,13389.192554999998,"Sold half, 0, of stock BAC at 39.75 because it's platued for the past 3 days and it has an okay recent history. New total is 13389.192554999998"
+639,2021-06-22,13389.192554999998,39.970001,0,13389.192554999998,"Sold half, 0, of stock BAC at 39.970001 because it's platued for the past 3 days and it has an okay recent history. New total is 13389.192554999998"
+640,2021-06-23,13389.192554999998,40.200001,0,13389.192554999998,"Sold half, 0, of stock BAC at 40.200001 because it's platued for the past 3 days and it has an okay recent history. New total is 13389.192554999998"
+641,2021-06-24,37.78190099999847,40.830002,327,13389.192554999998,Bought 327 of BAC for 40.830002 because it's been growing for the past 3 days. New total is 13389.192554999998
+642,2021-06-25,37.78190099999847,41.619999,327,13647.521573999999,Bought 0 of BAC for 41.619999 because it's been growing for the past 3 days. New total is 13647.521573999999
+643,2021-06-28,37.78190099999847,41.560001,327,13627.902227999999,Bought 0 of BAC for 41.560001 because it's been growing for the past 3 days. New total is 13627.902227999999
+644,2021-06-29,6743.741736999999,40.889999,164,13408.811574,"Sold half, 163, of stock BAC at 40.889999 because it's platued for the past 3 days and it has an okay recent history. New total is 13408.811574"
+645,2021-06-30,10124.601736999999,41.23,82,13505.461736999998,"Sold half, 82, of stock BAC at 41.23 because it's platued for the past 3 days and it has an okay recent history. New total is 13505.461736999998"
+646,2021-07-01,11827.741778,41.540001,41,13530.881819,"Sold half, 41, of stock BAC at 41.540001 because it's platued for the past 3 days and it has an okay recent history. New total is 13530.881819"
+647,2021-07-02,12691.891819999999,41.150002,21,13514.89186,"Sold half, 20, of stock BAC at 41.150002 because it's platued for the past 3 days and it has an okay recent history. New total is 13514.89186"
+648,2021-07-06,13132.66182,40.07,11,13533.36182,"Sold half, 10, of stock BAC at 40.07 because it's platued for the past 3 days and it has an okay recent history. New total is 13533.36182"
+649,2021-07-07,13371.16182,39.75,6,13569.91182,"Sold half, 5, of stock BAC at 39.75 because it's platued for the past 3 days and it has an okay recent history. New total is 13569.91182"
+650,2021-07-08,13603.841814,38.779999,0,13603.841814,Sold all 6 of stock BAC at 38.779999 because it's been falling for 3 consecutive days. New total is 13603.841814
+651,2021-07-09,13603.841814,40.040001,0,13603.841814,Sold all 0 of stock BAC at 40.040001 because it's been falling for 3 consecutive days. New total is 13603.841814
+652,2021-07-12,13603.841814,40.630001,0,13603.841814,"Sold half, 0, of stock BAC at 40.630001 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+653,2021-07-13,13603.841814,39.860001,0,13603.841814,"Sold half, 0, of stock BAC at 39.860001 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+654,2021-07-14,13603.841814,38.860001,0,13603.841814,"Sold half, 0, of stock BAC at 38.860001 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+655,2021-07-15,13603.841814,38.830002,0,13603.841814,"Sold half, 0, of stock BAC at 38.830002 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+656,2021-07-16,13603.841814,37.919998,0,13603.841814,Sold all 0 of stock BAC at 37.919998 because it's been falling for 3 consecutive days. New total is 13603.841814
+657,2021-07-19,13603.841814,36.93,0,13603.841814,Sold all 0 of stock BAC at 36.93 because it's been falling for 3 consecutive days. New total is 13603.841814
+658,2021-07-20,13603.841814,37.689999,0,13603.841814,Sold all 0 of stock BAC at 37.689999 because it's been falling for 3 consecutive days. New total is 13603.841814
+659,2021-07-21,13603.841814,38.459999,0,13603.841814,"Sold half, 0, of stock BAC at 38.459999 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+660,2021-07-22,13603.841814,37.959999,0,13603.841814,"Sold half, 0, of stock BAC at 37.959999 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+661,2021-07-23,13603.841814,37.700001,0,13603.841814,"Sold half, 0, of stock BAC at 37.700001 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+662,2021-07-26,13603.841814,38.130001,0,13603.841814,"Sold half, 0, of stock BAC at 38.130001 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+663,2021-07-27,13603.841814,37.98,0,13603.841814,"Sold half, 0, of stock BAC at 37.98 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+664,2021-07-28,13603.841814,38.130001,0,13603.841814,"Sold half, 0, of stock BAC at 38.130001 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+665,2021-07-29,13603.841814,38.68,0,13603.841814,"Sold half, 0, of stock BAC at 38.68 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+666,2021-07-30,13603.841814,38.360001,0,13603.841814,"Sold half, 0, of stock BAC at 38.360001 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+667,2021-08-02,13603.841814,37.959999,0,13603.841814,"Sold half, 0, of stock BAC at 37.959999 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+668,2021-08-03,13603.841814,38.549999,0,13603.841814,"Sold half, 0, of stock BAC at 38.549999 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+669,2021-08-04,13603.841814,38.27,0,13603.841814,"Sold half, 0, of stock BAC at 38.27 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+670,2021-08-05,13603.841814,39.02,0,13603.841814,"Sold half, 0, of stock BAC at 39.02 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+671,2021-08-06,13603.841814,40.150002,0,13603.841814,"Sold half, 0, of stock BAC at 40.150002 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+672,2021-08-09,13603.841814,40.669998,0,13603.841814,"Sold half, 0, of stock BAC at 40.669998 because it's platued for the past 3 days and it has an okay recent history. New total is 13603.841814"
+673,2021-08-10,14.801814000000377,41.43,328,13603.841814,Bought 328 of BAC for 41.43 because it's been growing for the past 3 days. New total is 13603.841814
+674,2021-08-11,14.801814000000377,41.950001,328,13774.402142,Bought 0 of BAC for 41.950001 because it's been growing for the past 3 days. New total is 13774.402142
+675,2021-08-12,14.801814000000377,42.150002,328,13840.002470000001,Bought 0 of BAC for 42.150002 because it's been growing for the past 3 days. New total is 13840.002470000001
+676,2021-08-13,14.801814000000377,41.630001,328,13669.442142,Bought 0 of BAC for 41.630001 because it's been growing for the past 3 days. New total is 13669.442142
+677,2021-08-16,6786.361978,41.290001,164,13557.922142,"Sold half, 164, of stock BAC at 41.290001 because it's platued for the past 3 days and it has an okay recent history. New total is 13557.922142"
+678,2021-08-17,10155.741978,41.09,82,13525.121978,"Sold half, 82, of stock BAC at 41.09 because it's platued for the past 3 days and it has an okay recent history. New total is 13525.121978"
+679,2021-08-18,13500.52206,40.790001,0,13500.52206,Sold all 82 of stock BAC at 40.790001 because it's been falling for 3 consecutive days. New total is 13500.52206
+680,2021-08-19,13500.52206,40.189999,0,13500.52206,Sold all 0 of stock BAC at 40.189999 because it's been falling for 3 consecutive days. New total is 13500.52206
+681,2021-08-20,13500.52206,40.369999,0,13500.52206,Sold all 0 of stock BAC at 40.369999 because it's been falling for 3 consecutive days. New total is 13500.52206
+682,2021-08-23,13500.52206,40.91,0,13500.52206,"Sold half, 0, of stock BAC at 40.91 because it's platued for the past 3 days and it has an okay recent history. New total is 13500.52206"
+683,2021-08-24,13500.52206,41.48,0,13500.52206,"Sold half, 0, of stock BAC at 41.48 because it's platued for the past 3 days and it has an okay recent history. New total is 13500.52206"
+684,2021-08-25,12.521419999999125,42.150002,320,13500.52206,Bought 320 of BAC for 42.150002 because it's been growing for the past 3 days. New total is 13500.52206
+685,2021-08-26,12.521419999999125,42.040001,320,13465.321739999998,Bought 0 of BAC for 42.040001 because it's been growing for the past 3 days. New total is 13465.321739999998
+686,2021-08-27,6810.921739999999,42.490002,160,13609.322059999999,"Sold half, 160, of stock BAC at 42.490002 because it's platued for the past 3 days and it has an okay recent history. New total is 13609.322059999999"
+687,2021-08-30,10143.721739999999,41.66,80,13476.521739999998,"Sold half, 80, of stock BAC at 41.66 because it's platued for the past 3 days and it has an okay recent history. New total is 13476.521739999998"
+688,2021-08-31,11813.721739999999,41.75,40,13483.721739999999,"Sold half, 40, of stock BAC at 41.75 because it's platued for the past 3 days and it has an okay recent history. New total is 13483.721739999999"
+689,2021-09-01,12637.521719999999,41.189999,20,13461.321699999999,"Sold half, 20, of stock BAC at 41.189999 because it's platued for the past 3 days and it has an okay recent history. New total is 13461.321699999999"
+690,2021-09-02,13047.72172,41.02,10,13457.92172,"Sold half, 10, of stock BAC at 41.02 because it's platued for the past 3 days and it has an okay recent history. New total is 13457.92172"
+691,2021-09-03,13252.971715,41.049999,5,13458.22171,"Sold half, 5, of stock BAC at 41.049999 because it's platued for the past 3 days and it has an okay recent history. New total is 13458.22171"
+692,2021-09-07,13376.931714999999,41.32,3,13459.571714999998,"Sold half, 2, of stock BAC at 41.32 because it's platued for the past 3 days and it has an okay recent history. New total is 13459.571714999998"
+693,2021-09-08,13458.491713,40.779999,2,13499.271712,"Sold half, 1, of stock BAC at 40.779999 because it's platued for the past 3 days and it has an okay recent history. New total is 13499.271712"
+694,2021-09-09,13499.421713,40.93,1,13540.351713,"Sold half, 1, of stock BAC at 40.93 because it's platued for the past 3 days and it has an okay recent history. New total is 13540.351713"
+695,2021-09-10,13539.691713,40.27,0,13539.691713,"Sold half, 0, of stock BAC at 40.27 because it's platued for the past 3 days and it has an okay recent history. New total is 13539.691713"
+696,2021-09-13,13539.691713,40.939999,0,13539.691713,"Sold half, 0, of stock BAC at 40.939999 because it's platued for the past 3 days and it has an okay recent history. New total is 13539.691713"
+697,2021-09-14,13539.691713,39.84,0,13539.691713,"Sold half, 0, of stock BAC at 39.84 because it's platued for the past 3 days and it has an okay recent history. New total is 13539.691713"
+698,2021-09-15,13539.691713,40.139999,0,13539.691713,"Sold half, 0, of stock BAC at 40.139999 because it's platued for the past 3 days and it has an okay recent history. New total is 13539.691713"
+699,2021-09-16,13539.691713,40.450001,0,13539.691713,"Sold half, 0, of stock BAC at 40.450001 because it's platued for the past 3 days and it has an okay recent history. New total is 13539.691713"
+700,2021-09-17,13539.691713,40.5,0,13539.691713,"Sold half, 0, of stock BAC at 40.5 because it's platued for the past 3 days and it has an okay recent history. New total is 13539.691713"
+701,2021-09-20,7.631367000001774,39.110001,346,13539.691713,Bought 346 of BAC for 39.110001 because it's been growing for the past 3 days. New total is 13539.691713
+702,2021-09-21,6777.121540000002,39.130001,173,13546.611713000002,"Sold half, 173, of stock BAC at 39.130001 because it's platued for the past 3 days and it has an okay recent history. New total is 13546.611713000002"
+703,2021-09-22,10269.301453000002,40.139999,87,13721.341367000003,"Sold half, 86, of stock BAC at 40.139999 because it's platued for the past 3 days and it has an okay recent history. New total is 13721.341367000003"
+704,2021-09-23,12103.661409000002,41.689999,44,13896.331366000002,"Sold half, 43, of stock BAC at 41.689999 because it's platued for the past 3 days and it has an okay recent history. New total is 13896.331366000002"
+705,2021-09-24,9.481696000000738,42.139999,331,13957.821365000002,Bought 287 of BAC for 42.139999 because it's been growing for the past 3 days. New total is 13957.821365000002
+706,2021-09-27,9.481696000000738,43.259998,331,14328.541034000002,Bought 0 of BAC for 43.259998 because it's been growing for the past 3 days. New total is 14328.541034000002
+707,2021-09-28,9.481696000000738,43.16,331,14295.441696,Bought 0 of BAC for 43.16 because it's been growing for the past 3 days. New total is 14295.441696
+708,2021-09-29,7159.101696000001,43.07,166,14265.651696,"Sold half, 165, of stock BAC at 43.07 because it's platued for the past 3 days and it has an okay recent history. New total is 14265.651696"
+709,2021-09-30,10682.451779,42.450001,83,14205.801862,"Sold half, 83, of stock BAC at 42.450001 because it's platued for the past 3 days and it has an okay recent history. New total is 14205.801862"
+710,2021-10-01,14258.091945,43.080002,0,14258.091945,Sold all 83 of stock BAC at 43.080002 because it's been falling for 3 consecutive days. New total is 14258.091945
+711,2021-10-04,14258.091945,43.34,0,14258.091945,"Sold half, 0, of stock BAC at 43.34 because it's platued for the past 3 days and it has an okay recent history. New total is 14258.091945"
+712,2021-10-05,14258.091945,44.220001,0,14258.091945,"Sold half, 0, of stock BAC at 44.220001 because it's platued for the past 3 days and it has an okay recent history. New total is 14258.091945"
+713,2021-10-06,12.81130100000155,44.240002,322,14258.091945,Bought 322 of BAC for 44.240002 because it's been growing for the past 3 days. New total is 14258.091945
+714,2021-10-07,12.81130100000155,44.119999,322,14219.450979000001,Bought 0 of BAC for 44.119999 because it's been growing for the past 3 days. New total is 14219.450979000001
+715,2021-10-08,7151.551301000002,44.34,161,14290.291301000003,"Sold half, 161, of stock BAC at 44.34 because it's platued for the past 3 days and it has an okay recent history. New total is 14290.291301000003"
+716,2021-10-11,10697.731220000001,43.779999,81,14200.131140000001,"Sold half, 80, of stock BAC at 43.779999 because it's platued for the past 3 days and it has an okay recent history. New total is 14200.131140000001"
+717,2021-10-12,12482.871261000002,43.540001,41,14224.471301000001,"Sold half, 40, of stock BAC at 43.540001 because it's platued for the past 3 days and it has an okay recent history. New total is 14224.471301000001"
+718,2021-10-13,13388.811240000003,43.139999,21,14251.611220000003,"Sold half, 20, of stock BAC at 43.139999 because it's platued for the past 3 days and it has an okay recent history. New total is 14251.611220000003"
+719,2021-10-14,14335.281240000002,45.07,0,14335.281240000002,Sold all 21 of stock BAC at 45.07 because it's been falling for 3 consecutive days. New total is 14335.281240000002
+720,2021-10-15,14335.281240000002,46.369999,0,14335.281240000002,"Sold half, 0, of stock BAC at 46.369999 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+721,2021-10-18,14335.281240000002,46.279999,0,14335.281240000002,"Sold half, 0, of stock BAC at 46.279999 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+722,2021-10-19,14335.281240000002,46.48,0,14335.281240000002,"Sold half, 0, of stock BAC at 46.48 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+723,2021-10-20,14335.281240000002,47.09,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.09 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+724,2021-10-21,14335.281240000002,46.830002,0,14335.281240000002,"Sold half, 0, of stock BAC at 46.830002 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+725,2021-10-22,14335.281240000002,47.57,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.57 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+726,2021-10-25,14335.281240000002,47.509998,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.509998 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+727,2021-10-26,14335.281240000002,47.959999,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.959999 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+728,2021-10-27,14335.281240000002,47.040001,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.040001 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+729,2021-10-28,14335.281240000002,47.779999,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.779999 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+730,2021-10-29,14335.281240000002,47.779999,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.779999 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+731,2021-11-01,14335.281240000002,47.849998,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.849998 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+732,2021-11-02,14335.281240000002,47.880001,0,14335.281240000002,"Sold half, 0, of stock BAC at 47.880001 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+733,2021-11-03,14335.281240000002,48.369999,0,14335.281240000002,"Sold half, 0, of stock BAC at 48.369999 because it's platued for the past 3 days and it has an okay recent history. New total is 14335.281240000002"
+734,2021-11-04,41.62063600000147,47.330002,302,14335.281240000002,Bought 302 of BAC for 47.330002 because it's been growing for the past 3 days. New total is 14335.281240000002
+735,2021-11-05,7134.090787000002,46.970001,151,14226.560938000002,"Sold half, 151, of stock BAC at 46.970001 because it's platued for the past 3 days and it has an okay recent history. New total is 14226.560938000002"
+736,2021-11-08,10731.930787000001,47.34,76,14282.430787000001,"Sold half, 75, of stock BAC at 47.34 because it's platued for the past 3 days and it has an okay recent history. New total is 14282.430787000001"
+737,2021-11-09,12513.370825000002,46.880001,38,14294.810863000002,"Sold half, 38, of stock BAC at 46.880001 because it's platued for the past 3 days and it has an okay recent history. New total is 14294.810863000002"
+738,2021-11-10,13410.740825,47.23,19,14308.110825,"Sold half, 19, of stock BAC at 47.23 because it's platued for the past 3 days and it has an okay recent history. New total is 14308.110825"
+739,2021-11-11,13885.640845,47.490002,10,14313.050863,"Sold half, 9, of stock BAC at 47.490002 because it's platued for the past 3 days and it has an okay recent history. New total is 14313.050863"
+740,2021-11-12,14120.190845,46.91,5,14354.740844999998,"Sold half, 5, of stock BAC at 46.91 because it's platued for the past 3 days and it has an okay recent history. New total is 14354.740844999998"
+741,2021-11-15,14261.340842,47.049999,3,14355.44084,"Sold half, 2, of stock BAC at 47.049999 because it's platued for the past 3 days and it has an okay recent history. New total is 14355.44084"
+742,2021-11-16,14355.500845999999,47.080002,2,14402.580848,"Sold half, 1, of stock BAC at 47.080002 because it's platued for the past 3 days and it has an okay recent history. New total is 14402.580848"
+743,2021-11-17,14402.010843999999,46.509998,1,14448.520841999998,"Sold half, 1, of stock BAC at 46.509998 because it's platued for the past 3 days and it has an okay recent history. New total is 14448.520841999998"
+744,2021-11-18,14448.330843999998,46.32,0,14448.330843999998,"Sold half, 0, of stock BAC at 46.32 because it's platued for the past 3 days and it has an okay recent history. New total is 14448.330843999998"
+745,2021-11-19,14448.330843999998,45.400002,0,14448.330843999998,"Sold half, 0, of stock BAC at 45.400002 because it's platued for the past 3 days and it has an okay recent history. New total is 14448.330843999998"
+746,2021-11-22,14448.330843999998,46.279999,0,14448.330843999998,Sold all 0 of stock BAC at 46.279999 because it's been falling for 3 consecutive days. New total is 14448.330843999998
+747,2021-11-23,14448.330843999998,47.5,0,14448.330843999998,"Sold half, 0, of stock BAC at 47.5 because it's platued for the past 3 days and it has an okay recent history. New total is 14448.330843999998"
+748,2021-11-24,14448.330843999998,47.630001,0,14448.330843999998,"Sold half, 0, of stock BAC at 47.630001 because it's platued for the past 3 days and it has an okay recent history. New total is 14448.330843999998"
+749,2021-11-26,33.93147399999725,45.759998,315,14448.330843999998,Bought 315 of BAC for 45.759998 because it's been growing for the past 3 days. New total is 14448.330843999998
+750,2021-11-29,7237.1514739999975,45.59,158,14394.781473999998,"Sold half, 157, of stock BAC at 45.59 because it's platued for the past 3 days and it has an okay recent history. New total is 14394.781473999998"
+751,2021-11-30,10750.281552999997,44.470001,79,14263.411631999998,"Sold half, 79, of stock BAC at 44.470001 because it's platued for the past 3 days and it has an okay recent history. New total is 14263.411631999998"
+752,2021-12-01,14213.641552999998,43.84,0,14213.641552999998,Sold all 79 of stock BAC at 43.84 because it's been falling for 3 consecutive days. New total is 14213.641552999998
+753,2021-12-02,14213.641552999998,44.889999,0,14213.641552999998,Sold all 0 of stock BAC at 44.889999 because it's been falling for 3 consecutive days. New total is 14213.641552999998
+754,2021-12-03,14213.641552999998,43.869999,0,14213.641552999998,"Sold half, 0, of stock BAC at 43.869999 because it's platued for the past 3 days and it has an okay recent history. New total is 14213.641552999998"
+755,2021-12-06,14213.641552999998,44.150002,0,14213.641552999998,"Sold half, 0, of stock BAC at 44.150002 because it's platued for the past 3 days and it has an okay recent history. New total is 14213.641552999998"
+756,2021-12-07,14213.641552999998,44.709999,0,14213.641552999998,"Sold half, 0, of stock BAC at 44.709999 because it's platued for the past 3 days and it has an okay recent history. New total is 14213.641552999998"
+757,2021-12-08,14213.641552999998,44.16,0,14213.641552999998,"Sold half, 0, of stock BAC at 44.16 because it's platued for the past 3 days and it has an okay recent history. New total is 14213.641552999998"
