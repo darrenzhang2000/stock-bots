@@ -185,7 +185,12 @@ for day in range(1100, len(G_stock)):
         stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = 0
         cash_in_stock -= float(orig_stock) * fall_dataframe.loc[row, 'Price']
         liquid_cash +=  float(orig_stock) * fall_dataframe.loc[row, 'Price']
-        total_money = liquid_cash + cash_in_stock
+        total_money = liquid_cash + cash_in_stock  
+        if orig_stock == 0:
+            given_reason = f"Didn't do anything for {fall_dataframe.loc[row, 'Ticker']} since it's falling and we have own none of its stocks"
+        else:
+            given_reason =  f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+
 
         report_dataframe = report_dataframe.append(
             pd.Series(
@@ -196,7 +201,7 @@ for day in range(1100, len(G_stock)):
                 fall_dataframe.loc[row, 'Price'],
                 stockChanges[fall_dataframe.loc[row, 'Ticker']],
                 total_money,
-                f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+                given_reason
             ],
                 index = daily_report_columns),
                 ignore_index = True
@@ -228,6 +233,7 @@ for day in range(1100, len(G_stock)):
             orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
             stock_in_half = math.floor( orig_stock / 2  )
             if orig_stock == 1:
+                stock_in_half = 1
                 stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = 0
                 cash_in_stock -= stable_dataframe.loc[row, 'Price']
                 liquid_cash += stable_dataframe.loc[row, 'Price']
@@ -236,6 +242,11 @@ for day in range(1100, len(G_stock)):
                 cash_in_stock -= ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
                 liquid_cash +=  ( float(stock_in_half) ) * stable_dataframe.loc[row, 'Price']
             total_money = cash_in_stock + liquid_cash
+
+            if orig_stock == 0:
+                given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a decent history and we have own none of its stocks"
+            else:
+                given_reason = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
 
             report_dataframe = report_dataframe.append(
             pd.Series(
@@ -246,7 +257,7 @@ for day in range(1100, len(G_stock)):
                 stable_dataframe.loc[row, 'Price'],
                 stockChanges[stable_dataframe.loc[row, 'Ticker']],
                 total_money,
-                f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
+                given_reason
             ],
                 index = daily_report_columns),
                 ignore_index = True
@@ -261,6 +272,13 @@ for day in range(1100, len(G_stock)):
             cash_in_stock -= orig_stock * stable_dataframe.loc[row, 'Price']
             liquid_cash +=  float( orig_stock) * stable_dataframe.loc[row, 'Price']
             total_money = liquid_cash + cash_in_stock
+
+            if orig_stock == 0:
+                given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a bad history and we have own none of its stocks"
+            else:
+                given_reason = f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+
+
             
             report_dataframe = report_dataframe.append(
             pd.Series(
@@ -270,8 +288,8 @@ for day in range(1100, len(G_stock)):
                 liquid_cash,
                 stable_dataframe.loc[row, 'Price'],
                 stockChanges[stable_dataframe.loc[row, 'Ticker']],
-                total_money,                    
-                f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+                total_money,
+                given_reason
             ],
                 index = daily_report_columns),
                 ignore_index = True
@@ -295,6 +313,13 @@ for day in range(1100, len(G_stock)):
             cash_in_stock += ( new_amount_to_buy * grow_dataframe.loc[row, 'Price'] )
             total_money = liquid_cash + cash_in_stock
 
+            if new_amount_to_buy == 0:
+                given_reason = f"Didn't do buy any of {grow_dataframe.loc[row, 'Ticker']} even though it's growing because we don't currently have the money"
+            else:
+                given_reason = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+
+
+
             report_dataframe = report_dataframe.append(
             pd.Series(
             [
@@ -304,7 +329,7 @@ for day in range(1100, len(G_stock)):
                 grow_dataframe.loc[row, 'Price'],
                 stockChanges[grow_dataframe.loc[row, 'Ticker']],
                 total_money,
-                f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+                given_reason
             ],
                 index = daily_report_columns),
                 ignore_index = True
@@ -320,3 +345,6 @@ print(report_dataframe)
 writer = pd.ExcelWriter( '6_month_test_report.xlsx', engine='xlsxwriter')
 report_dataframe.to_excel(writer, sheet_name = "daily_report", index = False)
 writer.save()
+
+report_dataframe.to_csv('report_for_6_months.csv')
+

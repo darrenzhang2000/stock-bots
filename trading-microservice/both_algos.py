@@ -9,6 +9,8 @@ import requests
 import math
 from requests import api
 from scipy.stats import percentileofscore as score
+from datetime import date
+
 #import xlsxwriter
 
 #load_dotenv()
@@ -95,6 +97,9 @@ def stockActions(tickers):
     print("bank value")
     print(bank.json())
        
+    daily_report_columns = ['Date', 'Stock', 'Spending Power', 'Price', 'Quantity', 'Total', 'Report']
+
+    report_dataframe = pd.DataFrame(columns = daily_report_columns)
 
 
     hqm_columns = [ #this is for measuring return consistency
@@ -229,6 +234,23 @@ def stockActions(tickers):
             orig_stock = int( stockChanges[fall_dataframe.loc[row, 'Ticker']] ) #this searches stockChanges for the amount
             stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = orig_stock * -1
             liquid_cash +=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
+            cash_in_stock -=  ( float( orig_stock) ) * fall_dataframe.loc[row, 'Price']
+            total_money = liquid_cash
+
+            report_dataframe = report_dataframe.append(
+            pd.Series(
+            [
+                date.today(),
+                fall_dataframe.loc[row, 'Ticker'],
+                liquid_cash,
+                fall_dataframe.loc[row, 'Price'],
+                stockChanges[fall_dataframe.loc[row, 'Ticker']],
+                total_money,
+                f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+            ],
+                index = daily_report_columns),
+                ignore_index = True
+        )
             #note create liquid currency before this
             #create total since last run
             #total_to_return -= liquid_currency
@@ -255,15 +277,54 @@ def stockActions(tickers):
             if stable_dataframe.loc[row, 'Decision'] == 1:
                 orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
                 stock_in_half = math.floor( orig_stock / 2  )
-                stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] =  (orig_stock - stock_in_half) * -1
-                liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
-                #add cash in stock
-                #total_to_return -= liquid_currency
+                if orig_stock == 1:
+                    stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = 0
+                    liquid_cash += stable_dataframe.loc[row, 'Price']
+                else:
+                    stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] =  (orig_stock - stock_in_half) * -1
+                    liquid_cash +=  ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+                    cash_in_stock -= ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+                    total_money = liquid_cash + cash_in_stock
+
+                report_dataframe = report_dataframe.append(
+                pd.Series(
+                [
+                    date.today(),
+                    stable_dataframe.loc[row, 'Ticker'],
+                    liquid_cash,
+                    stable_dataframe.loc[row, 'Price'],
+                    stockChanges[stable_dataframe.loc[row, 'Ticker']],
+                    total_money,
+                    f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
+                ],
+                    index = daily_report_columns),
+                    ignore_index = True
+                )    
+                    
+                    #add cash in stock
+                    #total_to_return -= liquid_currency
 
             else:
                 orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
                 stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = orig_stock * -1
                 liquid_cash +=  ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
+                cash_in_stock -= ( float( orig_stock) ) * stable_dataframe.loc[row, 'Price']
+                total_money = liquid_cash + cash_in_stock
+            
+                report_dataframe = report_dataframe.append(
+                pd.Series(
+                [
+                    date.today(),
+                    stable_dataframe.loc[row, 'Ticker'],
+                    liquid_cash,
+                    stable_dataframe.loc[row, 'Price'],
+                    stockChanges[stable_dataframe.loc[row, 'Ticker']],
+                    total_money,                    
+                    f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+                ],
+                    index = daily_report_columns),
+                    ignore_index = True
+                )
                 #okay, we now updated the amount of stocks we have left and got the money from that
                 #now we update the bank to show that that money is now liquid
                 #total_to_return -= liquid_currency
@@ -277,7 +338,25 @@ def stockActions(tickers):
                 orig_stock = int( stockChanges[grow_dataframe.loc[row, 'Ticker']] )
                 new_amount_to_buy = math.floor(divvied_up_cash/grow_dataframe.loc[i, 'Price'])
                 liquid_cash -=  (new_amount_to_buy * grow_dataframe.loc[i, 'Price'])
+                cash_in_stock += (new_amount_to_buy * grow_dataframe.loc[i, 'Price'])
+                total_money = liquid_cash + cash_in_stock
                 stockChanges[grow_dataframe.loc[row, 'Ticker']] = new_amount_to_buy
+
+                report_dataframe = report_dataframe.append(
+                pd.Series(
+                [
+                    date.today(),
+                    grow_dataframe.loc[row, 'Ticker'],
+                    liquid_cash,
+                    grow_dataframe.loc[row, 'Price'],
+                    stockChanges[grow_dataframe.loc[row, 'Ticker']],
+                    total_money,
+                    f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+                ],
+                    index = daily_report_columns),
+                    ignore_index = True
+                )
+
             # great, now from line 81, we can manipulate all the stocks
         #okay, we have the # of shares we can buy for each, now we do that                
 
@@ -346,6 +425,7 @@ def stockActions(tickers):
     
     print("after i fill afterc algo")
     print(stockChanges)
+    print(report_dataframe)
     #print(stockChanges)
     # stockChanges['MSFT'] = int(stockChanges['MSFT'])/2
 

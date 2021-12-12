@@ -24,12 +24,21 @@ path = os.getcwd()
 path += "/histdata"
 csv_files = glob.glob(os.path.join(path, "*.csv"))
 
+#okay so we will use the bottom loop to just put all the excel files
+#into their own variables,
 
-#okay, measure how much money is gained over first 5 stocks
-#and give percentage of increase
-#at the end, sell all
+#or just grab them individually and just repeat everything 4 times for each 
+#specific one
 
-#so I need starting cash
+#nested for loop so each 
+
+#okay, so do for(1 - 4) and if: it's one, A_stock_xl = MSFT.xl, if 2 A_stock = FB
+#OR
+#put read all of them, then put each of them in a series
+#df = [df1, df2, df3]
+#good, news. i only have to grab the last 6 months rather than 5 years
+# 
+
 
 
 for current_xl in csv_files:
@@ -189,11 +198,16 @@ for current_xl in csv_files:
                 orig_stock = A_stock_amount
                 stock_in_half = math.floor( orig_stock / 2  )
                 #subtract A_stock_amount by the half we sold
-                A_stock_amount -= stock_in_half
-                #the current cash in the stock is now what we have left in the stocks
-                cash_in_stock = stock_in_half * stable_dataframe.loc[row, 'Price']
-                #liquid cash is made larger by what we sold
-                liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+                if orig_stock == 1:
+                    A_stock_amount = 0
+                    cash_in_stock = 0
+                    liquid_cash += stable_dataframe.loc[row, 'Price']
+                else:
+                    A_stock_amount -= stock_in_half
+                    #the current cash in the stock is now what we have left in the stocks
+                    cash_in_stock = stock_in_half * stable_dataframe.loc[row, 'Price']
+                    #liquid cash is made larger by what we sold
+                    liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
                 total_money = cash_in_stock + liquid_cash
 
                 report_dataframe = report_dataframe.append(
@@ -273,3 +287,6 @@ for current_xl in csv_files:
     writer = pd.ExcelWriter(str(current_xl).replace(".csv", "") + '_test_report.xlsx', engine='xlsxwriter')
     report_dataframe.to_excel(writer, sheet_name = "daily_report", index = False)
     writer.save()
+
+
+    report_dataframe.to_csv(str(current_xl).replace(".csv", "") + ' report_for_backtest.csv')
