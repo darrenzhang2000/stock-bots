@@ -47,21 +47,30 @@ T_stock = pd.read_csv('TSLA.csv')
 csv_files = [G_stock, F_stock, M_stock, T_stock]
 
 
-
-
 liquid_cash = 10000
 total_money = 10000
-#note start here --- > stockChanges = {''} make stock changes hash table 4 msft, etc like in both algos
+stockChanges = {'GOOGL' : 0, 'FB': 0, 'MSFT': 0, 'TSLA': 0}
 cash_in_stock = 0
 
-daily_report_columns = ['Date', 'Spending Power', 'Price', 'Quantity', 'Total', 'Report']
+daily_report_columns = ['Date', 'Stock', 'Spending Power', 'Price', 'Quantity', 'Total', 'Report']
 
 report_dataframe = pd.DataFrame(columns = daily_report_columns)
+#this keeps track of the name
+i = 0
 
 #okay, for every day
 for day in range(1100, len(G_stock)):
-    #print(A_stock.loc[i, 'Date'])
-    #simulate what this algo does with one stock
+
+    #at the beginning of the day, prices are different, so i must reset
+    #cash_in_stock
+
+    cash_in_stock = ( (G_stock.loc[day, 'Close'] * stockChanges['GOOGL']) +
+                      (F_stock.loc[day, 'Close'] * stockChanges['FB']) +  
+                       (M_stock.loc[day, 'Close'] * stockChanges['MSFT']) +
+                    (T_stock.loc[day, 'Close'] * stockChanges['TSLA'])      )
+
+    total_money = cash_in_stock + liquid_cash
+
     hqm_columns = [ #this is for measuring return consistency
     'Ticker',
     'Price',
@@ -79,9 +88,21 @@ for day in range(1100, len(G_stock)):
 
     #here is where first for loop goes
     #for each csv file in the list of csv files
+    i = 0
     for A_stock_xl in csv_files:
+        if i == 0:
+            ticker = 'GOOGL'
+        elif i == 1:
+            ticker = 'FB'
+        elif i == 2:
+            ticker = 'MSFT'
+        else:
+            ticker = 'TSLA'
+        
+        i += 1
         #this is because i have to drop the file location and the .csv from the excel file
-        ticker = str(A_stock_xl).replace(".csv", "")
+        #print(ticker)
+        
 
         a_year_ago = day - (52 * 5) #this is an estimate, since stock market is only
             #open on weekdays, so 52 of those should be a year ago
@@ -160,19 +181,20 @@ for day in range(1100, len(G_stock)):
     #if it's falling, we just want to sell
 
     for row in fall_dataframe.index:
-        orig_stock = A_stock_amount #okay, i'm only updating 1 stock
-        A_stock_amount = 0
-        cash_in_stock = 0
+        orig_stock = stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] #okay, i'm only updating 1 stock
+        stockChanges[ fall_dataframe.loc[row, 'Ticker'] ] = 0
+        cash_in_stock -= float(orig_stock) * fall_dataframe.loc[row, 'Price']
         liquid_cash +=  float(orig_stock) * fall_dataframe.loc[row, 'Price']
-        total_money = liquid_cash
+        total_money = liquid_cash + cash_in_stock
 
         report_dataframe = report_dataframe.append(
             pd.Series(
             [
                 A_stock_xl.loc[day, 'Date'],
+                fall_dataframe.loc[row, 'Ticker'],
                 liquid_cash,
                 fall_dataframe.loc[row, 'Price'],
-                A_stock_amount,
+                stockChanges[fall_dataframe.loc[row, 'Ticker']],
                 total_money,
                 f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
             ],
@@ -203,24 +225,26 @@ for day in range(1100, len(G_stock)):
     #okay we took an estimate of its past, so now we decide how much we sell
     for row in stable_dataframe.index:
         if stable_dataframe.loc[row, 'Decision'] == 1:
-            #it has a decent past, so i'll only sell half
-            orig_stock = A_stock_amount
+            orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
             stock_in_half = math.floor( orig_stock / 2  )
-            #subtract A_stock_amount by the half we sold
-            A_stock_amount -= stock_in_half
-            #the current cash in the stock is now what we have left in the stocks
-            cash_in_stock = stock_in_half * stable_dataframe.loc[row, 'Price']
-            #liquid cash is made larger by what we sold
-            liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+            if orig_stock == 1:
+                stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = 0
+                cash_in_stock -= stable_dataframe.loc[row, 'Price']
+                liquid_cash += stable_dataframe.loc[row, 'Price']
+            else:
+                stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] -= stock_in_half
+                cash_in_stock -= ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+                liquid_cash +=  ( float(stock_in_half) ) * stable_dataframe.loc[row, 'Price']
             total_money = cash_in_stock + liquid_cash
 
             report_dataframe = report_dataframe.append(
             pd.Series(
             [
                 A_stock_xl.loc[day, 'Date'],
+                stable_dataframe.loc[row, 'Ticker'],
                 liquid_cash,
                 stable_dataframe.loc[row, 'Price'],
-                A_stock_amount,
+                stockChanges[stable_dataframe.loc[row, 'Ticker']],
                 total_money,
                 f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
             ],
@@ -232,21 +256,22 @@ for day in range(1100, len(G_stock)):
         
             #we still need to buy, so we'll push the updated numbers at the end
         else:
-            orig_stock = A_stock_amount
-            A_stock_amount = 0
-            cash_in_stock = 0
+            orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
+            stockChanges[ stable_dataframe.loc[row, 'Ticker'] ] = 0
+            cash_in_stock -= orig_stock * stable_dataframe.loc[row, 'Price']
             liquid_cash +=  float( orig_stock) * stable_dataframe.loc[row, 'Price']
-            total_money = liquid_cash
+            total_money = liquid_cash + cash_in_stock
             
             report_dataframe = report_dataframe.append(
             pd.Series(
             [
                 A_stock_xl.loc[day, 'Date'],
+                stable_dataframe.loc[row, 'Ticker'],
                 liquid_cash,
                 stable_dataframe.loc[row, 'Price'],
-                A_stock_amount,
+                stockChanges[stable_dataframe.loc[row, 'Ticker']],
                 total_money,                    
-                f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+                f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
             ],
                 index = daily_report_columns),
                 ignore_index = True
@@ -260,20 +285,24 @@ for day in range(1100, len(G_stock)):
     if(len(grow_dataframe.index) != 0 and liquid_cash != 0):
         divvied_up_cash = liquid_cash / len(grow_dataframe.index)
         for row in grow_dataframe.index:
-            orig_stock = A_stock_amount
+            orig_stock = int( stockChanges[grow_dataframe.loc[row, 'Ticker']] )
             new_amount_to_buy = math.floor(divvied_up_cash/grow_dataframe.loc[row, 'Price'])
             liquid_cash -= ( new_amount_to_buy * grow_dataframe.loc[row, 'Price'])
-            A_stock_amount = A_stock_amount + new_amount_to_buy
-            cash_in_stock = A_stock_amount * grow_dataframe.loc[row, 'Price']
+            stockChanges[grow_dataframe.loc[row, 'Ticker']] = orig_stock + new_amount_to_buy
+            #wait, cash_in_stock isn't permanent, if i have 5 one TSLA when it's $1
+            #then cash_in_stock is $5. but if i add add 2 more at $10,
+            #okay. i must reset cash_in_stock every day
+            cash_in_stock += ( new_amount_to_buy * grow_dataframe.loc[row, 'Price'] )
             total_money = liquid_cash + cash_in_stock
 
             report_dataframe = report_dataframe.append(
             pd.Series(
             [
                 A_stock_xl.loc[day, 'Date'],
+                grow_dataframe.loc[row, 'Ticker'],
                 liquid_cash,
                 grow_dataframe.loc[row, 'Price'],
-                A_stock_amount,
+                stockChanges[grow_dataframe.loc[row, 'Ticker']],
                 total_money,
                 f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
             ],
