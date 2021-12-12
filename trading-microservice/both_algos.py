@@ -251,6 +251,7 @@ def stockActions(tickers):
                 action = "HOLD"
                 given_reason = f"Didn't do anything for {fall_dataframe.loc[row, 'Ticker']} since it's falling and we own none of its stocks"
             
+            url = "http://localhost:8000/transactions/"
             #for every trade, update the transaction table
             payload=f"email=testuser%40gmail.com&ticker={fall_dataframe.loc[row,'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={fall_dataframe.loc[row, 'Price']}"
             headers = {
@@ -301,6 +302,7 @@ def stockActions(tickers):
                     action = "HOLD"
                     given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a decent history and we have own none of its stocks"
 
+                url = "http://localhost:8000/transactions/"
                 #put in transactions
                 payload=f"email=testuser%40gmail.com&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={stock_in_half}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
                 headers = {
@@ -326,6 +328,7 @@ def stockActions(tickers):
                     action = "HOLD"
                     given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a bad history and we have own none of its stocks"
 
+                url = "http://localhost:8000/transactions/"
                 payload=f"email=testuser%40gmail.com&ticker={stable_dataframe.loc[row, 'Ticker']}&quantity={orig_stock}&action={action}&dateTime={date.today()}&reason={given_reason}&price={stable_dataframe.loc[row, 'Price']}"
                 headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -357,6 +360,7 @@ def stockActions(tickers):
                     given_reason = f"Didn't do buy any of {grow_dataframe.loc[row, 'Ticker']} even though it's growing because we don't currently have the money"
                     action = "HOLD"
 
+                url = "http://localhost:8000/transactions/"
                 payload=f"email=testuser%40gmail.com&ticker={grow_dataframe.loc[row, 'Ticker']}&quantity={new_amount_to_buy}&action={action}&dateTime={date.today()}&reason={given_reason}&price={grow_dataframe.loc[row, 'Price']}"
                 headers = {
                 'Content-Type': 'application/x-www-form-urlencoded'
