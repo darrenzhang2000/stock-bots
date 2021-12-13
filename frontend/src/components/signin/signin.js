@@ -64,16 +64,11 @@ export default function SignIn() {
 
         var email = formData.get('email')
         axios(options).then(res => {
-            console.log('login results')
-            console.log(res.data.success)
-            console.log(res.data.message)
             // need to save user info somewhere
             if (res.data.success) {
                 dispatch(login(email))
                 history.push('/')
             }else{
-                console.log('failed')
-                console.log(res.data)
                 setErrorMsg(res.data.message)
                 setDisplayAlert(true)
             }
@@ -82,7 +77,6 @@ export default function SignIn() {
 
     const handleLogInAsGuest = (event) => {
         event.preventDefault();
-        console.log('guest login')
 
         var headers = {
             'accept': 'application/json',
@@ -101,12 +95,10 @@ export default function SignIn() {
         };
 
         axios(options).then(res => {
-            console.log(res)
             // need to save user info somewhere
             if (res.data.success) {
                 dispatch(login("testuser@gmail.com"))
                 
-                console.log(res.data.sucess)
                 history.push('/')
             }
         })

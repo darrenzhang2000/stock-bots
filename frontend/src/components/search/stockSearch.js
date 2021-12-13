@@ -43,7 +43,6 @@ const StockSearch = props => {
                 if(res && res.data && !res.data.error){
                     let suggestedTickers = res.data.ResultSet.Result.map(obj => obj.symbol) 
                     setSuggestions(suggestedTickers)
-                    console.log('sugg', suggestedTickers, res.data)
                 }
 
             }

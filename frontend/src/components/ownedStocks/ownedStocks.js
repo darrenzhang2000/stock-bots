@@ -38,11 +38,11 @@ const OwnedStocks = () => {
             if (tempOwnedStocks == undefined) {
                 return
             }
-            // let tickers = tempOwnedStocks.map(s => s.ticker)
-            // let stockPricesHt = await getStockPrices(tickers)
-            // for (let i = 0; i < tickers.length; i++) {
-            //     tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
-            // }
+            let tickers = tempOwnedStocks.map(s => s.ticker)
+            let stockPricesHt = await getStockPrices(tickers)
+            for (let i = 0; i < tickers.length; i++) {
+                tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
+            }
             setOwnedStocks(tempOwnedStocks)
 
         })

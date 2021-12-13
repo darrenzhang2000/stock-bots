@@ -69,12 +69,10 @@ export default function SignUp() {
         };
 
         axios(options).then(res => {
-            console.log(res)
             if (res.data.error) {
                 console.log('error logging in', res.data.error)
             } else {
                 if (res.data.success) {
-                    console.log('added', res.data)
                     var email = formData.get('email')
                     dispatch(login(email))
 
@@ -95,7 +93,7 @@ export default function SignUp() {
 
                     axios(config)
                         .then(function (response) {
-                            console.log(JSON.stringify(response.data));
+                            //console.log(JSON.stringify(response.data));
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -104,8 +102,6 @@ export default function SignUp() {
                     // need to save user info somewhere
                     history.push('/')
                 } else {
-                    console.log('failed')
-                    console.log(res.data)
                     setErrorMsg(res.data.message)
                     setDisplayAlert(true)
                 }
@@ -137,11 +133,8 @@ export default function SignUp() {
         };
 
         axios(options).then(res => {
-            console.log(res)
-            console.log('confuzzle', res.data.success)
             // need to save user info somewhere
             if (res.data.success) {
-                console.log('hi')
                 dispatch(login("testuser@gmail.com"))
                 history.push('/')
             } else {

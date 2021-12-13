@@ -38,7 +38,6 @@ const TransactionPage = (props) => {
             }
             // setTransactions(res.data.transactions.sort((a, b) => a.dateTime < b.dateTime ? 1 : -1))
             setTransactions(res.data.transactions.reverse())
-            console.log(transactions)
         })
     }
 
@@ -62,7 +61,7 @@ const TransactionPage = (props) => {
             { transactions && transactions.length != 0 ? <TableContainer sx={{ paddingLeft: '64px', paddingRight: '64px'}} component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
-                        <TableRow>
+                        <TableRow id="transactionsHeader">
                             <TableCell><strong>Date</strong></TableCell>
                             <TableCell><strong>Ticker</strong></TableCell>
                             <TableCell><strong>Action</strong></TableCell>
@@ -72,7 +71,7 @@ const TransactionPage = (props) => {
                     </TableHead>
                     <TableBody>
                         {
-                            transactions.map((transaction, idx) => <TableRow id={idx}>
+                            transactions.map((transaction, idx) => <TableRow id={idx+transaction.dateTime.toLocaleString()}>
                                 <TableCell>{new Date(transaction.dateTime).toLocaleString()}</TableCell>
                                 <TableCell>{transaction.ticker}</TableCell>
                                 <TableCell>{transaction.action}</TableCell>

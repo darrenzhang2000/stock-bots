@@ -38,7 +38,7 @@ const Account = () => {
         };
 
         axios(options).then(res => {
-            console.log(res.data)
+            //console.log(res.data)
         })
     }
 
@@ -55,7 +55,7 @@ const Account = () => {
 
         axios.put(`${process.env.REACT_APP_BACKEND_API}/portfolios/`, data, headers).then(
             res => {
-                console.log(res.data)
+                //console.log(res.data)
             }
         )
     }

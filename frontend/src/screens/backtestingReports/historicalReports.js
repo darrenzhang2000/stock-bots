@@ -70,7 +70,6 @@ const HistoricalReports = () => {
         setCurrentReport(currentStockName)
         setData(stockMap[currentStockName])
     }
-    console.log('backtesting file')
 
     return (
         <div>

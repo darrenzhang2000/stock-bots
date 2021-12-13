@@ -3,12 +3,10 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import MuiAppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -20,7 +18,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, Route } from 'react-router-dom';
 import './App.css';
@@ -29,7 +27,6 @@ import { secondaryListItems } from './components/drawer/listItems';
 import Signin from './components/signin/signin';
 import Signup from './components/signup/signup';
 import { logout } from './reducers/loginReducer';
-import { runTradingAlgorithm } from './runTradingAlgo.js';
 import HistoricalReports from './screens/backtestingReports/historicalReports';
 import Home from './screens/home/home';
 import PortfolioPage from './screens/portfolioPage/portfolioPage';
@@ -88,14 +85,8 @@ function App() {
     setOpen(!open);
   };
 
-  useEffect(() => {
-    runTradingAlgorithm()
-
-  }, [])
-
   return (
     <div className="font-link">
-      {/* <Header /> */}
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -118,15 +109,8 @@ function App() {
               <MenuIcon />
             </IconButton>
             <Typography>
-              {/* <StonksLogo/> */}
               <img src={StonksLogo} width="40px" height="40px" />
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-
           </Toolbar>
         </AppBar>
 
@@ -182,14 +166,6 @@ function App() {
               </ListItem>
             </Link>
 
-            {/* <Link to='/savingsPage'>
-              <ListItem button>
-                <ListItemIcon>
-                  <AccountBalanceIcon />
-                </ListItemIcon>
-                <ListItemText primary="Savings Page" />
-              </ListItem>
-            </Link> */}
             <Link to='/signup'>
               <ListItem button>
                 <ListItemIcon>
@@ -246,14 +222,7 @@ function App() {
                 </ListItem>
               </Link>
 
-              {/* <Link to='/savingsPage'>
-                <ListItem button>
-                  <ListItemIcon>
-                    <AccountBalanceIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Savings Page" />
-                </ListItem>
-              </Link> */}
+
               <Link to='/'>
                 <ListItem button onClick={() => {
                   dispatch(logout())
@@ -296,9 +265,7 @@ function App() {
             <Route exact path='/portfolioPage' component={PortfolioPage} />
           </PrivateRoute>
           <Route exact path='/historicalReports' component={HistoricalReports} />
-          {/* <Route exact path='/savingsPage' component={SavingsPage} /> */}
         </Box>
-        {/* <Footer /> */}
       </Box>
     </div >
   );
