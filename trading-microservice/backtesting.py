@@ -157,6 +157,13 @@ for current_xl in csv_files:
             liquid_cash +=  float(orig_stock) * fall_dataframe.loc[row, 'Price']
             total_money = liquid_cash
 
+            given_reason =  f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+            action = "SELL"
+            if orig_stock == 0:
+                action = "HOLD"
+                given_reason = f"Didn't do anything for {fall_dataframe.loc[row, 'Ticker']} since it's falling and we own none of its stocks"
+            
+
             report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
@@ -165,7 +172,7 @@ for current_xl in csv_files:
                     fall_dataframe.loc[row, 'Price'],
                     A_stock_amount,
                     total_money,
-                    f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
+                    given_reason
                 ],
                     index = daily_report_columns),
                     ignore_index = True
@@ -210,6 +217,12 @@ for current_xl in csv_files:
                     liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
                 total_money = cash_in_stock + liquid_cash
 
+                given_reason = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
+                action = "SELL"
+                if orig_stock == 0:
+                    action = "HOLD"
+                    given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a decent history and we have own none of its stocks"
+
                 report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
@@ -218,7 +231,7 @@ for current_xl in csv_files:
                     stable_dataframe.loc[row, 'Price'],
                     A_stock_amount,
                     total_money,
-                    f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
+                    given_reason
                 ],
                     index = daily_report_columns),
                     ignore_index = True
@@ -233,6 +246,13 @@ for current_xl in csv_files:
                 cash_in_stock = 0
                 liquid_cash +=  float( orig_stock) * stable_dataframe.loc[row, 'Price']
                 total_money = liquid_cash
+
+                given_reason = f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+                action = "SELL"
+                if orig_stock == 0:
+                    action = "HOLD"
+                    given_reason = f"Didn't do anything for {stable_dataframe.loc[row, 'Ticker']} since it's stable and has a bad history and we have own none of its stocks"
+
                 
                 report_dataframe = report_dataframe.append(
                 pd.Series(
@@ -241,8 +261,8 @@ for current_xl in csv_files:
                     liquid_cash,
                     stable_dataframe.loc[row, 'Price'],
                     A_stock_amount,
-                    total_money,                    
-                    f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
+                    total_money,   
+                    given_reason                 
                 ],
                     index = daily_report_columns),
                     ignore_index = True
@@ -263,6 +283,13 @@ for current_xl in csv_files:
                 cash_in_stock = A_stock_amount * grow_dataframe.loc[row, 'Price']
                 total_money = liquid_cash + cash_in_stock
 
+                given_reason = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+                action = "BUY"
+
+                if new_amount_to_buy == 0:
+                    given_reason = f"Didn't do buy any of {grow_dataframe.loc[row, 'Ticker']} even though it's growing because we don't currently have the money"
+                    action = "HOLD"
+
                 report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
@@ -271,7 +298,7 @@ for current_xl in csv_files:
                     grow_dataframe.loc[row, 'Price'],
                     A_stock_amount,
                     total_money,
-                    f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
+                    given_reason
                 ],
                     index = daily_report_columns),
                     ignore_index = True
@@ -284,9 +311,9 @@ for current_xl in csv_files:
     print(total_money)
     print(report_dataframe)
             
-    writer = pd.ExcelWriter(str(current_xl).replace(".csv", "") + '_test_report.xlsx', engine='xlsxwriter')
-    report_dataframe.to_excel(writer, sheet_name = "daily_report", index = False)
-    writer.save()
+    # writer = pd.ExcelWriter(str(current_xl).replace(".csv", "") + '_test_report.xlsx', engine='xlsxwriter')
+    # report_dataframe.to_excel(writer, sheet_name = "daily_report", index = False)
+    # writer.save()
 
 
     report_dataframe.to_csv(str(current_xl).replace(".csv", "") + ' report_for_backtest.csv')
