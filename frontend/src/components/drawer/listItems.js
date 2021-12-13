@@ -71,12 +71,20 @@ export const mainListItems = (
 export const secondaryListItems = (
     <div>
         <ListSubheader inset>Saved reports</ListSubheader>
-        <Link to='/historicalReports'>
+        <Link to='/individualReports'>
             <ListItem button>
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Backtesting reports" />
+                <ListItemText primary="Individual reports" />
+            </ListItem>
+        </Link>
+        <Link to='/diversifiedReports'>
+            <ListItem button>
+                <ListItemIcon>
+                    <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Diversified reports" />
             </ListItem>
         </Link>
     </div>
