@@ -21,6 +21,8 @@ csv_files = glob.glob(os.path.join(path, "*.csv"))
 #since some stocks will lose money and some will gain, we will track the gain and loss of each so we know overall how much we make
 overall_gain = 0
 
+
+
 #for every csv file, it will run an individual report
 #basically for each stock, it will simulate as if the algorithm has run for just that one stock for about 3 years
 #so it's as if a user had only had one stock for us to manage, and they let it run for 3 years without change
@@ -33,8 +35,9 @@ for current_xl in csv_files:
     A_stock_amount = 0
     cash_in_stock = 0
 
+    csv_index = 0
     #this is added to whenever
-    daily_report_columns = ['Date', 'Spending Power', 'Price', 'Quantity', 'Total', 'Report']
+    daily_report_columns = ['ID', 'Date', 'Spending Power', 'Price', 'Quantity', 'Total', 'Report']
 
     report_dataframe = pd.DataFrame(columns = daily_report_columns)
 
@@ -152,6 +155,7 @@ for current_xl in csv_files:
             report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
+                    csv_index,
                     A_stock_xl.loc[day, 'Date'],
                     liquid_cash,
                     fall_dataframe.loc[row, 'Price'],
@@ -162,6 +166,7 @@ for current_xl in csv_files:
                     index = daily_report_columns),
                     ignore_index = True
             )
+            csv_index += 1
             #fall_dataframe.loc[row, 'Reason'] = f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
             #print(fall_dataframe.loc[row, 'Reason'])
 
@@ -211,6 +216,7 @@ for current_xl in csv_files:
                 report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
+                    csv_index,
                     A_stock_xl.loc[day, 'Date'],
                     liquid_cash,
                     stable_dataframe.loc[row, 'Price'],
@@ -221,6 +227,7 @@ for current_xl in csv_files:
                     index = daily_report_columns),
                     ignore_index = True
                 )
+                csv_index += 1
                 #stable_dataframe.loc[row, 'Reason'] = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
                 #print(stable_dataframe.loc[row, 'Reason'])
             
@@ -242,6 +249,7 @@ for current_xl in csv_files:
                 report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
+                    csv_index,
                     A_stock_xl.loc[day, 'Date'],
                     liquid_cash,
                     stable_dataframe.loc[row, 'Price'],
@@ -252,6 +260,7 @@ for current_xl in csv_files:
                     index = daily_report_columns),
                     ignore_index = True
                 )
+                csv_index += 1
 
                 #stable_dataframe.loc[row, 'Reason'] = f"Sold all {A_stock_amount}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
                 #print(stable_dataframe.loc[row, 'Reason'])
@@ -278,6 +287,7 @@ for current_xl in csv_files:
                 report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
+                    csv_index,
                     A_stock_xl.loc[day, 'Date'],
                     liquid_cash,
                     grow_dataframe.loc[row, 'Price'],
@@ -288,6 +298,7 @@ for current_xl in csv_files:
                     index = daily_report_columns),
                     ignore_index = True
                 )
+                csv_index += 1
                 # grow_dataframe.loc[row, 'Reason'] = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
                 # print(grow_dataframe.loc[row, 'Reason'])
 
