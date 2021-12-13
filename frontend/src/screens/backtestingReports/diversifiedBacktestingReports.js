@@ -6,6 +6,7 @@ import Diversified_Json from './diversifiedTestReports/3_year_diversified_test_r
 
 const reports = ['3_year_diversified_test_report.json']
 
+// backtesting reports that takes into account multiple stocks
 const DiversifiedReports = () => {
     // Adding id to each row because DataGrid requires each row to have a unique id
     for (let i = 0; i < Diversified_Json.length; i++) {

@@ -34,6 +34,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+// Signs up the user.
 export default function SignUp() {
     const dispatch = useDispatch()
     let history = useHistory();
@@ -68,6 +69,7 @@ export default function SignUp() {
             data: qs.stringify(data)
         };
 
+        // stores user in database if valid
         axios(options).then(res => {
             if (res.data.error) {
                 console.log('error logging in', res.data.error)

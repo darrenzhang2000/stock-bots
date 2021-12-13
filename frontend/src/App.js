@@ -78,6 +78,7 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
+// App mostly contains the Drawer and handles the routing to different pages
 function App() {
   var isLoggedIn = useSelector(state => state.login.login)
   const dispatch = useDispatch()

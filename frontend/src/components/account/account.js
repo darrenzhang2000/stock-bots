@@ -42,6 +42,7 @@ const Account = () => {
         })
     }
 
+    // enters new spending power into the database
     const updateSpendingPower = (amt) => {
         var headers = {
             'Accept': '*/*',
@@ -60,6 +61,8 @@ const Account = () => {
         )
     }
 
+    // conditionally updates the user's spending power after clicking
+    // either withdraw or deposit
     const handleUpdateSpendingPower = (e) => {
         e.preventDefault()
         if (e.target.id == WITHDRAW) {
@@ -85,6 +88,7 @@ const Account = () => {
         getSpendingPower()
     }, [])
 
+    // makes sure that the input is a number
     const handleOnChangeWithdraw = (e) => {
         const re = /^[0-9]+$/
         if (e.target.value === '' || re.test(e.target.value)) {
@@ -92,6 +96,7 @@ const Account = () => {
         }
     }
 
+    // makes sure that the input is a number
     const handleOnChangeDeposit = (e) => {
         const re = /^[0-9]+$/
         if (e.target.value === '' || re.test(e.target.value)) {

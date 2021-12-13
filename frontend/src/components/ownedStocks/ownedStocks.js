@@ -38,6 +38,7 @@ const OwnedStocks = () => {
             let stockPricesHt = await getStockPrices(tickers)
             for (let i = 0; i < tickers.length; i++) {
                 tempOwnedStocks[i].currentPrice = stockPricesHt[tickers[i]]
+                // unique id needed for MUI DataGrid
                 tempOwnedStocks[i].id = i
             }
             setOwnedStocks(tempOwnedStocks)
@@ -45,6 +46,8 @@ const OwnedStocks = () => {
         })
     }
 
+    // Makes an api call to Yahoo Finance to get prices for each of the 
+    // stocks in tickerList and adds it to the stocks
     const getStockPrices = async (tickerList) => {
         var headers = {
             'accept': 'application/json',
@@ -118,34 +121,7 @@ const OwnedStocks = () => {
                         />
                     </div>
                 </Paper>
-
-                // <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px', paddingLeft: '64px', paddingRight: '64px' }}>
-                //     <Table sx={{ minWidth: 650, paddingLeft: '64px', paddingRight: '64px' }} aria-label="simple table">
-                //         <TableHead>
-                //             <TableRow>
-                //                 <TableCell><strong>Ticker</strong></TableCell>
-                //                 <TableCell align="right"><strong>Quantity</strong></TableCell>
-                //                 <TableCell align="right"><strong>Average Purchase Price</strong></TableCell>
-                //                 <TableCell align="right"><strong>Current Price</strong></TableCell>
-                //             </TableRow>
-                //         </TableHead>
-                //         <TableBody>
-                //             {ownedStocks.map((stock) => (
-                //                 <TableRow
-                //                     key={stock.ticker}
-                //                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                //                 >
-                //                     <TableCell component="th" scope="row">
-                //                         {stock.ticker}
-                //                     </TableCell>
-                //                     <TableCell align="right">{stock.quantity.$numberDecimal}</TableCell>
-                //                     <TableCell align="right">{stock.averagePurchasePrice.$numberDecimal}</TableCell>
-                //                     <TableCell align="right">{stock.currentPrice}</TableCell>
-                //                 </TableRow>
-                //             ))}
-                //         </TableBody>
-                //     </Table>
-                // </TableContainer>
+                
                 : <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px' }}> You do not own any stocks.</Typography>
             }
         </div>

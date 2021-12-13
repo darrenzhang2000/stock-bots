@@ -7,7 +7,6 @@ import StockImage from './stocks.jpg';
 /*
 This is the home/about page that describes what our app does
 */
-
 const Home = () => {
     return (
         <div>

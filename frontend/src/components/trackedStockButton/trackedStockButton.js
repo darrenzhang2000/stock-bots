@@ -16,6 +16,7 @@ const TrackedStockButton = (props) => {
     const [displayAlert, setDisplayAlert] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
 
+    // call to backend to see if stock is tracked by the trading algo
     const checkIfStockTracked = (e) => {
         var config = {
             method: 'get',

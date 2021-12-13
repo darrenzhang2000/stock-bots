@@ -21,6 +21,9 @@ const StockSearch = props => {
     const [errorMsg, setErrorMsg] = useState("")
     const [suggestions, setSuggestions] = useState([])
 
+    // API call to Yahoo Finance to get suggested stocks.
+    // Example: passing in 'AA' as the query will return a bunch of objects
+    // that includes the tickers 'AA', 'AAPL', 'AAL', 'AABB' .. etc
     const handleOnChange = e => {
         e.preventDefault()
         setSearchInput(e.target.value)
@@ -48,12 +51,15 @@ const StockSearch = props => {
 
     }
 
+    // clears search bar
     const handleClear = e => {
         e.preventDefault()
         setSearchInput("")
         setDisplayRes(false)
     }
 
+    // makes an api call to Yahoo Finance to get into
+    // about the searched stock
     const handleOnSubmit = e => {
         e.preventDefault()
         setDisplayRes(false)
@@ -92,11 +98,6 @@ const StockSearch = props => {
             }
         })
     }
-    const top100Films = [
-        { label: 'The Shawshank Redemption', year: 1994 },
-        { label: 'The Godfather', year: 1972 },
-        { label: 'The Godfather: Part II', year: 1974 },
-    ]
 
     return <Paper
         sx={{

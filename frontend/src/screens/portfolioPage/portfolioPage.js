@@ -6,6 +6,10 @@ import Account from '../../components/account/account';
 import OwnedStock from '../../components/ownedStocks/ownedStocks';
 import TrackedStocks from '../../components/trackedStocks/trackedStock';
 
+// Containers 3 smaller components: 
+// OwnedStock - stocks owned by the user
+// Account - Shows user's spending power and allows withdraw/deposit
+// TrackedStocks - shows stocks tracked by the trading algo
 const PortfolioPage = () => {
     return (
         <div>

@@ -5,31 +5,7 @@ const User = require("../models/User")
 const { route } = require("./transactions")
 
 
-router.put('/purchase', (req, res) => {
-    var { email, ticker, purchaseAmt } = req.body
- 
-    const filter = {
-        ticker: ticker,
-        email: email
-    }
-    const update = {
-        $inc: { quantity: purchaseAmt}
-    }
-    OwnedStock.findOneAndUpdate(filter, update, (err, stock) => {
-        if(err){
-            res.send({
-                success: false,
-                message: err
-            })
-        }else{
-            res.send({
-                success: true,
-                message: "successfully updated",
-                data: stock
-            })
-        }
-    })
-})
+
 
 //  The get request queries the OwnedStock in the database 
 // to get all of the stocks owned by the user with the specified 
@@ -56,6 +32,7 @@ router.get("/", (req, res) => {
 
 })
 
+// modifies an existing stock in the db
 router.put("/", (req, res) => {
     var { email, ticker, quantity, averagePurchasePrice } = req.body
 
@@ -88,6 +65,7 @@ router.put("/", (req, res) => {
     })
 })
 
+// adds a new stock to the db
 router.post("/", (req, res) => {
     var { email, ticker, quantity, averagePurchasePrice } = req.body
 
@@ -138,5 +116,33 @@ router.delete("/", (req, res) => {
         }
     })
 })
+
+// buy or sell a stock. positive purchaseAmt for buy, negative for sell
+router.put('/purchase', (req, res) => {
+    var { email, ticker, purchaseAmt } = req.body
+ 
+    const filter = {
+        ticker: ticker,
+        email: email
+    }
+    const update = {
+        $inc: { quantity: purchaseAmt}
+    }
+    OwnedStock.findOneAndUpdate(filter, update, (err, stock) => {
+        if(err){
+            res.send({
+                success: false,
+                message: err
+            })
+        }else{
+            res.send({
+                success: true,
+                message: "successfully updated",
+                data: stock
+            })
+        }
+    })
+})
+
 
 module.exports = router

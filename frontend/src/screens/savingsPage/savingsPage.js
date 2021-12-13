@@ -8,6 +8,7 @@ import { AmountInput, StyledInputBase } from './styledInputBase';
 const WITHDRAW = "withdraw"
 const DEPOSIT = "deposit"
 
+// currently not used, left as stretch
 const SavingsPage = () => {
     const [depositAmountIntoSavingsAccount, setDepositAmountIntoSavingsAccount] = React.useState(0)
     const [withdrawAmountFromSavingsAccount, setWithdrawAmountFromSavingsAccount] = React.useState(0)

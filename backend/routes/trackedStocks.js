@@ -22,6 +22,7 @@ router.get("/", (req, res) => {
     })
 })
 
+//see if particular stock is tracked by the trading algo
 router.get("/ticker", (req, res) => {
     var { email, ticker } = req.query
     TrackedStock.find({ email: email, ticker: ticker }, async (err, trackedStocks) => {

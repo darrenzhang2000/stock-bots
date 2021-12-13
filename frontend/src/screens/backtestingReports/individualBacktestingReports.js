@@ -47,7 +47,7 @@ const stockMap = {
     'TSLA': TSLA_Json
 }
 
-
+// backtesting reports for each individual stock
 const IndividualReports = () => {
     // Adding id to each row because DataGrid requires each row to have a unique id
     stocks.forEach(stock => {

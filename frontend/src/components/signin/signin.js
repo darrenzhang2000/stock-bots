@@ -75,6 +75,8 @@ export default function SignIn() {
         })
     };
 
+    // you have the option to log in as a suggest, which
+    // is testuser@gmail.com 's account
     const handleLogInAsGuest = (event) => {
         event.preventDefault();
 
