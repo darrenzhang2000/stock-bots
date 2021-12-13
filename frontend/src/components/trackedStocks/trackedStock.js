@@ -62,7 +62,7 @@ const TrackedStocks = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-                : <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px' }}> No stocks are being tracked by the trading algorithm.</Typography>
+                : <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px', marginLeft: '32px' }}> No stocks are being tracked by the trading algorithm.</Typography>
             }
         </div>
     )

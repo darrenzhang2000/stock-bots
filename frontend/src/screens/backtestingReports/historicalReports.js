@@ -70,6 +70,7 @@ const HistoricalReports = () => {
         setCurrentReport(currentStockName)
         setData(stockMap[currentStockName])
     }
+    console.log('backtesting file')
 
     return (
         <div>
@@ -94,6 +95,7 @@ const HistoricalReports = () => {
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
+                    sx={{marginTop: '32px', marginBottom: '32px'}}
                 >
                     Choose a different test report
             </Button>

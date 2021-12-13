@@ -33,6 +33,10 @@ const TransactionPage = (props) => {
         };
 
         axios(options).then(res => {
+            if(!res.data.transactions){
+                return
+            }
+            // setTransactions(res.data.transactions.sort((a, b) => a.dateTime < b.dateTime ? 1 : -1))
             setTransactions(res.data.transactions.reverse())
             console.log(transactions)
         })

@@ -38,7 +38,7 @@ const Account = () => {
         };
 
         axios(options).then(res => {
-            setSpendingPower(res.data.portfolios[0].spendingPower.$numberDecimal)
+            console.log(res.data)
         })
     }
 
@@ -55,7 +55,7 @@ const Account = () => {
 
         axios.put(`${process.env.REACT_APP_BACKEND_API}/portfolios/`, data, headers).then(
             res => {
-                setSpendingPower(res.data.spendingPower.$numberDecimal)
+                console.log(res.data)
             }
         )
     }
@@ -67,6 +67,7 @@ const Account = () => {
                 setErrorMsg("Your withdraw amount exceeds your spending power.")
                 setDisplayErrorMsg(true)
             } else {
+                setSpendingPower(parseFloat(spendingPower) - parseFloat(withdrawAmount))
                 updateSpendingPower(-withdrawAmount)
             }
         } else if (e.target.id == DEPOSIT) {
@@ -74,6 +75,7 @@ const Account = () => {
                 setErrorMsg("Cannot deposit more than $10000 at once.")
                 setDisplayErrorMsg(true)
             } else {
+                setSpendingPower(parseFloat(spendingPower) + parseFloat(depositAmount))
                 updateSpendingPower(depositAmount)
             }
         }
@@ -85,8 +87,6 @@ const Account = () => {
 
     const handleOnChangeWithdraw = (e) => {
         const re = /^[0-9]+$/
-        console.log(re.test(e.target.value))
-        console.log(e.target.value)
         if (e.target.value === '' || re.test(e.target.value)) {
             setWithdrawAmount(e.target.value)
         }
@@ -94,8 +94,6 @@ const Account = () => {
 
     const handleOnChangeDeposit = (e) => {
         const re = /^[0-9]+$/
-        console.log(re.test(e.target.value))
-        console.log(e.target.value)
         if (e.target.value === '' || re.test(e.target.value)) {
             setDepositAmount(e.target.value)
         }

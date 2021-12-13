@@ -84,6 +84,8 @@ def stockActions(tickers, email):
     print("this is database value")
     print(database.json())
 
+    if 'ownedStocks' not in database.json():
+        return
     stockChanges = {} #this will save the name and number of the user's stocks in a hash table
     for i in range( len(database.json()['ownedStocks']) ):
         #print(database.json()['ownedStocks'][i]['ticker'])
