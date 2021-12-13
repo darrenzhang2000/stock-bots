@@ -25,12 +25,13 @@ def getPortfolios():
     return portfolios
 
 def runAlgoJob():
+    time.sleep(86400)
+    
     portfolios = getPortfolios()
     emails = [p["email"] for p in portfolios]
     for email in emails:
         stockActions(['GOOGL', 'TSLA', 'FB', 'MSFT'], email)
 
-    time.sleep(86400)
     runAlgoJob()
 
 
