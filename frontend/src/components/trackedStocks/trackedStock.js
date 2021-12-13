@@ -74,27 +74,7 @@ const TrackedStocks = () => {
                         />
                     </div>
                 </Paper>
-                // <TableContainer component={Paper} sx={{ marginLeft: '32px', marginBottom: '32px', marginRight: '32px', width: 'auto', paddingLeft: '64px', paddingRight: '64px' }}>
-                //     <Table sx={{ width: 280, paddingLeft: '64px', paddingRight: '64px' }} aria-label="simple table">
-                //         <TableHead>
-                //             <TableRow>
-                //                 <TableCell><strong>Stocks tracked by trading algorithm</strong></TableCell>
-                //             </TableRow>
-                //         </TableHead>
-                //         <TableBody>
-                //             {trackedStocks.map((stock) => (
-                //                 <TableRow
-                //                     key={stock._id}
-                //                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                //                 >
-                //                     <TableCell component="th" scope="row">
-                //                         {stock.ticker}
-                //                     </TableCell>
-                //                 </TableRow>
-                //             ))}
-                //         </TableBody>
-                //     </Table>
-                // </TableContainer>
+    
                 : <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px', marginLeft: '32px' }}> No stocks are being tracked by the trading algorithm.</Typography>
             }
         </div>

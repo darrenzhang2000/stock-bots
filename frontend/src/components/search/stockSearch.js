@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Alert, AlertTitle, Button, Typography } from '@mui/material';
+import { Alert, AlertTitle, Button, Typography, Autocomplete, TextField } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import React, { useState } from 'react';
@@ -136,6 +136,11 @@ const StockSearch = props => {
                 value={searchInput}
             />
         </Search>
+
+
+        {/* Commenting out autocomplete because it uses too many API calls. 
+        It's very easy to exceed the 100 API calls per day with the autocomplete 
+        Yahoo Finance API. */}
 
         {/* <Autocomplete
             disablePortal
