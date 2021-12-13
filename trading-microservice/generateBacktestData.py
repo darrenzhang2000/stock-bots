@@ -36,17 +36,19 @@ total_money = 10000
 stockChanges = {'GOOGL' : 0, 'FB': 0, 'MSFT': 0, 'TSLA': 0, 'PEP': 0, 'JPM': 0}
 cash_in_stock = 0
 
-daily_report_columns = ['Date', 'Ticker', 'Spending Power', 'Price', 'Action', 'Quantity', 'Total', 'Report']
+daily_report_columns = ['ID', 'Date', 'Ticker', 'Spending Power', 'Price', 'Action', 'Quantity', 'Total', 'Report']
 
 report_dataframe = pd.DataFrame(columns = daily_report_columns)
 #this keeps track of the name
 i = 0
+csv_index = 0
 
 #okay, for every day
 for day in range(500, len(G_stock)):
 
     #at the beginning of the day, prices are different, so i must reset
     #cash_in_stock
+
 
     cash_in_stock = ( (G_stock.loc[day, 'Close'] * stockChanges['GOOGL']) +
                       (F_stock.loc[day, 'Close'] * stockChanges['FB']) +  
@@ -188,6 +190,7 @@ for day in range(500, len(G_stock)):
         report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
+                    csv_index,
                     A_stock_xl.loc[day, 'Date'],
                     fall_dataframe.loc[row, 'Ticker'],
                     liquid_cash,
@@ -200,6 +203,7 @@ for day in range(500, len(G_stock)):
                     index = daily_report_columns),
                     ignore_index = True
             )
+        csv_index += 1
         #/--since it's falling, sell all--
        
 
@@ -246,6 +250,7 @@ for day in range(500, len(G_stock)):
             report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
+                    csv_index,
                     A_stock_xl.loc[day, 'Date'],
                     stable_dataframe.loc[row, 'Ticker'],
                     liquid_cash,
@@ -258,6 +263,7 @@ for day in range(500, len(G_stock)):
                     index = daily_report_columns),
                     ignore_index = True
                 )
+            csv_index += 1
             #we still need to buy, so we'll push the updated numbers at the end
         else:
             orig_stock = int( stockChanges[stable_dataframe.loc[row, 'Ticker']] )
@@ -275,6 +281,7 @@ for day in range(500, len(G_stock)):
             report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
+                    csv_index,
                     A_stock_xl.loc[day, 'Date'],
                     stable_dataframe.loc[row, 'Ticker'],
                     liquid_cash,
@@ -287,7 +294,7 @@ for day in range(500, len(G_stock)):
                     index = daily_report_columns),
                     ignore_index = True
                 )
-    
+            csv_index += 1
     #if it's growing for the past 3 days, we want to buy as much as possible
     if(len(grow_dataframe.index) != 0 and liquid_cash != 0):
         divvied_up_cash = liquid_cash / len(grow_dataframe.index)
@@ -311,6 +318,7 @@ for day in range(500, len(G_stock)):
             report_dataframe = report_dataframe.append(
                 pd.Series(
                 [
+                    csv_index,
                     A_stock_xl.loc[day, 'Date'],
                     grow_dataframe.loc[row, 'Ticker'],
                     liquid_cash,
@@ -323,6 +331,7 @@ for day in range(500, len(G_stock)):
                     index = daily_report_columns),
                     ignore_index = True
                 )
+            csv_index += 1
             # grow_dataframe.loc[row, 'Reason'] = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
             # print(grow_dataframe.loc[row, 'Reason'])
 
