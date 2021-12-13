@@ -311,9 +311,10 @@ for current_xl in csv_files:
     print(total_money)
     print(report_dataframe)
             
-    # writer = pd.ExcelWriter(str(current_xl).replace(".csv", "") + '_test_report.xlsx', engine='xlsxwriter')
-    # report_dataframe.to_excel(writer, sheet_name = "daily_report", index = False)
-    # writer.save()
+    writer = pd.ExcelWriter(str(current_xl).replace(".csv", "") + '_test_report.xlsx', engine='xlsxwriter')
+    report_dataframe.to_excel(writer, sheet_name = "daily_report", index = False)
+    writer.save()
 
-
-    report_dataframe.to_csv(str(current_xl).replace(".csv", "") + ' report_for_backtest.csv')
+    # end_path = os.getcwd()
+    # end_path += "/backtesting_results"
+    # report_dataframe.to_csv(end_path, str(current_xl).replace(".csv", "") + ' report_for_backtest.csv')
