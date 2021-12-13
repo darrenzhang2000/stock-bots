@@ -38,7 +38,13 @@ const Account = () => {
         };
 
         axios(options).then(res => {
-            //console.log(res.data)
+            let portfolios = res.data.portfolios
+            for(let i =0; i < portfolios.length; i++){
+                if(portfolios[i].email == email){
+                    setSpendingPower(portfolios[i].spendingPower.$numberDecimal)
+                    return
+                }
+            }
         })
     }
 
@@ -104,6 +110,7 @@ const Account = () => {
         }
     }
 
+    console.log(Math.round(spendingPower * 100) / 100)
     return (
         <Paper
             sx={{

@@ -41,6 +41,8 @@ const OwnedStocks = () => {
                 // unique id needed for MUI DataGrid
                 tempOwnedStocks[i].id = i
             }
+            console.log(tempOwnedStocks)
+
             setOwnedStocks(tempOwnedStocks)
 
         })
