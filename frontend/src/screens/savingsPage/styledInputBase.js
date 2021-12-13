@@ -15,10 +15,6 @@ export const AmountInput = styled('div')(({ theme }) => ({
     marginLeft: 3,
     marginRight: 3,
     width: '100%',
-    // [theme.breakpoints.up('sm')]: {
-    //     marginLeft: theme.spacing(1),
-    //     width: 'auto',
-    // },
 }));
 
 export const SearchIconWrapper = styled('div')(({ theme }) => ({

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import qs from 'qs'
-import { Button, Typography, Alert, Grid, AlertTitle } from '@mui/material';
+import { Alert, AlertTitle, Button } from '@mui/material';
+import axios from 'axios';
+import qs from 'qs';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 
 // This button adds the stock in the stock info page to be tracked by

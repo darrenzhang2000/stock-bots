@@ -1,10 +1,10 @@
 import { Grid } from '@mui/material';
+import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import Account from '../../components/account/account';
 import OwnedStock from '../../components/ownedStocks/ownedStocks';
 import TrackedStocks from '../../components/trackedStocks/trackedStock';
-import Paper from '@mui/material/Paper';
 
 const PortfolioPage = () => {
     return (

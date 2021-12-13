@@ -1,8 +1,8 @@
-import { Divider, Grid, Typography } from '@mui/material'
-import React from 'react'
+import { Divider, Grid, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import StockBotImage from './stockbot.jpg'
-import StockImage from './stocks.jpg'
+import React from 'react';
+import StockBotImage from './stockbot.jpg';
+import StockImage from './stocks.jpg';
 
 /*
 This is the home/about page that describes what our app does

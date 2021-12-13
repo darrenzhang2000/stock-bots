@@ -1,11 +1,9 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Buttœon, Typography, Alert, Button, AlertTitle } from '@mui/material';
+import { Alert, AlertTitle, Button, Typography } from '@mui/material';
+import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Search, SearchIconWrapper, StyledInputBase } from './styledSearchComponents';
-import Paper from '@mui/material/Paper';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 
 
 // Let's you search for a specific stock by its ticker. Upon submit, 

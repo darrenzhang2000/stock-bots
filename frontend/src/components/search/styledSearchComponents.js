@@ -1,6 +1,5 @@
-import React from 'react'
-import { styled, alpha } from '@mui/material/styles';
-import { InputBase } from '@mui/material'
+import { InputBase } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles';
 
 export const Search = styled('div')(({ theme }) => ({
     marginTop: '32px',

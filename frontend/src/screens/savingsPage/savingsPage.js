@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import Typography from '@mui/material/Typography';
-import { AmountInput, StyledInputBase } from './styledInputBase'
-import Button from '@mui/material/Button'
-import axios from 'axios'
 import { Alert, AlertTitle } from '@mui/material';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { AmountInput, StyledInputBase } from './styledInputBase';
 
 const WITHDRAW = "withdraw"
 const DEPOSIT = "deposit"
