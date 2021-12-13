@@ -7,9 +7,11 @@ Go to https://arcane-bayou-24810.herokuapp.com/
 
 ### frontend
 Naviate to the frontend directory: ```cd frontend```   
-Install Dependencies: ```npm i``` 
+Install Dependencies: ```npm i```  
+
 Create a file named .env
 Grab an api key from yahoo finance following the instructions in the following link and store it inside the .env file in a variable called REACT_APP_YAHOOFINANCE_API_KEY: https://www.yahoofinanceapi.com/tutorial 
+
 Set the backend port like this: REACT_APP_BACKEND_API=http://localhost:5000 
 
 The contents of the .env file should be something like:
