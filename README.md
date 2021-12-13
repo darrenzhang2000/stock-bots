@@ -17,4 +17,5 @@ Run backend: ```node index.js```
 
 ### trading-microservice
 Open a new terminal and navigate to the trading-microservice directory: ```cd trading-microservice```  
+Install Dependencies: ```pip3 install -r requirements.txt```
 Run trading-microservice: ```python3 app.py```  
