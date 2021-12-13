@@ -1,11 +1,6 @@
 import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
+import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
@@ -26,7 +21,11 @@ const TrackedStocks = () => {
 
         axios(config)
             .then(function (response) {
-                setTrackedStocks(response.data.trackedStocks)
+                let temp = response.data.trackedStocks
+                for (let i = 0; i < temp.length; i++) {
+                    temp[i].id = i
+                }
+                setTrackedStocks(temp)
             })
             .catch(function (error) {
                 console.log(error);
@@ -34,34 +33,68 @@ const TrackedStocks = () => {
 
     }
 
-
     useEffect(() => {
         getTrackedStocks()
     }, [])
 
+    const columns = [
+        // { field: 'id', headerName: 'ID', width: 70 },
+        {
+            field: 'ticker',
+            headerName: 'Ticker',
+            width: 300,
+            valueGetter: (params) => `${params.row.ticker}`
+        }
+    ]
+
     return (
         <div>
-            {trackedStocks && trackedStocks.length > 0 ? <TableContainer component={Paper} sx={{ marginLeft: '32px', marginBottom: '32px', marginRight: '32px', width: 'auto', paddingLeft: '64px', paddingRight: '64px' }}>
-                <Table sx={{ width: 280, paddingLeft: '64px', paddingRight: '64px' }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell><strong>Stocks tracked by trading algorithm</strong></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {trackedStocks.map((stock) => (
-                            <TableRow
-                                key={stock._id}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {stock.ticker}
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            {trackedStocks && trackedStocks.length > 0 ?
+                <Paper
+                    sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        marginBottom: '32px',
+                        paddingLeft: '64px',
+                        marginLeft: '32px',
+                        marginRight: '32px'
+                    }}
+                >
+                    <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px' }}> Stocks Tracked By Trading Algorithm</Typography>
+
+                    <div style={{ height: '350px', width: '300px', }}>
+                        <DataGrid
+                            rows={trackedStocks}
+                            columns={columns}
+                            pageSize={25}
+                            rowsPerPageOptions={[25]}
+                            options={{ responsive: 'scroll' }}
+                        // rowsPerPageOptions={25, 50, 100}
+                        />
+                    </div>
+                </Paper>
+                // <TableContainer component={Paper} sx={{ marginLeft: '32px', marginBottom: '32px', marginRight: '32px', width: 'auto', paddingLeft: '64px', paddingRight: '64px' }}>
+                //     <Table sx={{ width: 280, paddingLeft: '64px', paddingRight: '64px' }} aria-label="simple table">
+                //         <TableHead>
+                //             <TableRow>
+                //                 <TableCell><strong>Stocks tracked by trading algorithm</strong></TableCell>
+                //             </TableRow>
+                //         </TableHead>
+                //         <TableBody>
+                //             {trackedStocks.map((stock) => (
+                //                 <TableRow
+                //                     key={stock._id}
+                //                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                //                 >
+                //                     <TableCell component="th" scope="row">
+                //                         {stock.ticker}
+                //                     </TableCell>
+                //                 </TableRow>
+                //             ))}
+                //         </TableBody>
+                //     </Table>
+                // </TableContainer>
                 : <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px', marginLeft: '32px' }}> No stocks are being tracked by the trading algorithm.</Typography>
             }
         </div>

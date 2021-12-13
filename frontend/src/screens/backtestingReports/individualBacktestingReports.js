@@ -2,13 +2,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
+import { DataGrid } from '@mui/x-data-grid';
 import React, { useState } from 'react';
 import AAPL_Json from './jsonTestReports/AAPL_test_report.json';
 import ADBE_Json from './jsonTestReports/ADBE_test_report.json';
@@ -54,6 +49,14 @@ const stockMap = {
 
 
 const IndividualReports = () => {
+    // Adding id to each row because DataGrid requires each row to have a unique id
+    stocks.forEach(stock => {
+        let obj = stockMap[stock]
+        for (let i = 0; i < obj.length; i++) {
+            obj[i].id = i
+        }
+    });
+
     const [data, setData] = useState(AAPL_Json)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [currentReport, setCurrentReport] = React.useState("AAPL")
@@ -70,6 +73,42 @@ const IndividualReports = () => {
         setCurrentReport(currentStockName)
         setData(stockMap[currentStockName])
     }
+
+    const columns = [
+        // { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'date', headerName: 'Date', width: 100, valueGetter: (params) => `${params.row.Date}` },
+        {
+            field: 'price',
+            headerName: 'Price',
+            width: 100,
+            valueGetter: (params) => `${parseFloat(params.row.Price).toFixed(2)}`
+        },
+        {
+            field: 'quantity',
+            headerName: 'Quantity',
+            width: 80,
+            valueGetter: (params) => `${params.row.Quantity}`
+        },
+        {
+            field: 'spendingPower',
+            headerName: 'Spending Power',
+            width: 140,
+            valueGetter: (params) => `${parseFloat(params.row["Spending Power"]).toFixed(2)}`
+        },
+        {
+            field: 'total',
+            headerName: 'Total',
+            width: 100,
+            valueGetter: (params) => `${parseFloat(params.row.Total).toFixed(2)}`
+        },
+        {
+            field: 'report',
+            headerName: 'Report',
+            width: 800,
+            valueGetter: (params) => `${params.row.Report}`
+        },
+    ]
+
 
     return (
         <div>
@@ -117,38 +156,26 @@ const IndividualReports = () => {
                 </Menu>
             </Paper>
             {data && data.length > 0 ?
-
-                <TableContainer component={Paper} sx={{ marginTop: '32px', marginBottom: '32px', paddingLeft: '64px', paddingRight: '64px' }}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell><strong>Date</strong></TableCell>
-                                <TableCell align="right"><strong>Price</strong></TableCell>
-                                <TableCell align="right"><strong>Quantity</strong></TableCell>
-                                <TableCell align="right"><strong>Spending Power</strong></TableCell>
-                                <TableCell align="right"><strong>Total</strong></TableCell>
-                                <TableCell align="right"><strong>Report</strong></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {data.map((row) => (
-                                <TableRow
-                                    key={row.Date}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {row.Date}
-                                    </TableCell>
-                                    <TableCell align="right">{parseFloat(row.Price).toFixed(2)}</TableCell>
-                                    <TableCell align="right">{row.Quantity}</TableCell>
-                                    <TableCell align="right">{parseFloat(row["Spending Power"]).toFixed(2)}</TableCell>
-                                    <TableCell align="right">{parseFloat(row.Total).toFixed(2)}</TableCell>
-                                    <TableCell align="right">{row.Report}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <Paper
+                    sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        marginBottom: '32px',
+                        paddingLeft: '64px'
+                    }}
+                >
+                    <div style={{ height: '800px', width: '100%' }}>
+                        <DataGrid
+                            rows={data}
+                            columns={columns}
+                            pageSize={25}
+                            rowsPerPageOptions={[25]}
+                            options={{ responsive: 'scroll' }}
+                        // rowsPerPageOptions={25, 50, 100}
+                        />
+                    </div>
+                </Paper>
                 : <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px', marginTop: '32px' }}> You do not own any stocks.</Typography>
             }
         </div>

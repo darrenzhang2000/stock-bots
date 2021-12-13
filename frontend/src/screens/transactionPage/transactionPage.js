@@ -1,11 +1,6 @@
 import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
+import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
@@ -33,7 +28,7 @@ const TransactionPage = (props) => {
         };
 
         axios(options).then(res => {
-            if(!res.data.transactions){
+            if (!res.data.transactions) {
                 return
             }
             // setTransactions(res.data.transactions.sort((a, b) => a.dateTime < b.dateTime ? 1 : -1))
@@ -44,6 +39,44 @@ const TransactionPage = (props) => {
     useEffect(() => {
         getTransactions()
     }, [])
+
+    const columns = [
+        {
+            field: 'dateTime',
+            headerName: 'Date',
+            width: 200,
+            valueGetter: (params) => `${params.row.dateTime.slice(0, 10)}`
+        },
+        {
+            field: 'ticker',
+            headerName: 'Ticker',
+            width: 200,
+            valueGetter: (params) => `${params.row.ticker}`
+        },
+        {
+            field: 'action',
+            headerName: 'Action',
+            width: 200,
+            valueGetter: (params) => `${params.row.action}`
+        },
+        {
+            field: 'price',
+            headerName: 'Price',
+            width: 200,
+            valueGetter: (params) => `${parseFloat(params.row.price.$numberDecimal).toFixed(2)}`
+        },
+        {
+            field: 'quantity',
+            headerName: 'Quantity',
+            width: 200,
+            valueGetter: (params) => `${parseFloat(params.row.quantity).toFixed(2)}`
+        },
+    ]
+
+    // Adding id to each transaction because DataGrid requires each row to have a unique id
+    for (let i = 0; i < transactions.length; i++) {
+        transactions[i].id = i
+    }
 
     return (
         <div>
@@ -58,30 +91,29 @@ const TransactionPage = (props) => {
             >
                 <Typography variant="h4" className="font-link" > Transactions Page</Typography>
             </Paper>
-            { transactions && transactions.length != 0 ? <TableContainer sx={{ paddingLeft: '64px', paddingRight: '64px'}} component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow id="transactionsHeader">
-                            <TableCell><strong>Date</strong></TableCell>
-                            <TableCell><strong>Ticker</strong></TableCell>
-                            <TableCell><strong>Action</strong></TableCell>
-                            <TableCell><strong>Price</strong></TableCell>
-                            <TableCell><strong>Quantity</strong></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {
-                            transactions.map((transaction, idx) => <TableRow id={idx+transaction.dateTime.toLocaleString()}>
-                                <TableCell>{new Date(transaction.dateTime).toLocaleString()}</TableCell>
-                                <TableCell>{transaction.ticker}</TableCell>
-                                <TableCell>{transaction.action}</TableCell>
-                                <TableCell>{parseFloat(transaction.price.$numberDecimal).toFixed(2)}</TableCell>
-                                <TableCell>{transaction.quantity}</TableCell>
-                            </TableRow>)
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            { transactions && transactions.length != 0 ?
+
+                <Paper
+                    sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        marginBottom: '32px',
+                        paddingLeft: '64px'
+                    }}
+                >
+                    <div style={{ height: '800px', width: '100%' }}>
+                        <DataGrid
+                            rows={transactions}
+                            columns={columns}
+                            pageSize={25}
+                            rowsPerPageOptions={[25]}
+                            options={{ responsive: 'scroll' }}
+                        // rowsPerPageOptions={25, 50, 100}
+                        />
+                    </div>
+                </Paper>
+
                 : <Typography variant="h6" className="font-link" sx={{ marginBottom: '32px' }}> You do not have any transactions.</Typography>
             }
         </div>
