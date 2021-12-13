@@ -1,9 +1,3 @@
-'''
-For certain stocks (tech stocks),
-for start date April 2020, grab stock opening prices everyday all the way to Nov 1,
-store prices in a csv
-compare how much money is made at the end
-'''
 import requests
 import collections
 from statistics import mean
@@ -19,36 +13,27 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import glob
 
-#we want all the excl files so we get path
+#we want all the excel files in hist file so we get path
 path = os.getcwd()
 path += "/histdata"
 csv_files = glob.glob(os.path.join(path, "*.csv"))
 
-#okay so we will use the bottom loop to just put all the excel files
-#into their own variables,
+#since some stocks will lose money and some will gain, we will track the gain and loss of each so we know overall how much we make
+overall_gain = 0
 
-#or just grab them individually and just repeat everything 4 times for each 
-#specific one
-
-#nested for loop so each 
-
-#okay, so do for(1 - 4) and if: it's one, A_stock_xl = MSFT.xl, if 2 A_stock = FB
-#OR
-#put read all of them, then put each of them in a series
-#df = [df1, df2, df3]
-#good, news. i only have to grab the last 6 months rather than 5 years
-# 
-
-
-
+#for every csv file, it will run an individual report
+#basically for each stock, it will simulate as if the algorithm has run for just that one stock for about 3 years
+#so it's as if a user had only had one stock for us to manage, and they let it run for 3 years without change
 for current_xl in csv_files:
     A_stock_xl = pd.read_csv(current_xl)
 
+    #when the code is here, that means a new 5 year file will be run, so we resest all these values
     liquid_cash = 10000
     total_money = 10000
     A_stock_amount = 0
     cash_in_stock = 0
 
+    #this is added to whenever
     daily_report_columns = ['Date', 'Spending Power', 'Price', 'Quantity', 'Total', 'Report']
 
     report_dataframe = pd.DataFrame(columns = daily_report_columns)
@@ -75,7 +60,7 @@ for current_xl in csv_files:
         ticker = ( str(current_xl).split("/")[-1] ).replace(".csv", "")
 
         a_year_ago = day - (52 * 5) #this is an estimate, since stock market is only
-            #open on weekdays, so 52 of those should be a year ago
+            #open on weekdays, so 52 of those groups of 5 should be a year ago
         six_months_ago = day - (26 * 5)
         three_months_ago = day - (13 * 5)
         one_month_ago = day - (4 * 5)
@@ -153,9 +138,9 @@ for current_xl in csv_files:
         for row in fall_dataframe.index:
             orig_stock = A_stock_amount
             A_stock_amount = 0
-            cash_in_stock = 0
+            cash_in_stock =  0
             liquid_cash +=  float(orig_stock) * fall_dataframe.loc[row, 'Price']
-            total_money = liquid_cash
+            total_money = liquid_cash + cash_in_stock
 
             given_reason =  f"Sold all {orig_stock} of stock {fall_dataframe.loc[row, 'Ticker']} at {fall_dataframe.loc[row, 'Price']} because it's been falling for 3 consecutive days. New total is {total_money}"
             action = "SELL"
@@ -183,18 +168,18 @@ for current_xl in csv_files:
 
         #now we decide the fate of the stable stocks
         for row in stable_dataframe.index:
-                decision = 0 #decision will help decide the fate of the stock
-                avg_past = (stable_dataframe.loc[row, 'One-Year Price Return'] + 
-                        stable_dataframe.loc[row, 'Six-Month Price Return']  +
-                        stable_dataframe.loc[row, 'Three-Month Price Return']  +
-                        stable_dataframe.loc[row, 'One-Month Price Return']  )
-                #print(avg_past)
-                if(avg_past < 0):
-                    decision = decision - 1
-                elif(avg_past > 0):
-                    decision = decision + 1
-                else: #just in case it adds up to 0
-                    decision = decision + 0
+            decision = 0 #decision will help decide the fate of the stock
+            avg_past = (stable_dataframe.loc[row, 'One-Year Price Return'] + 
+                    stable_dataframe.loc[row, 'Six-Month Price Return']  +
+                    stable_dataframe.loc[row, 'Three-Month Price Return']  +
+                    stable_dataframe.loc[row, 'One-Month Price Return']  )
+            #print(avg_past)
+            if(avg_past < 0):
+                decision = decision - 1
+            elif(avg_past > 0):
+                decision = decision + 1
+            else: #just in case it adds up to 0
+                decision = decision + 0
 
                 stable_dataframe.loc[row, 'Decision'] = decision
 
@@ -212,9 +197,9 @@ for current_xl in csv_files:
                 else:
                     A_stock_amount -= stock_in_half
                     #the current cash in the stock is now what we have left in the stocks
-                    cash_in_stock = stock_in_half * stable_dataframe.loc[row, 'Price']
+                    cash_in_stock = ( float( A_stock_amount - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
                     #liquid cash is made larger by what we sold
-                    liquid_cash +=  ( float( orig_stock - stock_in_half) ) * stable_dataframe.loc[row, 'Price']
+                    liquid_cash +=  ( float( stock_in_half) ) * stable_dataframe.loc[row, 'Price']
                 total_money = cash_in_stock + liquid_cash
 
                 given_reason = f"Sold half, {stock_in_half}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days and it has an okay recent history. New total is {total_money}"
@@ -245,7 +230,7 @@ for current_xl in csv_files:
                 A_stock_amount = 0
                 cash_in_stock = 0
                 liquid_cash +=  float( orig_stock) * stable_dataframe.loc[row, 'Price']
-                total_money = liquid_cash
+                total_money = liquid_cash + cash_in_stock
 
                 given_reason = f"Sold all {orig_stock}, of stock {stable_dataframe.loc[row, 'Ticker']} at {stable_dataframe.loc[row, 'Price']} because it's platued for the past 3 days, but it has a poor recent history. New total is {total_money}"
                 action = "SELL"
@@ -280,7 +265,7 @@ for current_xl in csv_files:
                 new_amount_to_buy = math.floor(divvied_up_cash/grow_dataframe.loc[row, 'Price'])
                 liquid_cash -= ( new_amount_to_buy * grow_dataframe.loc[row, 'Price'])
                 A_stock_amount = A_stock_amount + new_amount_to_buy
-                cash_in_stock = A_stock_amount * grow_dataframe.loc[row, 'Price']
+                cash_in_stock = ( A_stock_amount * grow_dataframe.loc[row, 'Price'])
                 total_money = liquid_cash + cash_in_stock
 
                 given_reason = f"Bought {new_amount_to_buy} of {grow_dataframe.loc[row, 'Ticker']} for {grow_dataframe.loc[row, 'Price']} because it's been growing for the past 3 days. New total is {total_money}"
@@ -307,7 +292,7 @@ for current_xl in csv_files:
                 # print(grow_dataframe.loc[row, 'Reason'])
 
 
-
+    overall_gain += total_money - 10000 
     print(total_money)
     print(report_dataframe)
             
@@ -315,6 +300,7 @@ for current_xl in csv_files:
     report_dataframe.to_excel(writer, sheet_name = "daily_report", index = False)
     writer.save()
 
+print(overall_gain)
     # end_path = os.getcwd()
     # end_path += "/backtesting_results"
     # report_dataframe.to_csv(end_path, str(current_xl).replace(".csv", "") + ' report_for_backtest.csv')
