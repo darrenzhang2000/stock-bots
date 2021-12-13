@@ -15,7 +15,8 @@ Grab an api key from yahoo finance following the instructions in the following l
 Set the backend port like this: REACT_APP_BACKEND_API=http://localhost:5000 
 
 The contents of the .env file should be something like:
-```REACT_APP_YAHOOFINANCE_API_KEY=ENTER_YOUR_API_KEY_HERE
+```
+REACT_APP_YAHOOFINANCE_API_KEY=ENTER_YOUR_API_KEY_HERE
 REACT_APP_BACKEND_API=http://localhost:5000
 ``` 
 
@@ -34,7 +35,8 @@ Create a file named .env
 Add the connection string of the database you've just created to a variable called CONNECTION_STRING in the .env file. 
 
 The contents of the .env file should be something like: 
-```CONNECTION_STRING = YOUR_MONGO_DB_CONNECTION_STRING
+```
+CONNECTION_STRING = YOUR_MONGO_DB_CONNECTION_STRING
 ```
 
 Run backend: ```node index.js```
@@ -52,7 +54,8 @@ Create an iex api key and store it a variable called IEX_API_KEY: https://iexclo
 Store the port as follows: BACKEND_API=http://localhost:5000 
 
 The contents of the .env file should be something like: 
-```YAHOO_FINANCE_API_KEY=YOUR_YAHOO_FINANCE_API_KEY 
+```
+YAHOO_FINANCE_API_KEY=YOUR_YAHOO_FINANCE_API_KEY 
 IEX_API_KEY=YOUR_IEX_API_KEY 
 BACKEND_API=http://localhost:5000
 ```
