@@ -1,7 +1,7 @@
 # stock-bots
 
-## Instructions for using deployed app
-Go to https://arcane-bayou-24810.herokuapp.com/
+## Deployed link:
+https://pacific-springs-75440.herokuapp.com/
 
 ## Instructions for running locally
 
