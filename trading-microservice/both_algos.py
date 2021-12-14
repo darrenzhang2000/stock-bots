@@ -386,14 +386,4 @@ def stockActions(tickers, email):
         
         #/--we take the cash difference from the original to see how much it has changed and we update it--
 
-        print("these are the dataframes")
-        print(fall_dataframe)
-        print(grow_dataframe)
-        print(stable_dataframe)
-        print(liquid_cash)
-        print(cash_difference)
-        print(stockChanges)
-
-
- 
-stockActions(['GOOGL', 'TSLA', 'FB', 'MSFT'], 'testuser@gmail.com') #okay, Apple's strange but it works
+       
