@@ -1,11 +1,11 @@
-from flask import Flask, jsonify
-from flask_cors import CORS
+from flask import Flask
 import requests
 from both_algos import stockActions
 import time
-app = Flask(__name__)
 from dotenv import load_dotenv
 import os
+from flask import Flask
+import threading
 
 load_dotenv()
 
@@ -25,8 +25,8 @@ def getPortfolios():
     return portfolios
 
 def runAlgoJob():
+    print('running algo job')
     time.sleep(86400)
-    
     portfolios = getPortfolios()
     emails = [p["email"] for p in portfolios]
     for email in emails:
@@ -35,7 +35,9 @@ def runAlgoJob():
     runAlgoJob()
 
 
+thread1 = threading.Thread(target=runAlgoJob)
+thread1.run()
 
 if __name__ == '__main__':
-    runAlgoJob()
-    app.run(port=8000)
+    app = Flask(__name__)
+    app.run(port=9000)
