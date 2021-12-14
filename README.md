@@ -61,3 +61,56 @@ BACKEND_API=http://localhost:5000
 ```
 
 Run trading-microservice: ```python3 app.py```  
+
+## Instructions for deploying app
+Download Heroku: https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up 
+
+Deploy our code: 
+We need to deploy 3 services to heroku: our frontend, backend and trading-microservice.
+Clone the stockbot repo: 
+```
+git clone git@github.com:darrenzhang2000/stock-bots.git 
+```
+
+Navigate into that repo by doing: 
+```
+cd stock-bots
+```
+Unhide the hidden git file and remove it (that way we can later push the frontend, backend and trading-microservice onto Github). On the Macbook, the command it cmd+shift+. to unhide.
+
+Now add the frontend, backend and trading-microservice onto Github: https://docs.github.com/en/github/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line
+
+
+
+Use the heroku login command to log in to the Heroku CLI: 
+```
+heroku login
+```
+
+Create an app on Heroku, which prepares Heroku to receive your source code.
+
+```
+heroku create
+```
+
+Push the app to heroku: 
+```
+git push heroku main
+```
+
+Ensure that the app is running: 
+```
+heroku ps:scale web=1
+```
+
+Open the app:
+```
+heroku open
+``` 
+
+Make sure this is done for all 3 repos. 
+
+Set the environmental variables on heroku in a similar fashion as specified in local deployment. https://devcenter.heroku.com/articles/config-vars
+
+
+
