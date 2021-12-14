@@ -106,7 +106,11 @@ heroku ps:scale web=1
 Open the app:
 ```
 heroku open
-```
+``` 
+
+Make sure this is done for all 3 repos. 
+
+Set the environmental variables on heroku in a similar fashion as specified in local deployment. https://devcenter.heroku.com/articles/config-vars
 
 
 
